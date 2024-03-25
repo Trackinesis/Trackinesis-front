@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Validation from './SignupValidation';
 import axios from 'axios';
-import './styles.css';
+import './Signup.css';
 
 function Signup() {
 
@@ -66,7 +66,7 @@ function Signup() {
                             onChange={handleInput} className='form-control rounded 0'/>
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
-                    <button type='submit' className='btn btn-success w-100 rounded-0'>Next</button>
+                    <button type='submit' onClick={handleSubmit} className='btn btn-success w-100 rounded-0'>Next</button>
                 </form>
             </div>
         </div>
