@@ -1,10 +1,10 @@
 import React from 'react'
-import Login from './Login'
+import Login from './pages/login/Login'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Signup from './Signup'
-import Home from './Home'
-import SignupStepTwo from './SignupStepTwo'
-import UserPage from './UserPage'
+import Signup from './pages/signup/Signup'
+import Home from './pages/home/Home'
+import SignupStepTwo from './pages/signupStepTwo/SignupStepTwo'
+import UserPage from './pages/userPage/UserPage'
 
 
 function App() {
