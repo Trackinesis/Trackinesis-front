@@ -66,6 +66,9 @@ function UserPage() {
                     <button type="submit" className="btn btn-primary mt-3 align-content-center">
                         Save Changes
                     </button>
+                    <div className="delete-account-container">
+                    </div>
+                    <button type='submit'  id="deleteAccountButton" className='btn btn-carefull w-100 rounded-0'> Delete My Account </button>
                 </form>
             </div>
         </div>
