@@ -36,7 +36,7 @@ function Login() {
 
     return (
         <div className='main-page-format'>
-            <div className='bg-white p-3 rounded w-25'>
+            <div className='bg-white p-3 rounded w-100'>
                 <h2>Log-In</h2>
                 <form action="" onSubmit={handleSubmit}>
                     <div className='mb-3'>

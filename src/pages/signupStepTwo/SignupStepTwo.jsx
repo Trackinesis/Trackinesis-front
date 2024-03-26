@@ -32,7 +32,7 @@ function SignupStepTwo() {
 
     return (
         <div className='d-flex justify-content-center allign-items-center bg-primary vh-100'>
-            <div className='bg-white p-4 rounded w-25'>
+            <div className='bg-white p-4 rounded w-100'>
                 <Link to="/signup" className='btn btn-default border w-20 bg-light rounded-0 text-decoration-none'>Back</Link>
                 <h2>Sign-Up</h2>
                 <form action="" onSubmit={handleSubmit}>
@@ -65,7 +65,7 @@ function SignupStepTwo() {
                         {errors.gender && <span className='text-danger'> {errors.gender}</span>}
                     </div>
                     <p>By clicking here you agree with our terms of service.</p>
-                    <button type='submit' className='btn btn-success w-100 rounded-0'>Join the Club!</button>
+                    <button type='submit' onClick={handleSubmit} className='btn btn-success w-100 rounded-0'>Join the Club!</button>
                 </form>
             </div>
         </div>

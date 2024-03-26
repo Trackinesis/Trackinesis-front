@@ -17,7 +17,7 @@ function Home() {
 
     return (
         <div className='main-page-format'>
-            <div className='bg-white p-3 rounded w-25'>
+            <div className='bg-white p-3 rounded w-100'>
                 <h2>Hi getName()</h2>
                 <h3>Today is {dayName}</h3>
                 <Link to='/userpage' className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>User Page </Link>

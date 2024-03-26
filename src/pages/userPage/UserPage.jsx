@@ -21,7 +21,7 @@ function UserPage() {
 
     return (
         <div className="main-page-format">
-            <div className='bg-white p-3 rounded w-25'>
+            <div className='bg-white p-3 rounded w-100'>
                 <h2> Edit User Profile</h2>
                 <form onSubmit={handleSubmit} className="mx-auto w-75">
                     <div className="form-group">

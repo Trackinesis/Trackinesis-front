@@ -32,7 +32,7 @@ function Signup() {
 
     return (
         <div className='main-page-format'>
-            <div className='bg-white p-4 rounded w-25'>
+            <div className='bg-white p-4 rounded w-100'>
                 <Link to="/" className='btn btn-default border w-20 bg-light rounded-0 text-decoration-none'>Back</Link>
                 <h2>Sign-Up</h2>
                 <form action="" onSubmit={handleSubmit}>
