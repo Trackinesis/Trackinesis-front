@@ -23,7 +23,7 @@ function UserPage() {
         <div className="main-page-format">
             <div className='bg-white p-3 rounded w-100'>
                 <h2> Edit User Profile</h2>
-                <form onSubmit={handleSubmit} className="mx-auto w-75">
+                <form onSubmit={handleSubmit} className="formsPosition">
                     <div className="form-group">
                         <label htmlFor="name" className="text-black">
                             Name:
@@ -66,9 +66,8 @@ function UserPage() {
                     <button type="submit" className="btn btn-primary mt-3 align-content-center">
                         Save Changes
                     </button>
-                    <div className="delete-account-container">
-                    </div>
-                    <button type='submit'  id="deleteAccountButton" className='btn btn-carefull w-100 rounded-0'> Delete My Account </button>
+                    
+                    <button type='submit'  id="deleteAccountButton" > Delete My Account </button>
                 </form>
             </div>
         </div>
