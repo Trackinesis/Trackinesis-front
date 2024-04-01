@@ -14,25 +14,26 @@ function Login() {
         const [errors, setErrors] = useState({});
 
         const handleInput =(event) => {
-            setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+            setValues(prev => ({...prev, [event.target.name]: event.target.value}))
         }
 
-        const handleSubmit =(event) => {
-            event.preventDefault();
-            setErrors(Validation(values));
-            if(errors.email === "" && errors.password === "") {
-                axios.post('http://localhost:8081/login', values)
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setErrors(Validation(values));
+        if (errors.email === "" && errors.password === "") {
+            axios.post('http://localhost:8081/login', values)
                 .then(res => {
-                    if(res.data === "Success") {
-                        navigate('/home')
+                    console.log(res.data);
+                    if (res.data === "Fail") {
+                        alert("No record existed");
                     }
                     else {
-                        alert("No record existed")
+                        navigate('/home');
                     }
                 })
                 .catch(err => console.log(err));
-            }
         }
+    }
 
     return (
         <div className='main-page-format'>
