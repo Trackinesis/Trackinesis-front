@@ -18,24 +18,25 @@
     border: 2px;
 }
 
-.btn-carefull {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: #970005;
-    --bs-btn-border-color: #970005FF;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #970005FF;
-    --bs-btn-hover-border-color: #970005FF;
-    --bs-btn-focus-shadow-rgb: 60, 153, 110;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #970005FF;
-    --bs-btn-active-border-color: #970005FF;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #970005FF;
-    --bs-btn-disabled-border-color: #970005FF;
-    outline: 3px solid #970005;
+#deleteAccountButton {
+    position : absolute;
+    bottom: 30px;
+    border-radius: 5px;
+    border: red solid 2px;
+    background-color: white;
+    margin: auto;
+    left: 20%;
+    right: 20%;
+    width: 20%;
+    min-width: 200px;
 }
 
-.delete-account-container {
-    height: 200px;
+#deleteAccountButton:hover {
+    background-color: red;
+    transition: background-color 0.3s;
+}
+
+.formsPosition {
+    margin: 0 auto;
+    width: 75%;
 }
