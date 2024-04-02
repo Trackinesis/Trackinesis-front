@@ -1,0 +1,78 @@
+:root {
+    --raisin-black: #372f32ff;
+    --wenge: #504746ff;
+    --timberwolf: #d8d8d8ff;
+    --tea-rose-red: #f7cbcaff;
+    --vermilion: #ff3633ff;
+}
+
+.main-page {
+    /* General layout and container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Set a minimum height for the page */
+    background-color: var(--raisin-black); /* Use a CSS variable for background color */
+    padding: 20px;
+}
+
+/* Additional styling for specific elements */
+.main-page-header {
+    /* Style for the header */
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--timberwolf);
+}
+
+.main-page-content {
+    /* Style for the main content area */
+    width: 80%;
+    max-width: 800px; /* Adjust as needed for responsive design */
+    margin: 0 auto;
+}
+
+.prompt {
+    margin-bottom: 10px;
+}
+
+#top-text {
+    color: var(--timberwolf);
+}
+
+#colouredButton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--vermilion);
+    border-radius: 0;
+    cursor: pointer;
+
+    background-color: var(--vermilion);
+    color: var(--wenge);
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
