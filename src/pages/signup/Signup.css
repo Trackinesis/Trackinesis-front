@@ -1,13 +1,16 @@
-.main-page-format {
-    --bs-bg-opacity : 1;
-    background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+.signupPage {
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    width: 90%;
+}
 
-    justify-content: center;
-
-    height: 100vh;
-
-    display: flex;
-
-    box-sizing: border-box;
-
+.backButton {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 0.1rem 0.5rem;
+    width: 20%;
+    border-radius: 0;
+    color: black;
+    text-decoration: none;
 }

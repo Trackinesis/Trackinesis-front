@@ -31,9 +31,8 @@ function Signup() {
     };
 
     return (
-        <div className='main-page-format'>
-            <div className='bg-white p-4 rounded w-100'>
-                <Link to="/" className='btn btn-default border w-20 bg-light rounded-0 text-decoration-none'>Back</Link>
+            <div className='signupPage'>
+                <Link to="/" className='backButton'>Back</Link>
                 <h2>Sign-Up</h2>
                 <form action="" onSubmit={handleSubmit}>
                     <div className='mb-3'>
@@ -69,7 +68,6 @@ function Signup() {
                     <button type='submit' onClick={handleSubmit} className='btn btn-success w-100 rounded-0'>Next</button>
                 </form>
             </div>
-        </div>
     )
 }
 

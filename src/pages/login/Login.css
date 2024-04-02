@@ -1,13 +1,7 @@
-.main-page-format {
-    --bs-bg-opacity : 1;
-    background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
-
-    justify-content: center;
-
-    height: 100vh;
-
-    display: flex;
-
-    box-sizing: border-box;
+.loginPage {
+    background-color: white;
+    padding: 20px;
+    border-radius: 0.25rem;
+    width: 90%;
 
 }
