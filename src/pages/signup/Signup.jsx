@@ -15,7 +15,7 @@ function Signup() {
     const [errors, setErrors] = useState({});
 
     const handleInput =(event) => {
-        setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+        setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
     const handleSubmit = (event) => {
@@ -37,7 +37,7 @@ function Signup() {
                 <form action="" onSubmit={handleSubmit}>
                     <div className='mb-3'>
                         <label htmlFor="name"><strong>First Name</strong></label>
-                        <input type="text" placeholder='Enter First Name' name='name' 
+                        <input type="text" placeholder='Enter First Name' name='name'
                             onChange={handleInput} className='form-control rounded 0'/>
                         {errors.name && <span className='text-danger'> {errors.name}</span>}
                     </div>
