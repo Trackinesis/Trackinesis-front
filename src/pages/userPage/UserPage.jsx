@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import './UserPage.css';
+import '../../styles.css'
 
 function UserPage() {
 
     const [user, setUser] = useState({
-        name: 'Hugh Jass',
-        email: 'hugh.jass@example.com',
+        name: '',
+        email: '',
         password: '',
     });
 
@@ -21,55 +22,51 @@ function UserPage() {
 
 
     return (
+        <div className='main-page'>
 
-        <div className='userPage'>
-            <Link to="/signup" className="backButton"> Back</Link>
-            <h2> Edit User Profile</h2>
-            <form onSubmit={handleSubmit} className="formsPosition">
-                <div className="form-group">
-                    <label htmlFor="name" className="text-black">
+            <Link to="/home" id='backButton'> Back</Link>
+
+            <h2 className='main-page-header'> Edit User Profile</h2>
+
+            <form onSubmit={handleSubmit}>
+
+                <div className="prompt">
+                    <label id='top-text' htmlFor="name">
                         Name:
                     </label>
                     <input
+                        id='formsInput'
                         type="text"
-                        id="name"
-                        name="name"
-                        value={user.name}
                         onChange={handleChange}
-                        className="form-control bg-white"
+                        placeholder='Choose new username'
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="email" className="text-black">
+
+                <div className="prompt">
+                    <label id='top-text' htmlFor="email">
                         Email:
                     </label>
                     <input
+                        id='formsInput'
                         type="email"
-                        id="email"
-                        name="email"
-                        value={user.email}
                         onChange={handleChange}
-                        className="form-control bg-white"
+                        placeholder='Type new email'
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password" className="text-black">
-                        Password:
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={user.password}
-                        onChange={handleChange}
-                        className="form-control bg-white"
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary mt-3 align-content-center">
-                    Save Changes
-                </button>
 
-                <button type='submit'  id="deleteAccountButton" > Delete My Account </button>
+                <div className="prompt">
+                    <label id='top-text' htmlFor="password"> Password:</label>
+                    <input
+                        id='formsInput'
+                        type="password"
+                        onChange={handleChange}
+                        placeholder='Type new password'
+                    />
+                </div>
+
+                <button id='saveButton' type="submit">Save Changes</button>
+
+                <button id="deleteAccountButton" type='submit'> Delete My Account </button>
             </form>
         </div>
 

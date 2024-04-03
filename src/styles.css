@@ -33,7 +33,7 @@
 }
 
 .prompt {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #top-text {
@@ -44,13 +44,57 @@
     display: inline-block;
     padding: 10px 20px;
     border: 1px solid var(--vermilion);
-    border-radius: 0;
+    border-radius: 5px;
     cursor: pointer;
 
     background-color: var(--vermilion);
     color: var(--wenge);
     width: 100%;
     margin-bottom: 10px;
+}
+
+#defaultButton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--wenge);
+    border-radius: 5px;
+    cursor: pointer;
+
+    background-color: var(--wenge);
+    color: var(--timberwolf);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#backButton {
+    /* Estilo basico*/
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--timberwolf);
+    text-decoration: none;
+    border-color: var(--wenge);
+
+    /* Posicionamiento */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+#formsInput {
+    display: block; /* Allow for block-level positioning */
+    width: 100%; /* Make the input element full width */
+    padding: 10px; /* Adjust padding if needed */
+    height: 40px;
+    border: 1px solid var(--timberwolf); /* Default border style and color */
+    /* Remove rounded corners */
+    border-radius: 5px;
 }
 
 
