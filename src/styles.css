@@ -7,13 +7,12 @@
 }
 
 .main-page {
-    /* General layout and container */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Set a minimum height for the page */
-    background-color: var(--raisin-black); /* Use a CSS variable for background color */
+    min-height: 100vh;
+    background-color: var(--raisin-black);
     padding: 20px;
 }
 
@@ -28,7 +27,7 @@
 .main-page-content {
     /* Style for the main content area */
     width: 80%;
-    max-width: 800px; /* Adjust as needed for responsive design */
+    max-width: 800px;
     margin: 0 auto;
 }
 
