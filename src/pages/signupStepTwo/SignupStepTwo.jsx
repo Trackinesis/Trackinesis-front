@@ -15,14 +15,14 @@ function SignupStepTwo() {
     const [errors, setErrors] = useState({});
 
     const handleInput =(event) => {
-        setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+        setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
     const handleSubmit =(event) => {
         event.preventDefault();
         setErrors(Validation(valuesStepTwo));
         if (errors.age === "" && errors.weight === "" && errors.height === "" && errors.gender === "") {
-            axios.post('http://localhost:8081/signup', valuesStepTwo)
+            axios.post('http://localhost:8081/signupsteptwo', valuesStepTwo)
             .then(res => {
                 navigate('/');
             })
