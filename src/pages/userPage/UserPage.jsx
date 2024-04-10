@@ -62,9 +62,13 @@ function UserPage() {
     const handleDeleteAccount = () => {
         setShowDeleteConfirmation(true);
     };
-    const confirmDeleteAccount = () => {
-        handleSubmitDelete();
-        setShowDeleteConfirmation(false);
+    const confirmDeleteAccount = async () => {
+        try {
+            await handleSubmitDelete();
+            setShowDeleteConfirmation(false);
+        } catch (error) {
+            console.log('Error deleting user', error);
+        }
     };
 
     return (
