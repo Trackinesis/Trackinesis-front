@@ -17,7 +17,14 @@ function CreatePlan() {
         <div className='main-format-create-plan'>
             <h1 id='topTitle'>Create new Training Plan</h1>
 
-            <input id='input-style' type='text' placeholder='Enter Plan Name'/>
+            <input id='input-style' type='text' placeholder='Enter Plan Name:'/>
+
+            <input id='input-style' type='text' placeholder='Enter Plan Type:'/>
+
+            <input id='input-style' type='text' placeholder='Enter Plan by Code:'/>
+
+            <input id='input-style' type='text' placeholder='Enter Plan Objective (optional):'/>
+
 
         </div>
     );
