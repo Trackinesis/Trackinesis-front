@@ -43,46 +43,39 @@ function CreatePlan() {
             </div>
 
             {/* Botones de los días de la semana */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '80%', margin: 'auto' }}>
+            <div className='days-container'>
                 {daysOfWeek.map((day, index) => (
-                    <div key={index}>
-                        <button onClick={() => handleDayClick(day)}>
-                            {day}
-                        </button>
-                        {selectedDay === day && (
-                            <div>
-                                {/* Campos adicionales para el día seleccionado */}
-                                <div className='prompt'>
-                                    <button id='restDayButton' disabled>Add rest day</button>
-                                </div>
-
-                                <div className='prompt'>
-                                    <label id='top-text' htmlFor="create exercise"><strong>Create new exercise:</strong></label>
-                                    <input id='formsInput' type="text" placeholder='Enter new exercise name:' name='create exercise' />
-                                </div>
-
-                                <div className='prompt'>
-                                    <label id='top-text' htmlFor="existent exercise"><strong>Add an existent excercise:</strong></label>
-                                    <input id='formsInput' type="text" placeholder='Add an existent excercise:' name='existent exercise' />
-                                </div>
-
-                                <div className='prompt'>
-                                    <label id='top-text' htmlFor="default exercise"><strong>Add default excercise:</strong></label>
-                                    <input id='formsInput' type="text" placeholder='Select default excercise:' name='default exercise' />
-                                </div>
-
-                                <div className='prompt'>
-                                    <label id='top-text' htmlFor="add sport"><strong>Create new exercise:</strong></label>
-                                    <input id='formsInput' type="text" placeholder='Add sport:' name='Add sport' />
-                                </div>
-
-                            </div>
-                        )}
-                    </div>
+                    <button
+                        key={index}
+                        className={selectedDay === day ? 'selected-day' : ''}
+                        onClick={() => handleDayClick(day)}
+                    >
+                        {day}
+                    </button>
                 ))}
             </div>
 
-            <button type='submit'  id='colouredButton' >Create plan</button>
+            {selectedDay && (
+                <div className='selected-day-options'>
+                    <div className='prompt'>
+                        <button id='restDayButton' disabled>Add rest day</button>
+                    </div>
+                    <div className='prompt'>
+                        <button id='newExcerciseButton' disabled>Create new excercise</button>
+                    </div>
+                    <div className='prompt'>
+                        <button id='existentExcercise' disabled>Add an existent excercise</button>
+                    </div>
+                    <div className='prompt'>
+                        <button id='addDefaultExcercise' disabled>Add default excercise</button>
+                    </div>
+                    <div className='prompt'>
+                        <button id='addSport' disabled>Add sport</button>
+                    </div>
+                </div>
+            )}
+
+            <button type='submit' id='colouredButton'>Create plan</button>
         </div>
     );
 }
