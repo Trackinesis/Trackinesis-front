@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="agrego placeholders en createPlan">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="agrego workspace a git ignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/createPlan/createPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/createPlan.jsx" afterDir="false" />
     </list>
@@ -78,7 +78,7 @@
       <workItem from="1711466701285" duration="3835000" />
       <workItem from="1711678292855" duration="12170000" />
       <workItem from="1713192673402" duration="1603000" />
-      <workItem from="1713270062435" duration="1956000" />
+      <workItem from="1713270062435" duration="2653000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -102,7 +102,21 @@
       <option name="project" value="LOCAL" />
       <updated>1713199533761</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="agrego dias con su display en createPlan">
+      <created>1713272338067</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713272338067</updated>
+    </task>
+    <task id="LOCAL-00005" summary="agrego workspace a git ignore">
+      <created>1713272432935</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713272432935</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +138,8 @@
     <MESSAGE value="front with database" />
     <MESSAGE value="agrego .idea en git ignore" />
     <MESSAGE value="agrego placeholders en createPlan" />
-    <option name="LAST_COMMIT_MESSAGE" value="agrego placeholders en createPlan" />
+    <MESSAGE value="agrego dias con su display en createPlan" />
+    <MESSAGE value="agrego workspace a git ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="agrego workspace a git ignore" />
   </component>
 </project>

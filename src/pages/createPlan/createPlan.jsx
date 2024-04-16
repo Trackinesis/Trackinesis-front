@@ -15,7 +15,7 @@ function CreatePlan() {
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     const handleDayClick = (day) => {
-        setSelectedDay(day);
+        setSelectedDay(selectedDay === day ? null :day);
     };
 
     return (
@@ -55,11 +55,27 @@ function CreatePlan() {
                                 <div className='prompt'>
                                     <button id='restDayButton' disabled>Add rest day</button>
                                 </div>
+
                                 <div className='prompt'>
                                     <label id='top-text' htmlFor="create exercise"><strong>Create new exercise:</strong></label>
-                                    <input id='formsInput' type="text" placeholder='Enter Exercise name:' name='create exercise' />
+                                    <input id='formsInput' type="text" placeholder='Enter new exercise name:' name='create exercise' />
                                 </div>
-                                {/* Agrega más campos según sea necesario */}
+
+                                <div className='prompt'>
+                                    <label id='top-text' htmlFor="existent exercise"><strong>Add an existent excercise:</strong></label>
+                                    <input id='formsInput' type="text" placeholder='Add an existent excercise:' name='existent exercise' />
+                                </div>
+
+                                <div className='prompt'>
+                                    <label id='top-text' htmlFor="default exercise"><strong>Add default excercise:</strong></label>
+                                    <input id='formsInput' type="text" placeholder='Select default excercise:' name='default exercise' />
+                                </div>
+
+                                <div className='prompt'>
+                                    <label id='top-text' htmlFor="add sport"><strong>Create new exercise:</strong></label>
+                                    <input id='formsInput' type="text" placeholder='Add sport:' name='Add sport' />
+                                </div>
+
                             </div>
                         )}
                     </div>
