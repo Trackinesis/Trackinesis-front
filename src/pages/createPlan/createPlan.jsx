@@ -60,15 +60,21 @@ function CreatePlan() {
                     <div className='prompt'>
                         <button id='restDayButton' disabled>Add rest day</button>
                     </div>
-                    <div className='prompt'>
-                        <button id='newExcerciseButton' disabled>Create new excercise</button>
+
+                    <div className='prompt'id='createNewExercise'>
+                        <button id='newExcerciseButton'>Create new excercise</button>
                     </div>
+
                     <div className='prompt'>
-                        <button id='existentExcercise' disabled>Add an existent excercise</button>
+                        <Link to='/createNewExercise'>
+                            <button id='existentExcercise' disabled>Add an existent excercise</button>
+                        </Link>
                     </div>
+
                     <div className='prompt'>
                         <button id='addDefaultExcercise' disabled>Add default excercise</button>
                     </div>
+
                     <div className='prompt'>
                         <button id='addSport' disabled>Add sport</button>
                     </div>

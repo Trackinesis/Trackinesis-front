@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="agrego implementaciones de cada dia y que pueda retraerse el dia sin tener que abrir otro">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="cambios en el css para que sea responsive, cosas varias">
+      <change afterPath="$PROJECT_DIR$/src/pages/createPlan/createNewExercise.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/createPlan.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/createPlan.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/createPlan/createPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/createPlan.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +79,7 @@
       <workItem from="1711466701285" duration="3835000" />
       <workItem from="1711678292855" duration="12170000" />
       <workItem from="1713192673402" duration="1603000" />
-      <workItem from="1713270062435" duration="5616000" />
+      <workItem from="1713270062435" duration="7132000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -124,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713272836585</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="cambios en el css para que sea responsive, cosas varias">
+      <created>1713275944182</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713275944182</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +156,7 @@
     <MESSAGE value="agrego dias con su display en createPlan" />
     <MESSAGE value="agrego workspace a git ignore" />
     <MESSAGE value="agrego implementaciones de cada dia y que pueda retraerse el dia sin tener que abrir otro" />
-    <option name="LAST_COMMIT_MESSAGE" value="agrego implementaciones de cada dia y que pueda retraerse el dia sin tener que abrir otro" />
+    <MESSAGE value="cambios en el css para que sea responsive, cosas varias" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios en el css para que sea responsive, cosas varias" />
   </component>
 </project>
