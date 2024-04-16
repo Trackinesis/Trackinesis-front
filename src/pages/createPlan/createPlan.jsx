@@ -1,4 +1,3 @@
-
 import React, {useState} from 'react';
 import './createPlan.css'
 import {Link} from "react-router-dom";
@@ -9,23 +8,65 @@ function CreatePlan() {
         planName: '',
         planType: '',
 
-    })
+    });
 
+    const [selectedDay, setSelectedDay] = useState(null);
 
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    const handleDayClick = (day) => {
+        setSelectedDay(day);
+    };
 
     return (
         <div className='main-format-create-plan'>
-            <h1 id='topTitle'>Create new Training Plan</h1>
+            <h2 id='topTitle'>Create new Training Plan</h2>
 
-            <input id='input-style' type='text' placeholder='Enter Plan Name:'/>
+            <div className='prompt'>
+                <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
+                <input id='formsInput' type="plan name" placeholder='Enter Plan name:' name='plan name' />
+            </div>
 
-            <input id='input-style' type='text' placeholder='Enter Plan Type:'/>
+            <div className='prompt'>
+                <label id='top-text' htmlFor="plan type"><strong>Plan type:</strong></label>
+                <input id='formsInput' type="plan type" placeholder='Enter Plan type:' name='plan type' />
+            </div>
 
-            <input id='input-style' type='text' placeholder='Enter Plan by Code:'/>
+            <div className='prompt'>
+                <label id='top-text' htmlFor="plan by code"><strong>Enter Plan by code:</strong></label>
+                <input id='formsInput' type="plan by code" placeholder='Enter Plan code:' name='plan by code' />
+            </div>
 
-            <input id='input-style' type='text' placeholder='Enter Plan Objective (optional):'/>
+            <div className='prompt'>
+                <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
+                <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):' name='plan objective' />
+            </div>
 
+            {/* Botones de los días de la semana */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '80%', margin: 'auto' }}>
+                {daysOfWeek.map((day, index) => (
+                    <div key={index}>
+                        <button onClick={() => handleDayClick(day)}>
+                            {day}
+                        </button>
+                        {selectedDay === day && (
+                            <div>
+                                {/* Campos adicionales para el día seleccionado */}
+                                <div className='prompt'>
+                                    <button id='restDayButton' disabled>Add rest day</button>
+                                </div>
+                                <div className='prompt'>
+                                    <label id='top-text' htmlFor="create exercise"><strong>Create new exercise:</strong></label>
+                                    <input id='formsInput' type="text" placeholder='Enter Exercise name:' name='create exercise' />
+                                </div>
+                                {/* Agrega más campos según sea necesario */}
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
 
+            <button type='submit'  id='colouredButton' >Create plan</button>
         </div>
     );
 }
