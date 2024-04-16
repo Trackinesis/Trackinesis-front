@@ -51,3 +51,40 @@
 
     margin-top: 10px;
 }
+
+#confirmationText {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--timberwolf)
+}
+
+#yesButton {
+    display: inline-block;
+    padding: 5px 20px;
+    border: 1px solid var(--wenge);
+    border-radius: 5px;
+    cursor: pointer;
+
+    background-color: var(--vermilion);
+    color: var(--wenge);
+    width: 49%;
+    height: 40px;
+    text-align: center;
+}
+
+#noButton {
+    display: inline-block;
+    padding: 5px 20px;
+    border: 1px solid var(--wenge);
+    border-radius: 5px;
+    cursor: pointer;
+
+    background-color: var(--wenge);
+    color: var(--timberwolf);
+    width: 49%;
+    height: 40px;
+    text-align: center;
+    margin-left: 5px;
+}
