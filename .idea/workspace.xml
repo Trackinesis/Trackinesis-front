@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="archivo createNewExercise, cambios en createPlan">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="changes in createNewExcercise, css and jsx">
+      <change afterPath="$PROJECT_DIR$/src/pages/createPlan/createNewExcercise.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/createNewExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/createNewExercise.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/germa/proyects/diseño/disSistemas/TP2",
+    "last_opened_file_path": "C:/Users/germa/proyects/lab1/Trackinesis/Trackinesis-front",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,6 +81,7 @@
       <workItem from="1713192673402" duration="1603000" />
       <workItem from="1713270062435" duration="7836000" />
       <workItem from="1713294982257" duration="47000" />
+      <workItem from="1713314847837" duration="2201000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -137,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713277994681</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="cambios en botones de createPlan">
+      <created>1713315479204</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713315479204</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +174,8 @@
     <MESSAGE value="agrego implementaciones de cada dia y que pueda retraerse el dia sin tener que abrir otro" />
     <MESSAGE value="cambios en el css para que sea responsive, cosas varias" />
     <MESSAGE value="archivo createNewExercise, cambios en createPlan" />
-    <option name="LAST_COMMIT_MESSAGE" value="archivo createNewExercise, cambios en createPlan" />
+    <MESSAGE value="cambios en botones de createPlan" />
+    <MESSAGE value="changes in createNewExcercise, css and jsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes in createNewExcercise, css and jsx" />
   </component>
 </project>
