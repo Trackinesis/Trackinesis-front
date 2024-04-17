@@ -79,14 +79,7 @@ function UserPage() {
                 <div className="prompt">
                     <label id='top-text' htmlFor="name"> Name:</label>
                     <input id='formsInput' type="text" onChange={handleChange} placeholder='Choose new username'/>
-                </div>
-
-                <div className="prompt">
-                    <label id='top-text' htmlFor="email">Email:</label>
-                    <input id='formsInput' name='email' type='email' onChange={handleChange} placeholder='Type new email'/>
-                </div>
-
-                <div className="prompt">
+                    
                     <label id='top-text' htmlFor="password"> Password:</label>
                     <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
                 </div>
