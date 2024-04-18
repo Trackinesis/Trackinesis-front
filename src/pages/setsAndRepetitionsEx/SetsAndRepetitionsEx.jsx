@@ -57,6 +57,10 @@ function SetsAndRepetitionsEx(){
                 <input id='formsInput' type="weight" placeholder='Weight (including bar):' name='weight' />
             </div>
 
+                <div className='prompt'>
+                    <button id='addSetsAndRepetitions'>Add sets and repetitions</button>
+                </div>
+
             </form>
         </div>
 
