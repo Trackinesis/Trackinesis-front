@@ -89,6 +89,7 @@ function UserPage() {
                 <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
             </form>
 
+            <Link to="/" id='logoutButton'>Logout</Link>
             {showDeleteConfirmation && (
                 <div>
                     <p id='confirmationText'>Are you sure you want to delete your account?</p>
