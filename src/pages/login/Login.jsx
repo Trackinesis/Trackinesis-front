@@ -42,7 +42,7 @@ function Login() {
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="email"><strong>Email</strong></label>
-                    <input id='formsInput'                       type="email" placeholder='Enter Email' name='email' onChange={handleInput} />
+                    <input id='formsInput' type="email" placeholder='Enter Email' name='email' onChange={handleInput} />
                     {errors.email && <span className='text-danger'> {errors.email}</span>}
                 </div>
 

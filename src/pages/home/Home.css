@@ -1,13 +1,19 @@
-.main-page-format {
-    --bs-bg-opacity : 1;
-    background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+#topGreeter {
+    text-align: left;
+    margin-top: 0;
+    position: static;
+    margin-left: 20px;
+    color: var(--timberwolf);
 
-    justify-content: center;
+}
 
-    height: 100vh;
-
+.home-page-main-format {
+    /* General layout and container */
     display: flex;
-
-    box-sizing: border-box;
-
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh; /* Set a minimum height for the page */
+    background-color: var(--raisin-black); /* Use a CSS variable for background color */
+    padding: 20px;
+    flex-direction: column;
 }

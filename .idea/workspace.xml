@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="workspace">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2eEPKVdhnWzR1ojsVNtwIxQkpaX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Node.js.Signup.jsx.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/germa/proyects/lab1/Trackinesis/Trackinesis-front&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\germa\proyects\lab1\Trackinesis\Trackinesis-front\src\pages\createNewExercise" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="" />
+      <created>1711466700246</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711466700246</updated>
+      <workItem from="1711466701285" duration="3835000" />
+      <workItem from="1711678292855" duration="12170000" />
+      <workItem from="1713192673402" duration="1603000" />
+      <workItem from="1713270062435" duration="7836000" />
+      <workItem from="1713294982257" duration="47000" />
+      <workItem from="1713314847837" duration="2224000" />
+      <workItem from="1713393334524" duration="7974000" />
+    </task>
+    <task id="LOCAL-00001" summary="front with database">
+      <option name="closed" value="true" />
+      <created>1711945897296</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711945897296</updated>
+    </task>
+    <task id="LOCAL-00002" summary="agrego .idea en git ignore">
+      <created>1713192799628</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713192799628</updated>
+    </task>
+    <task id="LOCAL-00003" summary="agrego placeholders en createPlan">
+      <created>1713199533761</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713199533761</updated>
+    </task>
+    <task id="LOCAL-00004" summary="agrego dias con su display en createPlan">
+      <created>1713272338067</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713272338067</updated>
+    </task>
+    <task id="LOCAL-00005" summary="agrego workspace a git ignore">
+      <created>1713272432935</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713272432935</updated>
+    </task>
+    <task id="LOCAL-00006" summary="agrego implementaciones de cada dia y que pueda retraerse el dia sin tener que abrir otro">
+      <created>1713272836585</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713272836585</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cambios en el css para que sea responsive, cosas varias">
+      <created>1713275944182</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713275944182</updated>
+    </task>
+    <task id="LOCAL-00008" summary="archivo createNewExercise, cambios en createPlan">
+      <created>1713277994681</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713277994681</updated>
+    </task>
+    <task id="LOCAL-00009" summary="cambios en botones de createPlan">
+      <created>1713315479204</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713315479204</updated>
+    </task>
+    <task id="LOCAL-00010" summary="changes in createNewExcercise, css and jsx">
+      <created>1713317098641</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1713317098641</updated>
+    </task>
+    <task id="LOCAL-00011" summary="changes in create plan and create new exercise">
+      <created>1713399756316</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713399756316</updated>
+    </task>
+    <task id="LOCAL-00012" summary="changes for utility in other files">
+      <created>1713404557682</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713404557682</updated>
+    </task>
+    <task id="LOCAL-00013" summary="changes">
+      <created>1713404573776</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713404573776</updated>
+    </task>
+    <task id="LOCAL-00014" summary="workspace">
+      <created>1713404580780</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1713404580780</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="front with database" />
+    <MESSAGE value="agrego .idea en git ignore" />
+    <MESSAGE value="agrego placeholders en createPlan" />
+    <MESSAGE value="agrego dias con su display en createPlan" />
+    <MESSAGE value="agrego workspace a git ignore" />
+    <MESSAGE value="agrego implementaciones de cada dia y que pueda retraerse el dia sin tener que abrir otro" />
+    <MESSAGE value="cambios en el css para que sea responsive, cosas varias" />
+    <MESSAGE value="archivo createNewExercise, cambios en createPlan" />
+    <MESSAGE value="cambios en botones de createPlan" />
+    <MESSAGE value="changes in createNewExcercise, css and jsx" />
+    <MESSAGE value="changes in create plan and create new exercise" />
+    <MESSAGE value="changes for utility in other files" />
+    <MESSAGE value="changes" />
+    <MESSAGE value="workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+  </component>
+</project>
