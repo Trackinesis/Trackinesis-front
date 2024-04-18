@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="workspace">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="cambio de color botones">
+      <change afterPath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsEx.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsEx.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsExValidation.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/timeEx/TimeEx.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/timeEx/TimeEx.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/signupStepTwo/SignupStepTwo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/signupStepTwo/SignupStepTwo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +93,8 @@
       <workItem from="1713270062435" duration="7836000" />
       <workItem from="1713294982257" duration="47000" />
       <workItem from="1713314847837" duration="2224000" />
-      <workItem from="1713393334524" duration="7974000" />
+      <workItem from="1713393334524" duration="8887000" />
+      <workItem from="1713450582947" duration="4041000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -186,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713404580780</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="cambio de color botones">
+      <created>1713408041157</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1713408041157</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +235,7 @@
     <MESSAGE value="changes for utility in other files" />
     <MESSAGE value="changes" />
     <MESSAGE value="workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+    <MESSAGE value="cambio de color botones" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambio de color botones" />
   </component>
 </project>
