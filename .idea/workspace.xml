@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="changes in create plan and create new exercise">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/createNewExcercise.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/createNewExercise.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,7 @@
       <workItem from="1713270062435" duration="7836000" />
       <workItem from="1713294982257" duration="47000" />
       <workItem from="1713314847837" duration="2224000" />
-      <workItem from="1713393334524" duration="6057000" />
+      <workItem from="1713393334524" duration="7974000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -168,7 +165,28 @@
       <option name="project" value="LOCAL" />
       <updated>1713399756316</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="changes for utility in other files">
+      <created>1713404557682</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713404557682</updated>
+    </task>
+    <task id="LOCAL-00013" summary="changes">
+      <created>1713404573776</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713404573776</updated>
+    </task>
+    <task id="LOCAL-00014" summary="workspace">
+      <created>1713404580780</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1713404580780</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +216,9 @@
     <MESSAGE value="cambios en botones de createPlan" />
     <MESSAGE value="changes in createNewExcercise, css and jsx" />
     <MESSAGE value="changes in create plan and create new exercise" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes in create plan and create new exercise" />
+    <MESSAGE value="changes for utility in other files" />
+    <MESSAGE value="changes" />
+    <MESSAGE value="workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
   </component>
 </project>

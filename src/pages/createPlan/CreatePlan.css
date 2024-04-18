@@ -74,7 +74,7 @@
     }
 }
 .selected-day {
-    background-color: #007bff; /* Color de fondo para el día seleccionado */
-    color: #ffffff; /* Color del texto para el día seleccionado */
+    background-color: var(--vermilion); /* Color de fondo para el día seleccionado */
+    color: var(--timberwolf); /* Color del texto para el día seleccionado */
     /* Otros estilos según sea necesario */
 }
