@@ -7,17 +7,14 @@ function Home({ userId }) {
     const [userName, setUserName] = useState('');
 
     useEffect(() => {
-        if (userId) {
-            axios.get(`http://localhost:8081/user/${userId}`)
-                .then(response => {
-                    console.log('User data:', response.data);
-                    setUserName(response.data.name);
-                })
-                .catch(error => {
-                    console.error('Error fetching user data:', error);
-                });
-        }
-    }, [userId]);
+        axios.get('http://localhost:8081/home')
+            .then(response => {
+                setUserName(localStorage.getItem('username'));
+            })
+            .catch(error => {
+                console.error('Error fetching username:', error);
+            });
+    }, []);
 
     function getDayName(date = new Date()) {
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -33,11 +30,11 @@ function Home({ userId }) {
         setIsOpen(!isOpen);
     };
 
-    console.log('User name:', userName); // Verificar el nombre del usuario antes de renderizar
+    console.log('User name:', userName);
 
     return (
         <div className='bg-white p-3 rounded w-100'>
-            {userName && <h2>Hi {userName}</h2>}
+            <h2>Hi {userName}</h2>
             <h3>Today is {dayName}</h3>
 
             <div className="container">

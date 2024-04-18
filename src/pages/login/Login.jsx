@@ -5,18 +5,17 @@ import axios from 'axios';
 import './Login.css';
 import '../../styles.css'
 
-
 function Login() {
-        const [values, setValues] = useState({
-            email: '',
-            password: ''
-        })
-        const navigate = useNavigate()
-        const [errors, setErrors] = useState({});
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    })
+    const navigate = useNavigate()
+    const [errors, setErrors] = useState({});
 
-        const handleInput =(event) => {
-            setValues(prev => ({...prev, [event.target.name]: event.target.value}))
-        }
+    const handleInput =(event) => {
+        setValues(prev => ({...prev, [event.target.name]: event.target.value}))
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,7 +23,6 @@ function Login() {
         if (errors.email === "" && errors.password === "") {
             axios.post('http://localhost:8081/login', values)
                 .then(res => {
-                    console.log(res.data);
                     if (res.data === "Fail") {
                         alert("No record existed");
                     }

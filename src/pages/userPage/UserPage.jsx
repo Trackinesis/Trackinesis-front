@@ -8,7 +8,7 @@ const userID = localStorage.getItem('userId');
 
 function UserPage() {
 
-    const [user, setUser] = useState({
+    const [setUser] = useState({
         name: '',
         email: '',
         password: '',
