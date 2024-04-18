@@ -11,7 +11,7 @@ function CreatePlan() {
 
     const [selectedDay, setSelectedDay] = useState(null);
 
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
     const handleDayClick = (day) => {
         setSelectedDay(selectedDay === day ? null :day);

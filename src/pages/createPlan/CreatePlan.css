@@ -40,13 +40,18 @@
 /* Estilos para los botones de los días de la semana */
 .days-container {
     display: flex;
-    flex-wrap: wrap; /* Permitir que los botones se envuelvan a la siguiente línea si no caben */
+    flex-wrap: nowrap; /* Evita que los botones se envuelvan a la siguiente línea */
+    overflow-x: hidden; /* Oculta el desplazamiento horizontal si los botones no caben */
+    width: 100%; /* Ajusta el ancho del contenedor */
 }
 
 .days-container button {
-    flex: 1; /* Hacer que los botones ocupen todo el ancho disponible */
-    margin-right: 10px; /* Agregar margen entre los botones */
-    margin-bottom: 10px; /* Agregar margen inferior a los botones */
+    width: 25px; /* Ancho suficiente para mostrar cada botón en una sola fila */
+    height: 25px; /* Ajusta el tamaño según tus necesidades */
+    border-radius: 100%; /* Hace que los botones sean circulares */
+    border: 1px solid transparent; /* Borde transparente por defecto */
+    margin: 1px; /* Espaciado entre botones */
+    background-color: #ccc; /* Color de fondo predeterminado */
 }
 
 /* Estilos para las opciones del día seleccionado */
