@@ -4,6 +4,8 @@ import axios from 'axios';
 import './UserPage.css';
 import '../../styles.css'
 
+const userID = localStorage.getItem('userId');
+
 function UserPage() {
 
     const [user, setUser] = useState({
@@ -23,11 +25,12 @@ function UserPage() {
 
     const handleSubmitUpdate = async (event) => {
         event.preventDefault();
-        const userId = user.id;
+        const userId = userID;
 
         try {
+            //
             const API_URL = `http://localhost:8081/user/${userId}`;
-            const res = await axios.put(API_URL, user);
+            const res = await axios.put(API_URL, userId);
 
             if (res.status === 200) {
                 console.log('User profile updated successfully');
@@ -41,7 +44,7 @@ function UserPage() {
 
     const handleSubmitDelete = async (event) => {
         event.preventDefault();
-        const userId = user.id;
+        const userId = userID;
 
         try {
             const API_URL = `http://localhost:8081/user/${userId}`;
@@ -75,7 +78,7 @@ function UserPage() {
         <div className='main-page'>
             <Link to="/home" id='backButton'> Back</Link>
             <h2 className='main-page-header'> Edit User Profile</h2>
-            <form onSubmit={handleSubmitUpdate}>
+            <form>
                 <div className="prompt">
                     <label id='top-text' htmlFor="name"> Name:</label>
                     <input id='formsInput' type="text" onChange={handleChange} placeholder='Choose new username'/>
@@ -84,7 +87,7 @@ function UserPage() {
                     <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
                 </div>
 
-                <button id='saveButton' type="submit">Save Changes</button>
+                <button id='saveButton' type="submit" onClick={handleSubmitUpdate}>Save Changes</button>
 
                 <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
             </form>
