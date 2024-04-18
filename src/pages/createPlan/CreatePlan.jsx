@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './createPlan.css'
+import './CreatePlan.css'
 import {Link, NavLink} from "react-router-dom";
 
 function CreatePlan() {
@@ -7,7 +7,6 @@ function CreatePlan() {
     const [valuesCreatePlan, setValues] = useState({
         planName: '',
         planType: '',
-
     });
 
     const [selectedDay, setSelectedDay] = useState(null);
@@ -62,13 +61,13 @@ function CreatePlan() {
                     </div>
 
                     <div className='prompt'id='createNewExercise'>
-                        <Link to='/createNewExercise'>
+                        <Link to='/createnewexercise'>
                             <button id='newExcerciseButton'>Create new excercise</button>
                         </Link>
                     </div>
 
                     <div className='prompt'>
-                        <Link to='/addExistentExcercise'>
+                        <Link to='/addexistentexcercise'>
                             <button id='existentExcercise'>Add an existent excercise</button>
                         </Link>
                     </div>
