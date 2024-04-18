@@ -7,6 +7,7 @@ import SignupStepTwo from './pages/signupStepTwo/SignupStepTwo'
 import UserPage from './pages/userPage/UserPage'
 import CreatePlan from "./pages/createPlan/CreatePlan";
 import CreateNewExercise from "./pages/createNewExercise/CreateNewExercise";
+import SetsAndRepetitionsEx from "./pages/setsAndRepetitionsEx/SetsAndRepetitionsEx";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path='/userpage' element={<UserPage />}></Route>
             <Route path='/createplan' element={<CreatePlan />}></Route>
             <Route path='/createnewexercise' element={<CreateNewExercise />}></Route>
+            <Route path='/setsandrepetitionsex' element={<SetsAndRepetitionsEx />}></Route>
         </Routes>
     </BrowserRouter>
   )
