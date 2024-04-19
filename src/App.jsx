@@ -7,6 +7,7 @@ import SignupStepTwo from './pages/signupStepTwo/SignupStepTwo'
 import UserPage from './pages/userPage/UserPage'
 import CreatePlan from "./pages/createPlan/CreatePlan";
 import CreateNewExercise from "./pages/createNewExercise/CreateNewExercise";
+import PlansListed from "./pages/plansListed/PlansListed";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/userpage' element={<UserPage />}></Route>
             <Route path='/createroutine' element={<CreatePlan />}></Route>
             <Route path='/createnewexercise' element={<CreateNewExercise />}></Route>
+            <Route path='/planslisted' element={<PlansListed/>}></Route>
         </Routes>
     </BrowserRouter>
   )
