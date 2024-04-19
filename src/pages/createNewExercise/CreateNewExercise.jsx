@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Acordion from '../../components/acordion/script.js';
 import './CreateNewExercise.css'
 import '../../styles.css'
 
@@ -18,6 +19,9 @@ function CreateNewExercise(){
                 <label id='top-text' htmlFor="exercise description"><strong>Exercise description (optional):</strong></label>
                 <input id='formsInput' type="exercise description" placeholder='Enter exercise description (optional):' name='exercise description' />
             </div>
+
+
+
 
             <div className='prompt'>
                 <Link to='/SetsAndRepetitionsEx'>

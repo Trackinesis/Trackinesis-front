@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import './CreatePlan.css'
 import {Link, NavLink} from "react-router-dom";
 
-function CreatePlan() {
+function CreateRoutine() {
 
-    const [valuesCreatePlan, setValues] = useState({
+    const [valuesCreateRoutine, setValues] = useState({
         planName: '',
         planType: '',
     });
@@ -19,26 +19,26 @@ function CreatePlan() {
 
     return (
         <div className='main-format-create-plan'>
-            <h2 id='topTitle'>Create new Training Plan</h2>
+            <h2 id='topTitle'>Create new Routine</h2>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
-                <input id='formsInput' type="plan name" placeholder='Enter Plan name:' name='plan name' />
+                <label id='top-text' htmlFor="routine name"><strong>Routine name:</strong></label>
+                <input id='formsInput' type="routine name" placeholder='Enter Routine name:' name='routine name' />
             </div>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="plan type"><strong>Plan type:</strong></label>
-                <input id='formsInput' type="plan type" placeholder='Enter Plan type:' name='plan type' />
+                <label id='top-text' htmlFor="routine type"><strong>Routine type:</strong></label>
+                <input id='formsInput' type="routine type" placeholder='Enter Routine type:' name='routine type' />
             </div>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="plan by code"><strong>Enter Plan by code:</strong></label>
-                <input id='formsInput' type="plan by code" placeholder='Enter Plan code:' name='plan by code' />
+                <label id='top-text' htmlFor="routine by code"><strong>Enter Routine by code:</strong></label>
+                <input id='formsInput' type="routine by code" placeholder='Enter Routine code:' name='routine by code' />
             </div>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
-                <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):' name='plan objective' />
+                <label id='top-text' htmlFor="routine objective"><strong>Routine Objective (optional):</strong></label>
+                <input id='formsInput' type="routine objective" placeholder='Enter Routine objective (optional):' name='routine objective' />
             </div>
 
             {/* Botones de los días de la semana */}
@@ -67,8 +67,8 @@ function CreatePlan() {
                     </div>
 
                     <div className='prompt'>
-                        <Link to='/addexistentexcercise'>
-                            <button id='existentExcercise'>Add an existent excercise</button>
+                        <Link to='/addexistingtexcercise'>
+                            <button id='existingExcercise'>Add an existing excercise</button>
                         </Link>
                     </div>
 
@@ -87,4 +87,4 @@ function CreatePlan() {
     );
 }
 
-export default CreatePlan;
+export default CreateRoutine;
