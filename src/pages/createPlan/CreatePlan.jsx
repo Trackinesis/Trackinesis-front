@@ -44,7 +44,7 @@ function CreateRoutine() {
             {/* Botones de los días de la semana */}
             <WeekdayButtons selectedDay={selectedDay} handleDayClick={handleDayClick} />
 
-            <button type='submit' id='colouredButton'>Create plan</button>
+            <button type='submit' id='colouredButton' >Create plan</button>
         </div>
     );
 }

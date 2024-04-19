@@ -41,6 +41,8 @@ function CreateNewExercise(){
 
     return (
         <div className='main-page'>
+            <Link to="/createroutine" className="backButton"> Back</Link>
+
             <h2 id='topTitle'>Create New Exercise</h2>
             
             <form action="" onSubmit={handleSubmitNewExercise}>
