@@ -42,18 +42,26 @@ function CreateRoutine() {
             </div>
 
             {/* Botones de los días de la semana */}
-            <div className='days-container'>
-                {daysOfWeek.map((day, index) => (
-                    <button
-                        key={index}
-                        className={selectedDay === day ? 'selected-day' : ''}
-                        onClick={() => handleDayClick(day)}
-                    >
-                        {day}
-                    </button>
-                ))}
-            </div>
+            <WeekdayButtons selectedDay={selectedDay} handleDayClick={handleDayClick} />
 
+            <button type='submit' id='colouredButton'>Create plan</button>
+        </div>
+    );
+}
+
+function WeekdayButtons({selectedDay, handleDayClick}) {
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return (
+        <div className='days-container'>
+            {daysOfWeek.map((day, index) => (
+                <button
+                    key={index}
+                    className={selectedDay === day ? 'selected-day' : ''}
+                    onClick={() => handleDayClick(day)}
+                >
+                    {day}
+                </button>
+            ))}
             {selectedDay && (
                 <div className='selected-day-options'>
                     <div className='prompt'>
@@ -81,8 +89,6 @@ function CreateRoutine() {
                     </div>
                 </div>
             )}
-
-            <button type='submit' id='colouredButton'>Create plan</button>
         </div>
     );
 }
