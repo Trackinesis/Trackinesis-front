@@ -17,6 +17,14 @@ function CreatePlan() {
         setSelectedDay(selectedDay === day ? null :day);
     };
 
+    const toggleButtons = document.querySelectorAll('.toggle-button');
+
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+        });
+    });
+
     return (
         <div className='main-format-create-plan'>
             <h2 id='topTitle'>Create new Training Plan</h2>
@@ -55,29 +63,31 @@ function CreatePlan() {
             </div>
 
             {selectedDay && (
-                <div className='selected-day-options'>
-                    <div className='prompt'>
-                        <button id='restDayButton'>Add rest day</button>
-                    </div>
+                <div class="page-container">
+                    <div className='selected-day-options'>
+                        <div className='prompt'>
+                            <button id='restDayButton' class="toggle-button">Add rest day</button>
+                        </div>
 
-                    <div className='prompt'id='createNewExercise'>
-                        <Link to='/createnewexercise'>
-                            <button id='newExcerciseButton'>Create new excercise</button>
-                        </Link>
-                    </div>
+                        <div className='prompt'id='createNewExercise'>
+                            <Link to='/createnewexercise'>
+                                <button id='newExcerciseButton' class="toggle-button">Create new excercise</button>
+                            </Link>
+                        </div>
 
-                    <div className='prompt'>
-                        <Link to='/addexistentexcercise'>
-                            <button id='existentExcercise'>Add an existent excercise</button>
-                        </Link>
-                    </div>
+                        <div className='prompt'>
+                            <Link to='/addexistentexcercise'>
+                                <button id='existentExcercise' class="toggle-button">Add an existent excercise</button>
+                            </Link>
+                        </div>
 
-                    <div className='prompt'>
-                        <button id='addDefaultExcercise'>Add default excercise</button>
-                    </div>
+                        <div className='prompt'>
+                            <button id='addDefaultExcercise' class="toggle-button">Add default excercise</button>
+                        </div>
 
-                    <div className='prompt'>
-                        <button id='addSport'>Add sport</button>
+                        <div className='prompt'>
+                            <button id='addSport' class="toggle-button">Add sport</button>
+                        </div>
                     </div>
                 </div>
             )}

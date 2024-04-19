@@ -43,6 +43,7 @@
     flex-wrap: nowrap; /* Evita que los botones se envuelvan a la siguiente línea */
     overflow-x: hidden; /* Oculta el desplazamiento horizontal si los botones no caben */
     width: 100%; /* Ajusta el ancho del contenedor */
+    margin-bottom: 20px; /* Espacio entre los botones y el botón inferior */
 }
 
 .days-container button {
@@ -51,19 +52,65 @@
     border-radius: 100%; /* Hace que los botones sean circulares */
     border: 1px solid transparent; /* Borde transparente por defecto */
     margin: 1px; /* Espaciado entre botones */
-    background-color: #ccc; /* Color de fondo predeterminado */
+    background-color: var(--vermilion); /* Color de fondo predeterminado */
+    color: var(--wenge); /* Color del texto */
+}
+
+.page-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 48vh; /* Altura completa de la ventana */
 }
 
 /* Estilos para las opciones del día seleccionado */
 .selected-day-options {
     display: flex;
-    flex-wrap: wrap; /* Permitir que las opciones se envuelvan a la siguiente línea si no caben */
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre los botones y el botón inferior */
 }
 
-.selected-day-options .prompt {
-    flex: 1; /* Hacer que las opciones ocupen todo el ancho disponible */
-    margin-right: 10px; /* Agregar margen entre las opciones */
-    margin-bottom: 10px; /* Agregar margen inferior a las opciones */
+.prompt {
+    margin-bottom: 15px; /* Espacio entre los botones y el botón inferior */
+}
+
+button {
+    width: 200px; /* Ancho de los botones */
+    height: 40px; /* Alto de los botones */
+    border-radius: 5px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    background-color: var(--vermilion); /* Color de fondo predeterminado */
+    color: var(--wenge); /* Color del texto */
+}
+
+button:hover {
+    background-color: var(--tea-rose-red); /* Color de fondo al pasar el ratón */
+}
+
+button.active {
+    background-color: var(--tea-rose-red); /* Cambiar color de fondo cuando está activo */
+}
+
+#restDayButton {
+    background-color: var(--vermilion); /* Cambiar color de fondo para el botón de descanso */
+}
+
+#newExcerciseButton {
+    background-color: var(--vermilion); /* Cambiar color de fondo para el botón de crear nuevo ejercicio */
+}
+
+#existentExcercise {
+    background-color: var(--vermilion); /* Cambiar color de fondo para el botón de agregar ejercicio existente */
+}
+
+#addDefaultExcercise {
+    background-color: var(--vermilion); /* Cambiar color de fondo para el botón de agregar ejercicio predeterminado */
+}
+
+#addSport {
+    background-color: var(--vermilion); /* Cambiar color de fondo para el botón de agregar deporte */
+    margin-bottom: 10px; /* Espacio entre los botones y el botón inferior */
 }
 
 /* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
