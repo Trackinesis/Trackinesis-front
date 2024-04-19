@@ -4,16 +4,16 @@ import './CreateNewExercise.css'
 import '../../styles.css'
 
 const excersiceType = [
-{value: 'sets', label: 'Exercise with Sets' },
-{value: 'time', label: 'Exercise with Time' },
+    {value: 'sets', label: 'Exercise with Sets' },
+    {value: 'time', label: 'Exercise with Time' },
 ];
 
 function CreateNewExercise(){
     const [exerciseType, setExerciseType] = useState(null);
 
     const handleExerciseTypeChange = (value) => {
-        setExerciseType(value);
-    }
+        setExerciseType(exerciseType === value ? null : value);
+    };
 
     return (
         <div className='main-page'>
@@ -29,33 +29,7 @@ function CreateNewExercise(){
                 <input id='formsInput' type="exercise description" placeholder='Enter exercise description (optional):' name='exercise description' />
             </div>
 
-            <DropdownButton
-                placeholder='Select exercise type'
-                options={excersiceType}
-                onChange={handleExerciseTypeChange}
-            />
-
-            {/*que mostrar si el tipo es sets*/}
-            {exerciseType === 'sets' && (
-                <>
-                    <div className='prompt'>
-                        <label id='top-text' htmlFor="sets"><strong>Sets:</strong></label>
-                        <input id='formsInput' type="number" placeholder='Enter number of sets:' name='sets'/>
-                    </div>
-
-                    <div className='prompt'>
-                        <label id='top-text' htmlFor="reps"><strong>Reps per Set:</strong></label>
-                        <input id='formsInput' type="number" placeholder='Enter reps per set:' name='reps'/>
-                    </div>
-                </>
-            )}
-
-            {exerciseType === 'time' && (
-                <div className='prompt'>
-                    <label id='top-text' htmlFor="duration"><strong>Duration (in minutes):</strong></label>
-                    <input id='formsInput' type="number" placeholder='Enter duration in minutes:' name='duration'/>
-                </div>
-            )}
+            <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} />
 
             <div className='prompt'>
                 <button id='createExerciste'>Create exercise</button>
@@ -67,33 +41,46 @@ function CreateNewExercise(){
 
 }
 
-function DropdownButton({placeholder, options}) {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-
+function OptionsForExercise({selectedExercise, handleExerciseClick}) {
+    const exerciseOptions = ['Exercise with sets', 'Exercise with time'];
     return (
-        <div className="dropdown-container">
-            <button onClick={toggleDropdown}>
-                {isOpen ? 'Close' : placeholder}
-            </button>
-            {isOpen && <DropdownList options={options}/>}
+        <div className='options-container'>
+            {exerciseOptions.map((option, index) => (
+                <button
+                    key={index}
+                    className={selectedExercise === option ? 'selected-exercise' : ''}
+                    onClick={() => handleExerciseClick(option)}
+                >
+                    {option}
+                </button>
+            ))}
+            {selectedExercise === 'Exercise with sets' && (
+                <>
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="exercise sets"><strong>Number of sets:</strong></label>
+                        <input id='formsInput' type="exercise sets" placeholder='Enter number of sets:' name='exercise sets' />
+                    </div>
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="exercise reps"><strong>Number of reps:</strong></label>
+                        <input id='formsInput' type="exercise reps" placeholder='Enter number of reps:' name='exercise reps' />
+                    </div>
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="exercise weight"><strong>Weight:</strong></label>
+                        <input id='formsInput' type="exercise weight" placeholder='Enter weight:' name='exercise weight' />
+                    </div>
+                </>
+            )}
+            
+            {selectedExercise === 'Exercise with time' && (
+                <>
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="exercise time"><strong>Duration:</strong></label>
+                        <input id='formsInput' type="exercise time" placeholder='Enter duration:' name='exercise time' />
+                    </div>
+                </>
+            )}
         </div>
     );
 }
-
-const DropdownList = ({ options }) => {
-    return (
-        <ul className="dropdown-list">
-            {options.map((option, index) => (
-                <li key={index}>
-                    <button onClick={() => option.onClick(option.value)}>{option.label}</button>
-                </li>
-            ))}
-        </ul>
-    );
-};
 
 export default CreateNewExercise;

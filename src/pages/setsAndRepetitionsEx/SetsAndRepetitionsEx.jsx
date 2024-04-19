@@ -44,7 +44,6 @@ function SetsAndRepetitionsEx(){
                 <input id='formsInput' type="number" min='0' placeholder='Quantity of sets:' name='sets'
                        onChange={handleInput} className='form-control rounded 0'/>
                 {errors.sets && <span className='text-danger'> {errors.sets}</span>}
-
             </div>
 
             <div className='prompt'>

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="created logOut button">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="broken CreateNewExercise.jsx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsEx.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsEx.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713408041157</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="broken CreateNewExercise.jsx">
+      <option name="closed" value="true" />
+      <created>1713545788619</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1713545788619</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +253,7 @@
     <MESSAGE value="workspace" />
     <MESSAGE value="cambio de color botones" />
     <MESSAGE value="created logOut button" />
-    <option name="LAST_COMMIT_MESSAGE" value="created logOut button" />
+    <MESSAGE value="broken CreateNewExercise.jsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="broken CreateNewExercise.jsx" />
   </component>
 </project>
