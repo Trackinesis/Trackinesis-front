@@ -22,7 +22,7 @@ function Home() {
                 <h1 id='topGreeter'>Hi getName()</h1>
                 <h3 id='topGreeter'>Today is {dayName}</h3>
 
-                <Link to='/createroutine' id='defaultButton'>Create New Plan</Link>
+                <Link to='/createroutine' id='defaultButton'>Create New Routine</Link>
                 <Link to='/userpage' id='defaultButton'>User Page </Link>
             </div>
     )
