@@ -37,7 +37,7 @@ function SignupStepTwo() {
 
             <form action="" onSubmit={handleSubmit}>
 
-            <div className='mb-3'>
+                <div className='mb-3'>
                     <label htmlFor="age"><strong>Age</strong></label>
                     <input type="number" placeholder='Enter Age' name='age'
                         onChange={handleInput} className='form-control rounded 0' />

@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import Validation from './cneValidation';
+import axios from 'axios';
 import './CreateNewExercise.css'
 import '../../styles.css'
 
@@ -9,37 +11,60 @@ const excersiceType = [
 ];
 
 function CreateNewExercise(){
-    const [exerciseType, setExerciseType] = useState(null);
 
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
+    const [valuesExercise, setValues] = useState({
+        exerciseName: '',
+        exerciseDescription: '',
+        exerciseSets: '',
+        exerciseReps: '',
+        exerciseWeight: '',
+        exerciseTime: '',
+    })
+    const handleSubmitNewExercise = (event) => {
+        event.preventDefault();
+        setErrors(Validation(valuesExercise, excersiceType));
+        if (errors.name === "" && errors.description === "" && errors.sets === "" && errors.reps === "" && errors.weight === "" && errors.time === "") {
+            axios.post('http://localhost:8081/addExercise', valuesExercise)
+            .then(res => {
+                navigate('/createroutine');
+            })
+            .catch(err => console.log(err));
+        }
+    }
+
+    const [exerciseType, setExerciseType] = useState(null);
     const handleExerciseTypeChange = (value) => {
         setExerciseType(exerciseType === value ? null : value);
-    };
+    }
 
     return (
         <div className='main-page'>
             <h2 id='topTitle'>Create New Exercise</h2>
+            
+            <form action="" onSubmit={handleSubmitNewExercise}>
 
-            <div className='prompt'>
-                <label id='top-text' htmlFor="exercise name"><strong>Exercise name:</strong></label>
-                <input id='formsInput' type="exercise name" placeholder='Enter exercise name:' name='exercise name' />
-            </div>
-
-            <div className='prompt'>
-                <label id='top-text' htmlFor="exercise description"><strong>Exercise description (optional):</strong></label>
-                <input id='formsInput' type="exercise description" placeholder='Enter exercise description (optional):' name='exercise description' />
-            </div>
-
-            <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} />
-
-            <div className='prompt'>
-                <button id='createExerciste'>Create exercise</button>
-            </div>
-
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="exercise name"><strong>Exercise name:</strong></label>
+                    <input id='formsInput' type="exercise name" placeholder='Enter exercise name:' name='exercise name' />
+                </div>
+    
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="exercise description"><strong>Exercise description (optional):</strong></label>
+                    <input id='formsInput' type="exercise description" placeholder='Enter exercise description (optional):' name='exercise description' />
+                </div>
+    
+                <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} />
+    
+                <div className='prompt'>
+                    <button id='createExerciste' onClick={handleSubmitNewExercise}>Create exercise</button>
+                </div>
+            </form>
         </div>
-
     );
-
 }
+
 
 function OptionsForExercise({selectedExercise, handleExerciseClick}) {
     const exerciseOptions = ['Exercise with sets', 'Exercise with time'];
@@ -82,5 +107,4 @@ function OptionsForExercise({selectedExercise, handleExerciseClick}) {
         </div>
     );
 }
-
-export default CreateNewExercise;
+export default CreateNewExercise

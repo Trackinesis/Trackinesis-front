@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="fixed CreateNewExercise.jsx with no extra pages">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="rm of unnecesary files">
+      <change afterPath="$PROJECT_DIR$/src/pages/createNewExercise/cneValidation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsEx.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsEx.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/setsAndRepetitionsEx/SetsAndRepetitionsExValidation.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/timeEx/TimeEx.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/timeEx/TimeEx.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/signupStepTwo/SignupStepTwo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/signupStepTwo/SignupStepTwo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -230,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713550958734</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="rm of unnecesary files">
+      <option name="closed" value="true" />
+      <created>1713551108191</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1713551108191</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +273,7 @@
     <MESSAGE value="created logOut button" />
     <MESSAGE value="broken CreateNewExercise.jsx" />
     <MESSAGE value="fixed CreateNewExercise.jsx with no extra pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed CreateNewExercise.jsx with no extra pages" />
+    <MESSAGE value="rm of unnecesary files" />
+    <option name="LAST_COMMIT_MESSAGE" value="rm of unnecesary files" />
   </component>
 </project>
