@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Validation from './createNewExerciseValidation';
 import axios from 'axios';
 import './CreateNewExercise.css'
 import '../../styles.css'
 
 const excersiceType = [
-    {value: 'sets', label: 'Exercise with Sets' },
-    {value: 'time', label: 'Exercise with Time' },
+    { value: 'sets', label: 'Exercise with Sets' },
+    { value: 'time', label: 'Exercise with Time' },
 ];
 
-function CreateNewExercise(){
+function CreateNewExercise() {
 
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
@@ -18,30 +18,41 @@ function CreateNewExercise(){
         name: '',
         type: '',
         description: '',
+        time: '',
     })
+
     const handleSubmitNewExercise = (event) => {
         event.preventDefault();
         setErrors(Validation(valuesExercise, excersiceType));
         if (errors.name === "" && errors.type === "" && errors.description === "") {
             axios.post('http://localhost:8081/addexercise', valuesExercise)
-            .then(res => {
-                navigate('/createroutine');
-            })
-            .catch(err => console.log(err));
+                .then(res => {
+                    navigate('/createroutine');
+                })
+                .catch(err => console.log(err));
         }
     }
 
     const handleTypeInput = (event) => {
-        setValues(prev => ({...prev, [event.target.name]: event.target.value}))
+        setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
     }
 
+    const convertSecondsToMinutes = (seconds) => {
+        const totalSeconds = parseInt(seconds);
+        if (!isNaN(totalSeconds)) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const remainingSeconds = totalSeconds % 60;
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+        return '';
+    }
 
     return (
         <div className='main-page'>
             <Link to="/createroutine" className="backButton"> Back</Link>
 
-            <h2 id='topTitle'>Create New Exercise</h2>
-            
+            <h2 id='topTitle'>Create new exercise</h2>
+
             <form action="" onSubmit={handleSubmitNewExercise}>
 
                 <div className='prompt'>
@@ -51,7 +62,7 @@ function CreateNewExercise(){
                 </div>
 
                 <div className='prompt'>
-                    <label htmlFor="exercise type"><strong>Exercise type:</strong></label>
+                    <label id='top-text' htmlFor="exercise type"><strong>Exercise type:</strong></label>
                     <select name="type" onChange={handleTypeInput} className='form-control rounded-0'>
                         <option disabled selected value="">Select Type</option>
                         <option value="hypetrophy">Hypetrophy</option>
@@ -68,6 +79,30 @@ function CreateNewExercise(){
                 </div>
 
                 <div className='prompt'>
+                    <label id='top-text' htmlFor="sets"><strong>Number of sets:</strong></label>
+                    <input id='formsInput' type="number" placeholder='Enter number of sets' name='sets' />
+                </div>
+
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="repetitions"><strong>Number of repetitions:</strong></label>
+                    <input id='formsInput' type="number" placeholder='Enter number of repetitions ' name='repetitions' />
+                </div>
+
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="time"><strong>Time (in seconds) </strong>
+                        <span>{convertSecondsToMinutes(valuesExercise.time)}</span>
+                    </label>
+                    <input
+                        id='formsInput'
+                        type="number"
+                        placeholder='Enter time (in seconds)'
+                        name='time'
+                        value={valuesExercise.time}
+                        onChange={handleTypeInput}
+                    />
+                </div>
+
+                <div className='prompt'>
                     <button id='createExercise' onClick={handleSubmitNewExercise}>Create exercise</button>
                 </div>
             </form>
@@ -75,6 +110,4 @@ function CreateNewExercise(){
     );
 }
 
-
-
-export default CreateNewExercise
+export default CreateNewExercise;
