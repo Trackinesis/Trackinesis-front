@@ -47,7 +47,7 @@ function AddExercise() {
 
     return (
         <div className='main-page'>
-            <Link to="/createroutine" className="backButton"> Back</Link>
+            <Link to="/routine" className="backButton"> Back</Link>
 
             <h2 id='topTitle'>Create new exercise</h2>
 

@@ -22,7 +22,7 @@ function CreatePlan() {
 
     return (
         <div className='main-format-create-plan'>
-            <Link to="/createroutine" className="backButton"> Back</Link>
+            <Link to="/home" className="backButton"> Back</Link>
             <h2 id='topTitle'>Create new Plan</h2>
 
             <div className='prompt'>
