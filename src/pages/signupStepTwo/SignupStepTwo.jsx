@@ -30,9 +30,13 @@ function SignupStepTwo() {
         }
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     return (
         <div className='signupPage'>
-            <Link to="/signup" className="backButton"> Back</Link>
+            <button onClick={handleGoBack} className="backButton"> Back</button>
             <h2>Sign-Up</h2>
 
             <form action="" onSubmit={handleSubmit}>
@@ -40,21 +44,21 @@ function SignupStepTwo() {
                 <div className='mb-3'>
                     <label htmlFor="age"><strong>Age</strong></label>
                     <input type="number" placeholder='Enter Age' name='age'
-                        onChange={handleInput} className='form-control rounded 0' />
+                           onChange={handleInput} className='form-control rounded 0'/>
                     {errors.age && <span className='text-danger'> {errors.age}</span>}
                 </div>
 
                 <div className='mb-3'>
                     <label htmlFor="weight"><strong>Weight</strong></label>
                     <input type="number" placeholder='Enter Weight (kg)' name='weight'
-                        onChange={handleInput} className='form-control rounded 0' />
+                           onChange={handleInput} className='form-control rounded 0'/>
                     {errors.weight && <span className='text-danger'> {errors.weight}</span>}
                 </div>
 
                 <div className='mb-3'>
                     <label htmlFor="height"><strong>Height</strong></label>
                     <input type="number" placeholder='Enter Height (cm)' name='height'
-                        onChange={handleInput} className='form-control rounded 0' />
+                           onChange={handleInput} className='form-control rounded 0'/>
                     {errors.height && <span className='text-danger'> {errors.height}</span>}
                 </div>
 
@@ -70,7 +74,9 @@ function SignupStepTwo() {
                 </div>
 
                 <p>By clicking here you agree with our terms of service.</p>
-                <button type='submit' onClick={handleSubmit} className='btn btn-success w-100 rounded-0'>Join the Club!</button>
+                <button type='submit' onClick={handleSubmit} className='btn btn-success w-100 rounded-0'>Join the
+                    Club!
+                </button>
             </form>
         </div>
     )

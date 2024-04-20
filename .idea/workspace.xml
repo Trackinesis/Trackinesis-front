@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="minor changes on exercise and plan">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="more minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/addExercise/AddExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addExercise/AddExercise.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/routine/Routine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/routine/Routine.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/signupStepTwo/SignupStepTwo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/signupStepTwo/SignupStepTwo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,7 @@
       <workItem from="1713450582947" duration="4041000" />
       <workItem from="1713560635107" duration="3137000" />
       <workItem from="1713621073516" duration="4844000" />
-      <workItem from="1713636776085" duration="5703000" />
+      <workItem from="1713636776085" duration="7302000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -254,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713642583157</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="more minor changes">
+      <option name="closed" value="true" />
+      <created>1713644773369</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713644773369</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +307,7 @@
     <MESSAGE value="cachika" />
     <MESSAGE value="Routine creator" />
     <MESSAGE value="minor changes on exercise and plan" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes on exercise and plan" />
+    <MESSAGE value="more minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="more minor changes" />
   </component>
 </project>

@@ -32,7 +32,7 @@ function AddExercise() {
         if (errors.name === "" && errors.type === "" && errors.description === "") {
             axios.post('http://localhost:8081/addexercise', valuesExercise)
                 .then(res => {
-                    navigate('/createroutine');
+                    navigate('/routine');
                 })
                 .catch(err => console.log(err));
         }
@@ -42,12 +42,13 @@ function AddExercise() {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
     }
 
-
-
+    const handleGoBack = () => {
+        navigate(-1);
+    };
 
     return (
         <div className='main-page'>
-            <Link to="/routine" className="backButton"> Back</Link>
+            <button onClick={handleGoBack} className="backButton"> Back</button>
 
             <h2 id='topTitle'>Create new exercise</h2>
 

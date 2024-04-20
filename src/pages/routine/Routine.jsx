@@ -44,10 +44,14 @@ function Routine() {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
 
     return (
         <div className='main-page'>
-            <Link to="/createplan" className="backButton">Back</Link>
+            <button onClick={handleGoBack} className="backButton"> Back</button>
 
             <h2 id='topTitle'>Create new routine</h2>
 
@@ -55,7 +59,8 @@ function Routine() {
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="exercise name"><strong>Routine name:</strong></label>
-                    <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter routine name:' name='name' />
+                    <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter routine name:'
+                           name='name'/>
                     {errors.name && <span className='text-danger'> {errors.name}</span>}
                 </div>
 
@@ -73,7 +78,8 @@ function Routine() {
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="exercise description"><strong>Routine description (optional):</strong></label>
-                    <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter routine description (optional):' name='description' />
+                    <input id='formsInput' onChange={handleTypeInput} type="text"
+                           placeholder='Enter routine description (optional):' name='description'/>
                     {errors.description && <span className='text-danger'> {errors.description}</span>}
                 </div>
 

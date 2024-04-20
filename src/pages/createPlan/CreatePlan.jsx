@@ -18,11 +18,14 @@ function CreatePlan() {
         navigate('/home');
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
 
 
     return (
         <div className='main-format-create-plan'>
-            <Link to="/home" className="backButton"> Back</Link>
+            <button onClick={handleGoBack} className="backButton"> Back</button>
             <h2 id='topTitle'>Create new Plan</h2>
 
             <div className='prompt'>
@@ -32,7 +35,8 @@ function CreatePlan() {
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
-                <input id='formsInput' type="plan description" placeholder='Enter Plan description:' name='plan description'/>
+                <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
+                       name='plan description'/>
             </div>
 
             <div className='prompt'>
@@ -41,7 +45,7 @@ function CreatePlan() {
                        name='plan objective'/>
             </div>
 
-            <StartDateInput />
+            <StartDateInput/>
 
             <button type='submit' id='defaultButton' onClick={handleAddRoutine}>Add Routine</button>
             <button type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</button>
