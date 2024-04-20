@@ -1,23 +1,23 @@
-function Validation(valuesExercise, exerciseType) {
+function Validation(valuesRoutine, exerciseType) {
     const error = {};
 
     // Check for empty fields
-    if (valuesExercise.name === "") {
-        error.name = "Exercise name should not be empty";
+    if (valuesRoutine.name === "") {
+        error.name = "Routine name should not be empty";
     }
     else {
         error.name = ""
     }
 
     // Check for empty fields based on exercise type (sets or time)
-    if(valuesExercise.type === "") {
+    if(valuesRoutine.type === "") {
         error.type = "Type should be selected"
     }
     else {
         error.type = ""
     }
 
-    if (valuesExercise.description.size > 300) {
+    if (valuesRoutine.description.size > 300) {
         error.description = "Description size should be lower than 300 characters"
     }
     else {

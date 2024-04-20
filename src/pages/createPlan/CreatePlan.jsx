@@ -31,7 +31,7 @@ function CreatePlan() {
 
             <StartDateInput />
 
-            <button type='submit' id='colouredButton'>Create plan</button>
+            <Link to='/routine' type='submit' id='defaultButton'>Create plan</Link>
         </div>
     );
 }
@@ -65,6 +65,12 @@ const StartDateInput = () => {
                 onChange={handleInputChange}
                 pattern="[0-9/]{10}" // Allow slashes in the pattern
             />
+
+            <div className='weeks'>
+                <label id='top-text' htmlFor="weeks"><strong>Number of weeks:</strong></label>
+                <input id='formsInput' type="number" placeholder='Enter number of weeks:' name='weeks'/>
+            </div>
+
         </div>
     );
 };

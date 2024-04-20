@@ -8,6 +8,7 @@ import UserPage from './pages/userPage/UserPage'
 import CreatePlan from "./pages/createPlan/CreatePlan";
 import CreateNewExercise from "./pages/createNewExercise/CreateNewExercise";
 import PlansListed from "./pages/plansListed/PlansListed";
+import Routine from "./pages/routine/Routine";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path='/createplan' element={<CreatePlan />}></Route>
             <Route path='/createnewexercise' element={<CreateNewExercise />}></Route>
             <Route path='/planslisted' element={<PlansListed/>}></Route>
+            <Route path='/routine' element={<Routine/>}></Route>
         </Routes>
     </BrowserRouter>
   )
