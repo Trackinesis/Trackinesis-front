@@ -1,98 +1,73 @@
 import React, {useState} from 'react';
+import { format } from 'date-fns';
 import './CreatePlan.css'
 import {Link, NavLink} from "react-router-dom";
 
-function CreateRoutine() {
 
-    const [valuesCreateRoutine, setValues] = useState({
-        planName: '',
-        planType: '',
-    });
 
-    const [selectedDay, setSelectedDay] = useState(null);
+function CreatePlan() {
 
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    const handleDayClick = (day) => {
-        setSelectedDay(selectedDay === day ? null :day);
-    };
 
     return (
         <div className='main-format-create-plan'>
-            <h2 id='topTitle'>Create new Routine</h2>
+            <h2 id='topTitle'>Create new Plan</h2>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="routine name"><strong>Routine name:</strong></label>
-                <input id='formsInput' type="routine name" placeholder='Enter Routine name:' name='routine name'/>
+                <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
+                <input id='formsInput' type="plan name" placeholder='Enter Plan name:' name='plan name'/>
             </div>
 
             <div className='prompt'>
-                <label htmlFor="exercise type"><strong>Exercise type:</strong></label>
-                <select name="type"  className='form-control rounded-0'>
-                    <option disabled selected value="">Select Type</option>
-                    <option value="hypetrophy">Hypetrophy</option>
-                    <option value="strength">Strength</option>
-                    <option value="endurance">Endurance</option>
-                </select>
+                <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
+                <input id='formsInput' type="plan description" placeholder='Enter Plan description:' name='plan description'/>
             </div>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="routine by code"><strong>Enter Routine by code:</strong></label>
-                <input id='formsInput' type="routine by code" placeholder='Enter Routine code:' name='routine by code'/>
+                <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
+                <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
+                       name='plan objective'/>
             </div>
 
-            <div className='prompt'>
-                <label id='top-text' htmlFor="routine objective"><strong>Routine Objective (optional):</strong></label>
-                <input id='formsInput' type="routine objective" placeholder='Enter Routine objective (optional):'
-                       name='routine objective'/>
-            </div>
-
-            {/* Botones de los días de la semana */}
-            <WeekdayButtons selectedDay={selectedDay} handleDayClick={handleDayClick}/>
+            <StartDateInput />
 
             <button type='submit' id='colouredButton'>Create plan</button>
         </div>
     );
 }
 
-function WeekdayButtons({selectedDay, handleDayClick}) {
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+const StartDateInput = () => {
+    const [startDate, setStartDate] = useState('');
+
+    const handleInputChange = (event) => {
+        const inputValue = event.target.value;
+        const newValue = inputValue.replace(/[^0-9]/g, '');
+
+        let formattedValue = '';
+        for (let i = 0; i < newValue.length; i++) {
+            if (i !== 0 && i%2 === 0) {
+                formattedValue += '-';
+            }
+            formattedValue += newValue[i];
+        }
+        setStartDate(formattedValue.substring(0, 8));
+    };
+
     return (
-        <div className='days-container'>
-            {daysOfWeek.map((day, index) => (
-                <button
-                    key={index}
-                    className={selectedDay === day ? 'selected-day' : ''}
-                    onClick={() => handleDayClick(day)}
-                >
-                    {day}
-                </button>
-            ))}
-            {selectedDay && (
-                <div className='selected-day-options'>
-                <div className='prompt'>
-                        <button id='restDayButton'>Add rest day</button>
-                    </div>
-
-                    <div className='prompt'id='createNewExercise'>
-                        <Link to='/createnewexercise'>
-                            <button id='newExcerciseButton'>Create new excercise</button>
-                        </Link>
-                    </div>
-
-                    <div className='prompt'>
-                        <Link to='/addexistingtexcercise'>
-                            <button id='existingExcercise'>Add an existing excercise</button>
-                        </Link>
-                    </div>
-
-                    <div className='prompt'>
-                        <button id='addSport'>Add sport</button>
-                    </div>
-                </div>
-            )}
+        <div className="start-date-input">
+            <label htmlFor="startDate" id='top-text'><strong>Fecha de Inicio:</strong></label>
+            <input
+                placeholder='dd/mm/yy'
+                type="text"
+                id='formsInput'
+                value={startDate}
+                onChange={handleInputChange}
+                pattern="[0-9/]{10}" // Allow slashes in the pattern
+            />
         </div>
     );
-}
+};
 
-export default CreateRoutine;
+
+export default CreatePlan;

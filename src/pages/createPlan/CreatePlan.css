@@ -16,9 +16,6 @@
     color: var(--timberwolf);
 }
 
-/* CreatePlan.css */
-
-/* Estilos para el contenedor principal */
 .main-format-create-plan {
     display: flex;
     flex-direction: column;
@@ -29,7 +26,6 @@
     padding: 20px;
 }
 
-/* Estilos para el título */
 #topTitle {
     text-align: left;
     margin-top: 0;
@@ -37,7 +33,6 @@
     color: var(--timberwolf);
 }
 
-/* Estilos para los botones de los días de la semana */
 .days-container {
     display: flex;
     flex-wrap: wrap; /* Permitir que los botones se envuelvan a la siguiente línea si no caben */
