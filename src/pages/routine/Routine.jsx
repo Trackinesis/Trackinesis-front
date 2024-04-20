@@ -28,6 +28,18 @@ function Routine() {
         }
     }
 
+    const handleSaveRoutine = (event) => {
+        event.preventDefault();
+        setErrors(Validation(valuesRoutine, routineType));
+        if (errors.name === "" && errors.type === "" && errors.description === "") {
+            axios.post('http://localhost:8081/addroutine', valuesRoutine)
+                .then(res => {
+                    navigate('/createplan');
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
     const handleTypeInput = (event) => {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
@@ -66,7 +78,8 @@ function Routine() {
                 </div>
 
                 <div className='prompt'>
-                    <button id='createExercise' onClick={handleSubmitNewRoutine}>Create routine and add exercise</button>
+                    <button id='defaultButton' onClick={handleSubmitNewRoutine}>Add exercise</button>
+                    <button id='colouredButton' onClick={handleSaveRoutine}>Save Routine</button>
                 </div>
             </form>
         </div>

@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="Routine creator">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="cachika">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addExercise/AddExercise.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/CreateNewExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addExercise/AddExercise.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createNewExercise/createNewExerciseValidation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addExercise/AddExerciseValidation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/routine/Routine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/routine/Routine.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +95,7 @@
       <workItem from="1713450582947" duration="4041000" />
       <workItem from="1713560635107" duration="3137000" />
       <workItem from="1713621073516" duration="4844000" />
+      <workItem from="1713636776085" duration="4809000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />

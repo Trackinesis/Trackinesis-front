@@ -1,16 +1,28 @@
 import React, {useState} from 'react';
 import { format } from 'date-fns';
 import './CreatePlan.css'
-import {Link, NavLink} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 
 
 function CreatePlan() {
+    const navigate = useNavigate();
+    const handleAddRoutine = () => {
+        console.log('Add Routine');
+        navigate('/routine');
+    };
+
+    const handleSavePlan = () => {
+        console.log('Save Plan');
+        navigate('/home');
+    }
 
 
 
     return (
         <div className='main-format-create-plan'>
+            <Link to="/createroutine" className="backButton"> Back</Link>
             <h2 id='topTitle'>Create new Plan</h2>
 
             <div className='prompt'>
@@ -31,7 +43,9 @@ function CreatePlan() {
 
             <StartDateInput />
 
-            <Link to='/routine' type='submit' id='defaultButton'>Create plan</Link>
+            <button type='submit' id='defaultButton' onClick={handleAddRoutine}>Add Routine</button>
+            <button type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</button>
+
         </div>
     );
 }

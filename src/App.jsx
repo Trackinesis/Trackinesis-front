@@ -6,7 +6,7 @@ import Home from './pages/home/Home'
 import SignupStepTwo from './pages/signupStepTwo/SignupStepTwo'
 import UserPage from './pages/userPage/UserPage'
 import CreatePlan from "./pages/createPlan/CreatePlan";
-import CreateNewExercise from "./pages/createNewExercise/CreateNewExercise";
+import AddExercise from "./pages/addExercise/AddExercise";
 import PlansListed from "./pages/plansListed/PlansListed";
 import Routine from "./pages/routine/Routine";
 
@@ -20,7 +20,7 @@ function App() {
             <Route path='/signupsteptwo' element={<SignupStepTwo />}></Route>
             <Route path='/userpage' element={<UserPage />}></Route>
             <Route path='/createplan' element={<CreatePlan />}></Route>
-            <Route path='/createnewexercise' element={<CreateNewExercise />}></Route>
+            <Route path='/addexercise' element={<AddExercise />}></Route>
             <Route path='/planslisted' element={<PlansListed/>}></Route>
             <Route path='/routine' element={<Routine/>}></Route>
         </Routes>
