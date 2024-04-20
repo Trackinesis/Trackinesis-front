@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import Validation from './cneValidation';
+import Validation from './createNewExerciseValidation';
 import axios from 'axios';
 import './CreateNewExercise.css'
 import '../../styles.css'
@@ -13,7 +13,7 @@ const excersiceType = [
 function CreateNewExercise(){
 
     const navigate = useNavigate();
-    //const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({});
     const [valuesExercise, setValues] = useState({
         name: '',
         type: '',
@@ -21,14 +21,14 @@ function CreateNewExercise(){
     })
     const handleSubmitNewExercise = (event) => {
         event.preventDefault();
-        //setErrors(Validation(valuesExercise, excersiceType));
-        //if (errors.name === "" && errors.description === "" && errors.sets === "" && errors.reps === "" && errors.weight === "" && errors.time === "") {
+        setErrors(Validation(valuesExercise, excersiceType));
+        if (errors.name === "" && errors.type === "" && errors.description === "") {
             axios.post('http://localhost:8081/addexercise', valuesExercise)
             .then(res => {
                 navigate('/createroutine');
             })
             .catch(err => console.log(err));
-        //}
+        }
     }
 
     const handleTypeInput = (event) => {
@@ -47,6 +47,7 @@ function CreateNewExercise(){
                 <div className='prompt'>
                     <label id='top-text' htmlFor="exercise name"><strong>Exercise name:</strong></label>
                     <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter exercise name:' name='name' />
+                    {errors.name && <span className='text-danger'> {errors.name}</span>}
                 </div>
 
                 <div className='prompt'>
@@ -57,11 +58,13 @@ function CreateNewExercise(){
                         <option value="strength">Strength</option>
                         <option value="endurance">Endurance</option>
                     </select>
+                    {errors.type && <span className='text-danger'> {errors.type}</span>}
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="exercise description"><strong>Exercise description (optional):</strong></label>
                     <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter exercise description (optional):' name='description' />
+                    {errors.description && <span className='text-danger'> {errors.description}</span>}
                 </div>
 
                 <div className='prompt'>

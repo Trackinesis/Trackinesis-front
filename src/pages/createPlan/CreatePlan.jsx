@@ -23,28 +23,34 @@ function CreateRoutine() {
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="routine name"><strong>Routine name:</strong></label>
-                <input id='formsInput' type="routine name" placeholder='Enter Routine name:' name='routine name' />
+                <input id='formsInput' type="routine name" placeholder='Enter Routine name:' name='routine name'/>
             </div>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="routine type"><strong>Routine type:</strong></label>
-                <input id='formsInput' type="routine type" placeholder='Enter Routine type:' name='routine type' />
+                <label htmlFor="exercise type"><strong>Exercise type:</strong></label>
+                <select name="type"  className='form-control rounded-0'>
+                    <option disabled selected value="">Select Type</option>
+                    <option value="hypetrophy">Hypetrophy</option>
+                    <option value="strength">Strength</option>
+                    <option value="endurance">Endurance</option>
+                </select>
             </div>
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="routine by code"><strong>Enter Routine by code:</strong></label>
-                <input id='formsInput' type="routine by code" placeholder='Enter Routine code:' name='routine by code' />
+                <input id='formsInput' type="routine by code" placeholder='Enter Routine code:' name='routine by code'/>
             </div>
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="routine objective"><strong>Routine Objective (optional):</strong></label>
-                <input id='formsInput' type="routine objective" placeholder='Enter Routine objective (optional):' name='routine objective' />
+                <input id='formsInput' type="routine objective" placeholder='Enter Routine objective (optional):'
+                       name='routine objective'/>
             </div>
 
             {/* Botones de los días de la semana */}
-            <WeekdayButtons selectedDay={selectedDay} handleDayClick={handleDayClick} />
+            <WeekdayButtons selectedDay={selectedDay} handleDayClick={handleDayClick}/>
 
-            <button type='submit' id='colouredButton' >Create plan</button>
+            <button type='submit' id='colouredButton'>Create plan</button>
         </div>
     );
 }
@@ -64,7 +70,7 @@ function WeekdayButtons({selectedDay, handleDayClick}) {
             ))}
             {selectedDay && (
                 <div className='selected-day-options'>
-                    <div className='prompt'>
+                <div className='prompt'>
                         <button id='restDayButton'>Add rest day</button>
                     </div>
 
@@ -78,10 +84,6 @@ function WeekdayButtons({selectedDay, handleDayClick}) {
                         <Link to='/addexistingtexcercise'>
                             <button id='existingExcercise'>Add an existing excercise</button>
                         </Link>
-                    </div>
-
-                    <div className='prompt'>
-                        <button id='addDefaultExcercise'>Add default excercise</button>
                     </div>
 
                     <div className='prompt'>
