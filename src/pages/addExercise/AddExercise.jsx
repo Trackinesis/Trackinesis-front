@@ -35,7 +35,7 @@ function AddExercise() {
         setValuesExercise(prev => ({ ...prev, [event.target.name]: event.target.value}))
     }
 
-    const handleSubmitNewExercise = (event) => {
+    const handleSubmitAddExercise = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8081/exercise', valuesExercise)
             .then(res => {
@@ -52,7 +52,7 @@ function AddExercise() {
         <div className='main-page'>
             <button onClick={handleGoBack} className="backButton"> Back</button>
             <h2 id='topTitle'>Add exercise</h2>
-            <form action="" onSubmit={handleSubmitNewExercise}>
+            <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
                     <label id='top-text' htmlFor="exercise name"><strong>Exercise name:</strong></label>
                     <select name="name" onChange={handleInput} id='formsInput'>

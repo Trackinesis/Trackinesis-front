@@ -9,6 +9,7 @@ import CreatePlan from "./pages/createPlan/CreatePlan";
 import AddExercise from "./pages/addExercise/AddExercise";
 import PlansListed from "./pages/plansListed/PlansListed";
 import Routine from "./pages/routine/Routine";
+import CreateExercise from "./pages/createExercise/CreateExercise";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
             <Route path='/addexercise' element={<AddExercise />}></Route>
             <Route path='/planslisted' element={<PlansListed/>}></Route>
             <Route path='/routine' element={<Routine/>}></Route>
+            <Route path='createexercise' element={<CreateExercise/>}></Route>
+            <Route path='*' element={<h1>Not Found</h1>}></Route>
         </Routes>
     </BrowserRouter>
   )
