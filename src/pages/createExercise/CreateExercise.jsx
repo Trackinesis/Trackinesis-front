@@ -15,7 +15,7 @@ function CreateExercise() {
         event.preventDefault();
         axios.post('http://localhost:8081/exercise', valuesExercise)
             .then(res => {
-                navigate('/addexercise');
+                navigate('/routine');
             })
             .catch(err => console.log(err));
     }
