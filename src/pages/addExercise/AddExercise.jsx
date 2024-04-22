@@ -37,13 +37,12 @@ function AddExercise() {
 
     const handleSubmitAddExercise = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8081/exercise', valuesExercise)
+        axios.post('http://localhost:8081/routineExercise', valuesExercise)
             .then(res => {
                 navigate('/routine');
             })
             .catch(err => console.log(err));
     }
-
 
     const handleGoBack = () => {
         navigate(-1);
@@ -51,7 +50,7 @@ function AddExercise() {
 
     return (
         <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
+            <button onClick={handleGoBack} className="backButton"> Back</button>
             <h2 id='topTitle'>Add exercise</h2>
             <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
@@ -63,24 +62,10 @@ function AddExercise() {
                         ))}
                     </select>
                     {errors.name && <span className='text-danger'> {errors.name}</span>}
-                    {/*<OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} valuesExercise={valuesExercise} handleTypeInput={handleInput} />*/}
-                </div>
-                <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
-                <div className='prompt'>
-                    <label id='top-text' htmlFor="exercise sets"><strong>Number of sets:</strong></label>
-                    <input id='formsInput' type="exercise sets" placeholder='Enter number of sets:'/>
-
-                    <label id='top-text' htmlFor="exercise reps"><strong>Number of reps:</strong></label>
-                    <input id='formsInput' type="exercise reps" placeholder='Enter number of reps:'/>
-
-                    <label id='top-text' htmlFor="exercise weight"><strong>Weight:</strong></label>
-                    <input id='formsInput' type="exercise weight" placeholder='Enter weight:'/>
-
-                    <label id='top-text' htmlFor="exercise time"><strong>Duration:</strong></label>
-                    <input id='formsInput' type="exercise time" placeholder='Enter duration:'/>
+                    <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} valuesExercise={valuesExercise} handleInput={handleInput} />
                 </div>
                 <div className='prompt'>
-                    <button id='colouredButton' type="submit">Create exercise</button>
+                    <button id='createExercise' type="submit">Create exercise</button>
                 </div>
             </form>
         </div>
