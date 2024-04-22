@@ -24,7 +24,7 @@ function App() {
             <Route path='/addexercise' element={<AddExercise />}></Route>
             <Route path='/planslisted' element={<PlansListed/>}></Route>
             <Route path='/routine' element={<Routine/>}></Route>
-            <Route path='createexercise' element={<CreateExercise/>}></Route>
+            <Route path='/createexercise' element={<CreateExercise/>}></Route>
             <Route path='*' element={<h1>Not Found</h1>}></Route>
         </Routes>
     </BrowserRouter>
