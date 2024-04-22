@@ -30,7 +30,7 @@ function CreateExercise() {
 
     return (
         <div className='main-page'>
-            <button onClick={handleGoBack} className="backButton"> Back</button>
+            <button onClick={handleGoBack} id="backButton"> Back</button>
             <h2 id='topTitle'>Create new exercise</h2>
             <form action="" onSubmit={handleSubmitNewExercise}>
 
