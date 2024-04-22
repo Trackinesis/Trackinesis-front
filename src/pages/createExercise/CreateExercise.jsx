@@ -34,7 +34,7 @@ function CreateExercise() {
             <h2 id='topTitle'>Create new exercise</h2>
             <form action="" onSubmit={handleSubmitNewExercise}>
 
-                <div className='mb-3'>
+                <div className='prompt'>
                     <label id='top-text' htmlFor="exercise name"><strong>Exercise name:</strong></label>
                     <input id='formsInput' type="exercise name" placeholder='Enter Exercise name:'
                            name='name' onChange={handleInput}/>
@@ -54,6 +54,7 @@ function CreateExercise() {
                     <input id='formsInput' type="exercise description" placeholder='Enter Exercise description:'
                            name='description' onChange={handleInput}/>
                 </div>
+                <button id='colouredButton' type='submit' onClick={handleSubmitNewExercise}>Save</button>
             </form>
         </div>
     );
