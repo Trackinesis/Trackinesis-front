@@ -51,7 +51,7 @@ function Routine() {
 
     return (
         <div className='main-page'>
-            <button onClick={handleGoBack} className="backButton"> Back</button>
+            <button onClick={handleGoBack} id="backButton"> Back</button>
 
             <h2 id='topTitle'>Create new routine</h2>
 

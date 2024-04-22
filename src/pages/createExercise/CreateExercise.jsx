@@ -40,10 +40,10 @@ function CreateExercise() {
                            name='name' onChange={handleInput}/>
                 </div>
                 <div className='prompt'>
-                    <label htmlFor="exercise type"><strong>Exercise type:</strong></label>
+                    <label id='top-text' htmlFor="exercise type"><strong>Exercise type:</strong></label>
                     <select name="type" onChange={handleInput} className='form-control rounded-0'>
                         <option disabled selected value="">Select Type</option>
-                        <option value="hypetrophy">Hypetrophy</option>
+                        <option value="hypetrophy">Hypertrophy</option>
                         <option value="strength">Strength</option>
                         <option value="endurance">Endurance</option>
                     </select>

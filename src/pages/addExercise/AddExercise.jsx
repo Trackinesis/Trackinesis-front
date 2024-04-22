@@ -44,13 +44,14 @@ function AddExercise() {
             .catch(err => console.log(err));
     }
 
+
     const handleGoBack = () => {
         navigate(-1);
     };
 
     return (
         <div className='main-page'>
-            <button onClick={handleGoBack} className="backButton"> Back</button>
+            <button onClick={handleGoBack} id="backButton"> Back</button>
             <h2 id='topTitle'>Add exercise</h2>
             <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
@@ -62,10 +63,11 @@ function AddExercise() {
                         ))}
                     </select>
                     {errors.name && <span className='text-danger'> {errors.name}</span>}
-                    <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} valuesExercise={valuesExercise} handleTypeInput={handleInput} />
+                    {/*<OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} valuesExercise={valuesExercise} handleTypeInput={handleInput} />*/}
+                                            <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
                 </div>
                 <div className='prompt'>
-                    <button id='createExercise' type="submit">Create exercise</button>
+                    <button id='colouredButton' type="submit">Create exercise</button>
                 </div>
             </form>
         </div>
