@@ -20,7 +20,7 @@ function Routine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (errors.name === "" && errors.type === "" && errors.description === "") {
-            axios.post('http://localhost:8081/addroutine', valuesRoutine)
+            axios.post('http://localhost:8081/routine', valuesRoutine)
                 .then(res => {
                     navigate('/addexercise');
                 })

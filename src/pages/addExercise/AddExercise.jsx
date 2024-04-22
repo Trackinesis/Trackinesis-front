@@ -1,45 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Validation from './AddExerciseValidation';
 import axios from 'axios';
 import './AddExercise.css'
 import '../../styles.css'
 
-const exerciseType = [
-    { value: 'sets', label: 'Exercise with Sets' },
-    { value: 'time', label: 'Exercise with Time' },
-];
-
 function AddExercise() {
-
-    const [exerciseType, setExerciseType] = useState(null);
-    const handleExerciseTypeChange = (value) => {
-        setExerciseType(exerciseType === value ? null : value);
-    }
-
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
-    const [valuesExercise, setValues] = useState({
+    const [valuesExercise, setValuesExercise] = useState({
         name: '',
         type: '',
         description: '',
         time: '',
-    })
+    });
+    const [exerciseOptions, setExerciseOptions] = useState([]);
+    const [selectedExercise, setSelectedExercise] = useState('');
+
+    const [exerciseType, setExerciseType] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:8081/exercise')
+            .then(res => {
+                const exercises = res.data.map(exercise => exercise.name);
+                setExerciseOptions(exercises);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
+    const handleExerciseTypeChange = (value) => {
+        setExerciseType(exerciseType === value ? null : value);
+    }
+    const handleTypeInput = (event) => {
+        setValuesExercise(prev => ({ ...prev, [event.target.name]: event.target.value}))
+    }
 
     const handleSubmitNewExercise = (event) => {
         event.preventDefault();
-        setErrors(Validation(valuesExercise, exerciseType));
-        if (errors.name === "" && errors.type === "" && errors.description === "") {
-            axios.post('http://localhost:8081/addexercise', valuesExercise)
-                .then(res => {
-                    navigate('/routine');
-                })
-                .catch(err => console.log(err));
-        }
-    }
-
-    const handleTypeInput = (event) => {
-        setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
+        axios.post('http://localhost:8081/exercise', valuesExercise)
+            .then(res => {
+                navigate('/routine');
+            })
+            .catch(err => console.log(err));
     }
 
     const handleGoBack = () => {
@@ -49,38 +50,21 @@ function AddExercise() {
     return (
         <div className='main-page'>
             <button onClick={handleGoBack} className="backButton"> Back</button>
-
-            <h2 id='topTitle'>Create new exercise</h2>
-
+            <h2 id='topTitle'>Add exercise</h2>
             <form action="" onSubmit={handleSubmitNewExercise}>
-
-                <div className='prompt'>
+                <div className='mb-3'>
                     <label id='top-text' htmlFor="exercise name"><strong>Exercise name:</strong></label>
-                    <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter exercise name:' name='name' />
-                    {errors.name && <span className='text-danger'> {errors.name}</span>}
-                </div>
-
-                <div className='prompt'>
-                    <label id='top-text' htmlFor="exercise type"><strong>Exercise type:</strong></label>
-                    <select name="type" onChange={handleTypeInput} className='form-control rounded-0'>
-                        <option disabled selected value="">Select Type</option>
-                        <option value="hypetrophy">Hypetrophy</option>
-                        <option value="strength">Strength</option>
-                        <option value="endurance">Endurance</option>
+                    <select name="name" onChange={handleTypeInput} id='formsInput'>
+                        <option disabled selected value="">Select Exercise</option>
+                        {exerciseOptions.map((exercise, index) => (
+                            <option key={index} value={exercise}>{exercise}</option>
+                        ))}
                     </select>
-                    {errors.type && <span className='text-danger'> {errors.type}</span>}
+                    {errors.name && <span className='text-danger'> {errors.name}</span>}
+                    <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} valuesExercise={valuesExercise} handleTypeInput={handleTypeInput} />
                 </div>
-
                 <div className='prompt'>
-                    <label id='top-text' htmlFor="exercise description"><strong>Exercise description (optional):</strong></label>
-                    <input id='formsInput' onChange={handleTypeInput} type="text" placeholder='Enter exercise description (optional):' name='description' />
-                    {errors.description && <span className='text-danger'> {errors.description}</span>}
-                </div>
-
-                <OptionsForExercise selectedExercise={exerciseType} handleExerciseClick={handleExerciseTypeChange} valuesExercise={valuesExercise} handleTypeInput={handleTypeInput} />
-
-                <div className='prompt'>
-                    <button id='createExercise' onClick={handleSubmitNewExercise}>Create exercise</button>
+                    <button id='createExercise' type="submit">Create exercise</button>
                 </div>
             </form>
         </div>
@@ -88,8 +72,6 @@ function AddExercise() {
 }
 
 export default AddExercise;
-
-
 
 function OptionsForExercise({selectedExercise, handleExerciseClick, valuesExercise, handleTypeInput}) {
     const exerciseOptions = ['Exercise with sets', 'Exercise with time'];

@@ -19,7 +19,7 @@ function CreatePlan() {
     });
     const handleAddRoutine = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8081/createplan', valuesPlan)
+        axios.post('http://localhost:8081/plan', valuesPlan)
             .then(res => {
                 navigate('/routine');
             })
@@ -50,19 +50,19 @@ function CreatePlan() {
             <div className='prompt'>
                 <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
                 <input id='formsInput' type="plan name" placeholder='Enter Plan name:'
-                       name='plan name' onChange={handleRoutineAddInput}/>
+                       name='name' onChange={handleRoutineAddInput}/>
             </div>
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
                 <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
-                       name='plan description' onChange={handleRoutineAddInput}/>
+                       name='description' onChange={handleRoutineAddInput}/>
             </div>
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
                 <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
-                       name='plan objective' onChange={handleRoutineAddInput}/>
+                       name='objective' onChange={handleRoutineAddInput}/>
             </div>
 
             <StartDateInput/>
@@ -80,8 +80,8 @@ const StartDateInput = () => {
     const [endDate, setEndDate] = useState('');
 
     const handleInputChangeStart = (event) => {
-        const inputValue = event.target.value;
-        const newValue = inputValue.replace(/[^0-9]/g, '');
+        const inputValue2 = event.target.value;
+        const newValue = inputValue2.replace(/[^0-9]/g, '');
 
         let formattedValue = '';
         for (let i = 0; i < newValue.length; i++) {
