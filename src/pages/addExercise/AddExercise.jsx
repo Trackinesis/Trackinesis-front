@@ -68,21 +68,21 @@ function AddExercise() {
                 <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="exercise sets"><strong>Number of sets:</strong></label>
-                    <input id='formsInput' type="exercise sets" placeholder='Enter number of sets:'/>
+                    <input name="sets" id='formsInput' type="exercise sets" placeholder='Enter number of sets:' onChange={handleInput}/>
 
                     <label id='top-text' htmlFor="exercise reps"><strong>Number of reps:</strong></label>
-                    <input id='formsInput' type="exercise reps" placeholder='Enter number of reps:'/>
+                    <input name="reps" id='formsInput' type="exercise reps" placeholder='Enter number of reps:' onChange={handleInput}/>
 
                     <label id='top-text' htmlFor="exercise weight"><strong>Weight:</strong></label>
-                    <input id='formsInput' type="exercise weight" placeholder='Enter weight:'/>
+                    <input name="weight" id='formsInput' type="exercise weight" placeholder='Enter weight:' onChange={handleInput}/>
 
                     <label id='top-text' htmlFor="exercise time"><strong>Duration:</strong></label>
-                    <input id='formsInput' type="exercise time" placeholder='Enter duration:'/>
+                    <input name="duration" id='formsInput' type="exercise time" placeholder='Enter duration:' onChange={handleInput}/>
                 </div>
 
                 <div className='prompt'>
                     {/*TODO add handle*/}
-                    <button id='createExercise' type="submit">Create exercise</button>
+                    <button id='createExercise' type="submit" onSubmit={handleSubmitAddExercise}>Create exercise</button>
                 </div>
             </form>
         </div>

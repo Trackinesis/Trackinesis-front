@@ -23,12 +23,13 @@ function SignupStepTwo() {
     const handleSubmit =(event) => {
         event.preventDefault();
         setErrors(Validation(valuesStepTwo));
-        if (errors.age === "" && errors.weight === "" && errors.height === "" && errors.gender === "") {
-            axios.post('http://localhost:8081/signup', valuesStepTwo)
-            .then(res => {
-                navigate('/');
-            })
-            .catch(err => console.log(err));
+        const userId = localStorage.getItem('userId');
+        if (errors.age === "" && errors.weight === "" && errors.height === "" && errors.gender === "" && userId) {
+            axios.post('http://localhost:8081/signupsteptwo', {...valuesStepTwo, userId})
+                .then(res => {
+                    navigate('/');
+                })
+                .catch(err => console.log(err));
         }
     }
 
