@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="more minor changes">
+    <list default="true" id="ad4995f4-17fc-4c11-99d0-46cf18ca4a2f" name="Changes" comment="added auth and tweaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/addExercise/AddExercise.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addExercise/AddExercise.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createPlan/CreatePlan.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/routine/Routine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/routine/Routine.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +19,7 @@
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -46,29 +45,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Node.js.Signup.jsx.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ABM-Exercise-E2",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/germa/proyects/lab1/Trackinesis/Trackinesis-front",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "trusted.hosts",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Node.js.Signup.jsx.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ABM-Exercise-E2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/germa/proyects/lab1/Trackinesis/Trackinesis-front&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;trusted.hosts&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\germa\proyects\lab1\Trackinesis\Trackinesis-front\src\pages\createNewExercise" />
@@ -93,6 +92,8 @@
       <workItem from="1713560635107" duration="3137000" />
       <workItem from="1713621073516" duration="4844000" />
       <workItem from="1713636776085" duration="7302000" />
+      <workItem from="1713833136859" duration="648000" />
+      <workItem from="1713835188636" duration="1146000" />
     </task>
     <task id="LOCAL-00001" summary="front with database">
       <option name="closed" value="true" />
@@ -263,7 +264,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713644773369</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="arreglo de cagada del tucu">
+      <option name="closed" value="true" />
+      <created>1713823734586</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1713823734586</updated>
+    </task>
+    <task id="LOCAL-00025" summary="added auth and tweaks">
+      <option name="closed" value="true" />
+      <created>1713835596236</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1713835596236</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,8 +299,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="front with database" />
-    <MESSAGE value="agrego .idea en git ignore" />
     <MESSAGE value="agrego placeholders en createPlan" />
     <MESSAGE value="agrego dias con su display en createPlan" />
     <MESSAGE value="agrego workspace a git ignore" />
@@ -307,6 +322,8 @@
     <MESSAGE value="Routine creator" />
     <MESSAGE value="minor changes on exercise and plan" />
     <MESSAGE value="more minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="more minor changes" />
+    <MESSAGE value="arreglo de cagada del tucu" />
+    <MESSAGE value="added auth and tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="added auth and tweaks" />
   </component>
 </project>

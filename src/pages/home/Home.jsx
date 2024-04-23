@@ -19,7 +19,7 @@ function Home() {
 
     return (
             <div className='home-page-main-format'>
-                <h1 id='topGreeter'>Hi getName()</h1>
+                <h1 id='topGreeter'>Hi</h1>
                 <h3 id='topGreeter'>Today is {dayName}</h3>
 
                 <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
