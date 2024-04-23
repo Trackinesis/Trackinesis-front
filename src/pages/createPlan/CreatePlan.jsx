@@ -6,8 +6,6 @@ import './CreatePlan.css'
 import '../../styles.css'
 import Validation from "../routine/RoutineValidation";
 
-
-
 function CreatePlan() {
     const navigate = useNavigate();
     const [valuesPlan, setValues] = useState({
@@ -69,11 +67,9 @@ function CreatePlan() {
 
             <button type='submit' id='defaultButton' onClick={handleAddRoutine}>Add Routine</button>
             <button type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</button>
-
         </div>
     );
 }
-
 
 const StartDateInput = () => {
     const [startDate, setStartDate] = useState('');
@@ -139,6 +135,5 @@ const StartDateInput = () => {
         </div>
     );
 };
-
 
 export default CreatePlan;

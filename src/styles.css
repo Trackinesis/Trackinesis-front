@@ -15,8 +15,6 @@
     background-color: var(--raisin-black);
     padding: 20px;
 }
-
-
 .main-page-header {
     text-align: center;
     margin-bottom: 20px;
@@ -66,7 +64,7 @@
 }
 
 #backButton {
-    /* Estilo basico*/
+    
     display: inline-block;
     padding: 5px 10px;
     border: none;
@@ -76,7 +74,6 @@
     text-decoration: none;
     border-color: var(--wenge);
 
-    /* Posicionamiento */
     position: absolute;
     top: 20px;
     left: 20px;
@@ -87,32 +84,8 @@
 #formsInput {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 10px; 
     height: 40px;
     border: 1px solid var(--timberwolf);
     border-radius: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

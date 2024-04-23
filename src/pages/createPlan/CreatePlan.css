@@ -48,7 +48,7 @@
 .selected-day-options {
     display: flex;
     flex-wrap: wrap; /* Permitir que las opciones se envuelvan a la siguiente línea si no caben */
-}
+} 
 
 .selected-day-options .prompt {
     flex: 1; /* Hacer que las opciones ocupen todo el ancho disponible */

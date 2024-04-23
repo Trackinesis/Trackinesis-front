@@ -20,7 +20,7 @@ function SignupStepTwo() {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
-    const handleSubmit =(event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(Validation(valuesStepTwo));
         const userId = localStorage.getItem('userId');
@@ -50,14 +50,12 @@ function SignupStepTwo() {
                            onChange={handleInput} id='formsInput'/>
                     {errors.age && <span className='text-danger'> {errors.age}</span>}
                 </div>
-
                 <div className='prompt'>
                     <label id='top-text' htmlFor="weight"><strong>Weight</strong></label>
                     <input type="number" placeholder='Enter Weight (kg)' name='weight'
                            onChange={handleInput} id='formsInput'/>
                     {errors.weight && <span className='text-danger'> {errors.weight}</span>}
                 </div>
-
                 <div className='prompt'>
                     <label id='top-text' htmlFor="height"><strong>Height</strong></label>
                     <input type="number" placeholder='Enter Height (cm)' name='height'
@@ -75,7 +73,6 @@ function SignupStepTwo() {
                     </select>
                     {errors.gender && <span className='text-danger'> {errors.gender}</span>}
                 </div>
-
                 <p className='simpleText' >By clicking here you agree with our terms of service.</p>
                 <button type='submit' onClick={handleSubmit} id='colouredButton'>Join the
                     Club!
