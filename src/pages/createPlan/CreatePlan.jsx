@@ -1,100 +1,139 @@
 import React, {useState} from 'react';
+import { format } from 'date-fns';
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 import './CreatePlan.css'
-import {Link, NavLink} from "react-router-dom";
+import '../../styles.css'
+import Validation from "../routine/RoutineValidation";
 
 function CreatePlan() {
-
-    const [valuesCreatePlan, setValues] = useState({
-        planName: '',
-        planType: '',
+    const navigate = useNavigate();
+    const [valuesPlan, setValues] = useState({
+        name: '',
+        description: '',
+        objective: '',
+        startDate: '',
+        endDate: ''
     });
+    const handleAddRoutine = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8081/plan', valuesPlan)
+            .then(res => {
+                navigate('/routine');
+            })
+            .catch(err => console.log(err));
 
-    const [selectedDay, setSelectedDay] = useState(null);
+        console.log('Add Routine');
+        navigate('/routine');
+    };
+    const handleRoutineAddInput = (event) => {
+        setValues(prev => ({...prev, [event.target.name]: event.target.value}))
+    }
 
-    const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+    const handleSavePlan = () => {
+        console.log('Save Plan');
+        navigate('/home');
+    }
 
-    const handleDayClick = (day) => {
-        setSelectedDay(selectedDay === day ? null :day);
+    const handleGoBack = () => {
+        navigate(-1);
     };
 
-    const toggleButtons = document.querySelectorAll('.toggle-button');
-
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            button.classList.toggle('active');
-        });
-    });
 
     return (
         <div className='main-format-create-plan'>
-            <h2 id='topTitle'>Create new Training Plan</h2>
+            <button onClick={handleGoBack} id="backButton"> Back</button>
+            <h2 className='main-page-header'>Create new Plan</h2>
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
-                <input id='formsInput' type="plan name" placeholder='Enter Plan name:' name='plan name' />
+                <input id='formsInput' type="plan name" placeholder='Enter Plan name:'
+                       name='name' onChange={handleRoutineAddInput}/>
             </div>
 
             <div className='prompt'>
-                <label id='top-text' htmlFor="plan type"><strong>Plan type:</strong></label>
-                <input id='formsInput' type="plan type" placeholder='Enter Plan type:' name='plan type' />
-            </div>
-
-            <div className='prompt'>
-                <label id='top-text' htmlFor="plan by code"><strong>Enter Plan by code:</strong></label>
-                <input id='formsInput' type="plan by code" placeholder='Enter Plan code:' name='plan by code' />
+                <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
+                <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
+                       name='description' onChange={handleRoutineAddInput}/>
             </div>
 
             <div className='prompt'>
                 <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
-                <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):' name='plan objective' />
+                <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
+                       name='objective' onChange={handleRoutineAddInput}/>
             </div>
 
-            {/* Botones de los días de la semana */}
-            <div className='days-container'>
-                {daysOfWeek.map((day, index) => (
-                    <button
-                        key={index}
-                        className={selectedDay === day ? 'selected-day' : ''}
-                        onClick={() => handleDayClick(day)}
-                    >
-                        {day}
-                    </button>
-                ))}
-            </div>
+            <StartDateInput/>
 
-            {selectedDay && (
-                <div class="page-container">
-                    <div className='selected-day-options'>
-                        <div className='prompt'>
-                            <button id='restDayButton' class="toggle-button">Add rest day</button>
-                        </div>
-
-                        <div className='prompt'id='createNewExercise'>
-                            <Link to='/createnewexercise'>
-                                <button id='newExcerciseButton' class="toggle-button">Create new excercise</button>
-                            </Link>
-                        </div>
-
-                        <div className='prompt'>
-                            <Link to='/addexistentexcercise'>
-                                <button id='existentExcercise' class="toggle-button">Add an existent excercise</button>
-                            </Link>
-                        </div>
-
-                        <div className='prompt'>
-                            <button id='addDefaultExcercise' class="toggle-button">Add default excercise</button>
-                        </div>
-
-                        <div className='prompt'>
-                            <button id='addSport' class="toggle-button">Add sport</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            <button type='submit' id='colouredButton'>Create plan</button>
+            <button type='submit' id='defaultButton' onClick={handleAddRoutine}>Add Routine</button>
+            <button type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</button>
         </div>
     );
 }
+
+const StartDateInput = () => {
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    const handleInputChangeStart = (event) => {
+        const inputValue2 = event.target.value;
+        const newValue = inputValue2.replace(/[^0-9]/g, '');
+
+        let formattedValue = '';
+        for (let i = 0; i < newValue.length; i++) {
+            if (i !== 0 && i%2 === 0) {
+                formattedValue += '-';
+            }
+            formattedValue += newValue[i];
+        }
+        setStartDate(formattedValue.substring(0, 8));
+    };
+
+    const handleInputChangeEnd = (event) => {
+        //TODO validator para q no nos linchen
+        const inputValue = event.target.value;
+        const newValue = inputValue.replace(/[^0-9]/g, '');
+
+        let formattedValue = '';
+        for (let i = 0; i < newValue.length; i++) {
+            if (i !== 0 && i%2 === 0) {
+                formattedValue += '-';
+            }
+            formattedValue += newValue[i];
+        }
+        setEndDate(formattedValue.substring(0, 8));
+    };
+
+
+    return (
+        <div className="start-date-input">
+            <label htmlFor="startDate" id='top-text'><strong>Start:</strong></label>
+            <input
+                placeholder='dd/mm/yy'
+                type="text"
+                id='formsInput'
+                value={startDate}
+                onChange={handleInputChangeStart}
+                pattern="[0-9/]{10}" // Allow slashes in the pattern
+            />
+
+            <label htmlFor="endDate" id='top-text'><strong>End Date:</strong></label>
+            <input
+                placeholder='dd/mm/yy'
+                type="text"
+                id='formsInput'
+                value={endDate}
+                onChange={handleInputChangeEnd}
+                pattern="[0-9/]{10}" // Allow slashes in the pattern
+            />
+
+            {/*<div className='weeks'>*/}
+            {/*    <label id='top-text' htmlFor="weeks"><strong>Number of weeks:</strong></label>*/}
+            {/*    <input id='formsInput' type="number" placeholder='Enter number of weeks:' name='weeks'/>*/}
+            {/*</div>*/}
+
+        </div>
+    );
+};
 
 export default CreatePlan;

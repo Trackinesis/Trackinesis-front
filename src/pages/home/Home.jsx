@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
+import '../../styles.css'
 
 function Home({ userId }) {
     const [userName, setUserName] = useState('');
@@ -25,32 +26,16 @@ function Home({ userId }) {
     const today = new Date();
     const dayName = getDayName(today);
 
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
 
     console.log('User name:', userName);
 
     return (
-        <div className='bg-white p-3 rounded w-100'>
+        <div className='home-page-main-format'>
             <h2>Hi {userName}</h2>
             <h3>Today is {dayName}</h3>
 
-            <div className="container">
-                <button className="menu-button" onClick={toggleMenu}>
-                    =
-                </button>
-                <div className={`side-panel ${isOpen ? 'open' : ''}`}>
-                    <ul>
-                        <li>Calendar</li>
-                        <li>Progress</li>
-                        <li>Leaderboard</li>
-                    </ul>
-                </div>
-            </div>
-
-            <Link to='/userpage' className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>User Page </Link>
+            <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
+            <Link to='/userpage' id='defaultButton'>User Page </Link>
         </div>
     );
 }

@@ -3,12 +3,14 @@ import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.css';
 import '../../styles.css'
-
-const userID = localStorage.getItem('userId');
+import {useAuth} from "../../context/AuthContext";
+import axios from "axios";
 
 function UserPage() {
 
-    const [setUser] = useState({
+    const auth = useAuth();
+
+    const [user, setUser] = useState({
         name: '',
         email: '',
         password: '',
@@ -25,27 +27,13 @@ function UserPage() {
 
     const handleSubmitUpdate = async (event) => {
         event.preventDefault();
-        const userId = userID;
+        console.log(auth.token);
 
-        try {
-            //
-            const API_URL = `http://localhost:8081/user/${userId}`;
-            const res = await axios.put(API_URL, userId);
-
-            if (res.status === 200) {
-                console.log('User profile updated successfully');
-            } else {
-                console.log('Error updating user profile');
-            }
-        } catch (error) {
-            console.log('Error updating user profile', error);
-        }
     };
 
     const handleSubmitDelete = async (event) => {
         event.preventDefault();
         const userId = userID;
-
         try {
             const API_URL = `http://localhost:8081/user/${userId}`;
             const res = await axios.delete(API_URL);

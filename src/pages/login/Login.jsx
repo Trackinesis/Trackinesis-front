@@ -4,6 +4,8 @@ import Validation from './LoginValidation';
 import axios from 'axios';
 import './Login.css';
 import '../../styles.css'
+import {useAuth} from "../../context/AuthContext";
+
 
 function Login() {
     const [values, setValues] = useState({
@@ -17,6 +19,7 @@ function Login() {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
+        const auth = useAuth();
     const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(Validation(values));
@@ -27,6 +30,7 @@ function Login() {
                         alert("No record existed");
                     }
                     else {
+                        auth.setToken(res.data.token);
                         navigate('/home');
                     }
                 })

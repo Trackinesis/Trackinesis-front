@@ -27,6 +27,7 @@ function Signup() {
                 .then(res => {
                     localStorage.setItem('userId', res.data.id);
                     localStorage.setItem('username', valuesStepOne.name);
+             
                     navigate('/signupsteptwo');
                 })
                 .catch(err => console.log(err));
