@@ -2,8 +2,12 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import './UserPage.css';
 import '../../styles.css'
+import {useAuth} from "../../context/AuthContext";
+import axios from "axios";
 
 function UserPage() {
+
+    const auth = useAuth();
 
     const [user, setUser] = useState({
         name: '',
@@ -17,7 +21,7 @@ function UserPage() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        /* Aca deberia esta la llamada a bd para guardar el usuario*/
+        console.log(auth.token);
     };
 
 
