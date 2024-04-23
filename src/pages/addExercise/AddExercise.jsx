@@ -39,7 +39,7 @@ function AddExercise() {
         event.preventDefault();
         axios.post('http://localhost:8081/routineExercise', valuesExercise)
             .then(res => {
-                navigate('/addexercise');
+                navigate(-1);
             })
             .catch(err => console.log(err));
     }
@@ -82,7 +82,7 @@ function AddExercise() {
 
                 <div className='prompt'>
                     {/*TODO add handle*/}
-                    <button id='createExercise' type="submit" onSubmit={handleSubmitAddExercise}>Create exercise</button>
+                    <button id='colouredButton' type="submit" onSubmit={handleSubmitAddExercise}>Save exercise</button>
                 </div>
             </form>
         </div>

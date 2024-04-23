@@ -31,8 +31,8 @@ function Home({ userId }) {
 
     return (
         <div className='home-page-main-format'>
-            <h2>Hi {userName}</h2>
-            <h3>Today is {dayName}</h3>
+            <h2 className='main-page-header'>Hi {userName}</h2>
+            <h3 className='main-page-header'>Today is {dayName}</h3>
 
             <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
             <Link to='/userpage' id='defaultButton'>User Page </Link>

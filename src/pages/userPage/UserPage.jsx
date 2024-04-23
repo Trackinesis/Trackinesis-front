@@ -4,7 +4,6 @@ import axios from 'axios';
 import './UserPage.css';
 import '../../styles.css'
 import {useAuth} from "../../context/AuthContext";
-import axios from "axios";
 
 function UserPage() {
 
@@ -33,7 +32,7 @@ function UserPage() {
 
     const handleSubmitDelete = async (event) => {
         event.preventDefault();
-        const userId = userID;
+        const userId = user.id;
         try {
             const API_URL = `http://localhost:8081/user/${userId}`;
             const res = await axios.delete(API_URL);
