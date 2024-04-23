@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Validation from './SignupValidation';
 import axios from 'axios';
 import './Signup.css';
+import '../../styles.css'
 
 function Signup() {
 
@@ -24,6 +25,7 @@ function Signup() {
         if (errors.name === "" && errors.email === "" && errors.password === "") {
             axios.post('http://localhost:8081/signup', valuesStepOne)
                 .then(res => {
+                    localStorage.setItem('userId', res.data.id);
                     navigate('/signupsteptwo');
                 })
                 .catch(err => console.log(err));
@@ -31,41 +33,45 @@ function Signup() {
     };
 
     return (
-            <div className='signupPage'>
-                <Link to="/" className='backButton'>Back</Link>
-                <h2>Sign-Up</h2>
+            <div className='main-page'>
+
+                <Link to="/" id='backButton'>Back</Link>
+
+                <h2 className='main-page-header'>Sign Up</h2>
+
                 <form action="" onSubmit={handleSubmit}>
-                    <div className='mb-3'>
-                        <label htmlFor="name"><strong>First Name</strong></label>
-                        <input type="text" placeholder='Enter First Name' name='name'
-                            onChange={handleInput} className='form-control rounded 0'/>
+
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="name"><strong>First Name</strong></label>
+                        <input id='formsInput' type="text" placeholder='Enter First Name' name='name' onChange={handleInput} />
                         {errors.name && <span className='text-danger'> {errors.name}</span>}
                     </div>
-                    <div className='mb-3'>
-                        <label htmlFor="name"><strong>Last Name</strong></label>
-                        <input type="text" placeholder='Enter Last Name' name='name' 
-                            onChange={handleInput} className='form-control rounded 0'/>
+
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="name"><strong>Last Name</strong></label>
+                        <input id='formsInput' type="text" placeholder='Enter Last Name' name='name' onChange={handleInput} />
                         {errors.name && <span className='text-danger'> {errors.name}</span>}
                     </div>
-                    <div className='mb-3'>
-                        <label htmlFor="email"><strong>Email</strong></label>
-                        <input type="email" placeholder='Enter Email' name='email' 
-                            onChange={handleInput} className='form-control rounded 0'/>
+
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="email"><strong>Email</strong></label>
+                        <input id='formsInput' type="email" placeholder='Enter Email' name='email' onChange={handleInput} />
                         {errors.email && <span className='text-danger'> {errors.email}</span>}
                     </div>
-                    <div className='mb-3'>
-                        <label htmlFor="password"><strong>Password</strong></label>
-                        <input type="password" placeholder='Enter Password' name='password' 
-                            onChange={handleInput} className='form-control rounded 0'/>
+
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="password"><strong>Password</strong></label>
+                        <input id='formsInput' type="password" placeholder='Enter Password' name='password' onChange={handleInput} />
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
-                    <div className='mb-3'>
-                        <label htmlFor="password"><strong>Repeat Password</strong></label>
-                        <input type="password" placeholder='Re Enter Password' name='password' 
-                            onChange={handleInput} className='form-control rounded 0'/>
+
+                    <div className='prompt'>
+                        <label id='top-text' htmlFor="password"><strong>Repeat Password</strong></label>
+                        <input id='formsInput' type="password" placeholder='Re Enter Password' name='password' onChange={handleInput}/>
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
-                    <button type='submit' onClick={handleSubmit} className='btn btn-success w-100 rounded-0'>Next</button>
+
+                    <button id='colouredButton' type='submit' onClick={handleSubmit} >Next</button>
                 </form>
             </div>
     )

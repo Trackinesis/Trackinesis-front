@@ -1,0 +1,75 @@
+.main-format-create-plan {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh; /* Set a minimum height for the page */
+    background-color: var(--raisin-black); /* Use a CSS variable for background color */
+    padding: 20px;
+    flex-direction: column;
+}
+
+#topTitle {
+    text-align: left;
+    margin-top: 0;
+    position: static;
+    margin-left: 20px;
+    color: var(--timberwolf);
+}
+
+.main-format-create-plan {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh; /* Altura mínima de la página */
+    background-color: var(--raisin-black); /* Utiliza una variable CSS para el color de fondo */
+    padding: 20px;
+}
+
+#topTitle {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 20px; /* Agrega espacio entre el título y los campos de entrada */
+    color: var(--timberwolf);
+}
+
+.days-container {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan a la siguiente línea si no caben */
+}
+
+.days-container button {
+    flex: 1; /* Hacer que los botones ocupen todo el ancho disponible */
+    margin-right: 10px; /* Agregar margen entre los botones */
+    margin-bottom: 10px; /* Agregar margen inferior a los botones */
+}
+
+/* Estilos para las opciones del día seleccionado */
+.selected-day-options {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que las opciones se envuelvan a la siguiente línea si no caben */
+}
+
+.selected-day-options .prompt {
+    flex: 1; /* Hacer que las opciones ocupen todo el ancho disponible */
+    margin-right: 10px; /* Agregar margen entre las opciones */
+    margin-bottom: 10px; /* Agregar margen inferior a las opciones */
+}
+
+/* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
+@media (max-width: 768px) {
+    .days-container button {
+        width: 100%; /* Hacer que los botones ocupen todo el ancho del contenedor */
+        margin-right: 0; /* Quitar el margen derecho */
+    }
+
+    .selected-day-options .prompt {
+        width: 100%; /* Hacer que las opciones ocupen todo el ancho del contenedor */
+        margin-right: 0; /* Quitar el margen derecho */
+    }
+}
+.selected-day {
+    background-color: var(--vermilion); /* Color de fondo para el día seleccionado */
+    color: var(--timberwolf); /* Color del texto para el día seleccionado */
+    /* Otros estilos según sea necesario */
+}

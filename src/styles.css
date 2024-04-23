@@ -1,0 +1,118 @@
+:root {
+    --raisin-black: #372f32ff;
+    --wenge: #504746ff;
+    --timberwolf: #d8d8d8ff;
+    --tea-rose-red: #f7cbcaff;
+    --vermilion: #ff3633ff;
+}
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--raisin-black);
+    padding: 20px;
+}
+
+
+.main-page-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--timberwolf);
+}
+
+.main-page-content {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.prompt {
+    margin-bottom: 15px;
+}
+
+#top-text {
+    color: var(--timberwolf);
+}
+
+#colouredButton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--vermilion);
+    border-radius: 5px;
+    cursor: pointer;
+
+    background-color: var(--vermilion);
+    color: var(--wenge);
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#defaultButton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--wenge);
+    border-radius: 5px;
+    cursor: pointer;
+
+    background-color: var(--wenge);
+    color: var(--timberwolf);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#backButton {
+    /* Estilo basico*/
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--timberwolf);
+    text-decoration: none;
+    border-color: var(--wenge);
+
+    /* Posicionamiento */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+#formsInput {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    border: 1px solid var(--timberwolf);
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
