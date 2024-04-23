@@ -6,6 +6,7 @@ import '../../styles.css'
 import {useAuth} from "../../context/AuthContext";
 
 function UserPage() {
+    const userId = localStorage.getItem('userId');
 
     const auth = useAuth();
 
@@ -30,9 +31,13 @@ function UserPage() {
 
     };
 
-    const handleSubmitDelete = async (event) => {
-        event.preventDefault();
-        const userId = user.id;
+    const DeleteUserButton = ({userId}) => {
+        const handleDeleteUser = () => {
+            handleSubmitDelete(userId);
+        }
+    }
+
+    const handleSubmitDelete = async (userId) => {
         try {
             const API_URL = `http://localhost:8081/user/${userId}`;
             const res = await axios.delete(API_URL);
