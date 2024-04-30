@@ -41,97 +41,39 @@ function CreatePlan() {
 
 
     return (
-        <div className='main-format-create-plan'>
+        <div className='main-page'>
             <button onClick={handleGoBack} id="backButton"> Back</button>
             <h2 className='main-page-header'>Create new Plan</h2>
+            <form action="" onSubmit={handleAddRoutine}>
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
+                    <input id='formsInput' type="plan name" placeholder='Enter Plan name:'
+                           name='name' onChange={handleRoutineAddInput}/>
+                </div>
 
-            <div className='prompt'>
-                <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
-                <input id='formsInput' type="plan name" placeholder='Enter Plan name:'
-                       name='name' onChange={handleRoutineAddInput}/>
-            </div>
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
+                    <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
+                           name='description' onChange={handleRoutineAddInput}/>
+                </div>
 
-            <div className='prompt'>
-                <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
-                <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
-                       name='description' onChange={handleRoutineAddInput}/>
-            </div>
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
+                    <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
+                           name='objective' onChange={handleRoutineAddInput}/>
+                </div>
 
-            <div className='prompt'>
-                <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
-                <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
-                       name='objective' onChange={handleRoutineAddInput}/>
-            </div>
+                <div className="start-date-input">
+                    <label htmlFor="startDate" id='top-text'><strong>Start date:</strong></label>
+                    <input type='date'/>
 
-            <StartDateInput/>
+                    <label htmlFor="endDate" id='top-text'><strong>End date:</strong></label>
+                    <input type='date'/>
+                    <> <p> </p></>
+                </div>
 
-            <button type='submit' id='defaultButton' onClick={handleAddRoutine}>Add Routine</button>
-            <button type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</button>
-        </div>
-    );
-}
-
-const StartDateInput = () => {
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-
-    const handleInputChangeStart = (event) => {
-        const inputValue2 = event.target.value;
-        const newValue = inputValue2.replace(/[^0-9]/g, '');
-
-        let formattedValue = '';
-        for (let i = 0; i < newValue.length; i++) {
-            if (i !== 0 && i%2 === 0) {
-                formattedValue += '-';
-            }
-            formattedValue += newValue[i];
-        }
-        setStartDate(formattedValue.substring(0, 8));
-    };
-
-    const handleInputChangeEnd = (event) => {
-        //TODO validator para q no nos linchen
-        const inputValue = event.target.value;
-        const newValue = inputValue.replace(/[^0-9]/g, '');
-
-        let formattedValue = '';
-        for (let i = 0; i < newValue.length; i++) {
-            if (i !== 0 && i%2 === 0) {
-                formattedValue += '-';
-            }
-            formattedValue += newValue[i];
-        }
-        setEndDate(formattedValue.substring(0, 8));
-    };
-
-
-    return (
-        <div className="start-date-input">
-            <label htmlFor="startDate" id='top-text'><strong>Start:</strong></label>
-            <input
-                placeholder='dd/mm/yy'
-                type="text"
-                id='formsInput'
-                value={startDate}
-                onChange={handleInputChangeStart}
-                pattern="[0-9/]{10}" // Allow slashes in the pattern
-            />
-
-            <label htmlFor="endDate" id='top-text'><strong>End Date:</strong></label>
-            <input
-                placeholder='dd/mm/yy'
-                type="text"
-                id='formsInput'
-                value={endDate}
-                onChange={handleInputChangeEnd}
-                pattern="[0-9/]{10}" // Allow slashes in the pattern
-            />
-
-            {/*<div className='weeks'>*/}
-            {/*    <label id='top-text' htmlFor="weeks"><strong>Number of weeks:</strong></label>*/}
-            {/*    <input id='formsInput' type="number" placeholder='Enter number of weeks:' name='weeks'/>*/}
-            {/*</div>*/}
-
+                <Link to='/home' type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</Link>
+            </form>
         </div>
     );
 };
