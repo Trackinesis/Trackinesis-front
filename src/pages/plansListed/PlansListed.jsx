@@ -67,7 +67,7 @@ function PlansListed() {
 
                     {showEditDropdown && (
                         <div className='dropdown'>
-                            <p>Select a day:</p>
+                            <p id='top-text'>Select a day:</p>
                             {daysOfWeek.map((day) => (
                                 <Link key={day} to={`/plans/${plan.id}/schedule/${day}`}>
                                     <button className='dropdownButton' onClick={() => handleDaySelect(day)}>
