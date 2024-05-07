@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css';
 
 function TrainingGoal() {
+    const navigate = useNavigate();
     const [goals, setGoals] = useState([]);
     const [currentGoal, setCurrentGoal] = useState({});
 
@@ -51,8 +53,14 @@ function TrainingGoal() {
         });
     };
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     return (
-        <div>
+        <div className='main-page'>
+            <button onClick={handleGoBack} id="backButton"> Back</button>
+            <h2 id='topTitle'>Training Goals</h2>
             <form onSubmit={handleSubmit}>
                 <input name="weightGoal" value={currentGoal.weightGoal || ''} onChange={handleInputChange} placeholder="Weight Goal" />
                 <input name="volumeLifted" value={currentGoal.volumeLifted || ''} onChange={handleInputChange} placeholder="Volume Lifted" />
