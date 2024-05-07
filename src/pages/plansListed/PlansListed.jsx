@@ -1,4 +1,3 @@
-// with back end:
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -13,14 +12,13 @@ function PlansListed() {
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     useEffect(() => {
-        // Función para cargar los planes desde el backend al montar el componente
         axios.get('http://localhost:8081/plan')
             .then(res => {
-                const plans = res.data.map(plan => plan.name);
-                setPlans(plans);
+                const plansData = res.data;
+                setPlans(plansData);
             })
             .catch(err => console.log(err));
-        }, []);
+    }, []);
 
     const confirmDelete = (id) => {
         setPlanToDelete(id);
@@ -63,17 +61,9 @@ function PlansListed() {
                     <h3 id='top-text'>{plan.name}</h3>
                     <p id='top-text'>{plan.description}</p>
 
-                    <button id='colouredButton' onClick={toggleEditDropdown}>
+                    <button id='defaultButton' onClick={toggleEditDropdown}>
                         {showEditDropdown ? 'Close Edit' : 'Edit Plan'}
                     </button>
-
-                    {plan.id === planToDelete && (
-                        <div>
-                            <p>¿Are you sure?</p>
-                            <button id='colouredButton' onClick={deletePlan}>Yes</button>
-                            <button id='colouredButton' onClick={cancelDelete}>No</button>
-                        </div>
-                    )}
 
                     {showEditDropdown && (
                         <div className='dropdown'>
@@ -88,7 +78,15 @@ function PlansListed() {
                         </div>
                     )}
 
-                    <button id='colouredButton' onClick={() => confirmDelete(plan.id)}>
+                    {plan.id === planToDelete && (
+                        <div>
+                            <p id='top-text'>¿Are you sure?</p>
+                            <button id='colouredButton' onClick={cancelDelete}>No</button>
+                            <button id='defaultButton' onClick={deletePlan}>Yes</button>
+                        </div>
+                    )}
+
+                    <button id='defaultButton' onClick={() => confirmDelete(plan.id)}>
                         Delete plan
                     </button>
                 </div>
