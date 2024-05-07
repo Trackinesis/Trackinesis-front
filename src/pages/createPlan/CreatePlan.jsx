@@ -15,18 +15,19 @@ function CreatePlan() {
         startDate: '',
         endDate: ''
     });
-    const handleAddRoutine = (event) => {
+    const handleAddPlan = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8081/plan', valuesPlan)
             .then(res => {
-                navigate('/routine');
+                console.log('Plan added successfully', res.data);
+                navigate('/home');
             })
             .catch(err => console.log(err));
 
-        console.log('Add Routine');
+        console.log('Add plan');
         navigate('/routine');
     };
-    const handleRoutineAddInput = (event) => {
+    const handlePlanAddInput = (event) => {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
@@ -44,23 +45,23 @@ function CreatePlan() {
         <div className='main-page'>
             <button onClick={handleGoBack} id="backButton"> Back</button>
             <h2 className='main-page-header'>Create new Plan</h2>
-            <form action="" onSubmit={handleAddRoutine}>
+            <form action="" onSubmit={handleAddPlan}>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
                     <input id='formsInput' type="plan name" placeholder='Enter Plan name:'
-                           name='name' onChange={handleRoutineAddInput}/>
+                           name='name' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
                     <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
-                           name='description' onChange={handleRoutineAddInput}/>
+                           name='description' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
                     <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
-                           name='objective' onChange={handleRoutineAddInput}/>
+                           name='objective' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className="start-date-input">
@@ -72,7 +73,7 @@ function CreatePlan() {
                     <> <p> </p></>
                 </div>
 
-                <Link to='/home' type='submit' id='colouredButton' onClick={handleSavePlan}>Save Plan</Link>
+                <button type="submit" id='colouredButton' onClick={handleAddPlan}>Save Plan</button>
             </form>
         </div>
     );
