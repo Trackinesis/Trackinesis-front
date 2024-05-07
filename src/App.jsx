@@ -11,6 +11,7 @@ import PlansListed from "./pages/plansListed/PlansListed";
 import Routine from "./pages/routine/Routine";
 import CreateExercise from "./pages/createExercise/CreateExercise";
 import AuthProvider from "./context/AuthContext";
+import TrainingGoal from "./pages/trainingGoal/TrainingGoal";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                     <Route path='/planslisted' element={<PlansListed/>}></Route>
                     <Route path='/routine' element={<Routine/>}></Route>
                     <Route path='/createexercise' element={<CreateExercise/>}></Route>
+                    <Route path='/traininggoal' element={<TrainingGoal/>}></Route>
                     <Route path='*' element={<h1>Not Found</h1>}></Route>
                 </Routes>
             </BrowserRouter>
