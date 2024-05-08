@@ -31,7 +31,8 @@ function PlansListed() {
 
             if (res.status === 200){
                 console.log('Plan deleted successfully');
-                setPlans(plans.filter((plan) => plan.id !== planToDelete)); // Actualizar la lista de planes localmente
+                setPlans(plans.filter((plan) => plan.planId !== planId));
+                setPlanToDelete(null);
             } else {
                 console.log('Error deleting plan');
             }
@@ -57,7 +58,8 @@ function PlansListed() {
         <div className='main-format-create-plan'>
             <h2 id='topTitle'>My plans</h2>
             {plans.map((plan) => (
-                <div className='prompt' key={plan.id}>
+                console.log(plan),
+                <div className='prompt' key={plan.planId}>
                     <h3 id='top-text'>{plan.name}</h3>
                     <p id='top-text'>{plan.description}</p>
 
@@ -69,7 +71,7 @@ function PlansListed() {
                         <div className='dropdown'>
                             <p id='top-text'>Select a day:</p>
                             {daysOfWeek.map((day) => (
-                                <Link key={day} to={`/plans/${plan.id}/schedule/${day}`}>
+                                <Link key={day} to={`/plans/${plan.planId}/schedule/${day}`}>
                                     <button className='dropdownButton' onClick={() => handleDaySelect(day)}>
                                         {day}
                                     </button>
@@ -78,17 +80,17 @@ function PlansListed() {
                         </div>
                     )}
 
-                    {plan.id === planToDelete && (
+                    <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
+                        Delete plan
+                    </button>
+
+                    {plan.planId === planToDelete && (
                         <div>
                             <p id='top-text'>¿Are you sure?</p>
                             <button id='colouredButton' onClick={cancelDelete}>No</button>
-                            <button id='defaultButton' onClick={deletePlan}>Yes</button>
+                            <button id='defaultButton' onClick={() => deletePlan(plan.planId)}>Yes</button>
                         </div>
                     )}
-
-                    <button id='defaultButton' onClick={() => confirmDelete(plan.id)}>
-                        Delete plan
-                    </button>
                 </div>
             ))}
         </div>
