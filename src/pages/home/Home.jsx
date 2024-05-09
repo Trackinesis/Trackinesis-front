@@ -34,6 +34,8 @@ function Home({ userId }) {
             <h2 className='main-page-header'>Hi {userName}</h2>
             <h3 className='main-page-header'>Today is {dayName}</h3>
 
+            {/*Link to startExercise*/ <h4 id='defaultButton'>Start exercise</h4>}
+            <Link to='/planslisted' id='defaultButton'>My plans</Link>
             <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
             <Link to='/userpage' id='defaultButton'>User Page </Link>
         </div>

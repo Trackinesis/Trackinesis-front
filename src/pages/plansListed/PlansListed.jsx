@@ -1,67 +1,96 @@
-import React, { useState } from 'react'
-import { Link, /*useNavigate*/ } from 'react-router-dom'
-//import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './PlansListed.css';
-import '../../styles.css'
+import '../../styles.css';
 
 function PlansListed() {
-    // Supongamos que tienes una lista de planes cargados por el usuario
-    const [plans, setPlans] = useState([
-        // aca se cargan desde la base de datos
-        { id: 1, name: 'Plan 1', description: 'Descripción del Plan 1' },
-        { id: 2, name: 'Plan 2', description: 'Descripción del Plan 2' },
-        { id: 3, name: 'Plan 3', description: 'Descripción del Plan 3' },
-    ]);
-
-
-    // Estado para almacenar el ID del plan que se desea eliminar
+    const [plans, setPlans] = useState([]);
     const [planToDelete, setPlanToDelete] = useState(null);
+    const [showEditDropdown, setShowEditDropdown] = useState(false);
+    const [selectedDay, setSelectedDay] = useState('');
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    // Función para marcar el plan a eliminar
+    useEffect(() => {
+        axios.get('http://localhost:8081/plan')
+            .then(res => {
+                const plansData = res.data;
+                setPlans(plansData);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
     const confirmDelete = (id) => {
         setPlanToDelete(id);
     };
 
-    // Función para eliminar el plan marcado
-    const deletePlan = () => {
-        setPlans(plans.filter(plan => plan.id !== planToDelete));
-        setPlanToDelete(null); // Limpiar el estado después de eliminar
+    const deletePlan = async (planId) => {
+        try {
+            const API_URL = `http://localhost:8081/plan/${planId}`;
+            const res = await axios.delete(API_URL);
+
+            if (res.status === 200){
+                console.log('Plan deleted successfully');
+                setPlans(plans.filter((plan) => plan.planId !== planId));
+                setPlanToDelete(null);
+            } else {
+                console.log('Error deleting plan');
+            }
+        } catch (error) {
+            console.error('Error deleting plan:', error);
+        }
     };
 
-    // Función para cancelar la eliminación
     const cancelDelete = () => {
         setPlanToDelete(null);
     };
 
-    // Función para modificar un plan por su ID (en este ejemplo solo console.log)
-    const modifyPlan = (id) => {
-        console.log(`Modificar plan con ID ${id}`);
+    const toggleEditDropdown = () => {
+        setShowEditDropdown(!showEditDropdown);
+    };
+
+    const handleDaySelect = (day) => {
+        setSelectedDay(day);
+        setShowEditDropdown(false); // Ocultar el dropdown después de seleccionar un día
     };
 
     return (
         <div className='main-format-create-plan'>
             <h2 id='topTitle'>My plans</h2>
-            {plans.map(plan => (
-                <div className='prompt'  key={plan.id}>
-
+            {plans.map((plan) => (
+                console.log(plan),
+                <div className='prompt' key={plan.planId}>
                     <h3 id='top-text'>{plan.name}</h3>
-
                     <p id='top-text'>{plan.description}</p>
 
+                    <button id='defaultButton' onClick={toggleEditDropdown}>
+                        {showEditDropdown ? 'Close Edit' : 'Edit Plan'}
+                    </button>
 
-                    <button id='colouredButton' onClick={() => confirmDelete(plan.id)}>Delete plan</button>
-                    <button id='colouredButton' onClick={() => modifyPlan(plan.id)}>Edit Plan</button>
-
-                    {plan.id === planToDelete && (
-                        <div>
-                            <p>¿Are you sure ?</p>
-
-                            <button id='colouredButton' onClick={deletePlan}>Yes</button>
-
-                            <button id='colouredButton' onClick={cancelDelete}>No</button>
+                    {showEditDropdown && (
+                        <div className='dropdown'>
+                            <p id='top-text'>Select a day:</p>
+                            {daysOfWeek.map((day) => (
+                                <Link key={day} to={`/plans/${plan.planId}/schedule/${day}`}>
+                                    <button className='dropdownButton' onClick={() => handleDaySelect(day)}>
+                                        {day}
+                                    </button>
+                                </Link>
+                            ))}
                         </div>
                     )}
 
+                    <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
+                        Delete plan
+                    </button>
+
+                    {plan.planId === planToDelete && (
+                        <div>
+                            <p id='top-text'>¿Are you sure?</p>
+                            <button id='colouredButton' onClick={cancelDelete}>No</button>
+                            <button id='defaultButton' onClick={() => deletePlan(plan.planId)}>Yes</button>
+                        </div>
+                    )}
                 </div>
             ))}
         </div>
