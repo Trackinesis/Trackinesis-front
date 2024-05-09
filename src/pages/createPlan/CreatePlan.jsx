@@ -64,19 +64,21 @@ function CreatePlan() {
                            name='objective' onChange={handlePlanAddInput}/>
                 </div>
 
-                <div className="start-date-input">
-                    <label htmlFor="startDate" id='top-text'><strong>Start date:</strong></label>
-                    <input type='date'/>
+                <div className="prompt">
+                    <label id='top-text' htmlFor="startDate"><strong>Start date:</strong></label>
+                    <input type='date' name='startDate' onChange={handlePlanAddInput}/>
+                </div>
 
+                <div className="prompt">
                     <label htmlFor="endDate" id='top-text'><strong>End date:</strong></label>
-                    <input type='date'/>
-                    <> <p> </p></>
+                    <input type='date' name='endDate' onChange={handlePlanAddInput}/>
+                    <> <p></p></>
                 </div>
 
                 <button type="submit" id='colouredButton' onClick={handleAddPlan}>Save Plan</button>
             </form>
         </div>
     );
-};
+}
 
 export default CreatePlan;
