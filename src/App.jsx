@@ -20,12 +20,12 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Login />}></Route>
                     <Route path='/signup' element={<Signup />}></Route>
-                    <Route path='/home' element={<Home />}></Route>
                     <Route path='/signupsteptwo' element={<SignupStepTwo />}></Route>
+                    <Route path='/home' element={<Home />}></Route>
                     <Route path='/userpage' element={<UserPage />}></Route>
                     <Route path='/createplan' element={<CreatePlan />}></Route>
-                    <Route path='/addexercise' element={<AddExercise />}></Route>
                     <Route path='/planslisted' element={<PlansListed/>}></Route>
+                    <Route path='/addexercise' element={<AddExercise />}></Route>
                     <Route path='/routine' element={<Routine/>}></Route>
                     <Route path='/createexercise' element={<CreateExercise/>}></Route>
                     <Route path='/traininggoal' element={<TrainingGoal/>}></Route>
