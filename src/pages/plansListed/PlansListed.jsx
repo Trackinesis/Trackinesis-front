@@ -56,7 +56,9 @@ function PlansListed() {
 
     return (
         <div className='main-format-create-plan'>
-            <h2 id='topTitle'>My plans</h2>
+            <Link to='/home' id='backButton'>Back</Link>
+
+            <h2 className='main-page-header'>My plans</h2>
             {plans.map((plan) => (
                 console.log(plan),
                 <div className='prompt' key={plan.planId}>
@@ -93,6 +95,7 @@ function PlansListed() {
                     )}
                 </div>
             ))}
+            <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
         </div>
     );
 }
