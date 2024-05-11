@@ -32,8 +32,9 @@ function Home({ userId }) {
             <h2 className='main-page-header'>Hi {name}</h2>
             <h3 className='main-page-header'>Today is {dayName}</h3>
 
-            {/*Link to startExercise*/ <h4 id='defaultButton'>Start exercise</h4>}
+            {<h4 id='defaultButton'>Start exercise</h4>}
             <Link to='/planslisted' id='defaultButton'>My plans</Link>
+            <Link to='/routineslisted' id='defaultButton'>My routines</Link>
             <Link to='/userpage' id='defaultButton'>User Page </Link>
         </div>
     );

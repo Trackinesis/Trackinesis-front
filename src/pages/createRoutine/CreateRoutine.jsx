@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import Validation from "../routine/RoutineValidation";
+import Validation from ".//RoutineValidation";
 import axios from "axios";
 
 const routineType = [
@@ -8,7 +8,7 @@ const routineType = [
     { value: 'time', label: 'Exercise with Time' },
 ];
 
-function Routine() {
+function CreateRoutine() {
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
     const [valuesRoutine, setValues] = useState({
@@ -95,4 +95,4 @@ function Routine() {
     );
 }
 
-export default Routine;
+export default CreateRoutine;

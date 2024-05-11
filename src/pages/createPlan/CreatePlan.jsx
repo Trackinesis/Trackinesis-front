@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import './CreatePlan.css'
 import '../../styles.css'
-import Validation from "../routine/RoutineValidation";
+import Validation from "../createRoutine/RoutineValidation";
 
 function CreatePlan() {
     const navigate = useNavigate();
