@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css';
 
-function PlansListed() {
+function RoutinesListed() {
     const [routines, setRoutines] = useState([]);
     const [routineToDelete, setRoutineToDelete] = useState(null);
     const [showEditDropdown, setShowEditDropdown] = useState(false);
@@ -23,7 +23,7 @@ function PlansListed() {
         setRoutineToDelete(id);
     };
 
-    const deletePlan = async (routineId) => {
+    const deleteRoutine = async (routineId) => {
         try {
             const API_URL = `http://localhost:8081/routine/${routineId}`;
             const res = await axios.delete(API_URL);
@@ -61,26 +61,10 @@ function PlansListed() {
             {routines.map((routine) => (
                 console.log(routine),
                     <div className='prompt' key={routine.routineId}>
-                        <h3 id='top-text'>{routine.name}</h3>
-                        <p id='top-text'>{routine.type}</p>
-                        <p id='top-text'>{routine.description}</p>
-
-                        <button id='defaultButton' onClick={toggleEditDropdown}>
-                            {showEditDropdown ? 'Close Edit' : 'Edit Routine'}
-                        </button>
-
-                        {showEditDropdown && (
-                            <div className='dropdown'>
-                                <p id='top-text'>Select a day:</p>
-                                {daysOfWeek.map((day) => (
-                                    <Link key={day} to={`/plans/${routine.routineId}/schedule/${day}`}>
-                                        <button className='dropdownButton' onClick={() => handleDaySelect(day)}>
-                                            {day}
-                                        </button>
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
+                        <h3 id='top-text'>Name: {routine.name}</h3>
+                        <p id='top-text'>Day: {routine.day}</p>
+                        <p id='top-text'>Type: {routine.type}</p>
+                        <p id='top-text'>Description: {routine.description}</p>
 
                         <button id='defaultButton' onClick={() => confirmDelete(routine.routineId)}>
                             Delete routine
@@ -90,7 +74,7 @@ function PlansListed() {
                             <div>
                                 <p id='top-text'>¿Are you sure?</p>
                                 <button id='colouredButton' onClick={cancelDelete}>No</button>
-                                <button id='defaultButton' onClick={() => deletePlan(routine.routineId)}>Yes</button>
+                                <button id='defaultButton' onClick={() => deleteRoutine(routine.routineId)}>Yes</button>
                             </div>
                         )}
                     </div>
@@ -100,4 +84,21 @@ function PlansListed() {
     );
 }
 
-export default PlansListed;
+export default RoutinesListed;
+
+// {showEditDropdown && (
+//                             <div className='dropdown'>
+//                                 <p id='top-text'>Select a day:</p>
+//                                 {daysOfWeek.map((day) => (
+//                                     <Link key={day} to={`/plans/${routine.routineId}/schedule/${day}`}>
+//                                         <button className='dropdownButton' onClick={() => handleDaySelect(day)}>
+//                                             {day}
+//                                         </button>
+//                                     </Link>
+//                                 ))}
+//                             </div>
+//                         )}
+
+//<button id='defaultButton' onClick={toggleEditDropdown}>
+//                             {showEditDropdown ? 'Close Edit' : 'Edit Routine'}
+//                         </button>
