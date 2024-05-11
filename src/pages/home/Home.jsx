@@ -6,11 +6,13 @@ import '../../styles.css'
 
 function Home({ userId }) {
     const [name, setUserName] = useState('');
+    const [surname, setSurName] = useState('');
 
     useEffect(() => {
         axios.get('http://localhost:8081/home')
             .then(response => {
                 setUserName(localStorage.getItem('name'));
+                setSurName(localStorage.getItem('surname'));
             })
             .catch(error => {
                 console.error('Error fetching name:', error);
@@ -29,7 +31,7 @@ function Home({ userId }) {
 
     return (
         <div className='home-page-main-format'>
-            <h2 className='main-page-header'>Hi {name}</h2>
+            <h2 className='main-page-header'>Hi {name} {surname}</h2>
             <h3 className='main-page-header'>Today is {dayName}</h3>
 
             {<h4 id='defaultButton'>Start exercise</h4>}
