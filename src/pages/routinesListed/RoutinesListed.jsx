@@ -64,11 +64,11 @@ function RoutinesListed() {
                         <h3 id='top-text'>Name: {routine.name}</h3>
                         <p id='top-text'>Day: {routine.day}</p>
                         <p id='top-text'>Type: {routine.type}</p>
-                        <p id='top-text'>Description: {routine.description}</p>
 
                         <button id='defaultButton' onClick={() => confirmDelete(routine.routineId)}>
                             Delete routine
                         </button>
+                        <Link to='/addexercise' id='defaultButton'>Add exercises</Link>
 
                         {routine.routineId === routineToDelete && (
                             <div>

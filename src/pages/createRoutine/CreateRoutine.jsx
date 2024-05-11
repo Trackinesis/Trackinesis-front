@@ -71,7 +71,7 @@ function CreateRoutine() {
             <form onSubmit={handleSubmitNewRoutine}>
                 <div className='prompt'>
                     <label htmlFor="routineName" id='top-text'><strong>Routine name:</strong></label>
-                    <input onChange={handleTypeInput} type="text" placeholder='Enter routine name:' name='name' />
+                    <input onChange={handleTypeInput} type="text" placeholder='Enter routine name' name='name' />
                     {errors.name && <span className='text-danger'>{errors.name}</span>}
                 </div>
 
@@ -104,14 +104,6 @@ function CreateRoutine() {
                 </div>
 
                 <div className='prompt'>
-                    <button onClick={() => console.log('Rest day button clicked')} id='defaultButton'>Rest day</button>
-
-                    <button onClick={handleSubmitNewRoutine} id='defaultButton'>Add exercise</button>
-
-                    <button onClick={() => navigate('/addsport')} id='defaultButton'>Add Sport</button>
-                </div>
-
-                <div className='prompt'>
                     <button onClick={handleSaveRoutine} id='colouredButton'>Save Routine</button>
                 </div>
 
@@ -121,3 +113,11 @@ function CreateRoutine() {
 }
 
 export default CreateRoutine;
+
+//<div className='prompt'>
+//                     <button onClick={() => console.log('Rest day button clicked')} id='defaultButton'>Rest day</button>
+//
+//                     <button onClick={handleSubmitNewRoutine} id='defaultButton'>Add exercise</button>
+//
+//                     <button onClick={() => navigate('/addsport')} id='defaultButton'>Add Sport</button>
+//                 </div>
