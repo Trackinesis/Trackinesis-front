@@ -1,57 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import '../../styles.css';
 
 function TrainingGoal() {
     const navigate = useNavigate();
     const [goals, setGoals] = useState([]);
-    const [currentGoal, setCurrentGoal] = useState({});
+    const [columns, setColumns] = useState([]);
+    const [newGoal, setNewGoal] = useState({
+        name: '',
+        description: '',
+        status: true
+    });
 
     useEffect(() => {
-        // Fetch goals from the server when the component mounts
-        axios.get('/api/goals').then(response => {
-            setGoals(response.data);
-        });
+        axios.get('http://localhost:8081/goals')
+            .then(res => {
+                const goalsData = res.data;
+                setGoals(goalsData);
+
+                const columns = Object.keys(goalsData[0] || {}).map((key) => ({
+                    name: key.charAt(0).toUpperCase() + key.slice(1),
+                    selector: key
+                }));
+
+                columns.concat({
+                    name: 'Edit Goal',
+                    selector: 'editGoal'
+                });
+
+                setColumns(columns);
+
+        })
+            .catch(err => console.log(err));
     }, []);
 
-    const handleInputChange = (event) => {
-        setCurrentGoal({
-            ...currentGoal,
-            [event.target.name]: event.target.value
-        });
-    };
-
-    const handleSubmit = (event) => {
+    const handleCreateGoal = (event) => {
         event.preventDefault();
-        // Send a request to the server to save the goal
-        // If the goal already exists, update it; otherwise, create a new one
-        if (currentGoal.id) {
-            axios.put(`/api/goals/${currentGoal.id}`, currentGoal).then(response => {
-                // Update the goal in the state
-                setGoals(goals.map(goal => goal.id === currentGoal.id ? response.data : goal));
-                setCurrentGoal({});
-            });
-        } else {
-            axios.post('/api/goals', currentGoal).then(response => {
-                // Add the new goal to the state
-                setGoals([...goals, response.data]);
-                setCurrentGoal({});
-            });
-        }
+        axios.post('http://localhost:8081/goal', newGoal)
+            .then(res => {
+                console.log('Plan added successfully', res.data);
+            })
+            .catch(err => console.log(err));
     };
 
-    const handleEdit = (goal) => {
-        setCurrentGoal(goal);
+    const handleInputChange = (event) => {
+        setNewGoal({ ...newGoal, [event.target.name]: event.target.value });
     };
 
-    const handleDelete = (id) => {
-        // Send a request to the server to delete the goal
-        axios.delete(`/api/goals/${id}`).then(() => {
-            // Remove the goal from the state
-            setGoals(goals.filter(goal => goal.id !== id));
-        });
-    };
 
     const handleGoBack = () => {
         navigate(-1);
@@ -61,23 +58,27 @@ function TrainingGoal() {
         <div className='main-page'>
             <button onClick={handleGoBack} id="backButton"> Back</button>
             <h2 id='topTitle'>Training Goals</h2>
-            <form onSubmit={handleSubmit}>
-                <input name="weightGoal" value={currentGoal.weightGoal || ''} onChange={handleInputChange} placeholder="Weight Goal" />
-                <input name="volumeLifted" value={currentGoal.volumeLifted || ''} onChange={handleInputChange} placeholder="Volume Lifted" />
-                <button type="submit">Save Goal</button>
+
+            <DataTable
+                columns={columns}
+                data={goals}
+
+            />
+
+            <form action="" onSubmit={handleCreateGoal}>
+                <div className='prompt'>
+                    <label id='top-text' htmlFor='goalName'>Goal Name </label>
+                    <input type="text" name="name" placeholder="Goal Name" onChange={handleInputChange}/>
+
+                    <label id='top-text' htmlFor= 'goalDescription'> Description</label>
+                    <input type="text" name="description" placeholder="Goal Description" onChange={handleInputChange}/>
+
+                    <button type="submit" onClick={handleCreateGoal}>Create Goal</button>
+                </div>
+
             </form>
-            <table>
-                {goals.map(goal => (
-                    <tr key={goal.id}>
-                        <td>{goal.weightGoal}</td>
-                        <td>{goal.volumeLifted}</td>
-                        <td>
-                            <button onClick={() => handleEdit(goal)}>Edit</button>
-                            <button onClick={() => handleDelete(goal.id)}>Delete</button>
-                        </td>
-                    </tr>
-                ))}
-            </table>
+
+
         </div>
     );
 }
