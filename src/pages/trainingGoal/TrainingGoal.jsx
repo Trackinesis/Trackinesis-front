@@ -41,6 +41,7 @@ function TrainingGoal() {
         axios.post('http://localhost:8081/goal', newGoal)
             .then(res => {
                 console.log('Plan added successfully', res.data);
+                navigate('/traininggoal')
             })
             .catch(err => console.log(err));
     };
