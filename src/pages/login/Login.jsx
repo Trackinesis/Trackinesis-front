@@ -23,11 +23,11 @@ function Login() {
         if (errors.email === "" && errors.password === "") {
             axios.post('http://localhost:8081/login', values)
                 .then(res => {
-                    if (res.data === "Fail") {
+                    if (res.data.message === "Server error") {
                         alert("No record existed");
                     }
                     else {
-                        const {token} = res.data;
+                        const token = res.data.token;
                         localStorage.setItem('token', token);
                         navigate('/home');
                     }
