@@ -12,6 +12,7 @@ import CreateRoutine from "./pages/createRoutine/CreateRoutine";
 import CreateExercise from "./pages/createExercise/CreateExercise";
 import AuthProvider from "./context/AuthContext";
 import RoutinesListed from "./pages/routinesListed/RoutinesListed";
+import Social from "./pages/social/Social";
 
 function App() {
   return (
