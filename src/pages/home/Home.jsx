@@ -35,7 +35,8 @@ function Home({ userId }) {
             {<h4 id='defaultButton'>Start exercise</h4>}
             <Link to='/planslisted' id='defaultButton'>My plans</Link>
             <Link to='/routineslisted' id='defaultButton'>My routines</Link>
-            <Link to='/userpage' id='defaultButton'>User Page </Link>
+            <Link to='/userpage' id='defaultButton'>User Page</Link>
+            <Link to='/social' id='defaultButton'>Social</Link>
         </div>
     );
 }

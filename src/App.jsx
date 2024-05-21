@@ -29,6 +29,7 @@ function App() {
                     <Route path='/routineslisted' element={<RoutinesListed/>}></Route>
                     <Route path='/addexercise' element={<AddExercise />}></Route>
                     <Route path='/createexercise' element={<CreateExercise/>}></Route>
+                    <Route path='/social' element={<Social/>}></Route>
                     <Route path='*' element={<h1>Not Found</h1>}></Route>
                 </Routes>
             </BrowserRouter>
