@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { format } from 'date-fns';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -15,6 +15,19 @@ function CreatePlan() {
         startDate: '',
         endDate: ''
     });
+    const [plans, setPlans] = useState([]); // State to store the user's plans
+
+    const userID = localStorage.getItem('userId');
+
+    useEffect(() => {
+        // Fetch the user's plans when the component mounts
+        axios.get(`http://localhost:8081/plan?userId=${userID}`).then(response => {
+            setPlans(response.data);
+        }).catch(error => {
+            console.error('Error fetching plans:', error);
+        });
+    }, []);
+
     const handleAddPlan = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8081/plan', valuesPlan)
