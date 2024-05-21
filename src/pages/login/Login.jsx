@@ -4,8 +4,6 @@ import Validation from './LoginValidation';
 import axios from 'axios';
 import './Login.css';
 import '../../styles.css'
-import {useAuth} from "../../context/AuthContext";
-
 
 function Login() {
     const [values, setValues] = useState({
@@ -29,7 +27,8 @@ function Login() {
                         alert("No record existed");
                     }
                     else {
-                        localStorage.setItem('userId', res.data.userId);
+                        const {token} = res.data;
+                        localStorage.setItem('token', token);
                         navigate('/home');
                     }
                 })
