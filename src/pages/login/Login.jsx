@@ -19,7 +19,6 @@ function Login() {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
-        const auth = useAuth();
     const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(Validation(values));
@@ -30,7 +29,7 @@ function Login() {
                         alert("No record existed");
                     }
                     else {
-                        auth.setToken(res.data.token);
+                        localStorage.setItem('userId', res.data.userId);
                         navigate('/home');
                     }
                 })
