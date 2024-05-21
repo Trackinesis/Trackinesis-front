@@ -13,6 +13,9 @@ import CreateExercise from "./pages/createExercise/CreateExercise";
 import AuthProvider from "./context/AuthContext";
 import RoutinesListed from "./pages/routinesListed/RoutinesListed";
 import Social from "./pages/social/Social";
+import AddFriend from "./pages/addFriend/AddFriend";
+import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
+import Friends from "./pages/friends/Friends";
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
                     <Route path='/addexercise' element={<AddExercise />}></Route>
                     <Route path='/createexercise' element={<CreateExercise/>}></Route>
                     <Route path='/social' element={<Social/>}></Route>
+                    <Route path='/addfriend' element={<AddFriend/>}></Route>
+                    <Route path='/shareroutine' element={<ShareRoutine/>}></Route>
+                    <Route path='/friends' element={<Friends/>}></Route>
                     <Route path='*' element={<h1>Not Found</h1>}></Route>
                 </Routes>
             </BrowserRouter>
