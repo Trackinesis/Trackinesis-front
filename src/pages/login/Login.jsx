@@ -6,6 +6,7 @@ import './Login.css';
 import '../../styles.css'
 
 function Login() {
+
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -23,14 +24,15 @@ function Login() {
         if (errors.email === "" && errors.password === "") {
             axios.post('http://localhost:8081/login', values)
                 .then(res => {
-                    if (res.data.message === "Server error") {
-                        alert("No record existed");
-                    }
-                    else {
-                        const token = res.data.token;
+                    // if (res.data.message === "Error while searching in the database pom.") {
+                    //     alert("No record existed");
+                    // }
+                    // else {
+
+                        const token = res.data.body.token; //TODO esta bien
                         localStorage.setItem('token', token);
                         navigate('/home');
-                    }
+                    //}
                 })
                 .catch(err => console.log(err));
         }
@@ -40,7 +42,7 @@ function Login() {
         <div className='main-page'>
             <h2 className='main-page-header'>Log In</h2>
 
-            <form action="" onSubmit={handleSubmit}>
+            <form>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="email"><strong>Email</strong></label>
@@ -54,7 +56,7 @@ function Login() {
                     {errors.password && <span className='text-danger'> {errors.password}</span>}
                 </div>
 
-                <button type='submit'  id='colouredButton' >Log in</button>
+                <button type='submit' onClick={handleSubmit} id='colouredButton' >Log in</button>
 
                 <Link to="/signup" id='defaultButton'>Create Account</Link>
             </form>
