@@ -9,6 +9,7 @@ function Signup() {
 
     const [valuesStepOne, setValues] = useState({
         name: '',
+        surname: '',
         email: '',
         password: ''
     })
@@ -22,12 +23,12 @@ function Signup() {
     const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(Validation(valuesStepOne));
-        if (errors.name === "" && errors.email === "" && errors.password === "") {
+        if (errors.name === "" && errors.email === "" && errors.password === "" && errors.surname === "" ) {
             axios.post('http://localhost:8081/signup', valuesStepOne)
                 .then(res => {
                     localStorage.setItem('userId', res.data.id);
-                    localStorage.setItem('username', valuesStepOne.name);
-             
+                    localStorage.setItem('name', valuesStepOne.name);
+
                     navigate('/signupsteptwo');
                 })
                 .catch(err => console.log(err));
@@ -50,9 +51,9 @@ function Signup() {
                     </div>
 
                     <div className='prompt'>
-                        <label id='top-text' htmlFor="name"><strong>Last Name</strong></label>
-                        <input id='formsInput' type="text" placeholder='Enter Last Name' name='name' onChange={handleInput} />
-                        {errors.name && <span className='text-danger'> {errors.name}</span>}
+                        <label id='top-text' htmlFor="surname"><strong>Last Name</strong></label>
+                        <input id='formsInput' type="text" placeholder='Enter Last Name' name='surname' onChange={handleInput} />
+                        {errors.surname && <span className='text-danger'> {errors.surname}</span>}
                     </div>
 
                     <div className='prompt'>

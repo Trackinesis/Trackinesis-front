@@ -3,7 +3,7 @@ function Validation(valuesRoutine, exerciseType) {
 
     // Check for empty fields
     if (valuesRoutine.name === "") {
-        error.name = "Routine name should not be empty";
+        error.name = "CreateRoutine name should not be empty";
     }
     else {
         error.name = ""

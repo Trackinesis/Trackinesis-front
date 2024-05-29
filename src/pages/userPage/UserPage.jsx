@@ -3,12 +3,10 @@ import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.css';
 import '../../styles.css'
-import {useAuth} from "../../context/AuthContext";
 
 function UserPage() {
-    const userId = localStorage.getItem('userId');
-
-    const auth = useAuth();
+    const token = localStorage.getItem('token');
+    // get al back usando el token y q devuelva el userId
 
     const [user, setUser] = useState({
         name: '',
@@ -27,15 +25,9 @@ function UserPage() {
 
     const handleSubmitUpdate = async (event) => {
         event.preventDefault();
-        console.log(auth.token);
+        console.log();
 
     };
-
-    const DeleteUserButton = ({userId}) => {
-        const handleDeleteUser = () => {
-            handleSubmitDelete(userId);
-        }
-    }
 
     const handleSubmitDelete = async (userId) => {
         try {
@@ -66,10 +58,19 @@ function UserPage() {
         }
     };
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
+    const handleLogOut = () => {
+        localStorage.removeItem("token");
+        navigate("/");
+    };
+
     return (
         <div className='main-page'>
-            <Link to="/home" id='backButton'> Back</Link>
-            <h2 className='main-page-header'> Edit User Profile</h2>
+            <button onClick={handleGoBack} id='backButton'> Back </button>
+            <h2 className='main-page-header'> Edit User Profile </h2>
             <form>
                 <div className="prompt">
                     <label id='top-text' htmlFor="name"> Name:</label>
@@ -84,7 +85,7 @@ function UserPage() {
                 <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
             </form>
 
-            <Link to="/" id='logoutButton'>Logout</Link>
+            <button onClick={handleLogOut} id='logoutButton'>Logout</button>
             {showDeleteConfirmation && (
                 <div>
                     <p id='confirmationText'>Are you sure you want to delete your account?</p>

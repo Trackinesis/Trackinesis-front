@@ -8,14 +8,23 @@ function PlansListed() {
     const [plans, setPlans] = useState([]);
     const [planToDelete, setPlanToDelete] = useState(null);
     const [showEditDropdown, setShowEditDropdown] = useState(false);
-    const [selectedDay, setSelectedDay] = useState('');
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const [selectedRoutine, setSelectedRoutine] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:8081/plan')
             .then(res => {
                 const plansData = res.data;
                 setPlans(plansData);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
+    //funcion para obtener las rutinas (back)
+    useEffect(() => {
+        axios.get('http://localhost:8081/routines')
+            .then(res => {
+                const routinesData = res.data;
+                setSelectedRoutine(routinesData)
             })
             .catch(err => console.log(err));
     }, []);
@@ -49,35 +58,31 @@ function PlansListed() {
         setShowEditDropdown(!showEditDropdown);
     };
 
-    const handleDaySelect = (day) => {
-        setSelectedDay(day);
-        setShowEditDropdown(false); // Ocultar el dropdown después de seleccionar un día
-    };
+    const handleRoutineSelect = (routineId) => {
+        console.log(routineId);
+    }
 
     return (
         <div className='main-format-create-plan'>
-            <h2 id='topTitle'>My plans</h2>
+            <Link to='/home' id='backButton'>Back</Link>
+
+            <h2 className='main-page-header'>My plans</h2>
             {plans.map((plan) => (
                 console.log(plan),
                 <div className='prompt' key={plan.planId}>
-                    <h3 id='top-text'>{plan.name}</h3>
-                    <p id='top-text'>{plan.description}</p>
+                    <h3 id='top-text'>Plan name: {plan.name}</h3>
+                    <p id='top-text'>Description: {plan.description}</p>
 
                     <button id='defaultButton' onClick={toggleEditDropdown}>
                         {showEditDropdown ? 'Close Edit' : 'Edit Plan'}
                     </button>
 
                     {showEditDropdown && (
-                        <div className='dropdown'>
-                            <p id='top-text'>Select a day:</p>
-                            {daysOfWeek.map((day) => (
-                                <Link key={day} to={`/plans/${plan.planId}/schedule/${day}`}>
-                                    <button className='dropdownButton' onClick={() => handleDaySelect(day)}>
-                                        {day}
-                                    </button>
-                                </Link>
-                            ))}
-                        </div>
+                        <select onChange={(e) => handleRoutineSelect(e.target.value)}>
+                            {/* mapear las rutinas disponibles, parecido al plans.map */}
+                            <option value="">Selecciona una rutina</option>
+                            {/* Ejemplo de opción: <option value="routineId">Routine Name</option> */}
+                        </select>
                     )}
 
                     <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
@@ -93,6 +98,7 @@ function PlansListed() {
                     )}
                 </div>
             ))}
+            <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
         </div>
     );
 }
