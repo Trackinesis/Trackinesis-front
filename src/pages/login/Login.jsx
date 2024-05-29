@@ -18,23 +18,26 @@ function Login() {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setErrors(Validation(values));
         if (errors.email === "" && errors.password === "") {
-            return axios.post('http://localhost:8081/login', values)
-                .then(res => {
-                    // if (res.data.message === "Error while searching in the database pom.") {
-                    //     alert("No record existed");
-                    // }
-                    // else {
-
-                        const token = res.data.body.token; //TODO esta bien
-                        localStorage.setItem('token', token);
-                        navigate('/home');
-                    //}
-                })
-                .catch(err => console.log(err));
+            try {
+                const res = await axios.post('http://localhost:8081/login', values);
+                if (res.data.message === "Fail") {
+                    alert("No record existed");
+                } else if (res.data.message === "Success") {
+                    const token = res.data.token;
+                    localStorage.setItem('token', token);
+                    navigate('/home');
+                }
+                else {
+                    console.error('Unexpected response:', res.data);
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
     }
 
