@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { format } from 'date-fns';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import './CreatePlan.css'
 import '../../styles.css'
-import Validation from "../routine/RoutineValidation";
+import Validation from "../createRoutine/RoutineValidation";
 
 function CreatePlan() {
     const navigate = useNavigate();
@@ -15,6 +15,19 @@ function CreatePlan() {
         startDate: '',
         endDate: ''
     });
+    const [plans, setPlans] = useState([]); // State to store the user's plans
+
+    const userID = localStorage.getItem('userId');
+
+    useEffect(() => {
+        // Fetch the user's plans when the component mounts
+        axios.get(`http://localhost:8081/plan?userId=${userID}`).then(response => {
+            setPlans(response.data);
+        }).catch(error => {
+            console.error('Error fetching plans:', error);
+        });
+    }, []);
+
     const handleAddPlan = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8081/plan', valuesPlan)
@@ -64,19 +77,21 @@ function CreatePlan() {
                            name='objective' onChange={handlePlanAddInput}/>
                 </div>
 
-                <div className="start-date-input">
-                    <label htmlFor="startDate" id='top-text'><strong>Start date:</strong></label>
-                    <input type='date'/>
+                <div className="prompt">
+                    <label id='top-text' htmlFor="startDate"><strong>Start date:</strong></label>
+                    <input type='date' name='startDate' onChange={handlePlanAddInput}/>
+                </div>
 
+                <div className="prompt">
                     <label htmlFor="endDate" id='top-text'><strong>End date:</strong></label>
-                    <input type='date'/>
-                    <> <p> </p></>
+                    <input type='date' name='endDate' onChange={handlePlanAddInput}/>
+                    <> <p></p></>
                 </div>
 
                 <button type="submit" id='colouredButton' onClick={handleAddPlan}>Save Plan</button>
             </form>
         </div>
     );
-};
+}
 
 export default CreatePlan;

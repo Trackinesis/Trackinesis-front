@@ -8,10 +8,15 @@ import UserPage from './pages/userPage/UserPage'
 import CreatePlan from "./pages/createPlan/CreatePlan";
 import AddExercise from "./pages/addExercise/AddExercise";
 import PlansListed from "./pages/plansListed/PlansListed";
-import Routine from "./pages/routine/Routine";
+import CreateRoutine from "./pages/createRoutine/CreateRoutine";
 import CreateExercise from "./pages/createExercise/CreateExercise";
 import AuthProvider from "./context/AuthContext";
 import TrainingGoal from "./pages/trainingGoal/TrainingGoal";
+import RoutinesListed from "./pages/routinesListed/RoutinesListed";
+import Social from "./pages/social/Social";
+import AddFriend from "./pages/addFriend/AddFriend";
+import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
+import Friends from "./pages/friends/Friends";
 
 function App() {
   return (
@@ -25,10 +30,16 @@ function App() {
                     <Route path='/userpage' element={<UserPage />}></Route>
                     <Route path='/createplan' element={<CreatePlan />}></Route>
                     <Route path='/planslisted' element={<PlansListed/>}></Route>
+                    <Route path='/createroutine' element={<CreateRoutine/>}></Route>
+                    <Route path='/routineslisted' element={<RoutinesListed/>}></Route>
                     <Route path='/addexercise' element={<AddExercise />}></Route>
-                    <Route path='/routine' element={<Routine/>}></Route>
                     <Route path='/createexercise' element={<CreateExercise/>}></Route>
+
                     <Route path='/traininggoal' element={<TrainingGoal/>}></Route>
+                    <Route path='/social' element={<Social/>}></Route>
+                    <Route path='/addfriend' element={<AddFriend/>}></Route>
+                    <Route path='/shareroutine' element={<ShareRoutine/>}></Route>
+                    <Route path='/friends' element={<Friends/>}></Route>
                     <Route path='*' element={<h1>Not Found</h1>}></Route>
                 </Routes>
             </BrowserRouter>
