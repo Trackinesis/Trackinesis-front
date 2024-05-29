@@ -11,6 +11,7 @@ import PlansListed from "./pages/plansListed/PlansListed";
 import CreateRoutine from "./pages/createRoutine/CreateRoutine";
 import CreateExercise from "./pages/createExercise/CreateExercise";
 import AuthProvider from "./context/AuthContext";
+import TrainingGoal from "./pages/trainingGoal/TrainingGoal";
 import RoutinesListed from "./pages/routinesListed/RoutinesListed";
 import Social from "./pages/social/Social";
 import AddFriend from "./pages/addFriend/AddFriend";
@@ -33,6 +34,8 @@ function App() {
                     <Route path='/routineslisted' element={<RoutinesListed/>}></Route>
                     <Route path='/addexercise' element={<AddExercise />}></Route>
                     <Route path='/createexercise' element={<CreateExercise/>}></Route>
+
+                    <Route path='/traininggoal' element={<TrainingGoal/>}></Route>
                     <Route path='/social' element={<Social/>}></Route>
                     <Route path='/addfriend' element={<AddFriend/>}></Route>
                     <Route path='/shareroutine' element={<ShareRoutine/>}></Route>
