@@ -9,7 +9,7 @@ const PrivateRoute = ({component: Component, isAuth, ...rest}) => {
             <Outlet />
         </>
     ) : (
-        <Navigate to="/login" />
+        <Navigate to="/" />
     )
 }
 export default PrivateRoute
