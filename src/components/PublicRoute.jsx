@@ -1,9 +1,11 @@
-import React from 'react';
-import { Navigate, Outlet, Route } from "react-router-dom";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 
-const PublicRoute = ({component: Component, ...rest}) => {
+// Adjusted PublicRoute component
+const PublicRoute = ({component: Component,...rest}) => {
     const {token} = useUser();
-    return !token ? <Component {...rest}/> : <Navigate to="/" />
+    // Directly render the component without checking for the token
+    return <Outlet />;
 }
-export default PublicRoute
+export default PublicRoute;
