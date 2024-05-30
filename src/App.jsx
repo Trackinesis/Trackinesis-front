@@ -17,6 +17,7 @@ import Social from "./pages/social/Social";
 import AddFriend from "./pages/addFriend/AddFriend";
 import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
 import Friends from "./pages/friends/Friends";
+import Leaderboard from './pages/leaderboard/Leaderboard';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
                     <Route path='/addfriend' element={<AddFriend/>}></Route>
                     <Route path='/shareroutine' element={<ShareRoutine/>}></Route>
                     <Route path='/friends' element={<Friends/>}></Route>
+                    <Route path='/leaderboard' element={<Leaderboard/>}></Route>
                     <Route path='*' element={<h1>Not Found</h1>}></Route>
                 </Routes>
             </BrowserRouter>
