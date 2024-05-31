@@ -38,6 +38,12 @@ function PersonalCalendar() {
                     );
                 }}
             />
+            {plans.map((plan, index) => (
+                <div key={index}>
+                    <h3 id='top-text'>Plan name: {plan.name}</h3>
+                    <p id='top-text'>Description: {plan.description}</p>
+                </div>
+            ))}
         </div>
     );
 }
