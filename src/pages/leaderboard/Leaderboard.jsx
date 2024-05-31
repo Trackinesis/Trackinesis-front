@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
+import jwt from 'jsonwebtoken'
 import axios from 'axios';
 
 function Leaderboard() {
   const navigate = useNavigate();
   const [friendOptions, setFriendOptions] = useState([]);
+  
 
   const columns = [
     {
@@ -15,7 +17,7 @@ function Leaderboard() {
     },
     {
       name: 'Name',
-      selector: row => row.name, // Use row.name directly
+      selector: row => row.name,
       sortable: true,
     },
     {
@@ -34,20 +36,17 @@ function Leaderboard() {
         const logins = loginResponse.data;
         const users = userResponse.data;
 
-        // Combine login names with user data
         const combinedData = users.map((user) => {
           const matchingLogin = logins.find((login) => login.userId === user.userId);
           return {
-            ...user, // Include all user properties
-            name: matchingLogin?.name || 'N/A', // Use login.name if found, otherwise 'N/A'
-            rank: 0, // Initialize rank (will be sorted later)
+            ...user,
+            name: matchingLogin?.name || 'N/A',
+            rank: 0,
           };
         });
 
-        // Sort by strengthRatio in descending order
         combinedData.sort((a, b) => b.strenghtRatio - a.strenghtRatio);
 
-        // Assign ranks after sorting
         let rank = 1;
         combinedData.forEach((user) => {
           user.rank = rank++;
