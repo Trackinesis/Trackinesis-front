@@ -6,7 +6,9 @@ import '../../styles.css';
 
 function UserPage() {
     const token = localStorage.getItem('token');
-    // get al back usando el token y q devuelva el userId
+    const navigate = useNavigate();
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const [user, setUser] = useState({
         name: '',
@@ -14,10 +16,6 @@ function UserPage() {
         password: '',
         id: '',
     });
-
-    const navigate = useNavigate();
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -30,8 +28,8 @@ function UserPage() {
             return;
         }
         try {
-            const API_URL = `http://localhost:8081/signup`;
-            const res = await axios.put(API_URL, {password: user.password}, {
+            const API_URL = `http://localhost:8081/updatePassword`;
+            const res = await axios.post(API_URL, {currentPassword: currentPassword, newPassword: user.password}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -39,7 +37,7 @@ function UserPage() {
 
             if (res.status === 200) {
                 console.log('User updated successfully');
-                setUser(prevState => ({...prevState, password: ''}));
+                //setUser(prevState => ({...prevState, password: ''}));
                 setCurrentPassword('');
             }
         } catch (err) {
@@ -49,12 +47,12 @@ function UserPage() {
 
     const handleSubmitDelete = async () => {
         try {
-            const API_URL = `http://localhost:8081/signup`;
+            const API_URL = `http://localhost:8081/deleteAccount`;
             const res = await axios.delete(API_URL, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
-        });
+            });
 
             if (res.status === 200) {
                 console.log('User deleted successfully');
@@ -96,7 +94,7 @@ function UserPage() {
             <form>
                 <div className="prompt">
                     <label id='top-text' htmlFor="currentPassword"> Current Password:</label>
-                    <input id='formsInput' type="password" onChange={e => setCurrentPassword(e.target.value)} placeholder='Type current password'/>
+                    <input id='formsInput' type="password" onChange={handleChange} placeholder='Type current password'/>
                     
                     <label id='top-text' htmlFor="password"> Password:</label>
                     <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
