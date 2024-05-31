@@ -37,6 +37,7 @@ function Home({ userId }) {
             <Link to='/routineslisted' id='defaultButton'>My routines</Link>
             <Link to='/userpage' id='defaultButton'>User Page</Link>
             <Link to='/social' id='defaultButton'>Social</Link>
+            <Link to='/calendar' id='defaultButton'>Calendar</Link>
         </div>
     );
 }
