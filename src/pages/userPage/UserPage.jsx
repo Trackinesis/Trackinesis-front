@@ -16,6 +16,7 @@ function UserPage() {
     });
 
     const navigate = useNavigate();
+    const [currentPassword, setCurrentPassword] = useState('');
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const handleChange = (event) => {
@@ -25,8 +26,22 @@ function UserPage() {
 
     const handleSubmitUpdate = async (event) => {
         event.preventDefault();
-        console.log();
+        if (user.password === "" || currentPassword === "") {
+            console.log("Password field is empty");
+            return;
+        }
+        try {
+            const API_URL = `http://localhost:8081/user/${user.id}`;
+            const res = await axios.put(API_URL, {password: user.password});
 
+            if (res.status === 200) {
+                console.log('User updated successfully');
+                setUser(prevState => ({...prevState, password: ''}));
+                setCurrentPassword('');
+            }
+        } catch (err) {
+            console.log('Error updating user', err);
+        }
     };
 
     const handleSubmitDelete = async (userId) => {
@@ -73,8 +88,8 @@ function UserPage() {
             <h2 className='main-page-header'> Edit User Profile </h2>
             <form>
                 <div className="prompt">
-                    <label id='top-text' htmlFor="name"> Name:</label>
-                    <input id='formsInput' type="text" onChange={handleChange} placeholder='Choose new username'/>
+                    <label id='top-text' htmlFor="currentPassword"> Current Password:</label>
+                    <input id='formsInput' type="password" onChange={e => setCurrentPassword(e.target.value)} placeholder='Type current password'/>
                     
                     <label id='top-text' htmlFor="password"> Password:</label>
                     <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
