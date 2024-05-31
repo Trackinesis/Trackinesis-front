@@ -10,7 +10,7 @@ function Leaderboard() {
     const columns = [
       {
         name: 'Rank',
-        selector: row => row.name,
+        selector: row => row.rank,
         sortable: true,
       },
       {

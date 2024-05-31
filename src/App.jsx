@@ -18,6 +18,8 @@ import AddFriend from "./pages/addFriend/AddFriend";
 import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
 import Friends from "./pages/friends/Friends";
 import Leaderboard from './pages/leaderboard/Leaderboard';
+import HistoricalTracking from './pages/historicalTracking/HistoricalTracking';
+import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords'
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
                     <Route path='/shareroutine' element={<ShareRoutine/>}></Route>
                     <Route path='/friends' element={<Friends/>}></Route>
                     <Route path='/leaderboard' element={<Leaderboard/>}></Route>
+                    <Route path='/historicaltracking' element={<HistoricalTracking/>}></Route>
+                    <Route path='/mypersonalrecords' element={<MyPersonalRecords/>}></Route>
                     <Route path='*' element={<h1>Not Found</h1>}></Route>
                 </Routes>
             </BrowserRouter>
