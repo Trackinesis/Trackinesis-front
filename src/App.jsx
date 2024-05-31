@@ -17,7 +17,7 @@ import Social from "./pages/social/Social";
 import AddFriend from "./pages/addFriend/AddFriend";
 import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
 import Friends from "./pages/friends/Friends";
-import Calendar from "./pages/calendar/Calendar";
+import PersonalCalendar from "./pages/calendar/PersonalCalendar";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
                     <Route path='/signup' element={<Signup />}></Route>
                     <Route path='/signupsteptwo' element={<SignupStepTwo />}></Route>
                     <Route path='/home' element={<Home />}></Route>
-                    <Route path='/calendar' element={<Calendar />}></Route>
+                    <Route path='/personalcalendar' element={<PersonalCalendar />}></Route>
                     <Route path='/userpage' element={<UserPage />}></Route>
                     <Route path='/createplan' element={<CreatePlan />}></Route>
                     <Route path='/planslisted' element={<PlansListed/>}></Route>
