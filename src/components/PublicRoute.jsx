@@ -1,11 +1,8 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
+import React from 'react';
+import { Outlet } from "react-router-dom";
 
-// Adjusted PublicRoute component
-const PublicRoute = ({component: Component,...rest}) => {
-    const {token} = useUser();
-    // Directly render the component without checking for the token
+const PublicRoute = () => {
     return <Outlet />;
-}
+};
+
 export default PublicRoute;

@@ -26,13 +26,10 @@ function Login() {
                 const res = await axios.post('http://localhost:8081/login', values);
                 if (res.data.message === "Fail") {
                     alert("No record existed");
-                } else if (res.data.message === "Success") {
+                } else {
                     const token = res.data.token;
                     localStorage.setItem('token', token);
                     navigate('/home');
-                }
-                else {
-                    console.error('Unexpected response:', res.data);
                 }
             }
             catch (err) {

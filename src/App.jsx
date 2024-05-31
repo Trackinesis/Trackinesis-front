@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import { useUser } from "./hooks/useUser";
@@ -21,67 +21,40 @@ import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
 import Friends from "./pages/friends/Friends";
 
 function App() {
-    const {token} = useUser();
+    const { token } = useUser();
 
     useEffect(() => {
-        const updateState = () => {}
-        window.addEventListener('storage', updateState())
-        return () => window.removeEventListener('storage', updateState())
+        const updateState = () => {
+            // Logic to update state if necessary
+        };
+        window.addEventListener('storage', updateState);
+        return () => window.removeEventListener('storage', updateState);
     }, []);
-
 
     return (
         <Router>
             <Routes>
                 {/* Public routes */}
                 <Route path="/" element={<PublicRoute />}>
-                    <Route path="/" element={<Login />} />
-                </Route>
-                <Route path="/signup" element={<PublicRoute />}>
-                    <Route path="/signup" element={<Signup />} />
-                </Route>
-                <Route path="/signupsteptwo" element={<PublicRoute />}>
-                    <Route path="/signupsteptwo" element={<SignupStepTwo />} />
+                    <Route index element={<Login />} />
+                    <Route path="signup" element={<Signup />} />
+                    <Route path="signupsteptwo" element={<SignupStepTwo />} />
                 </Route>
 
                 {/* Private routes */}
-                <Route path="/home" element={<PrivateRoute />}>
+                <Route element={<PrivateRoute />}>
                     <Route path="/home" element={<Home />} />
-                </Route>
-                <Route path="/userpage" element={<PrivateRoute />}>
                     <Route path="/userpage" element={<UserPage />} />
-                </Route>
-                <Route path="/createplan" element={<PrivateRoute />}>
                     <Route path="/createplan" element={<CreatePlan />} />
-                </Route>
-                <Route path="/planslisted" element={<PrivateRoute />}>
                     <Route path="/planslisted" element={<PlansListed />} />
-                </Route>
-                <Route path="/createroutine" element={<PrivateRoute />}>
                     <Route path="/createroutine" element={<CreateRoutine />} />
-                </Route>
-                <Route path="/routineslisted" element={<PrivateRoute />}>
                     <Route path="/routineslisted" element={<RoutinesListed />} />
-                </Route>
-                <Route path="/addexercise" element={<PrivateRoute />}>
                     <Route path="/addexercise" element={<AddExercise />} />
-                </Route>
-                <Route path="/createexercise" element={<PrivateRoute />}>
                     <Route path="/createexercise" element={<CreateExercise />} />
-                </Route>
-                <Route path="/traininggoal" element={<PrivateRoute />}>
                     <Route path="/traininggoal" element={<TrainingGoal />} />
-                </Route>
-                <Route path="/social" element={<PrivateRoute />}>
                     <Route path="/social" element={<Social />} />
-                </Route>
-                <Route path="/addfriend" element={<PrivateRoute />}>
                     <Route path="/addfriend" element={<AddFriend />} />
-                </Route>
-                <Route path="/shareroutine" element={<PrivateRoute />}>
                     <Route path="/shareroutine" element={<ShareRoutine />} />
-                </Route>
-                <Route path="/friends" element={<PrivateRoute />}>
                     <Route path="/friends" element={<Friends />} />
                 </Route>
 
@@ -89,7 +62,7 @@ function App() {
                 <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
         </Router>
-    )
+    );
 }
 
-export default App
+export default App;
