@@ -24,8 +24,7 @@ function PersonalCalendar() {
     };
 
     return (
-        <div>
-            <Link to="/nuevo-evento">Nuevo Evento</Link>
+        <div className='home-page-main-format'>
             <Calendar
                 onChange={setDate}
                 value={date}
