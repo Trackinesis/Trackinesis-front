@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.css';
-import '../../styles.css'
+import '../../styles.css';
 
 function UserPage() {
     const token = localStorage.getItem('token');
@@ -24,15 +24,18 @@ function UserPage() {
         setUser((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const handleSubmitUpdate = async (event) => {
-        event.preventDefault();
+    const handleUpdatePassword = async () => {
         if (user.password === "" || currentPassword === "") {
             console.log("Password field is empty");
             return;
         }
         try {
-            const API_URL = `http://localhost:8081/user/${user.id}`;
-            const res = await axios.put(API_URL, {password: user.password});
+            const API_URL = `http://localhost:8081/signup`;
+            const res = await axios.put(API_URL, {password: user.password}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
             if (res.status === 200) {
                 console.log('User updated successfully');
@@ -44,10 +47,14 @@ function UserPage() {
         }
     };
 
-    const handleSubmitDelete = async (userId) => {
+    const handleSubmitDelete = async () => {
         try {
-            const API_URL = `http://localhost:8081/user/${userId}`;
-            const res = await axios.delete(API_URL);
+            const API_URL = `http://localhost:8081/signup`;
+            const res = await axios.delete(API_URL, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+        });
 
             if (res.status === 200) {
                 console.log('User deleted successfully');
@@ -95,7 +102,7 @@ function UserPage() {
                     <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
                 </div>
 
-                <button id='saveButton' type="submit" onClick={handleSubmitUpdate}>Save Changes</button>
+                <button id='saveButton' type="submit" onClick={handleUpdatePassword}>Save Changes</button>
 
                 <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
             </form>
