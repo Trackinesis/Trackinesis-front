@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
+import axios from 'axios';
 
 function Leaderboard() {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ function Leaderboard() {
     const columns = [
       {
         name: 'Rank',
-        selector: row => row.name,
+        selector: row => row.rank,
         sortable: true,
       },
       {
@@ -52,7 +53,7 @@ function Leaderboard() {
   
             <DataTable
                 columns={columns}
-                data={goalOptions}
+                data={friendOptions}
             />
         </div>
       );
