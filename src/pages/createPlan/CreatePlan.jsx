@@ -38,7 +38,7 @@ function CreatePlan() {
             .catch(err => console.log(err));
 
         console.log('Add plan');
-        navigate('/routine');
+        navigate('/createroutine');
     };
     const handlePlanAddInput = (event) => {
         setValues(prev => ({...prev, [event.target.name]: event.target.value}))
