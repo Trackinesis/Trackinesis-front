@@ -23,7 +23,7 @@ function UserPage() {
     const handleUpdatePassword = async (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost:8081/updatePassword', user)
+        axios.post(`http://localhost:8081/updatePassword/${userId}`, user)
             .then((response) => {
                 console.log(response.data);
             })
