@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 
 function Leaderboard() {
+
   const navigate = useNavigate();
   const [friendOptions, setFriendOptions] = useState([]);
   

@@ -51,6 +51,7 @@ function MyPersonalRecords() {
     } else {
       setUser({ ...user, [name]: value });
     }
+
   };
 
   const handleGoBack = () => {

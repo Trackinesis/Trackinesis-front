@@ -27,7 +27,6 @@ import PersonalCalendar from './pages/calendar/PersonalCalendar';
 function App() {
     const { token } = useUser();
 
-
     useEffect(() => {
         const updateState = () => {
             // Logic to update state if necessary
