@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
-import jwt from 'jsonwebtoken'
 import axios from 'axios';
 
 function Leaderboard() {
@@ -37,7 +36,7 @@ function Leaderboard() {
         const users = userResponse.data;
 
         const combinedData = users.map((user) => {
-          const matchingLogin = logins.find((login) => login.userId === user.userId);
+          const matchingLogin = logins.find((login) => login.userId === user.id);
           return {
             ...user,
             name: matchingLogin?.name || 'N/A',

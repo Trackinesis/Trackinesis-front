@@ -6,13 +6,12 @@ import '../../styles.css'
 
 function UserPage() {
     const token = localStorage.getItem('token');
-    // get al back usando el token y q devuelva el userId
-
+    const userId = localStorage.getItem('userId');
     const [user, setUser] = useState({
+        userId: '',
         name: '',
         email: '',
         password: '',
-        id: '',
     });
 
     const navigate = useNavigate();
@@ -29,20 +28,21 @@ function UserPage() {
 
     };
 
-    const handleSubmitDelete = async (userId) => {
+    const handleSubmitDelete = async () => {
         try {
-            const API_URL = `http://localhost:8081/user/${userId}`;
+            const API_URL = `http://localhost:8081/signup/${userId}`;
             const res = await axios.delete(API_URL);
 
             if (res.status === 200) {
-                console.log('User deleted successfully');
-                navigate('/');
-
+            console.log('User deleted successfully');
+            localStorage.removeItem("token");
+            localStorage.removeItem("userId");
+            navigate('/');
             } else {
-                console.log('Error updating user');
+            console.log('Error deleting user');
             }
         } catch (error) {
-            console.log('Error updating user', error);
+            console.log('Error deleting user', error);
         }
     };
 
@@ -89,7 +89,7 @@ function UserPage() {
             {showDeleteConfirmation && (
                 <div>
                     <p id='confirmationText'>Are you sure you want to delete your account?</p>
-                    <button id='yesButton' onClick={confirmDeleteAccount}>Yes</button>
+                    <button id='yesButton' onClick={handleSubmitDelete}>Yes</button>
                     <button id='noButton' onClick={() => setShowDeleteConfirmation(false)}>No</button>
                 </div>
             )}
