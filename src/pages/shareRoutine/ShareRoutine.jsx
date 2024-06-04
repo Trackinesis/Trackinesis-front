@@ -25,6 +25,17 @@ function ShareRoutine(){
             .catch(err => console.log(err));
     };
 
+    const handleSearch2 = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8081/routine')
+            .then(res => {
+                console.log(res)
+                const routineData = res.data;
+                setRoutine(routineData);
+            })
+            .catch(err => console.log(err));
+    }
+
     return (
         <div className='home-page-main-format'>
             <Link to='/social' id='backButton'>Back</Link>
@@ -46,8 +57,9 @@ function ShareRoutine(){
 
             {routine && (
                 <div>
-                    <h2>{routine.name}</h2>
-                    <p>{routine.description}</p>
+                    <h2 id='top-text'>{routine.name}</h2>
+                    <p id='top-text'>{routine.description}</p>
+                    <button onClick={handleSearch2} id='defaultButton'>Copy</button>
                 </div>
             )}
         </div>
