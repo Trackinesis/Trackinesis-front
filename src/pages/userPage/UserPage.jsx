@@ -5,10 +5,8 @@ import './UserPage.css';
 import '../../styles.css';
 
 function UserPage() {
-    const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     const navigate = useNavigate();
-    const [currentPassword, setCurrentPassword] = useState('');
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const [user, setUser] = useState({
@@ -18,32 +16,20 @@ function UserPage() {
         password: '',
     });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setUser((prevState) => ({ ...prevState, [name]: value }));
-    };
+    const handleInput =(event) => {
+        setUser(prev => ({...prev, [event.target.name]: event.target.value}))
+    }
 
-    const handleUpdatePassword = async () => {
-        if (user.password === "" || currentPassword === "") {
-            console.log("Password field is empty");
-            return;
-        }
-        try {
-            const API_URL = `http://localhost:8081/updatePassword`;
-            const res = await axios.post(API_URL, {currentPassword: currentPassword, newPassword: user.password}, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+    const handleUpdatePassword = async (event) => {
+        event.preventDefault();
+
+        axios.post('http://localhost:8081/updatePassword', user)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error updating password:', error);
             });
-
-            if (res.status === 200) {
-                console.log('User updated successfully');
-                //setUser(prevState => ({...prevState, password: ''}));
-                setCurrentPassword('');
-            }
-        } catch (err) {
-            console.log('Error updating user', err);
-        }
     };
 
     const handleSubmitDelete = async () => {
@@ -92,10 +78,10 @@ function UserPage() {
             <form>
                 <div className="prompt">
                     <label id='top-text' htmlFor="currentPassword"> Current Password:</label>
-                    <input id='formsInput' type="password" onChange={handleChange} placeholder='Type current password'/>
+                    <input id='formsInput' type="password" placeholder='Type current password'/>
                     
                     <label id='top-text' htmlFor="password"> Password:</label>
-                    <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
+                    <input id='formsInput' name='password' type="password" onChange={handleInput} placeholder='Type new password'/>
                 </div>
 
                 <button id='saveButton' type="submit" onClick={handleUpdatePassword}>Save Changes</button>
