@@ -10,6 +10,13 @@ function Validation(valuesStepOne) {
         error.name = ""
     }
 
+    if (valuesStepOne.surname === "") {
+        error.surname = "Last name should not be empty"
+    }
+    else {
+        error.surname = ""
+    }
+
     if(valuesStepOne.email === "") {
         error.email = "Email should not be empty"
     }
