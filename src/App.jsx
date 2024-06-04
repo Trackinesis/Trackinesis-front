@@ -22,6 +22,7 @@ import Friends from "./pages/friends/Friends";
 import Leaderboard from './pages/leaderboard/Leaderboard';
 import HistoricalTracking from './pages/historicalTracking/HistoricalTracking';
 import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords';
+import PersonalCalendar from './pages/calendar/PersonalCalendar';
 
 function App() {
     const { token } = useUser();
