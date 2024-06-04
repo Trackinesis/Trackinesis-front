@@ -2,11 +2,15 @@ import React, {useState} from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.css';
-import '../../styles.css'
+import '../../styles.css';
 
 function UserPage() {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+    const navigate = useNavigate();
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
     const [user, setUser] = useState({
         userId: '',
         name: '',
@@ -14,25 +18,39 @@ function UserPage() {
         password: '',
     });
 
-    const navigate = useNavigate();
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setUser((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const handleSubmitUpdate = async (event) => {
-        event.preventDefault();
-        console.log();
+    const handleUpdatePassword = async () => {
+        if (user.password === "" || currentPassword === "") {
+            console.log("Password field is empty");
+            return;
+        }
+        try {
+            const API_URL = `http://localhost:8081/updatePassword`;
+            const res = await axios.post(API_URL, {currentPassword: currentPassword, newPassword: user.password}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
+            if (res.status === 200) {
+                console.log('User updated successfully');
+                //setUser(prevState => ({...prevState, password: ''}));
+                setCurrentPassword('');
+            }
+        } catch (err) {
+            console.log('Error updating user', err);
+        }
     };
 
     const handleSubmitDelete = async () => {
         try {
             const API_URL = `http://localhost:8081/signup/${userId}`;
             const res = await axios.delete(API_URL);
-
+          
             if (res.status === 200) {
             console.log('User deleted successfully');
             localStorage.removeItem("token");
@@ -73,14 +91,14 @@ function UserPage() {
             <h2 className='main-page-header'> Edit User Profile </h2>
             <form>
                 <div className="prompt">
-                    <label id='top-text' htmlFor="name"> Name:</label>
-                    <input id='formsInput' type="text" onChange={handleChange} placeholder='Choose new username'/>
+                    <label id='top-text' htmlFor="currentPassword"> Current Password:</label>
+                    <input id='formsInput' type="password" onChange={handleChange} placeholder='Type current password'/>
                     
                     <label id='top-text' htmlFor="password"> Password:</label>
                     <input id='formsInput' name='password' type="password" onChange={handleChange} placeholder='Type new password'/>
                 </div>
 
-                <button id='saveButton' type="submit" onClick={handleSubmitUpdate}>Save Changes</button>
+                <button id='saveButton' type="submit" onClick={handleUpdatePassword}>Save Changes</button>
 
                 <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
             </form>

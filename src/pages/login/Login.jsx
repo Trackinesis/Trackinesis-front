@@ -18,6 +18,7 @@ function Login() {
     setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors(Validation(values));
@@ -32,7 +33,6 @@ function Login() {
           const token = res.data.token;
           localStorage.setItem('token', token);
           navigate('/home');
-
           fetchUserId(token);
         } else {
           console.error('Unexpected response:', res.data);
