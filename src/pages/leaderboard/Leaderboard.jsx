@@ -4,59 +4,78 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 
 function Leaderboard() {
-    const navigate = useNavigate();
-    const [friendOptions, setFriendOptions] = useState([]);
+
+  const navigate = useNavigate();
+  const [friendOptions, setFriendOptions] = useState([]);
   
-    const columns = [
-      {
-        name: 'Rank',
-        selector: row => row.rank,
-        sortable: true,
-      },
-      {
-        name: 'Name',
-        selector: row => row.name,
-        sortable: true,
+
+  const columns = [
+    {
+      name: 'Rank',
+      selector: row => row.rank,
+      sortable: true,
+    },
+    {
+      name: 'Name',
+      selector: row => row.name,
+      sortable: true,
+    },
+    {
+      name: 'Strenght ratio',
+      selector: row => row.strenghtRatio,
+      sortable: true,
+    },
+  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const loginResponse = await axios.get('http://localhost:8081/login');
+        const userResponse = await axios.get('http://localhost:8081/signupsteptwo');
+
+        const logins = loginResponse.data;
+        const users = userResponse.data;
+
+        const combinedData = users.map((user) => {
+          const matchingLogin = logins.find((login) => login.userId === user.id);
+          return {
+            ...user,
+            name: matchingLogin?.name || 'N/A',
+            rank: 0,
+          };
+        });
+
+        combinedData.sort((a, b) => b.strenghtRatio - a.strenghtRatio);
+
+        let rank = 1;
+        combinedData.forEach((user) => {
+          user.rank = rank++;
+        });
+
+        setFriendOptions(combinedData);
+      } catch (error) {
+        console.error('Error fetching leaderboard data:', error);
       }
-    ];
-  
-    useEffect(() => {
-        axios.get('http://localhost:8081/friend')
-          .then(res => {
-            const friends = res.data.map(friend => ({
-              friendId: friend.friendId,
-              name: friend.name,
-            }));
-      
-            // Sort friends based on score (assuming 'score' exists)
-            friends.sort((a, b) => b.score - a.score);
-      
-            // Add rank during sorting
-            let rank = 1;
-            friends.forEach(friend => {
-              friend.rank = rank++;
-            });
-      
-            setFriendOptions(friends);
-          })
-          .catch(err => console.log(err));
-      }, []);
-  
-    const handleGoBack = () => {
-      navigate(-1);
     };
-  
-      return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>Leaderboard</h2>
-  
-            <DataTable
-                columns={columns}
-                data={friendOptions}
-            />
-        </div>
-      );
-  }
-  
-  export default Leaderboard;
+
+    fetchData();
+  }, []);
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  return (
+    <div className='main-page'>
+      <button onClick={handleGoBack} id="backButton"> Back</button>
+      <h2 id='topTitle'>Leaderboard</h2>
+
+      <DataTable
+        columns={columns}
+        data={friendOptions}
+      />
+    </div>
+  );
+}
+
+export default Leaderboard;

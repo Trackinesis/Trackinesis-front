@@ -7,14 +7,9 @@ import '../../styles.css';
 
 function MyPersonalRecords() {
   const navigate = useNavigate();
-  const [recordOptions, setRecordOptions] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(null);
-  const userId = localStorage.getItem('userId');
-  const [newRecord, setNewRecord] = useState({
-    maxBench: '',
-    maxSquat: '',
-    maxDeadlift: ''
-  });
+  const [userId, setUserId] = useState(localStorage.getItem('userId')); // Store user ID
+  const [user, setUser] = useState({ maxBench: '', maxSquat: '', maxDeadlift: '' }); // State for user data
+  const [showUpdateForm, setShowUpdateForm] = useState(false); // Control form visibility
 
   const columns = [
     {
@@ -32,102 +27,118 @@ function MyPersonalRecords() {
       selector: row => row.maxDeadlift,
       sortable: true,
     },
-    {
-      name: 'Actions',
-      cell: row => (
-        <div>
-          <button onClick={() => setSelectedUserId(row.userId)}><FaArrowUp /></button>
-        </div>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    }
   ];
 
   useEffect(() => {
-    axios.get(`http://localhost:8081/signupsteptwo/${userId}`)
-      .then(res => {
-        const users = res.data.elements(user => ({
-          maxBench: user.maxBench,
-          maxSquat: user.maxSquat,
-          maxDeadlift: user.maxDeadlift
-        }));
-        setRecordOptions(users);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`);
+        const user = res.data;
+        setUser(user);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+    fetchData();
+  }, [userId]);
 
   const handleInputChange = (event) => {
-    setNewRecord({ ...newRecord, [event.target.name]: event.target.value });
+    const value = event.target.value;
+    const name = event.target.name;
+
+    if (!isNaN(value)) {
+      setUser({ ...user, [name]: parseInt(value) });
+    } else {
+      setUser({ ...user, [name]: value });
+    }
+
   };
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
+  const handleToggleUpdateForm = () => {
+    setShowUpdateForm(!showUpdateForm);
+  };
+
   const handleUpdateFormSubmit = async (event) => {
     event.preventDefault();
+  
+    try {
+      const updatedUser = {
+        maxBench: user.maxBench,
+        maxSquat: user.maxSquat,
+        maxDeadlift: user.maxDeadlift,
+        strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadlift) / user.weight : 0,
+      };
+  
+      const API_URL = `http://localhost:8081/signupsteptwo/${userId}`;
+      const res = await axios.post(API_URL, updatedUser);
 
-    if (!selectedUserId) {
-      console.error('No user selected for update');
-      return;
-    }
-    const newMaxBench = event.target.elements.maxBench.value;
-    const newMaxSquat = event.target.elements.maxSquat.value;
-    const newMaxDeadlift = event.target.elements.maxDeadlift.value;
-
-    // Validate user input (optional)
-
-    const updatedUser = {
-      maxBench: newMaxBench,
-      maxSquat: newMaxSquat,
-      maxDeadlift: newMaxDeadlift,
-    };
-
-    const API_URL = `http://localhost:8081/signupsteptwo/${selectedUserId}`;
-    const res = await axios.post(API_URL, updatedUser);
-
-    if (res.status === 200) { 
-      console.log('User max updated successfully');
-      const updatedRecords = recordOptions.map(user =>
-        user.userId === selectedUserId ? { ...user, ...updatedUser } : user
-      );
-      setRecordOptions(updatedRecords);
-      setSelectedUserId(null); // Clear selected friend after update
-    } else {
-      console.error('Error updating user max:', res.data);
+      if (res.status === 200) {
+        console.log('User max updated successfully');
+        // Update user state with updated values if needed
+      } else {
+        console.error('Error updating user max:', res.data);
+      }
+    } catch (error) {
+      console.error('Error submitting update form:', error);
     }
   };
-  
 
+  return (
+    <div className='main-page'>
+      <button onClick={handleGoBack} id="backButton"> Back</button>
+      <h2>My Personal Records</h2>
 
-    return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>My Personal Records</h2>
+      <DataTable
+        columns={columns}
+        data={[user]} // Display single user data
+      />
 
-            <DataTable
-                columns={columns}
-                data={recordOptions}
+      <button onClick={handleToggleUpdateForm}>
+        <FaArrowUp /> {showUpdateForm ? 'Close Update Form' : 'Update Personal Records'}
+      </button>
+
+      {showUpdateForm && (
+        <form onSubmit={handleUpdateFormSubmit}>
+          <div className='prompt'>
+            <label htmlFor='maxBench'>Bench Press Max </label>
+            <input
+              value={user.maxBench}
+              onChange={handleInputChange}
+              type="number"
+              id="top-text"
+              name="maxBench"
+              placeholder="Enter your max"
             />
-            {selectedUserId && (
-            <form onSubmit={handleUpdateFormSubmit}>
-                <div className='prompt'>
-                    <label htmlFor='maxBench'>Bench Press Max </label>
-                    <input value={newRecord.maxBench} onChange={handleInputChange} type="number" id="top-text" name="maxBench" placeholder="Enter your max" />
 
-                    <label htmlFor='maxSquat'> Squat Max</label>
-                    <input value={newRecord.maxSquat} onChange={handleInputChange} type="number" id="top-text" name="maxSquat" placeholder="Enter your max" />
+            <label htmlFor='maxSquat'> Squat Max</label>
+            <input
+              value={user.maxSquat}
+              onChange={handleInputChange}
+              type="number"
+              id="top-text"
+              name="maxSquat"
+              placeholder="Enter your max"
+            />
 
-                    <label htmlFor='maxDeadlift'> Deadlift Max</label>
-                    <input value={newRecord.maxDeadlift} onChange={handleInputChange} type="number" id="top-text" name="maxDeadlift" placeholder="Enter your max" />
+            <label htmlFor='maxDeadlift'> Deadlift Max</label>
+            <input
+              value={user.maxDeadlift}
+              onChange={handleInputChange}
+              type="number"
+              id="top-text"
+              name="maxDeadlift"
+              placeholder="Enter your max"
+            />
 
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        )}
-        </div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      )}
+    </div>
     );
 }
 

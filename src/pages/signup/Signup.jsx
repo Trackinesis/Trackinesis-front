@@ -27,8 +27,6 @@ function Signup() {
             axios.post('http://localhost:8081/signup', valuesStepOne)
                 .then(res => {
                     localStorage.setItem('userId', res.data.id);
-                    localStorage.setItem('name', valuesStepOne.name);
-
                     navigate('/signupsteptwo');
                 })
                 .catch(err => console.log(err));

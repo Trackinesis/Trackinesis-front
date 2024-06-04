@@ -19,7 +19,6 @@ function PlansListed() {
             .catch(err => console.log(err));
     }, []);
 
-    //funcion para obtener las rutinas (back)
     useEffect(() => {
         axios.get('http://localhost:8081/routines')
             .then(res => {
@@ -79,9 +78,7 @@ function PlansListed() {
 
                     {showEditDropdown && (
                         <select onChange={(e) => handleRoutineSelect(e.target.value)}>
-                            {/* mapear las rutinas disponibles, parecido al plans.map */}
                             <option value="">Selecciona una rutina</option>
-                            {/* Ejemplo de opción: <option value="routineId">Routine Name</option> */}
                         </select>
                     )}
 
