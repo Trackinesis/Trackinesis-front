@@ -21,10 +21,11 @@ import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
 import Friends from "./pages/friends/Friends";
 import Leaderboard from './pages/leaderboard/Leaderboard';
 import HistoricalTracking from './pages/historicalTracking/HistoricalTracking';
-import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords'
+import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords';
 
 function App() {
     const { token } = useUser();
+
 
     useEffect(() => {
         const updateState = () => {
@@ -48,6 +49,7 @@ function App() {
                 <Route element={<PrivateRoute />}>
                     <Route path="/home" element={<Home />} />
                     <Route path="/userpage" element={<UserPage />} />
+                    <Route path='/personalcalendar' element={<PersonalCalendar />} />
                     <Route path="/createplan" element={<CreatePlan />} />
                     <Route path="/planslisted" element={<PlansListed />} />
                     <Route path="/createroutine" element={<CreateRoutine />} />

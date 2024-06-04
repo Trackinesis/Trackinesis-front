@@ -89,3 +89,11 @@
     border: 1px solid var(--timberwolf);
     border-radius: 5px;
 }
+
+.react-calendar__month-view__weekdays {
+    color: white;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+    text-decoration: none;
+}
