@@ -4,18 +4,26 @@ import './Home.css';
 import axios from 'axios';
 import '../../styles.css'
 
-function Home({ userId }) {
-    const [name, setUserName] = useState('');
+function Home() {
+    const [name, setName] = useState(null);
 
-    useEffect(() => {
-        axios.get('http://localhost:8081/home')
-            .then(response => {
-                setUserName(localStorage.getItem('name'));
-            })
-            .catch(error => {
-                console.error('Error fetching name:', error);
-            });
-    }, []);
+useEffect(() => {
+  const fetchName = async () => {
+    try {
+      const userId = localStorage.getItem('userId');
+      if (!userId) return;
+
+      const response = await axios.get(`http://localhost:8081/home/${userId}`);
+      const fetchedName = response.data.name;
+
+      setName(fetchedName);
+    } catch (error) {
+      console.error('Error fetching name:', error);
+    }
+  };
+
+  fetchName();
+}, []);
 
     function getDayName(date = new Date()) {
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -24,8 +32,6 @@ function Home({ userId }) {
     }
     const today = new Date();
     const dayName = getDayName(today);
-
-    //console.log('User name:', userName);
 
     return (
         <div className='home-page-main-format'>

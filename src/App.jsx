@@ -19,6 +19,9 @@ import Social from "./pages/social/Social";
 import AddFriend from "./pages/addFriend/AddFriend";
 import ShareRoutine from "./pages/shareRoutine/ShareRoutine";
 import Friends from "./pages/friends/Friends";
+import Leaderboard from './pages/leaderboard/Leaderboard';
+import HistoricalTracking from './pages/historicalTracking/HistoricalTracking';
+import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords'
 
 function App() {
     const { token } = useUser();
@@ -56,6 +59,9 @@ function App() {
                     <Route path="/addfriend" element={<AddFriend />} />
                     <Route path="/shareroutine" element={<ShareRoutine />} />
                     <Route path="/friends" element={<Friends />} />
+                    <Route path='/leaderboard' element={<Leaderboard/>} />
+                    <Route path='/historicaltracking' element={<HistoricalTracking/>} />
+                    <Route path='/mypersonalrecords' element={<MyPersonalRecords/>} />
                 </Route>
 
                 {/* Not Found */}
