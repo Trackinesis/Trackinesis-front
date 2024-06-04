@@ -62,6 +62,7 @@ function RoutinesListed() {
                 console.log(routine),
                     <div className='prompt' key={routine.routineId}>
                         <h3 id='top-text'>Name: {routine.name}</h3>
+                        <p id='top-text'>Id: {routine.routineId}</p>
                         <p id='top-text'>Day: {routine.day}</p>
                         <p id='top-text'>Type: {routine.type}</p>
 
