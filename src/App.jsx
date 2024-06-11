@@ -23,6 +23,7 @@ import Leaderboard from './pages/leaderboard/Leaderboard';
 import HistoricalTracking from './pages/historicalTracking/HistoricalTracking';
 import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords';
 import PersonalCalendar from './pages/calendar/PersonalCalendar';
+import Stats from './pages/stats/Stats';
 
 function App() {
     const { token } = useUser();
@@ -64,6 +65,7 @@ function App() {
                     <Route path='/leaderboard' element={<Leaderboard/>} />
                     <Route path='/historicaltracking' element={<HistoricalTracking/>} />
                     <Route path='/mypersonalrecords' element={<MyPersonalRecords/>} />
+                    <Route path='/statistics' element={<Stats/>} />
                 </Route>
 
                 {/* Not Found */}

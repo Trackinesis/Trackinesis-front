@@ -90,7 +90,7 @@ function MyPersonalRecords() {
   return (
     <div className='main-page'>
       <button onClick={handleGoBack} id="backButton"> Back</button>
-      <h2>My Personal Records</h2>
+      <h2 className='main-page-header'>My Personal Records</h2>
 
       <DataTable
         columns={columns}
