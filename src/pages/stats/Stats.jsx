@@ -45,8 +45,13 @@ function Stats() {
             <h2 className='main-page-header'>Statistics</h2>
 
             <BarChart
-                xAxis={[{ scaleType: 'band', data: ['Bench', 'Squat', 'Dead lift', 'Strength Ratio']}]}
-                series={[{ data: [data.bench, data.squat, data.deadLift, data.strengthRatio] }]}
+                xAxis={[{ scaleType: 'band', data: data.date}]}
+                series={[
+                    {label: 'Bench', data: data.bench},
+                    {label: 'Squat', data: data.squat},
+                    {label: 'DeadLift', data: data.deadLift},
+                    {label: 'StrengthRatio', data: data.strengthRatio},
+                ]}
                 width={400}
                 height={300}
             />
