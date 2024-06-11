@@ -8,6 +8,7 @@ function ShareRoutine(){
     const navigate = useNavigate();
     const [routine, setRoutine] = useState(null);
     const [routineId, setRoutineId] = useState('');
+    const [errorMessage, setErrorMessage] = useState(null);
 
 
     const handleInputChange = (event) => {
@@ -16,13 +17,23 @@ function ShareRoutine(){
 
     const handleSearch = (event) => {
         event.preventDefault();
+        setErrorMessage(null)
         axios.get(`http://localhost:8081/routine/${routineId}`)
             .then(res => {
                 console.log(res)
                 const routineData = res.data;
-                setRoutine(routineData);
+                if (routineData.state === 'private') {
+                    setErrorMessage('This routine is private')
+                }
+                if (routineData.state === 'public') {
+                    setRoutine(routineData);
+                    setErrorMessage(null);
+                }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error(err);
+                setErrorMessage('Error retrieving routine');
+            });
     };
 
     const handleInputChange2 = (event) => {
@@ -57,6 +68,11 @@ function ShareRoutine(){
 
             <button onClick={handleSearch} id='defaultButton'>Search</button>
 
+            {errorMessage && (
+                <div className='error-message'>
+                    {errorMessage}
+                </div>
+            )}
 
             {routine && (
                 <div>
