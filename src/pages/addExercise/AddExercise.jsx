@@ -14,7 +14,7 @@ function AddExercise() {
         weight: '',
         duration: '',
         // routineId: routine.routineId,
-        exerciseId: '',
+        //exerciseId: '',
     });
     const [exerciseOptions, setExerciseOptions] = useState([]);
 
