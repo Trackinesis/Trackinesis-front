@@ -10,16 +10,22 @@ function PlansListed() {
     const [showEditDropdown, setShowEditDropdown] = useState(false);
     const [routines, setRoutines] = useState([]);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
-    const [editingPlanId, setEditingPlanId] = useState(null); // State to track which plan is being edited
+    const [editingPlanId, setEditingPlanId] = useState(null);
+
+    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
-        axios.get('http://localhost:8081/plan')
-            .then(res => {
-                const plansData = res.data;
-                setPlans(plansData);
-            })
-            .catch(err => console.log(err));
-    }, []);
+        if (userId) {
+            axios.get('http://localhost:8081/plan', { params: { userId: userId } })
+                .then(res => {
+                    const plansData = res.data;
+                    setPlans(plansData);
+                })
+                .catch(err => console.log(err));
+        } else {
+            console.error('UserId is not available in localStorage');
+        }
+    }, [userId]);
 
     useEffect(() => {
         axios.get('http://localhost:8081/routine')
@@ -57,7 +63,8 @@ function PlansListed() {
 
     const toggleEditDropdown = (planId) => {
         setShowEditDropdown(!showEditDropdown);
-        setEditingPlanId(planId); // Set the plan being edited
+
+        setEditingPlanId(planId);
     };
 
     const handleRoutineSelect = (routineId) => {

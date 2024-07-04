@@ -17,10 +17,10 @@ function CreatePlan() {
         endDate: '',
         userId: userId
     });
-    const [plans, setPlans] = useState([]); // State to store the user's plans
+  
+    const [plans, setPlans] = useState([]);
 
     useEffect(() => {
-        // Fetch the user's plans when the component mounts
         axios.get(`http://localhost:8081/plan?userId=${userId}`).then(response => {
             setPlans(response.data);
         }).catch(error => {
