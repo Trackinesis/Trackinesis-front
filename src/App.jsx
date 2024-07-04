@@ -54,7 +54,7 @@ function App() {
                     <Route path="/planslisted" element={<PlansListed />} />
                     <Route path="/createroutine" element={<CreateRoutine />} />
                     <Route path="/routineslisted" element={<RoutinesListed />} />
-                    <Route path="/addexercise" element={<AddExercise />} />
+                    <Route path="/addexercise/:routineId" element={<AddExercise />} />
                     <Route path="/createexercise" element={<CreateExercise />} />
                     <Route path="/traininggoal" element={<TrainingGoal />} />
                     <Route path="/social" element={<Social />} />

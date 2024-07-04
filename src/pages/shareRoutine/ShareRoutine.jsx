@@ -8,6 +8,8 @@ function ShareRoutine(){
     const navigate = useNavigate();
     const [routine, setRoutine] = useState(null);
     const [routineId, setRoutineId] = useState('');
+    const [errorMessage, setErrorMessage] = useState(null);
+    const userId = localStorage.getItem('userId');
 
 
     const handleInputChange = (event) => {
@@ -16,13 +18,47 @@ function ShareRoutine(){
 
     const handleSearch = (event) => {
         event.preventDefault();
-        axios.get(`http://localhost:8081/routine/${routineId}`)
+        setErrorMessage(null)
+        axios.get(`http://localhost:8081/routine/${routineId}`, {params: {id: userId}})
             .then(res => {
                 console.log(res)
                 const routineData = res.data;
-                setRoutine(routineData);
+                if (routineData.state === 'private') {
+                    setErrorMessage('This routine is private')
+                }
+                if (routineData.state === 'public') {
+                    setRoutine(routineData);
+                    setErrorMessage(null);
+                }
+                if (routineData.state === 'friends'){
+                    axios.get(`http://localhost:8081/friends/${userId}`)
+                        .then(res => {
+                            console.log(res)
+                            const friends = res.data;
+                            let isFriend = false;
+                            for (let i = 0; i < friends.length; i++) {
+                                if (friends[i].id === routineData.userId) {
+                                    isFriend = true;
+                                    break;
+                                }
+                            }
+                            if (isFriend) {
+                                setRoutine(routineData);
+                                setErrorMessage(null);
+                            } else {
+                                setErrorMessage('This routine is only visible to friends')
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            setErrorMessage('Error retrieving friends');
+                        });
+                }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error(err);
+                setErrorMessage('Error retrieving routine');
+            });
     };
 
     const handleInputChange2 = (event) => {
@@ -57,6 +93,11 @@ function ShareRoutine(){
 
             <button onClick={handleSearch} id='defaultButton'>Search</button>
 
+            {errorMessage && (
+                <div className='error-message'>
+                    {errorMessage}
+                </div>
+            )}
 
             {routine && (
                 <div>
