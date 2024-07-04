@@ -63,6 +63,7 @@ function PlansListed() {
 
     const toggleEditDropdown = (planId) => {
         setShowEditDropdown(!showEditDropdown);
+
         setEditingPlanId(planId);
     };
 

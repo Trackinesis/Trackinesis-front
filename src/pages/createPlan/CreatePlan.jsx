@@ -17,6 +17,7 @@ function CreatePlan() {
         endDate: '',
         userId: userId
     });
+  
     const [plans, setPlans] = useState([]);
 
     useEffect(() => {
