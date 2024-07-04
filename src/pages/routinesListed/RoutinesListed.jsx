@@ -7,14 +7,20 @@ function RoutinesListed() {
     const [routines, setRoutines] = useState([]);
     const [routineToDelete, setRoutineToDelete] = useState(null);
 
+    const userId = localStorage.getItem('userId');
+
     useEffect(() => {
-        axios.get('http://localhost:8081/routine')
-            .then(res => {
-                const routinesData = res.data;
-                setRoutines(routinesData);
-            })
-            .catch(err => console.log(err));
-    }, []);
+        if (userId) {
+            axios.get('http://localhost:8081/routine', { params: { userId: userId } }) // Pasa el userId como parámetro de consulta
+                .then(res => {
+                    const routinesData = res.data;
+                    setRoutines(routinesData);
+                })
+                .catch(err => console.log(err));
+        } else {
+            console.error('UserId is not available in localStorage');
+        }
+    }, [userId]);
 
     const confirmDelete = (id) => {
         setRoutineToDelete(id);
@@ -25,7 +31,7 @@ function RoutinesListed() {
             const API_URL = `http://localhost:8081/routine/${routineId}`;
             const res = await axios.delete(API_URL);
 
-            if (res.status === 200){
+            if (res.status === 200) {
                 console.log('Routine deleted successfully');
                 setRoutines(routines.filter((routine) => routine.routineId !== routineId));
                 setRoutineToDelete(null);

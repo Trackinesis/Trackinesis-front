@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import Validation from ".//RoutineValidation";
+import Validation from "./RoutineValidation";
 import axios from "axios";
 
 const routineType = [
@@ -19,6 +19,9 @@ function CreateRoutine() {
         state: '',
     });
 
+    // Recuperar userId del localStorage
+    const userId = localStorage.getItem('userId');
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setValues((prev) => ({ ...prev, [name]: value }));
@@ -28,7 +31,9 @@ function CreateRoutine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (Object.values(errors).every(error => error === "")) {
-            axios.post('http://localhost:8081/routine', valuesRoutine)
+            // Agregar userId a los datos que se envían
+            const routineData = { ...valuesRoutine, userId };
+            axios.post('http://localhost:8081/routine', routineData)
                 .then(res => {
                     navigate('/addexercise');
                 })
@@ -40,7 +45,9 @@ function CreateRoutine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (Object.values(errors).every(error => error === "")) {
-            axios.post('http://localhost:8081/createroutine', valuesRoutine)
+            // Agregar userId a los datos que se envían
+            const routineData = { ...valuesRoutine, userId };
+            axios.post('http://localhost:8081/createroutine', routineData)
                 .then(res => {
                     navigate('/home');
                 })
