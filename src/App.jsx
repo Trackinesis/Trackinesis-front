@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Home from './pages/home/Home';
 import SignupStepTwo from './pages/signupStepTwo/SignupStepTwo';
+import TrainingSession from "./pages/trainingSession/TrainingSession";
 import UserPage from './pages/userPage/UserPage';
 import CreatePlan from "./pages/createPlan/CreatePlan";
 import AddExercise from "./pages/addExercise/AddExercise";
@@ -48,6 +49,7 @@ function App() {
                 {/* Private routes */}
                 <Route element={<PrivateRoute />}>
                     <Route path="/home" element={<Home />} />
+                    <Route path="/trainingsession" element={<TrainingSession />} />
                     <Route path="/userpage" element={<UserPage />} />
                     <Route path='/personalcalendar' element={<PersonalCalendar />} />
                     <Route path="/createplan" element={<CreatePlan />} />
