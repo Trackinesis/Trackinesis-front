@@ -19,7 +19,6 @@ function CreateRoutine() {
         state: '',
     });
 
-    // Recuperar userId del localStorage
     const userId = localStorage.getItem('userId');
 
     const handleInputChange = (event) => {
