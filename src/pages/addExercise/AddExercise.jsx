@@ -33,7 +33,6 @@ function AddExercise() {
 
     const handleSubmitAddExercise = (event) => {
         event.preventDefault();
-        // Fetch the selected exercise ID based on the exercise name
         const selectedExercise = exerciseOptions.find(exercise => exercise.name === valuesExercise.name);
         const exerciseId = selectedExercise ? selectedExercise.exerciseId : null;
 
@@ -41,7 +40,7 @@ function AddExercise() {
             const routineExerciseData = {
                 routineId: valuesExercise.routineId,
                 exerciseId: exerciseId,
-                name: valuesExercise.name, // Asegúrate de incluir el name
+                name: valuesExercise.name,
                 sets: valuesExercise.sets,
                 reps: valuesExercise.reps,
                 weight: valuesExercise.weight,
