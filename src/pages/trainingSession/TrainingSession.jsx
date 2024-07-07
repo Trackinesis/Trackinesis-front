@@ -9,7 +9,7 @@ function TrainingSession() {
     const [selectedPlan, setSelectedPlan] = useState(null);
     const userId = localStorage.getItem('userId');
 
-    const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date().getDay();
     const todayName = daysOfWeek[today];
 
@@ -56,16 +56,36 @@ function TrainingSession() {
     }, [userId]);
 
     useEffect(() => {
-        if (selectedPlan !== null) {
-            if (selectedDay === null) {
-                const todayRoutine = `Rutina del ${todayName} para el Plan ${selectedPlan}`;
+        const fetchRoutine = async () => {
+            if (selectedPlan !== null && selectedDay !== null) {
+                try {
+                    const response = await axios.get('http://localhost:8081/planRoutine', {
+                        params: {
+                            planId: selectedPlan,
+                            day: selectedDay
+                        }
+                    });
+                    const routineData = response.data;
+                    console.log('Fetched routine:', routineData);
+
+                    if (routineData.length > 0 && routineData[0].Routine) {
+                        setRoutine(routineData[0].Routine.description);
+                    } else {
+                        setRoutine('No hay rutina para este día.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching routine:', error);
+                    setRoutine('Error fetching routine');
+                }
+            } else if (selectedPlan !== null) {
+                const todayRoutine = `Rutina del ${todayName} para el Plan ${selectedPlan.name}`;
                 setRoutine(todayRoutine);
-            } else {
-                const selectedDayRoutine = `Rutina del ${selectedDay} para el Plan ${selectedPlan}`;
-                setRoutine(selectedDayRoutine);
             }
-        }
+        };
+
+        fetchRoutine();
     }, [selectedDay, selectedPlan, todayName]);
+
 
     const handleDaySelection = (event) => {
         setSelectedDay(event.target.value);
@@ -84,16 +104,16 @@ function TrainingSession() {
                     <select onChange={handlePlanSelection} value={selectedPlan || ''}>
                         <option value="" disabled>Selecciona un plan</option>
                         {activePlans.map(plan => (
-                            <option key={plan.id} value={plan.id}>{plan.name}</option>
+                            <option key={plan.planId} value={plan.planId}>{plan.name}</option>
                         ))}
                     </select>
                 </div>
             )}
             {selectedPlan && (
                 <div>
-                    <button onClick={() => setSelectedDay(null)}>Rutina del {todayName}</button>
+                    <button onClick={() => setSelectedDay(null)}>Routine of {todayName}</button>
                     <select onChange={handleDaySelection} value={selectedDay || ''}>
-                        <option value="" disabled>Selecciona otro día</option>
+                        <option value="" disabled>Select another day</option>
                         {daysOfWeek
                             .filter(day => day !== todayName)
                             .map(day => (
@@ -103,7 +123,7 @@ function TrainingSession() {
                 </div>
             )}
             <div className='main-page-header'>
-                <h2>{routine}</h2>
+                <h2>{typeof routine === 'string' ? routine : 'Cargando rutina...'}</h2>
             </div>
         </div>
     );
