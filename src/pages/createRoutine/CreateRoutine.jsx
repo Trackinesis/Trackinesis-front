@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import Validation from ".//RoutineValidation";
+import Validation from "./RoutineValidation";
 import axios from "axios";
 
 const routineType = [
@@ -16,7 +16,11 @@ function CreateRoutine() {
         day: '',
         type: '',
         description: '',
+        state: '',
     });
+
+    // Recuperar userId del localStorage
+    const userId = localStorage.getItem('userId');
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -27,7 +31,9 @@ function CreateRoutine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (Object.values(errors).every(error => error === "")) {
-            axios.post('http://localhost:8081/routine', valuesRoutine)
+            // Agregar userId a los datos que se envían
+            const routineData = { ...valuesRoutine, userId };
+            axios.post('http://localhost:8081/routine', routineData)
                 .then(res => {
                     navigate('/addexercise');
                 })
@@ -39,7 +45,9 @@ function CreateRoutine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (Object.values(errors).every(error => error === "")) {
-            axios.post('http://localhost:8081/createroutine', valuesRoutine)
+            // Agregar userId a los datos que se envían
+            const routineData = { ...valuesRoutine, userId };
+            axios.post('http://localhost:8081/createroutine', routineData)
                 .then(res => {
                     navigate('/home');
                 })
@@ -98,9 +106,19 @@ function CreateRoutine() {
                 </div>
 
                 <div className='prompt'>
-                    <label htmlFor="exerciseDescription" id='top-text'><strong>Routine description (optional):</strong></label>
+                    <label htmlFor="routineDescription" id='top-text'><strong>Routine description (optional):</strong></label>
                     <input onChange={handleTypeInput} type="text" placeholder='Enter routine description (optional):' name='description' />
                     {errors.description && <span className='text-danger'>{errors.description}</span>}
+                </div>
+
+                <div className='mb-3'>
+                    <label htmlFor="routineState" id='top-text'><strong>Visualization</strong></label>
+                    <select name='state' onChange={handleTypeInput} className= 'form-control rounded-0' id='formsInput'>
+                        <option disabled selected value="">Select visualization</option>
+                        <option value="public">Public</option>
+                        <option value="friends">Friends</option>
+                        <option value="private">Private</option>
+                    </select>
                 </div>
 
                 <div className='prompt'>
@@ -113,11 +131,3 @@ function CreateRoutine() {
 }
 
 export default CreateRoutine;
-
-//<div className='prompt'>
-//                     <button onClick={() => console.log('Rest day button clicked')} id='defaultButton'>Rest day</button>
-//
-//                     <button onClick={handleSubmitNewRoutine} id='defaultButton'>Add exercise</button>
-//
-//                     <button onClick={() => navigate('/addsport')} id='defaultButton'>Add Sport</button>
-//                 </div>

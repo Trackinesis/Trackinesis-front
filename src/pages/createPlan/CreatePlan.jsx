@@ -8,20 +8,20 @@ import Validation from "../createRoutine/RoutineValidation";
 
 function CreatePlan() {
     const navigate = useNavigate();
+    const userId = localStorage.getItem('userId');
     const [valuesPlan, setValues] = useState({
         name: '',
         description: '',
         objective: '',
         startDate: '',
-        endDate: ''
+        endDate: '',
+        userId: userId
     });
-    const [plans, setPlans] = useState([]); // State to store the user's plans
-
-    const userID = localStorage.getItem('userId');
+  
+    const [plans, setPlans] = useState([]);
 
     useEffect(() => {
-        // Fetch the user's plans when the component mounts
-        axios.get(`http://localhost:8081/plan?userId=${userID}`).then(response => {
+        axios.get(`http://localhost:8081/plan?userId=${userId}`).then(response => {
             setPlans(response.data);
         }).catch(error => {
             console.error('Error fetching plans:', error);

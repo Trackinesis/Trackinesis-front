@@ -8,22 +8,30 @@ function PlansListed() {
     const [plans, setPlans] = useState([]);
     const [planToDelete, setPlanToDelete] = useState(null);
     const [showEditDropdown, setShowEditDropdown] = useState(false);
+    const [routines, setRoutines] = useState([]);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
+    const [editingPlanId, setEditingPlanId] = useState(null);
+
+    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
-        axios.get('http://localhost:8081/plan')
-            .then(res => {
-                const plansData = res.data;
-                setPlans(plansData);
-            })
-            .catch(err => console.log(err));
-    }, []);
+        if (userId) {
+            axios.get('http://localhost:8081/plan', { params: { userId: userId } })
+                .then(res => {
+                    const plansData = res.data;
+                    setPlans(plansData);
+                })
+                .catch(err => console.log(err));
+        } else {
+            console.error('UserId is not available in localStorage');
+        }
+    }, [userId]);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/routines')
+        axios.get('http://localhost:8081/routine')
             .then(res => {
                 const routinesData = res.data;
-                setSelectedRoutine(routinesData)
+                setRoutines(routinesData);
             })
             .catch(err => console.log(err));
     }, []);
@@ -53,13 +61,31 @@ function PlansListed() {
         setPlanToDelete(null);
     };
 
-    const toggleEditDropdown = () => {
+    const toggleEditDropdown = (planId) => {
         setShowEditDropdown(!showEditDropdown);
+
+        setEditingPlanId(planId);
     };
 
     const handleRoutineSelect = (routineId) => {
-        console.log(routineId);
+        setSelectedRoutine(routineId);
     }
+
+    const addRoutineToPlan = async (planId, routineId) => {
+        try {
+            const API_URL = `http://localhost:8081/planroutine`;
+            const res = await axios.post(API_URL, { planId, routineId });
+
+            if (res.status === 200) {
+                console.log('Routine added to plan successfully');
+                setSelectedRoutine(null);
+            } else {
+                console.log('Error adding routine to plan');
+            }
+        } catch (error) {
+            console.error('Error adding routine to plan:', error);
+        }
+    };
 
     return (
         <div className='main-format-create-plan'>
@@ -67,19 +93,32 @@ function PlansListed() {
 
             <h2 className='main-page-header'>My plans</h2>
             {plans.map((plan) => (
-                console.log(plan),
                 <div className='prompt' key={plan.planId}>
                     <h3 id='top-text'>Plan name: {plan.name}</h3>
                     <p id='top-text'>Description: {plan.description}</p>
 
-                    <button id='defaultButton' onClick={toggleEditDropdown}>
-                        {showEditDropdown ? 'Close Edit' : 'Edit Plan'}
+                    <button id='defaultButton' onClick={() => toggleEditDropdown(plan.planId)}>
+                        {showEditDropdown && editingPlanId === plan.planId ? 'Close Edit' : 'Edit Plan'}
                     </button>
 
-                    {showEditDropdown && (
-                        <select onChange={(e) => handleRoutineSelect(e.target.value)}>
-                            <option value="">Selecciona una rutina</option>
-                        </select>
+                    {showEditDropdown && editingPlanId === plan.planId && (
+                        <div>
+                            <select value={selectedRoutine || ""} onChange={(e) => handleRoutineSelect(e.target.value)}>
+                                <option value="">Selecciona una rutina</option>
+                                {routines.map((routine) => (
+                                    <option key={routine.routineId} value={routine.routineId}>
+                                        {routine.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <button
+                                id='defaultButton'
+                                onClick={() => addRoutineToPlan(plan.planId, selectedRoutine)}
+                                disabled={!selectedRoutine}
+                            >
+                                Add Routine to Plan
+                            </button>
+                        </div>
                     )}
 
                     <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
