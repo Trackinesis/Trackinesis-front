@@ -37,7 +37,7 @@ function Leaderboard() {
         const users = userResponse.data;
 
         const combinedData = users.map((user) => {
-          const matchingLogin = logins.find((login) => login.userId === user.id);
+          const matchingLogin = logins.find((login) => login.userId === user.userId);
           return {
             ...user,
             name: matchingLogin?.name || 'N/A',

@@ -19,7 +19,6 @@ function CreateRoutine() {
         state: '',
     });
 
-    // Recuperar userId del localStorage
     const userId = localStorage.getItem('userId');
 
     const handleInputChange = (event) => {
@@ -31,7 +30,6 @@ function CreateRoutine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (Object.values(errors).every(error => error === "")) {
-            // Agregar userId a los datos que se envían
             const routineData = { ...valuesRoutine, userId };
             axios.post('http://localhost:8081/routine', routineData)
                 .then(res => {
@@ -45,7 +43,6 @@ function CreateRoutine() {
         event.preventDefault();
         setErrors(Validation(valuesRoutine, routineType));
         if (Object.values(errors).every(error => error === "")) {
-            // Agregar userId a los datos que se envían
             const routineData = { ...valuesRoutine, userId };
             axios.post('http://localhost:8081/createroutine', routineData)
                 .then(res => {

@@ -31,17 +31,20 @@ function MyPersonalRecords() {
   ];
 
   useEffect(() => {
-    fetchUserHistory();
+    fetchData();
   }, [userId]);
-
-  const fetchUserHistory = async () => {
-    try {
-      const res = await axios.get(`http://localhost:8081/userHistory/${userId}`);
-      setUserHistory(res.data);
-    } catch (error) {
-      console.error('Error fetching user history', error);
-    }
-  };
+  
+  const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`, {
+          params: userId
+        });
+        const user = res.data;
+        setUser(user);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -72,6 +75,7 @@ function MyPersonalRecords() {
         maxSquat: user.maxSquat,
         maxDeadLift: user.maxDeadLift,
         strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadLift) / user.weight : 0,
+        userId: userId
       };
   
       const API_URL = `http://localhost:8081/signupsteptwo/${userId}`;
