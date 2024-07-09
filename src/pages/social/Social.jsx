@@ -16,6 +16,7 @@ function Social() {
         <Link to='/friends' id='defaultButton'>My friends</Link>
 
         <Link to='/leaderboard' id='defaultButton'>Leaderboard</Link>
+
     </div>
   );
 }
