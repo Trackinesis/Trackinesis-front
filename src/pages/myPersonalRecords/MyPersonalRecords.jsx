@@ -31,20 +31,17 @@ function MyPersonalRecords() {
   ];
 
   useEffect(() => {
-    fetchData();
+    fetchUserHistory();
   }, [userId]);
-  
-  const fetchData = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`, {
-          params: userId
-        });
-        const user = res.data;
-        setUser(user);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
+
+  const fetchUserHistory = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8081/userHistory/${userId}`);
+      setUserHistory(res.data);
+    } catch (error) {
+      console.error('Error fetching user history', error);
+    }
+  };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
