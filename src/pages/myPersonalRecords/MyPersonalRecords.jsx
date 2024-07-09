@@ -7,9 +7,10 @@ import '../../styles.css';
 
 function MyPersonalRecords() {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(localStorage.getItem('userId')); // Store user ID
-  const [user, setUser] = useState({ maxBench: '', maxSquat: '', maxDeadlift: '' }); // State for user data
-  const [showUpdateForm, setShowUpdateForm] = useState(false); // Control form visibility
+  const userId = localStorage.getItem('userId');
+  const [user, setUser] = useState({ maxBench: '', maxSquat: '', maxDeadLift: '', weight: 0 });
+  const [userHistory, setUserHistory] = useState([]);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   const columns = [
     {
@@ -23,24 +24,24 @@ function MyPersonalRecords() {
       sortable: true,
     },
     {
-      name: 'Deadlift',
-      selector: row => row.maxDeadlift,
+      name: 'DeadLift',
+      selector: row => row.maxDeadLift,
       sortable: true,
     },
   ];
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`);
-        const user = res.data;
-        setUser(user);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-    fetchData();
+    fetchUserHistory();
   }, [userId]);
+
+  const fetchUserHistory = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8081/userHistory/${userId}`);
+      setUserHistory(res.data);
+    } catch (error) {
+      console.error('Error fetching user history', error);
+    }
+  };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -69,8 +70,8 @@ function MyPersonalRecords() {
       const updatedUser = {
         maxBench: user.maxBench,
         maxSquat: user.maxSquat,
-        maxDeadlift: user.maxDeadlift,
-        strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadlift) / user.weight : 0,
+        maxDeadLift: user.maxDeadLift,
+        strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadLift) / user.weight : 0,
       };
   
       const API_URL = `http://localhost:8081/signupsteptwo/${userId}`;
@@ -78,7 +79,10 @@ function MyPersonalRecords() {
 
       if (res.status === 200) {
         console.log('User max updated successfully');
-        // Update user state with updated values if needed
+        setUser({ maxBench: '', maxSquat: '', maxDeadLift: '', weight: 0 });
+        fetchUserHistory();
+        setShowUpdateForm(false);
+
       } else {
         console.error('Error updating user max:', res.data);
       }
@@ -89,12 +93,12 @@ function MyPersonalRecords() {
 
   return (
     <div className='main-page'>
-      <button onClick={handleGoBack} id="backButton"> Back</button>
+      <button onClick={handleGoBack} id="backButton"> Back </button>
       <h2 className='main-page-header'>My Personal Records</h2>
 
       <DataTable
         columns={columns}
-        data={[user]} // Display single user data
+        data={userHistory}
       />
 
       <button onClick={handleToggleUpdateForm}>
@@ -124,13 +128,13 @@ function MyPersonalRecords() {
               placeholder="Enter your max"
             />
 
-            <label htmlFor='maxDeadlift'> Deadlift Max</label>
+            <label htmlFor='maxDeadLift'> DeadLift Max</label>
             <input
-              value={user.maxDeadlift}
+              value={user.maxDeadLift}
               onChange={handleInputChange}
               type="number"
               id="top-text"
-              name="maxDeadlift"
+              name="maxDeadLift"
               placeholder="Enter your max"
             />
 
