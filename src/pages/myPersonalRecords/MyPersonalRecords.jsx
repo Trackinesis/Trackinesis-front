@@ -32,7 +32,9 @@ function MyPersonalRecords() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`);
+        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`, {
+          params: userId
+        });
         const user = res.data;
         setUser(user);
       } catch (error) {
@@ -71,6 +73,7 @@ function MyPersonalRecords() {
         maxSquat: user.maxSquat,
         maxDeadlift: user.maxDeadlift,
         strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadlift) / user.weight : 0,
+        userId: userId
       };
   
       const API_URL = `http://localhost:8081/signupsteptwo/${userId}`;

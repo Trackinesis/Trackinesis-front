@@ -14,6 +14,8 @@ function Social() {
         <Link to='/shareroutine' id='defaultButton'>Copy routine</Link>
 
         <Link to='/friends' id='defaultButton'>My friends</Link>
+
+        <Link to='/leaderboard' id='defaultButton'>Leaderboard</Link>
     </div>
   );
 }

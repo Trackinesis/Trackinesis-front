@@ -9,9 +9,12 @@ function PersonalCalendar() {
     const [date, setDate] = useState(new Date());
     const [plans, setPlans] = useState([]);
     const navigate = useNavigate();
+    const userId = localStorage.getItem("userId")
 
     useEffect(() => {
-        axios.get('http://localhost:8081/plan')
+        axios.get(`http://localhost:8081/plan/${userId}`, {
+            params: { userId }
+        })
             .then(res => {
                 const plansData = res.data;
                 setPlans(plansData);

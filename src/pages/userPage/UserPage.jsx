@@ -87,8 +87,12 @@ function UserPage() {
                 <button id='saveButton' type="submit" onClick={handleUpdatePassword}>Save Changes</button>
 
                 <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
-            </form>
 
+                <Link to='/traininggoal' id='defaultButton'>My goals</Link>
+
+                <Link to='/historicaltracking' id='defaultButton'>Historical tracking</Link>
+
+            </form>
             <button onClick={handleLogOut} id='logoutButton'>Logout</button>
             {showDeleteConfirmation && (
                 <div>

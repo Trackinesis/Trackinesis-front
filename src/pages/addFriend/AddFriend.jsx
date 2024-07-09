@@ -11,6 +11,7 @@ function AddFriend() {
     name: '',
   });
   const [friendOptions, setFriendOptions] = useState([]);
+  const userId = localStorage.getItem("userId")
 
   useEffect(() => {
     axios.get('http://localhost:8081/login')
@@ -27,7 +28,7 @@ const handleInput = (event) => {
 
 const handleSubmitAddFriend = (event) => {
   event.preventDefault();
-  axios.post('http://localhost:8081/friend', valuesFriend)
+  axios.post(`http://localhost:8081/friend/${userId}`, valuesFriend)
       .then(res => {
           navigate('/home');
       })

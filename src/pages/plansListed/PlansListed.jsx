@@ -10,13 +10,16 @@ function PlansListed() {
     const [showEditDropdown, setShowEditDropdown] = useState(false);
     const [routines, setRoutines] = useState([]);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
+    const [selectedDay, setSelectedDay] = useState('');
     const [editingPlanId, setEditingPlanId] = useState(null);
 
     const userId = localStorage.getItem('userId');
 
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
     useEffect(() => {
         if (userId) {
-            axios.get('http://localhost:8081/plan', { params: { userId: userId } })
+            axios.get(`http://localhost:8081/plan/${userId}`, { params: { userId: userId } })
                 .then(res => {
                     const plansData = res.data;
                     setPlans(plansData);
@@ -45,7 +48,7 @@ function PlansListed() {
             const API_URL = `http://localhost:8081/plan/${planId}`;
             const res = await axios.delete(API_URL);
 
-            if (res.status === 200){
+            if (res.status === 200) {
                 console.log('Plan deleted successfully');
                 setPlans(plans.filter((plan) => plan.planId !== planId));
                 setPlanToDelete(null);
@@ -63,13 +66,12 @@ function PlansListed() {
 
     const toggleEditDropdown = (planId) => {
         setShowEditDropdown(!showEditDropdown);
-
         setEditingPlanId(planId);
     };
 
     const handleRoutineSelect = (routineId) => {
         setSelectedRoutine(routineId);
-    }
+    };
 
     const addRoutineToPlan = async (planId, routineId) => {
         try {
@@ -79,6 +81,7 @@ function PlansListed() {
             if (res.status === 200) {
                 console.log('Routine added to plan successfully');
                 setSelectedRoutine(null);
+                setSelectedDay('');
             } else {
                 console.log('Error adding routine to plan');
             }
@@ -103,17 +106,21 @@ function PlansListed() {
 
                     {showEditDropdown && editingPlanId === plan.planId && (
                         <div>
-                            <select value={selectedRoutine || ""} onChange={(e) => handleRoutineSelect(e.target.value)}>
+                            <select value={selectedRoutine || ""} onChange={(e) => {
+                                const selectedRoutineId = e.target.value;
+                                const selectedRoutineDay = routines.find(routine => routine.routineId === selectedRoutineId)?.day || '';
+                                handleRoutineSelect(selectedRoutineId, selectedRoutineDay);
+                            }}>
                                 <option value="">Selecciona una rutina</option>
                                 {routines.map((routine) => (
                                     <option key={routine.routineId} value={routine.routineId}>
-                                        {routine.name}
+                                        {routine.name} ({routine.day})
                                     </option>
                                 ))}
                             </select>
                             <button
                                 id='defaultButton'
-                                onClick={() => addRoutineToPlan(plan.planId, selectedRoutine)}
+                                onClick={() => addRoutineToPlan(plan.planId, selectedRoutine, selectedDay)}
                                 disabled={!selectedRoutine}
                             >
                                 Add Routine to Plan

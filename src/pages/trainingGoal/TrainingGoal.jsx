@@ -9,6 +9,7 @@ function TrainingGoal() {
   const navigate = useNavigate();
   const [goalToDelete, setGoalToDelete] = useState(null);
   const [goalOptions, setGoalOptions] = useState([]);
+  const userId = localStorage.getItem("userId")
   const [newGoal, setNewGoal] = useState({
     name: '',
     description: '',
@@ -62,7 +63,8 @@ function TrainingGoal() {
 
   const handleCreateGoal = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8081/goal', newGoal)
+    const goalData = { ...newGoal, userId };
+    axios.post('http://localhost:8081/goal', goalData)
       .then(res => {
         console.log('Training goal added successfully', res.data);
         setGoalOptions([...goalOptions, res.data]);
