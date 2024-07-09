@@ -44,6 +44,9 @@ useEffect(() => {
             <Link to='/userpage' id='defaultButton'>User Page</Link>
             <Link to='/social' id='defaultButton'>Social</Link>
             <Link to='/personalcalendar' id='defaultButton'>Calendar</Link>
+            <Link to='/statistics' id='defaultButton'> Stats</Link>
+            <Link to='/mypersonalrecords' id='defaultButton'> Records</Link>
+
         </div>
     );
 }
