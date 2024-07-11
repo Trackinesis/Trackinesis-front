@@ -25,7 +25,7 @@ function CreateExercise() {
         axios.post('http://localhost:8081/exercise', valuesExercise)
             .then(res => {
 
-                navigate('/addexercise/' + routineId);
+                navigate('/routineslisted');
 
             })
             .catch(err => {
