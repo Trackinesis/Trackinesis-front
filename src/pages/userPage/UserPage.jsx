@@ -68,6 +68,7 @@ function UserPage() {
 
     const handleLogOut = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");
         navigate("/");
     };
 
@@ -101,8 +102,7 @@ function UserPage() {
                     <button id='noButton' onClick={() => setShowDeleteConfirmation(false)}>No</button>
                 </div>
             )}
-            <></>
-            <Link to='/traininggoal' id='defaultButton'> Goal</Link>
+
         </div>
 
     );
