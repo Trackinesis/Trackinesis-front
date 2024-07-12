@@ -33,11 +33,11 @@ function Friends() {
     useEffect(() => {
         axios.get('http://localhost:8081/friend')
           .then(res => {
-            const friends = res.data.map(friend => ({
-              friendId: friend.friendId,
-              name: friend.name
-            }));
-            setFriendOptions(friends);
+              const friends = res.data.map(friend => ({
+                  friendId: friend.userFriendId, // Assuming userFriendId is the correct identifier for friendId
+                  name: friend.followedName // Use followedName if it's the correct attribute for friend's name
+              }));
+              setFriendOptions(friends);
           })
           .catch(err => console.log(err));
     }, []);
