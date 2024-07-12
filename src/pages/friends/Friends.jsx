@@ -10,6 +10,7 @@ function Friends() {
     const navigate = useNavigate();
     const [friendOptions, setFriendOptions] = useState([]);
     const [friendToDelete, setFriendToDelete] = useState(null);
+    const currentUserId = localStorage.getItem('userId');
 
     const columns = [
         {
@@ -31,7 +32,7 @@ function Friends() {
     ];
 
     useEffect(() => {
-        axios.get('http://localhost:8081/friend')
+        axios.get(`http://localhost:8081/friend/${currentUserId}`)
           .then(res => {
               const friends = res.data.map(friend => ({
                   friendId: friend.userFriendId, // Assuming userFriendId is the correct identifier for friendId
