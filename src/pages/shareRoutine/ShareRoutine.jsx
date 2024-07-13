@@ -16,54 +16,52 @@ function ShareRoutine(){
         setRoutineId(event.target.value);
     };
 
-    const handleSearch = (event) => {
+    const handleSearch = async (event) => {
         event.preventDefault();
-        setErrorMessage(null)
-        axios.get(`http://localhost:8081/routine/${routineId}`, {params: {id: userId}})
-            .then(res => {
-                console.log(res)
-                const routineData = res.data;
-                if (routineData.state === 'private') {
-                    setErrorMessage('This routine is private')
+        setErrorMessage(null);
+        console.log(`Searching for routine with ID: ${routineId}`);
+
+        try {
+            const res = await axios.get(`http://localhost:8081/routine/find/${routineId}`);
+            console.log("this is the response:", res.data);
+            const routineData = res.data;
+
+            if (routineData.state === 'private') {
+                setErrorMessage('This routine is private');
+            } else if (routineData.state === 'public') {
+                setRoutine(routineData);
+                setErrorMessage(null);
+            } else if (routineData.state === 'friends') {
+                try {
+                    const friendsRes = await axios.get(`http://localhost:8081/friends/${userId}`);
+                    console.log(friendsRes);
+                    const friends = friendsRes.data;
+                    let isFriend = false;
+
+                    for (let i = 0; i < friends.length; i++) {
+                        if (friends[i].id === routineData.userId) {
+                            isFriend = true;
+                            break;
+                        }
+                    }
+
+                    if (isFriend) {
+                        setRoutine(routineData);
+                        setErrorMessage(null);
+                    } else {
+                        setErrorMessage('This routine is only visible to friends');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    setErrorMessage('Error retrieving friends');
                 }
-                if (routineData.state === 'public') {
-                    setRoutine(routineData);
-                    setErrorMessage(null);
-                }
-                if (routineData.state === 'friends'){
-                    axios.get(`http://localhost:8081/friends/${userId}`)
-                        .then(res => {
-                            console.log(res)
-                            const friends = res.data;
-                            let isFriend = false;
-                            for (let i = 0; i < friends.length; i++) {
-                                if (friends[i].id === routineData.userId) {
-                                    isFriend = true;
-                                    break;
-                                }
-                            }
-                            if (isFriend) {
-                                setRoutine(routineData);
-                                setErrorMessage(null);
-                            } else {
-                                setErrorMessage('This routine is only visible to friends')
-                            }
-                        })
-                        .catch(err => {
-                            console.error(err);
-                            setErrorMessage('Error retrieving friends');
-                        });
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                setErrorMessage('Error retrieving routine');
-            });
+            }
+        } catch (err) {
+            console.error(err);
+            setErrorMessage('Error retrieving routine');
+        }
     };
 
-    const handleInputChange2 = (event) => {
-        setRoutineId(event.target.value);
-    };
 
     const handleSearch2 = (event) => {
         event.preventDefault();
@@ -83,8 +81,9 @@ function ShareRoutine(){
             <div className='prompt'>
                 <label htmlFor="routineId" id='top-text'><strong>Enter id to copy:</strong></label>
                 <input
-                    type="integer"
+                    type="number"
                     placeholder='Enter routine id'
+                    id='routineId'
                     name='routineId'
                     value={routineId}
                     onChange={handleInputChange}
@@ -103,7 +102,7 @@ function ShareRoutine(){
                 <div>
                     <h2 id='top-text'>{routine.name}</h2>
                     <p id='top-text'>{routine.description}</p>
-                    <button onChange={handleInputChange2} onClick={handleSearch2} id='defaultButton'>Copy</button>
+                    <button onChange={handleInputChange} onClick={handleSearch2} id='defaultButton'>Copy</button>
                 </div>
             )}
         </div>
