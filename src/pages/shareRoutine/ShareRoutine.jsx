@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../../styles.css'
+import '../../styles.css';
 
-function ShareRoutine(){
-
+function ShareRoutine() {
     const navigate = useNavigate();
     const [routine, setRoutine] = useState(null);
     const [routineId, setRoutineId] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
     const userId = localStorage.getItem('userId');
-
 
     const handleInputChange = (event) => {
         setRoutineId(event.target.value);
@@ -62,16 +60,17 @@ function ShareRoutine(){
         }
     };
 
-
     const handleSearch2 = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8081/createroutine', routine)
+        const newRoutine = { ...routine, userId: userId };
+        delete newRoutine.id;
+        axios.post('http://localhost:8081/createroutine', newRoutine)
             .then(res => {
-                console.log(res)
-                navigate('/home')
+                console.log(res);
+                navigate('/home');
             })
             .catch(err => console.log(err));
-    }
+    };
 
     return (
         <div className='home-page-main-format'>
@@ -102,7 +101,7 @@ function ShareRoutine(){
                 <div>
                     <h2 id='top-text'>{routine.name}</h2>
                     <p id='top-text'>{routine.description}</p>
-                    <button onChange={handleInputChange} onClick={handleSearch2} id='defaultButton'>Copy</button>
+                    <button onClick={handleSearch2} id='defaultButton'>Copy</button>
                 </div>
             )}
         </div>
