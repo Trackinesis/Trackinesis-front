@@ -23,7 +23,7 @@ function ShareRoutine(){
 
         try {
             const res = await axios.get(`http://localhost:8081/routine/find/${routineId}`);
-            console.log("this is the response:", res.data);
+            console.log("this is the routineData:", res.data);
             const routineData = res.data;
 
             if (routineData.state === 'private') {
@@ -33,13 +33,13 @@ function ShareRoutine(){
                 setErrorMessage(null);
             } else if (routineData.state === 'friends') {
                 try {
-                    const friendsRes = await axios.get(`http://localhost:8081/friends/${userId}`);
-                    console.log(friendsRes);
+                    const friendsRes = await axios.get(`http://localhost:8081/friend/${userId}`);
+                    console.log("this is the friendData:", friendsRes.data);
                     const friends = friendsRes.data;
                     let isFriend = false;
 
                     for (let i = 0; i < friends.length; i++) {
-                        if (friends[i].id === routineData.userId) {
+                        if (friends[i].followedId === routineData.userId) {
                             isFriend = true;
                             break;
                         }
