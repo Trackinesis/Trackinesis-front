@@ -30,7 +30,7 @@ function TrainingSession() {
         const fetchPlans = async () => {
             if (userId) {
                 try {
-                    const response = await axios.get('http://localhost:8081/plan', {
+                    const response = await axios.get(`http://localhost:8081/plan/${userId}`, {
                         params: { userId }
                     });
                     const plans = response.data;

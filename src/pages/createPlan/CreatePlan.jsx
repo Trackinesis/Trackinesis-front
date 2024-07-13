@@ -33,7 +33,7 @@ function CreatePlan() {
         axios.post('http://localhost:8081/plan', valuesPlan)
             .then(res => {
                 console.log('Plan added successfully', res.data);
-                navigate('/home');
+                navigate('/planslisted');
             })
             .catch(err => console.log(err));
 
