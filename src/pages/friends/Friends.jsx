@@ -49,6 +49,7 @@ function Friends() {
 
     const deleteFriend = async (friendId) => {
         try {
+            console.log('Deleting friend:', friendId);
           const API_URL = `http://localhost:8081/friend/${friendId}`;
           const res = await axios.delete(API_URL);
     
