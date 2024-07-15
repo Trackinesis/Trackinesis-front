@@ -11,9 +11,10 @@ function RoutinesListed() {
     const [showEditDropdown, setShowEditDropdown] = useState(false);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
     const [editingExercise, setEditingExercise] = useState(null);
+    const currentUserId = localStorage.getItem('userId');
 
     useEffect(() => {
-        axios.get('http://localhost:8081/routine')
+        axios.get(`http://localhost:8081/routine/get/${currentUserId}`)
             .then(res => {
                 const routinesData = res.data;
                 setRoutines(routinesData);

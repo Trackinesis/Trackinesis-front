@@ -49,7 +49,7 @@ function AddExercise() {
 
             axios.post('http://localhost:8081/routineExercise', routineExerciseData)
                 .then(res => {
-                    navigate('/home');
+                    navigate('/routineslisted');
                 })
                 .catch(err => console.log(err));
         } else {

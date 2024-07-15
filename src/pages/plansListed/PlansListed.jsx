@@ -12,6 +12,7 @@ function PlansListed() {
     const [selectedRoutine, setSelectedRoutine] = useState(null);
     const [selectedDay, setSelectedDay] = useState('');
     const [editingPlanId, setEditingPlanId] = useState(null);
+    const currentUserId = localStorage.getItem('userId');
 
     const userId = localStorage.getItem('userId');
 
@@ -31,7 +32,7 @@ function PlansListed() {
     }, [userId]);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/routine')
+        axios.get(`http://localhost:8081/routine/get/${currentUserId}`)
             .then(res => {
                 const routinesData = res.data;
                 setRoutines(routinesData);

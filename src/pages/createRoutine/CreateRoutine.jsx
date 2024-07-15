@@ -46,7 +46,7 @@ function CreateRoutine() {
             const routineData = { ...valuesRoutine, userId };
             axios.post('http://localhost:8081/createroutine', routineData)
                 .then(res => {
-                    navigate('/home');
+                    navigate('/routineslisted');
                 })
                 .catch(err => console.log(err));
         }
