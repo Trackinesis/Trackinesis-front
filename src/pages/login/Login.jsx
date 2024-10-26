@@ -69,18 +69,18 @@ function Login() {
   }, []);
 
   return (
-    <div className='main-page'>
-      <h2 className='main-page-header'>Log In</h2>
+    <div className='loginPage'>
+      <h2 className='loginHeader'>Log In</h2>
 
       <form>
         <div className='prompt'>
-          <label id='top-text' htmlFor="email">
+          <label className='formTopText'>
             <strong>Email</strong>
           </label>
           <input
             id='formsInput'
             type="email"
-            placeholder='Enter Email'
+            placeholder='Enter your email...'
             name='email'
             onChange={handleInput}
           />
@@ -88,7 +88,7 @@ function Login() {
         </div>
 
         <div className='prompt'>
-          <label id='top-text' htmlFor="password">
+          <label className='formTopText'>
             <strong>Password</strong>
           </label>
           <input
