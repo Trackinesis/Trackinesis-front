@@ -1,4 +1,35 @@
 :root {
+    --primary-dark2: #03122F;
+    --primary-dark: #11203D;
+    --primary-main: #273653;
+    --primary-light: #475673;
+    --primary-light2: #6D7C99;
+
+    --secondary-dark2: #1245B0;
+    --secondary-dark: #2C5FCA;
+    --secondary-main: #5386FA;
+    --secondary-light: #78ABFF;
+    --secondary-light2: #9DD0F4;
+
+    --tertiary-dark2: #0D1A53;
+    --tertiary-dark: #28356E;
+    --tertiary-main: #49568F;
+    --tertiary-light: #6B78B1;
+    --tertiary-light2: #94A1DA;
+
+    --state-success: #A4F572;
+    --state-warning: #FCEA49;
+    --state-error: #FF5146;
+
+    --black: #151515;
+    --gray2: #242424;
+    --gray3: #2A2A2A;
+    --gray4: #3A3A3A;
+    --gray5: #585858;
+    --gray6: #C1C1C1;
+    --gray7: #DEDEDE;
+    --white: #FFFEFC;
+
     --raisin-black: #372f32ff;
     --wenge: #504746ff;
     --timberwolf: #d8d8d8ff;
@@ -12,13 +43,13 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--raisin-black);
+    background-color: #FFFEFC;
     padding: 20px;
 }
 .main-page-header {
     text-align: center;
     margin-bottom: 20px;
-    color: var(--timberwolf);
+    color: #28356E;
 }
 
 .main-page-content {
@@ -38,12 +69,11 @@
 #colouredButton {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid var(--vermilion);
+    border: 1px solid #475673;
     border-radius: 5px;
     cursor: pointer;
-
-    background-color: var(--vermilion);
-    color: var(--timberwolf);
+    background-color: #28356E;
+    color: #FFFEFC;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -51,12 +81,12 @@
 #defaultButton {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid var(--wenge);
+    border: 1px solid #03122F;
     border-radius: 5px;
     cursor: pointer;
 
-    background-color: var(--wenge);
-    color: var(--timberwolf);
+    background-color: var(--primary-light);
+    color: #FFFEFC;
     width: 100%;
     margin-bottom: 10px;
     text-decoration: none;
@@ -99,7 +129,7 @@
 }
 
 .error-message {
-    color: red;
+    color: #FF5146;
     font-weight: bold;
     margin-top: 10px;
 }
