@@ -63,7 +63,7 @@
 }
 
 #top-text {
-    color: var(--timberwolf);
+    color: var(--white);
 }
 
 #colouredButton {
@@ -100,9 +100,9 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
-    color: var(--timberwolf);
+    color: var(--white);
     text-decoration: none;
-    border-color: var(--wenge);
+    border-color: var(--black);
 
     position: absolute;
     top: 20px;
@@ -129,7 +129,7 @@
 }
 
 .error-message {
-    color: #FF5146;
+    color: var(--state-error);
     font-weight: bold;
     margin-top: 10px;
 }
