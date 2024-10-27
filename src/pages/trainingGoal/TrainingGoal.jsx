@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import { FaPause, FaPlay, FaTrash } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function TrainingGoal() {
   const navigate = useNavigate();
@@ -165,9 +166,9 @@ function TrainingGoal() {
   };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>Training Goals</h2>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <h2 className='main-page-header'>Training Goals</h2>
 
             <DataTable
                 columns={columns}

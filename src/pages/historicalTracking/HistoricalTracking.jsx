@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function HistoricalTracking() {
     const navigate = useNavigate();
@@ -12,8 +13,8 @@ function HistoricalTracking() {
 
 
     return (
-        <div className='home-page-main-format'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
+        <div className='home-page-main-format p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
             <h1 className='main-page-header'>Historical Tracking</h1>
 
             <Link to='/statistics' id='defaultButton'>See my progress</Link>

@@ -1,0 +1,23 @@
+.arrow {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+}
+
+.arrow:active {
+    transform: scale(1);
+}
+
+.icon {
+    stroke: var(--tertiary-dark);
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-width: 1.5;
+}

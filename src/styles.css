@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
     --primary-dark2: #03122F;
     --primary-dark: #11203D;
@@ -35,6 +37,36 @@
     --timberwolf: #d8d8d8ff;
     --tea-rose-red: #f7cbcaff;
     --vermilion: #ff3633ff;
+
+    /* Tipografía */
+    --fontfamilysans: 'Roboto', sans-serif;
+
+    /* Tamaños de fuente */
+    --fontsize-xs: 0.75rem;    /* Extra pequeño */
+    --fontsize-sm: 0.875rem;   /* Pequeño */
+    --fontsize-md: 1rem;       /* Mediano */
+    --fontsize-lg: 1.125rem;    /* Grande */
+    --fontsize-xl: 1.25rem;     /* Extra grande */
+    --fontsize-2xl: 1.5rem;     /* 2X grande */
+    --fontsize-3xl: 1.875rem;    /* 3X grande */
+    --fontsize-4xl: 2.25rem;     /* 4X grande */
+    --fontsize-5xl: 3rem;        /* 5X grande */
+
+    /* Altura de línea */
+    --fontline-height: 1.5;     /* Altura de línea por defecto */
+    --fontline-height-xs: 1.25; /* Extra pequeño */
+    --fontline-height-sm: 1.5;  /* Pequeño */
+    --fontline-height-md: 1.75; /* Mediano */
+    --fontline-height-lg: 1.875; /* Grande */
+    --fontline-height-xl: 2;    /* Extra grande */
+    --fontline-height-2xl: 2.5;  /* 2X grande */
+    --fontline-height-3xl: 3;    /* 3X grande */
+
+    /* Espaciado de letras */
+    --fontletter-spacingnormal: 0;    /* Espaciado normal */
+    --fontletter-spacing-tight: -0.02em; /* Ajustado */
+    --fontletter-spacing-wide: 0.05em; /* Ampliado */
+
 }
 
 .main-page {
@@ -43,13 +75,13 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #FFFEFC;
+    background-color: var(--gray6);
     padding: 20px;
 }
 .main-page-header {
     text-align: center;
-    margin-bottom: 20px;
-    color: #28356E;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
 }
 
 .main-page-content {
@@ -63,17 +95,17 @@
 }
 
 #top-text {
-    color: var(--timberwolf);
+    color: var(--primary-dark);
 }
 
 #colouredButton {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid #475673;
+    border: 1px solid var(--primary-light);
     border-radius: 5px;
     cursor: pointer;
-    background-color: #28356E;
-    color: #FFFEFC;
+    background-color: var(--primary-dark2);
+    color: var(--timberwolf);
     width: 100%;
     margin-bottom: 10px;
 }
@@ -81,12 +113,12 @@
 #defaultButton {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid #03122F;
+    border: 1px solid var(--primary-light);
     border-radius: 5px;
     cursor: pointer;
 
-    background-color: var(--primary-light);
-    color: #FFFEFC;
+    background-color: var(--primary-dark);
+    color: var(--timberwolf);
     width: 100%;
     margin-bottom: 10px;
     text-decoration: none;
@@ -121,7 +153,7 @@
 }
 
 .react-calendar__month-view__weekdays {
-    color: white;
+    color: var(--timberwolf);
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {
@@ -129,7 +161,35 @@
 }
 
 .error-message {
-    color: #FF5146;
+    color: var(--state-error);
     font-weight: bold;
     margin-top: 10px;
+}
+
+.h1 {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-5xl);
+    line-height: var(--fontline-height-3xl);
+    letter-spacing: var(--fontletter-spacingnormal); /* Corregido a 'normal' */
+}
+
+.h2 {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-4xl);
+    line-height: var(--fontline-height-2xl);
+    letter-spacing: var(--fontletter-spacing-tight);
+}
+
+.p {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-md);
+    line-height: var(--fontline-height);
+    letter-spacing: var(--fontletter-spacingnormal);
+}
+
+.small-text {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-xs);
+    line-height: var(--fontline-height-xs);
+    letter-spacing: var(--fontletter-spacingnormal);
 }

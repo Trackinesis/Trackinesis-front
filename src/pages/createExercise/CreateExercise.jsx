@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './CreateExercise.css'
 import '../../styles.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function CreateExercise() {
     const navigate = useNavigate();
@@ -39,15 +40,20 @@ function CreateExercise() {
     }
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>Create new exercise</h2>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <h2 className='main-page-header'>Create new exercise</h2>
             <form onSubmit={handleSubmitNewExercise}>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="name"><strong>Exercise name:</strong></label>
                     <input id='formsInput' type="text" placeholder='Enter Exercise name:'
-                           name='name' onChange={handleInput} />
+                           name='name' onChange={handleInput}/>
+                </div>
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="description"><strong>Description:</strong></label>
+                    <input id='formsInput' type="text" placeholder='Enter Exercise description:'
+                           name='description' onChange={handleInput}/>
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="type"><strong>Exercise type:</strong></label>
@@ -58,11 +64,6 @@ function CreateExercise() {
                         <option value="endurance">Endurance</option>
                     </select>
                     {errors.type && <span className='text-danger'> {errors.type}</span>}
-                </div>
-                <div className='prompt'>
-                    <label id='top-text' htmlFor="description"><strong>Description:</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter Exercise description:'
-                           name='description' onChange={handleInput} />
                 </div>
                 <button onClick={handleGoBack} id='colouredButton' type='submit'>Save</button>
             </form>

@@ -1,3 +1,44 @@
-#backButtonPersonalCalendar {
-    float: right;
+/* Cambiar el color de fondo del encabezado */
+.fc-header-toolbar {
+    background-color: var(--primary-dark); /* Cambia este color */
+    color: white; /* Color del texto */
+    font-size: 14px;
 }
+
+/* Cambiar el color de fondo de las celdas del calendario */
+.fc-daygrid-day {
+    background-color: #f9f9f9; /* Color de fondo para los días */
+}
+
+/* Cambiar el color de fondo de los días seleccionados */
+.fc-daygrid-day.fc-day-today {
+    background-color: #ffe0b2; /* Color de fondo para el día de hoy */
+}
+
+/* Cambiar el color de los eventos */
+.fc-event {
+    background-color: #2196F3; /* Color de fondo del evento */
+    color: white; /* Color del texto del evento */
+}
+
+/* Cambiar el color de fondo del tooltip de eventos */
+.fc-popover {
+    background-color: #ffffff; /* Color de fondo */
+    border: 1px solid #ccc; /* Borde del tooltip */
+}
+
+.calendar-container {
+    width: 100%;
+    height: 510px;
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+

@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import { FaArrowUp } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function MyPersonalRecords() {
   const navigate = useNavigate();
@@ -93,8 +94,8 @@ function MyPersonalRecords() {
   };
 
   return (
-    <div className='main-page'>
-      <button onClick={handleGoBack} id="backButton"> Back </button>
+    <div className='main-page p'>
+      <button onClick={handleGoBack} id="backButton"><BackButton/></button>
       <h2 className='main-page-header'>My Personal Records</h2>
 
       <DataTable

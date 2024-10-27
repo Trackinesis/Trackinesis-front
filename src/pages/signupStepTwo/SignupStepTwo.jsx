@@ -4,6 +4,7 @@ import Validation from './SignupStepTwoValidation';
 import axios from 'axios';
 import '../../styles.css'
 import './SignupStepTwo.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function SignupStepTwo() {
 
@@ -38,8 +39,8 @@ function SignupStepTwo() {
     };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
             <h2 className='main-page-header'>Sign-Up</h2>
 
             <form action="" onSubmit={handleSubmit}>

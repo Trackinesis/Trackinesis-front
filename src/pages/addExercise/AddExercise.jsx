@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddExercise.css';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function AddExercise() {
     const navigate = useNavigate();
@@ -62,9 +63,9 @@ function AddExercise() {
     };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>Add exercise</h2>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <h2 className='main-page-header h2'>Add exercise</h2>
 
             <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
@@ -80,7 +81,7 @@ function AddExercise() {
 
                 <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
 
-                <h7 id='topTitle'>Add exercise with sets and repetitions (only)</h7>
+                <h7 className='main-page-header p'>Add exercise with sets and repetitions (only)</h7>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="sets"><strong>Number of sets:</strong></label>
@@ -97,7 +98,7 @@ function AddExercise() {
                     <input id='formsInput' type="text" placeholder='Enter weight' name='weight' onChange={handleInput}/>
                 </div>
 
-                <h7 id='topTitle'>Add exercise with time (only)</h7>
+                <h7 className='main-page-header p'>Add exercise with time (only)</h7>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="duration"><strong>Duration (seconds):</strong></label>

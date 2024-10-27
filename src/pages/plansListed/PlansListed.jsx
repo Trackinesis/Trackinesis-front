@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './PlansListed.css';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function PlansListed() {
     const [plans, setPlans] = useState([]);
@@ -92,8 +94,8 @@ function PlansListed() {
     };
 
     return (
-        <div className='main-format-create-plan'>
-            <Link to='/home' id='backButton'>Back</Link>
+        <div className='main-format-create-plan p'>
+            <Link to='/home' id='backButton'><BackButton/></Link>
 
             <h2 className='main-page-header'>My plans</h2>
             {plans.map((plan) => (
@@ -106,12 +108,16 @@ function PlansListed() {
                     </button>
 
                     {showEditDropdown && editingPlanId === plan.planId && (
-                        <div>
-                            <select value={selectedRoutine || ""} onChange={(e) => {
-                                const selectedRoutineId = e.target.value;
-                                const selectedRoutineDay = routines.find(routine => routine.routineId === selectedRoutineId)?.day || '';
-                                handleRoutineSelect(selectedRoutineId, selectedRoutineDay);
-                            }}>
+                        <div className="custom-select-container">
+                            <select
+                                className="custom-select"
+                                value={selectedRoutine || ""}
+                                onChange={(e) => {
+                                    const selectedRoutineId = e.target.value;
+                                    const selectedRoutineDay = routines.find(routine => routine.routineId === selectedRoutineId)?.day || '';
+                                    handleRoutineSelect(selectedRoutineId, selectedRoutineDay);
+                                }}
+                            >
                                 <option value="">Selecciona una rutina</option>
                                 {routines.map((routine) => (
                                     <option key={routine.routineId} value={routine.routineId}>
@@ -120,13 +126,15 @@ function PlansListed() {
                                 ))}
                             </select>
                             <button
-                                id='defaultButton'
+                                id="defaultButton"
+                                className="custom-button"
                                 onClick={() => addRoutineToPlan(plan.planId, selectedRoutine, selectedDay)}
                                 disabled={!selectedRoutine}
                             >
                                 Add Routine to Plan
                             </button>
                         </div>
+
                     )}
 
                     <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
@@ -143,6 +151,7 @@ function PlansListed() {
                 </div>
             ))}
             <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
+            <FooterNavigation/>
         </div>
     );
 }

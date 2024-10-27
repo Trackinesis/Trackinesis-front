@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material'; // Importar componentes de DataTable de Material-UI
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
+import BackButton from "../../components/backButton/BackButton"; // Importar componentes de DataTable de Material-UI
+import './routinesListed.css'
 
 function RoutinesListed() {
     const [routines, setRoutines] = useState([]);
@@ -127,8 +129,8 @@ function RoutinesListed() {
     };
 
     return (
-        <div className='main-format-create-plan'>
-            <Link to='/home' id='backButton'>Back</Link>
+        <div className='main-format-create-plan p'>
+            <Link to='/home' id='backButton'><BackButton/></Link>
 
             <h2 className='main-page-header' id='top-text'>Mis rutinas</h2>
             {routines.map((routine) => (
@@ -137,18 +139,28 @@ function RoutinesListed() {
                     <p className='routine-day' id='top-text'>Día: {routine.day}</p>
                     <p className='routine-type' id='top-text'>Tipo: {routine.type}</p>
 
+                    <button id='defaultButton' onClick={() => confirmDelete(routine.routineId)}>
+                            Delete routine
+                    </button>
                     {routine.routineId === routineToDelete && (
                         <div className='delete-confirmation'>
                             <p>¿Estás seguro?</p>
                             <button className='cancel-button' onClick={cancelDelete}>No</button>
-                            <button className='confirm-button' onClick={() => deleteRoutine(routine.routineId)}>Sí</button>
+                            <button className='confirm-button' onClick={() => deleteRoutine(routine.routineId)}>Sí
+                            </button>
                         </div>
+
                     )}
+                    <Link key={routine.routineId} to={`/addexercise/${routine.routineId}`} id='defaultButton'
+                          className='create-button'>Add exercises</Link>
+                    <button className='edit-button' id='defaultButton' onClick={() => handleEditRoutine(routine.routineId)}>
+                        Modificar rutina
+                    </button>
 
                     {showEditDropdown && routine.routineId === selectedRoutine && (
                         <div className='exercise-grid'>
                             <h3>Ejercicios de la rutina:</h3>
-                            <TableContainer component={Paper}>
+                            <TableContainer component={Paper} className='table-container'>
                                 <Table aria-label="Ejercicios">
                                     <TableHead>
                                         <TableRow>
@@ -246,14 +258,6 @@ function RoutinesListed() {
                             </TableContainer>
                         </div>
                     )}
-
-                    <button id='defaultButton' onClick={() => confirmDelete(routine.routineId)}>
-                            Delete routine
-                    </button>
-                    <Link key={routine.routineId} to={`/addexercise/${routine.routineId}`} id='defaultButton' className='create-button'>Add exercises</Link>
-                    <button className='edit-button' id='defaultButton' onClick={() => handleEditRoutine(routine.routineId)}>
-                        Modificar rutina
-                    </button>
                 </div>
             ))}
             <Link to='/createroutine' id='defaultButton' className='create-button'>Crear Nueva Rutina</Link>

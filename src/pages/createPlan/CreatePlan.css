@@ -4,7 +4,7 @@
     align-items: stretch;
     justify-content: flex-start;
     min-height: 100vh; /* Altura mínima de la página */
-    background-color: var(--raisin-black); /* Utiliza una variable CSS para el color de fondo */
+    background-color: var(--gray6); /* Utiliza una variable CSS para el color de fondo */
     padding: 20px;
 }
 

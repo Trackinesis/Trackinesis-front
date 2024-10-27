@@ -13,7 +13,25 @@
     align-items: stretch;
     justify-content: flex-start;
     min-height: 100vh; /* Set a minimum height for the page */
-    background-color: var(--white); /* Use a CSS variable for background color */
+    background-color: var(--gray6); /* Use a CSS variable for background color */
     padding: 20px;
     flex-direction: column;
+}
+
+.user-icon {
+    font-size: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: var(--primary-dark);
+}
+
+.calendar-icon {
+    font-size: 30px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: var(--primary-dark); /* Cambia este color al que prefieras */
 }

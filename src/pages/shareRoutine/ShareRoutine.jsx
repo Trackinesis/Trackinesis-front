@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css';
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function ShareRoutine() {
     const navigate = useNavigate();
@@ -73,7 +74,7 @@ function ShareRoutine() {
     };
 
     return (
-        <div className='home-page-main-format'>
+        <div className='home-page-main-format p'>
             <Link to='/social' id='backButton'>Back</Link>
             <h1 className='main-page-header'>Copy Routine</h1>
 
