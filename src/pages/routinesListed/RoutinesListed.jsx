@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import BackButton from "../../components/backButton/BackButton"; // Importar componentes de DataTable de Material-UI
 import './routinesListed.css'
 
