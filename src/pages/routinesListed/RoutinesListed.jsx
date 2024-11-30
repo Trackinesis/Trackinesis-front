@@ -3,6 +3,9 @@ import axios from 'axios';
 import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
+import { jsPDF } from "jspdf";
+import 'jspdf-autotable';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
 import BackButton from "../../components/backButton/BackButton"; // Importar componentes de DataTable de Material-UI
 import './routinesListed.css'
 
@@ -128,12 +131,47 @@ function RoutinesListed() {
         }));
     };
 
+    const exportToPDF = async () => {
+        const doc = new jsPDF();
+        doc.setFontSize(18);
+        doc.text('My Routines', 14, 22);
+
+        for (const routine of routines) {
+            // Add routine details
+            doc.setFontSize(14);
+            doc.text(`Routine: ${routine.name} (Day: ${routine.day}, Type: ${routine.type})`, 14, doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 30);
+
+            // Fetch exercises for the current routine
+            const routineExercises = await fetchRoutineExercises(routine.routineId);
+
+            // Add exercises for the current routine
+            const exerciseTableData = routineExercises.map(exercise => [
+                exercise.name,
+                exercise.sets,
+                exercise.reps,
+                exercise.weight,
+                exercise.duration
+            ]);
+
+            doc.autoTable({
+                head: [['Name', 'Sets', 'Reps', 'Weight', 'Duration']],
+                body: exerciseTableData,
+                startY: doc.lastAutoTable ? doc.lastAutoTable.finalY + 20 : 40,
+            });
+        }
+
+        doc.save('routines_with_exercises.pdf');
+    };
+
     return (
         <div className='main-format-create-plan p'>
             <Link to='/home' id='backButton'><BackButton/></Link>
 
             <h2 className='main-page-header' id='top-text'>Mis rutinas</h2>
-            {routines.map((routine) => (
+
+            <button id='exportButton' onClick={exportToPDF}>Export to PDF</button>
+
+            {routines.map(routine => (
                 <div className='routine-card' key={routine.routineId}>
                     <h3 className='routine-name' id='top-text'>Nombre: {routine.name}</h3>
                     <p className='routine-day' id='top-text'>Día: {routine.day}</p>
@@ -260,6 +298,7 @@ function RoutinesListed() {
                     )}
                 </div>
             ))}
+
             <Link to='/createroutine' id='defaultButton' className='create-button'>Crear Nueva Rutina</Link>
         </div>
     );

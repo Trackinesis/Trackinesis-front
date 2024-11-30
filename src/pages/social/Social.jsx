@@ -13,7 +13,7 @@ function Social() {
 
         <Link to='/addfriend' id='defaultButton'>Add friend</Link>
 
-        <Link to='/shareroutine' id='defaultButton'>Copy routine</Link>
+        <Link to='/shareroutine' id='defaultButton'>Search routines</Link>
 
         <Link to='/friends' id='defaultButton'>My friends</Link>
 

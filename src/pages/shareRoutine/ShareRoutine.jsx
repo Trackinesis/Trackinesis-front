@@ -6,69 +6,55 @@ import FooterNavigation from "../../components/footerNavigation/FooterNavigation
 
 function ShareRoutine() {
     const navigate = useNavigate();
-    const [routine, setRoutine] = useState(null);
-    const [routineId, setRoutineId] = useState('');
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [routines, setRoutines] = useState([]); // Store multiple routines
+    const [searchTerm, setSearchTerm] = useState(''); // Search input
+    const [searchType, setSearchType] = useState('id'); // Search type (ID, name, creator ID)
+    const [errorMessage, setErrorMessage] = useState(null); // Error handling
     const userId = localStorage.getItem('userId');
 
     const handleInputChange = (event) => {
-        setRoutineId(event.target.value);
+        setSearchTerm(event.target.value); // Update search term
+    };
+
+    const handleSelectChange = (event) => {
+        setSearchType(event.target.value); // Update search type
     };
 
     const handleSearch = async (event) => {
         event.preventDefault();
         setErrorMessage(null);
-        console.log(`Searching for routine with ID: ${routineId}`);
+        console.log(`Searching for routines by ${searchType}: ${searchTerm}`);
 
         try {
-            const res = await axios.get(`http://localhost:8081/routine/find/${routineId}`);
-            console.log("this is the routineData:", res.data);
-            const routineData = res.data;
+            let res;
+            if (searchType === 'id') {
+                res = await axios.get(`http://localhost:8081/routine/find/${searchTerm}`);
+                setRoutines([res.data]); // Store the found routine in an array
+            } else if (searchType === 'name') {
+                res = await axios.get(`http://localhost:8081/routine/findByName/${searchTerm}`);
+                setRoutines(res.data); // Store all found routines
+            } else if (searchType === 'creatorId') {
+                res = await axios.get(`http://localhost:8081/routine/findByCreator/${searchTerm}`);
+                setRoutines(res.data); // Store all found routines
+            }
 
-            if (routineData.state === 'private') {
-                setErrorMessage('This routine is private');
-            } else if (routineData.state === 'public') {
-                setRoutine(routineData);
-                setErrorMessage(null);
-            } else if (routineData.state === 'friends') {
-                try {
-                    const friendsRes = await axios.get(`http://localhost:8081/friend/${userId}`);
-                    console.log("this is the friendData:", friendsRes.data);
-                    const friends = friendsRes.data;
-                    let isFriend = false;
-
-                    for (let i = 0; i < friends.length; i++) {
-                        if (friends[i].followedId === routineData.userId) {
-                            isFriend = true;
-                            break;
-                        }
-                    }
-
-                    if (isFriend) {
-                        setRoutine(routineData);
-                        setErrorMessage(null);
-                    } else {
-                        setErrorMessage('This routine is only visible to friends');
-                    }
-                } catch (err) {
-                    console.error(err);
-                    setErrorMessage('Error retrieving friends');
-                }
+            if (!res || res.data.length === 0) {
+                setErrorMessage('No routines found'); // Handle no results
             }
         } catch (err) {
             console.error(err);
-            setErrorMessage('Error retrieving routine');
+            setErrorMessage('Error retrieving routines');
         }
     };
 
-    const handleSearch2 = (event) => {
+    const handleSearch2 = (event, routine) => {
         event.preventDefault();
         const newRoutine = { ...routine, userId: userId };
-        delete newRoutine.id;
+        delete newRoutine.id; // Remove ID for copying
         axios.post('http://localhost:8081/createroutine', newRoutine)
             .then(res => {
                 console.log(res);
-                navigate('/home');
+                navigate('/home'); // Navigate back to home
             })
             .catch(err => console.log(err));
     };
@@ -76,18 +62,27 @@ function ShareRoutine() {
     return (
         <div className='home-page-main-format p'>
             <Link to='/social' id='backButton'>Back</Link>
-            <h1 className='main-page-header'>Copy Routine</h1>
+            <h1 className='main-page-header'>Search routines</h1>
 
             <div className='prompt'>
-                <label htmlFor="routineId" id='top-text'><strong>Enter id to copy:</strong></label>
+                <label htmlFor="searchTerm" id='top-text'><strong>Enter search term:</strong></label>
                 <input
-                    type="number"
-                    placeholder='Enter routine id'
-                    id='routineId'
-                    name='routineId'
-                    value={routineId}
+                    type="text"
+                    placeholder='Enter ID, name, or creator ID'
+                    id='searchTerm'
+                    name='searchTerm'
+                    value={searchTerm}
                     onChange={handleInputChange}
                 />
+            </div>
+
+            <div className='prompt'>
+                <label htmlFor="searchType" id='top-text'><strong>Select search type:</strong></label>
+                <select id='searchType' value={searchType} onChange={handleSelectChange}>
+                    <option value="id">By ID</option>
+                    <option value="name">By Name</option>
+                    <option value="creatorId">By Creator ID</option>
+                </select>
             </div>
 
             <button onClick={handleSearch} id='defaultButton'>Search</button>
@@ -98,11 +93,18 @@ function ShareRoutine() {
                 </div>
             )}
 
-            {routine && (
+            {routines.length > 0 && (
                 <div>
-                    <h2 id='top-text'>{routine.name}</h2>
-                    <p id='top-text'>{routine.description}</p>
-                    <button onClick={handleSearch2} id='defaultButton'>Copy</button>
+                    <h2>Found Routines:</h2>
+                    {routines.map(routine => (
+                        <div key={routine.id}>
+                            <h3 id='top-text'>{routine.name}</h3>
+                            <p id='top-text'>Description: {routine.description}</p>
+                            <p id='top-text'>Day: {routine.day}</p>
+                            <p id='top-text'>Type: {routine.type}</p>
+                            <button onClick={(e) => handleSearch2(e, routine)} id='defaultButton'>Copy</button>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
