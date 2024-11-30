@@ -69,12 +69,12 @@ function Login() {
   }, []);
 
   return (
-    <div className='loginPage'>
-      <h2 className='loginHeader'>Log In</h2>
+    <div className='main-page p'>
+      <h2 className='main-page-header h2'>Log In</h2>
 
       <form>
-        <div className='prompt'>
-          <label className='formTopText'>
+        <div className='prompt p'>
+          <label id='top-text'>
             <strong>Email</strong>
           </label>
           <input
@@ -87,25 +87,25 @@ function Login() {
           {errors.email && <span className='text-danger'> {errors.email}</span>}
         </div>
 
-        <div className='prompt'>
-          <label className='formTopText'>
+        <div className='prompt p'>
+          <label id='top-text'>
             <strong>Password</strong>
           </label>
           <input
             id='formsInput'
             type="password"
-            placeholder='Enter Password'
+            placeholder='Enter password'
             name='password'
             onChange={handleInput}
           />
           {errors.password && <span className='text-danger'> {errors.password}</span>}
         </div>
 
-        <button type='submit' onClick={handleSubmit} id='colouredButton'>
+        <button type='submit' onClick={handleSubmit} id='colouredButton' className='p'>
           Log in
         </button>
 
-        <Link to="/signup" id='defaultButton'>
+        <Link to="/signup" id='defaultButton' className='p'>
           Create Account
         </Link>
       </form>

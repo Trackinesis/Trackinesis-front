@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.css';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function UserPage() {
     const userId = localStorage.getItem('userId');
@@ -73,8 +74,8 @@ function UserPage() {
     };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id='backButton'> Back </button>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id='backButton'><BackButton/></button>
             <h2 className='main-page-header'> Edit User Profile </h2>
             <form>
                 <div className="prompt">
@@ -97,7 +98,7 @@ function UserPage() {
             <button onClick={handleLogOut} id='logoutButton'>Logout</button>
             {showDeleteConfirmation && (
                 <div>
-                    <p id='confirmationText'>Are you sure you want to delete your account?</p>
+                    <p className='main-page-header'>Are you sure you want to delete your account?</p>
                     <button id='yesButton' onClick={handleSubmitDelete}>Yes</button>
                     <button id='noButton' onClick={() => setShowDeleteConfirmation(false)}>No</button>
                 </div>

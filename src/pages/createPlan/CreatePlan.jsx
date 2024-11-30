@@ -5,6 +5,7 @@ import axios from "axios";
 import './CreatePlan.css'
 import '../../styles.css'
 import Validation from "../createRoutine/RoutineValidation";
+import BackButton from "../../components/backButton/BackButton";
 
 function CreatePlan() {
     const navigate = useNavigate();
@@ -55,9 +56,9 @@ function CreatePlan() {
 
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 className='main-page-header'>Create new Plan</h2>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <h2 className='main-page-header'>Create new plan</h2>
             <form action="" onSubmit={handleAddPlan}>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>

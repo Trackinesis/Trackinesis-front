@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
+import BackButton from "../../components/backButton/BackButton";
 
 function Leaderboard() {
 
@@ -66,9 +67,9 @@ function Leaderboard() {
   };
 
   return (
-    <div className='main-page'>
-      <button onClick={handleGoBack} id="backButton"> Back</button>
-      <h2 id='topTitle'>Leaderboard</h2>
+    <div className='main-page p'>
+      <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+      <h2 className='main-page-header'>Leaderboard</h2>
 
       <DataTable
         columns={columns}

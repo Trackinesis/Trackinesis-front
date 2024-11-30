@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import { FaTrash } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function Friends() {
 
@@ -74,8 +75,8 @@ function Friends() {
       };
     
     return (
-        <div className='home-page-main-format'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
+        <div className='home-page-main-format p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
             <h1 className='main-page-header'>Friends</h1>
 
             <DataTable

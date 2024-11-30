@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddExercise.css';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function AddExercise() {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ function AddExercise() {
         routineId: routineId, // Establece el routineId aquí
     });
     const [exerciseOptions, setExerciseOptions] = useState([]);
+    const [selectedExerciseImage, setSelectedExerciseImage] = useState(null); // Para manejar la imagen del ejercicio seleccionado
 
     useEffect(() => {
         axios.get('http://localhost:8081/exercise')
@@ -28,7 +30,15 @@ function AddExercise() {
     }, []);
 
     const handleInput = (event) => {
-        setValuesExercise(prev => ({ ...prev, [event.target.name]: event.target.value }));
+        setValuesExercise(prev => {
+            const newValues = { ...prev, [event.target.name]: event.target.value };
+            if (event.target.name === 'name') {
+                // Buscar el ejercicio seleccionado y obtener su imagen
+                const selectedExercise = exerciseOptions.find(exercise => exercise.name === newValues.name);
+                setSelectedExerciseImage(selectedExercise ? selectedExercise.image : null); // Establecer la imagen si existe
+            }
+            return newValues;
+        });
     };
 
     const handleSubmitAddExercise = (event) => {
@@ -62,9 +72,9 @@ function AddExercise() {
     };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>Add exercise</h2>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton /></button>
+            <h2 className='main-page-header h2'>Add exercise</h2>
 
             <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
@@ -80,28 +90,36 @@ function AddExercise() {
 
                 <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
 
-                <h7 id='topTitle'>Add exercise with sets and repetitions (only)</h7>
+                {/* Mostrar imagen si existe */}
+                {selectedExerciseImage && (
+                    <div className="exercise-image-preview">
+                        <h3>Exercise Image:</h3>
+                        <img src={`data:image/jpeg;base64,${selectedExerciseImage}`} alt="Exercise" style={{ maxWidth: '100px', marginTop: '10px' }} />
+                    </div>
+                )}
+
+                <h7 className='main-page-header p'>Add exercise with sets and repetitions (only)</h7>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="sets"><strong>Number of sets:</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter number of sets' name='sets' onChange={handleInput}/>
+                    <input id='formsInput' type="text" placeholder='Enter number of sets' name='sets' onChange={handleInput} />
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="reps"><strong>Number of repetitions:</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter number of reps' name='reps' onChange={handleInput}/>
+                    <input id='formsInput' type="text" placeholder='Enter number of reps' name='reps' onChange={handleInput} />
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="weight"><strong>Weight (kg):</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter weight' name='weight' onChange={handleInput}/>
+                    <input id='formsInput' type="text" placeholder='Enter weight' name='weight' onChange={handleInput} />
                 </div>
 
-                <h7 id='topTitle'>Add exercise with time (only)</h7>
+                <h7 className='main-page-header p'>Add exercise with time (only)</h7>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="duration"><strong>Duration (seconds):</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter duration' name='duration' onChange={handleInput}/>
+                    <input id='formsInput' type="text" placeholder='Enter duration' name='duration' onChange={handleInput} />
                 </div>
 
                 <div className='prompt'>

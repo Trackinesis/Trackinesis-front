@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import './CreateExercise.css'
-import '../../styles.css'
+import './CreateExercise.css';
+import '../../styles.css';
 
 function CreateExercise() {
     const navigate = useNavigate();
@@ -13,37 +13,67 @@ function CreateExercise() {
     const [valuesExercise, setValuesExercise] = useState({
         name: '',
         type: '',
-        description: ''
+        description: '',
+        image: null, // The file object for the image
     });
+    const [imagePreview, setImagePreview] = useState(null); // To display image preview
 
     const handleGoBack = () => {
         navigate(-1);
     };
 
-    const handleSubmitNewExercise = (event) => {
+    const handleSubmitNewExercise = async (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8081/exercise', valuesExercise)
-            .then(res => {
 
-                navigate('/routineslisted');
+        // Basic validation
+        if (!valuesExercise.name || !valuesExercise.type || !valuesExercise.description) {
+            setErrors('Please fill in all fields');
+            return;
+        }
 
-            })
-            .catch(err => {
-                console.log(err);
-                setErrors(err.response.data.errors);
+        const formData = new FormData();
+        formData.append('name', valuesExercise.name);
+        formData.append('type', valuesExercise.type);
+        formData.append('description', valuesExercise.description);
+        if (valuesExercise.image) {
+            formData.append('file', valuesExercise.image); // Add the image file to form data
+        }
+
+        try {
+            // Send formData to create the exercise
+            const response = await axios.post('http://localhost:8081/exercise', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', // Ensure the content type is for file uploads
+                },
             });
+            navigate('/routineslisted');
+        } catch (err) {
+            console.log(err);
+            setErrors(err.response?.data?.message || 'An error occurred while creating the exercise.');
+        }
     };
 
     const handleInput = (event) => {
         setValuesExercise(prev => ({ ...prev, [event.target.name]: event.target.value }));
-    }
+    };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setValuesExercise(prev => ({ ...prev, image: file })); // Save the file object
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setImagePreview(reader.result); // Set image preview for display
+        };
+        if (file) {
+            reader.readAsDataURL(file); // Convert the image file to base64 for preview
+        }
+    };
 
     return (
         <div className='main-page'>
             <button onClick={handleGoBack} id="backButton"> Back</button>
             <h2 id='topTitle'>Create new exercise</h2>
             <form onSubmit={handleSubmitNewExercise}>
-
                 <div className='prompt'>
                     <label id='top-text' htmlFor="name"><strong>Exercise name:</strong></label>
                     <input id='formsInput' type="text" placeholder='Enter Exercise name:'
@@ -64,7 +94,13 @@ function CreateExercise() {
                     <input id='formsInput' type="text" placeholder='Enter Exercise description:'
                            name='description' onChange={handleInput} />
                 </div>
-                <button onClick={handleGoBack} id='colouredButton' type='submit'>Save</button>
+                <div className='prompt'>
+                    <label id='top-text' htmlFor="image"><strong>Upload Image:</strong></label>
+                    <input id='formsInput' type="file" accept="image/*" name='image' onChange={handleFileChange} />
+                    {imagePreview && <img src={imagePreview} alt="Preview" style={{ marginTop: '10px', maxWidth: '100px' }} />}
+                </div>
+                {errors && <div className="text-danger">{errors}</div>}
+                <button id='colouredButton' type='submit'>Save</button>
             </form>
         </div>
     );

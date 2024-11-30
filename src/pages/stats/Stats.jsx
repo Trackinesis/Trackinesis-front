@@ -3,6 +3,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function Stats() {
     const navigate = useNavigate();
@@ -41,8 +42,8 @@ function Stats() {
     };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id='backButton'>Back</button>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id='backButton'><BackButton/></button>
             <h2 className='main-page-header'>Statistics</h2>
 
             <LineChart

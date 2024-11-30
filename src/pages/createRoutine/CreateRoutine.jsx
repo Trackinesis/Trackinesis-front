@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Validation from "./RoutineValidation";
 import axios from "axios";
+import BackButton from "../../components/backButton/BackButton";
 
 const routineType = [
     { value: 'sets', label: 'Exercise with Sets' },
@@ -68,10 +69,10 @@ function CreateRoutine() {
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton">Back</button>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
 
-            <h2 id='topTitle'>Create new routine</h2>
+            <h2 className='main-page-header'>Create new routine</h2>
 
             <form onSubmit={handleSubmitNewRoutine}>
                 <div className='prompt'>

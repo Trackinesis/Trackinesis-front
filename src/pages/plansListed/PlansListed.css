@@ -1,0 +1,49 @@
+/* Estilos para el contenedor del select */
+.custom-select-container {
+    position: relative; /* Para posicionar elementos secundarios si es necesario */
+    width: 100%; /* Ancho del contenedor */
+    margin: 20px 0; /* Espaciado vertical */
+}
+
+/* Estilos para el select */
+.custom-select {
+    display: inline-block; /* Mostrar como bloque en línea */
+    width: 100%; /* Ancho completo */
+    padding: 10px 15px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    appearance: none; /* Eliminar el estilo por defecto del navegador */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23333" d="M7 10l5 5 5-5z"/></svg>'); /* Icono de flecha hacia abajo */
+    background-repeat: no-repeat; /* No repetir la imagen de fondo */
+    background-position: right 10px center; /* Posicionar la imagen */
+    background-size: 12px; /* Tamaño de la imagen */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+}
+
+/* Estilos para el select en estado hover */
+.custom-select:hover {
+    border-color: #2196F3; /* Cambia el color del borde al pasar el ratón */
+}
+
+/* Estilos para el select en estado focus */
+.custom-select:focus {
+    border-color: #2196F3; /* Cambia el color del borde al hacer foco */
+    outline: none; /* Quitar el contorno por defecto */
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5); /* Sombra alrededor del select */
+}
+
+/* Estilos para las opciones */
+.custom-select option {
+    padding: 10px; /* Espaciado interno de las opciones */
+    background-color: #fff; /* Fondo blanco */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para la opción seleccionada */
+.custom-select option:checked {
+    background-color: #2196F3; /* Color de fondo de la opción seleccionada */
+    color: #fff; /* Color del texto de la opción seleccionada */
+}

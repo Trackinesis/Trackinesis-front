@@ -188,7 +188,7 @@ function TrainingSession() {
     ];
 
     return (
-        <div className='home-page-main-format'>
+        <div className='home-page-main-format p'>
             <Link to='/home' id='backButton'>Back</Link>
             <h1 className='main-page-header'>Elige tu plan de entrenamiento</h1>
             {activePlans.length >= 1 && (

@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Validation from './SignupStepTwoValidation';
 import axios from 'axios';
 import '../../styles.css'
-import './SignupStepTwo.css'
+//import './SignupStepTwo.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function SignupStepTwo() {
 
@@ -33,13 +34,8 @@ function SignupStepTwo() {
         }
     }
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
+        <div className='main-page p'>
             <h2 className='main-page-header'>Sign-Up</h2>
 
             <form action="" onSubmit={handleSubmit}>
@@ -73,7 +69,7 @@ function SignupStepTwo() {
                     </select>
                     {errors.gender && <span className='text-danger'> {errors.gender}</span>}
                 </div>
-                <p className='simpleText' >By clicking here you agree with our terms of service.</p>
+                <p>By clicking here you agree with our terms of service.</p>
                 <button type='submit' onClick={handleSubmit} id='colouredButton'>Join the
                     Club!
                 </button>

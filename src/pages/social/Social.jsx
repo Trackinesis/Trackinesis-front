@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css'
+import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function Social() {
   return (
-    <div className='home-page-main-format'>
-      <Link to='/home' id='backButton'>Back</Link>
+    <div className='home-page-main-format p'>
+      <Link to='/home' id='backButton'><BackButton/></Link>
       <h1 className='main-page-header'>Social</h1>
 
         <Link to='/addfriend' id='defaultButton'>Add friend</Link>
@@ -17,6 +19,7 @@ function Social() {
 
         <Link to='/leaderboard' id='defaultButton'>Leaderboard</Link>
 
+        <FooterNavigation/>
     </div>
   );
 }
