@@ -8,16 +8,41 @@ const FooterNavigation = () => {
     return (
         <div className="button-container">
             <Link to='/planslisted' className="button">
-                <IoReaderOutline style={{ color: 'white', fontSize: '24px' }} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     className="lucide lucide-notebook-text">
+                    <path d="M2 6h4"/>
+                    <path d="M2 10h4"/>
+                    <path d="M2 14h4"/>
+                    <path d="M2 18h4"/>
+                    <rect width="16" height="20" x="4" y="2" rx="2"/>
+                    <path d="M9.5 8h5"/>
+                    <path d="M9.5 12H16"/>
+                    <path d="M9.5 16H14"/>
+                </svg>
             </Link>
-            <div className="divider"></div> {/* Línea divisoria */}
+            <div className="divider"></div>
             <Link to='/routineslisted' className="button">
-                <FaClockRotateLeft style={{ color: 'white', fontSize: '24px' }} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     className="lucide lucide-dumbbell">
+                    <path d="M14.4 14.4 9.6 9.6"/>
+                    <path
+                        d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/>
+                    <path d="m21.5 21.5-1.4-1.4"/>
+                    <path d="M3.9 3.9 2.5 2.5"/>
+                    <path
+                        d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/>
+                </svg>
             </Link>
-            <div className="divider"></div> {/* Línea divisoria */}
+            <div className="divider"></div>
             <Link to='/social' className="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" strokeWidth="0" fill="currentColor" stroke="currentColor" style={{ color: 'white', fontSize: '20px' }}>
-                    <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     className="lucide lucide-users-round">
+                    <path d="M18 21a8 8 0 0 0-16 0"/>
+                    <circle cx="10" cy="8" r="5"/>
+                    <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
                 </svg>
             </Link>
         </div>

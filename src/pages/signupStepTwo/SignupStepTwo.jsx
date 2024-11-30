@@ -4,7 +4,6 @@ import Validation from './SignupStepTwoValidation';
 import axios from 'axios';
 import '../../styles.css'
 //import './SignupStepTwo.css'
-import BackButton from "../../components/backButton/BackButton";
 
 function SignupStepTwo() {
 

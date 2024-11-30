@@ -33,5 +33,9 @@
     top: 20px;
     left: 20px;
     cursor: pointer;
-    color: var(--primary-dark); /* Cambia este color al que prefieras */
+    color: var(--primary-dark);
+}
+
+.color-icon {
+    color: var(--white)
 }
