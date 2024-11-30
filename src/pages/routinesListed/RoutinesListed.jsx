@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControlLabel } from '@mui/material';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
 import BackButton from "../../components/backButton/BackButton"; // Importar componentes de DataTable de Material-UI
@@ -15,6 +15,7 @@ function RoutinesListed() {
     const [showEditDropdown, setShowEditDropdown] = useState(false);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
     const [editingExercise, setEditingExercise] = useState(null);
+    const [selectedRoutines, setSelectedRoutines] = useState([]); // Estado para rutinas seleccionadas
     const currentUserId = localStorage.getItem('userId');
 
     useEffect(() => {
@@ -130,41 +131,70 @@ function RoutinesListed() {
         }));
     };
 
+    const handleCheckboxChange = (routineId) => {
+        setSelectedRoutines(prevSelectedRoutines =>
+            prevSelectedRoutines.includes(routineId)
+                ? prevSelectedRoutines.filter(id => id !== routineId)
+                : [...prevSelectedRoutines, routineId]
+        );
+    };
+
     const exportToPDF = async () => {
         const doc = new jsPDF();
         doc.setFontSize(18);
-        doc.text('My Routines', 14, 22);
+        doc.text('Mis Rutinas', 14, 22);
 
-        for (const routine of routines) {
-            // Add routine details
-            doc.setFontSize(14);
-            doc.text(`Routine: ${routine.name} (Day: ${routine.day}, Type: ${routine.type})`, 14, doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 30);
+        // Filtramos las rutinas seleccionadas
+        const selectedRoutinesData = routines.filter(routine => selectedRoutines.includes(routine.routineId));
 
-            // Fetch exercises for the current routine
-            const routineExercises = await fetchRoutineExercises(routine.routineId);
-
-            // Add exercises for the current routine
-            const exerciseTableData = routineExercises.map(exercise => [
-                exercise.name,
-                exercise.sets,
-                exercise.reps,
-                exercise.weight,
-                exercise.duration
-            ]);
-
-            doc.autoTable({
-                head: [['Name', 'Sets', 'Reps', 'Weight', 'Duration']],
-                body: exerciseTableData,
-                startY: doc.lastAutoTable ? doc.lastAutoTable.finalY + 20 : 40,
-            });
+        if (selectedRoutinesData.length === 0) {
+            alert("No hay rutinas seleccionadas para exportar.");
+            return;
         }
 
-        doc.save('routines_with_exercises.pdf');
+        // Iteramos sobre las rutinas seleccionadas
+        for (const routine of selectedRoutinesData) {
+            doc.setFontSize(14);
+            doc.text(`Rutina: ${routine.name} (Día: ${routine.day}, Tipo: ${routine.type})`, 14, doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 30);
+
+            try {
+                // Obtener los ejercicios de cada rutina seleccionada
+                const response = await axios.get(`http://localhost:8081/routineexercise/${routine.routineId}`);
+                const exercises = response.data;
+
+                if (!Array.isArray(exercises)) {
+                    console.error('Datos de ejercicios no válidos:', exercises);
+                    continue;  // Si los datos no son válidos, saltamos a la siguiente rutina
+                }
+
+                // Preparamos los datos de la tabla de ejercicios
+                const exerciseTableData = exercises.map(exercise => [
+                    exercise.name,
+                    exercise.sets,
+                    exercise.reps,
+                    exercise.weight,
+                    exercise.duration
+                ]);
+
+                doc.autoTable({
+                    head: [['Nombre', 'Sets', 'Reps', 'Peso', 'Duración']],
+                    body: exerciseTableData,
+                    startY: doc.lastAutoTable ? doc.lastAutoTable.finalY + 20 : 40,
+                });
+            } catch (error) {
+                console.error('Error al obtener los ejercicios de la rutina:', error);
+            }
+        }
+
+        doc.save('rutinas_con_ejercicios.pdf');
     };
+
 
     return (
         <div className='main-format-create-plan p'>
-            <Link to='/home' id='backButton'><BackButton/></Link>
+            <Link to='/home' id='backButton'>
+                <BackButton/>
+            </Link>
 
             <h2 className='main-page-header' id='top-text'>Mis rutinas</h2>
 
@@ -176,20 +206,33 @@ function RoutinesListed() {
                     <p className='routine-day' id='top-text'>Día: {routine.day}</p>
                     <p className='routine-type' id='top-text'>Tipo: {routine.type}</p>
 
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={selectedRoutines.includes(routine.routineId)}
+                                onChange={() => handleCheckboxChange(routine.routineId)}
+                                color="primary"
+                            />
+                        }
+                        label="Seleccionar para exportar"
+                    />
+
                     <button id='defaultButton' onClick={() => confirmDelete(routine.routineId)}>
-                            Delete routine
+                        Delete routine
                     </button>
+
                     {routine.routineId === routineToDelete && (
                         <div className='delete-confirmation'>
                             <p>¿Estás seguro?</p>
                             <button className='cancel-button' onClick={cancelDelete}>No</button>
-                            <button className='confirm-button' onClick={() => deleteRoutine(routine.routineId)}>Sí
-                            </button>
+                            <button className='confirm-button' onClick={() => deleteRoutine(routine.routineId)}>Sí</button>
                         </div>
-
                     )}
-                    <Link key={routine.routineId} to={`/addexercise/${routine.routineId}`} id='defaultButton'
-                          className='create-button'>Add exercises</Link>
+
+                    <Link key={routine.routineId} to={`/addexercise/${routine.routineId}`} id='defaultButton' className='create-button'>
+                        Add exercises
+                    </Link>
+
                     <button className='edit-button' id='defaultButton' onClick={() => handleEditRoutine(routine.routineId)}>
                         Modificar rutina
                     </button>
@@ -301,6 +344,7 @@ function RoutinesListed() {
             <Link to='/createroutine' id='defaultButton' className='create-button'>Crear Nueva Rutina</Link>
         </div>
     );
+
 }
 
 export default RoutinesListed;
