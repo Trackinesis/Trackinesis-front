@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from '@mui/material';
-import BackButton from "../../components/backButton/BackButton"; // Importar componentes de DataTable de Material-UI
-import './routinesListed.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function RoutinesListed() {
     const [routines, setRoutines] = useState([]);
@@ -107,10 +104,16 @@ function RoutinesListed() {
     };
 
     const handleEditRoutine = (routineId) => {
-        setSelectedRoutine(routineId);
-        setShowEditDropdown(true);
-        fetchRoutineExercises(routineId);
+        if (showEditDropdown && selectedRoutine === routineId) {
+            setShowEditDropdown(false);
+            setSelectedRoutine(null);
+        } else {
+            setSelectedRoutine(routineId);
+            setShowEditDropdown(true);
+            fetchRoutineExercises(routineId);
+        }
     };
+
 
     const cancelDelete = () => {
         setRoutineToDelete(null);
@@ -130,137 +133,45 @@ function RoutinesListed() {
 
     return (
         <div className='main-format-create-plan p'>
-            <Link to='/home' id='backButton'><BackButton/></Link>
+            <Link to='/home' id='backButton'><BackButton /></Link>
 
-            <h2 className='main-page-header' id='top-text'>Mis rutinas</h2>
+            <h2 className='main-page-header' id='top-text'>My routines</h2>
+
+            {/* Create routine button placed right after title */}
+            <div className="create-button-container">
+                <Link to='/createroutine' id='createRoutineButton' className='create-button'>
+                    Create new routine
+                </Link>
+            </div>
+
+            {/* Map through routines and display them */}
             {routines.map((routine) => (
                 <div className='routine-card' key={routine.routineId}>
-                    <h3 className='routine-name' id='top-text'>Nombre: {routine.name}</h3>
-                    <p className='routine-day' id='top-text'>Día: {routine.day}</p>
-                    <p className='routine-type' id='top-text'>Tipo: {routine.type}</p>
+                    <h3 className='routine-name' id='top-text'>Name: {routine.name}</h3>
+                    <p className='routine-day' id='top-text'>Day: {routine.day}</p>
+                    <p className='routine-type' id='top-text'>Type: {routine.type}</p>
+
+                    <Link key={routine.routineId} to={`/addexercise/${routine.routineId}`} id='defaultButton'
+                          className='create-button'>Add exercises</Link>
 
                     <button id='defaultButton' onClick={() => confirmDelete(routine.routineId)}>
-                            Delete routine
+                        Delete routine
                     </button>
                     {routine.routineId === routineToDelete && (
                         <div className='delete-confirmation'>
-                            <p>¿Estás seguro?</p>
-                            <button className='cancel-button' onClick={cancelDelete}>No</button>
-                            <button className='confirm-button' onClick={() => deleteRoutine(routine.routineId)}>Sí
-                            </button>
+                            <p className='confirmation-text'>Are you sure?</p>
+                            <div className='confirmation-buttons'>
+                                <button className='cancel-button' onClick={cancelDelete}>No</button>
+                                <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Yes</button>
+                            </div>
                         </div>
-
                     )}
-                    <Link key={routine.routineId} to={`/addexercise/${routine.routineId}`} id='defaultButton'
-                          className='create-button'>Add exercises</Link>
-                    <button className='edit-button' id='defaultButton' onClick={() => handleEditRoutine(routine.routineId)}>
-                        Modificar rutina
+                    <button className='edit-button' id='defaultButton'
+                            onClick={() => handleEditRoutine(routine.routineId)}>
+                        Modify routine
                     </button>
-
-                    {showEditDropdown && routine.routineId === selectedRoutine && (
-                        <div className='exercise-grid'>
-                            <h3>Ejercicios de la rutina:</h3>
-                            <TableContainer component={Paper} className='table-container'>
-                                <Table aria-label="Ejercicios">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Nombre</TableCell>
-                                            <TableCell>Sets</TableCell>
-                                            <TableCell>Reps</TableCell>
-                                            <TableCell>Peso</TableCell>
-                                            <TableCell>Duración</TableCell>
-                                            <TableCell>Acciones</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {routineExercises.map((exercise) => (
-                                            <TableRow key={exercise.id}>
-                                                <TableCell>
-                                                    {editingExercise && editingExercise.id === exercise.id ? (
-                                                        <TextField
-                                                            name="name"
-                                                            value={editingExercise.name}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    ) : (
-                                                        exercise.name
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {editingExercise && editingExercise.id === exercise.id ? (
-                                                        <TextField
-                                                            name="sets"
-                                                            type="number"
-                                                            value={editingExercise.sets}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    ) : (
-                                                        exercise.sets
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {editingExercise && editingExercise.id === exercise.id ? (
-                                                        <TextField
-                                                            name="reps"
-                                                            type="number"
-                                                            value={editingExercise.reps}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    ) : (
-                                                        exercise.reps
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {editingExercise && editingExercise.id === exercise.id ? (
-                                                        <TextField
-                                                            name="weight"
-                                                            type="number"
-                                                            value={editingExercise.weight}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    ) : (
-                                                        exercise.weight
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {editingExercise && editingExercise.id === exercise.id ? (
-                                                        <TextField
-                                                            name="duration"
-                                                            type="number"
-                                                            value={editingExercise.duration}
-                                                            onChange={handleInputChange}
-                                                        />
-                                                    ) : (
-                                                        exercise.duration
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {editingExercise && editingExercise.id === exercise.id ? (
-                                                        <FaCheck
-                                                            className='edit-icon'
-                                                            onClick={saveEditedExercise}
-                                                        />
-                                                    ) : (
-                                                        <FaEdit
-                                                            className='edit-icon'
-                                                            onClick={() => startEdit(exercise)}
-                                                        />
-                                                    )}
-                                                    <FaTrashAlt
-                                                        className='delete-icon'
-                                                        onClick={() => deleteExercise(exercise.id)}
-                                                    />
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </div>
-                    )}
                 </div>
             ))}
-            <Link to='/createroutine' id='defaultButton' className='create-button'>Crear Nueva Rutina</Link>
         </div>
     );
 }
