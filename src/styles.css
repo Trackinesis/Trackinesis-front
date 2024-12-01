@@ -425,3 +425,7 @@
     border-radius: 5px;
 }
 
+.routine-card:last-of-type {
+    margin-bottom: 40px;
+}
+

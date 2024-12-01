@@ -138,14 +138,12 @@ function RoutinesListed() {
 
             <h2 className='main-page-header' id='top-text'>My routines</h2>
 
-            {/* Create routine button placed right after title */}
             <div className="create-button-container">
                 <Link to='/createroutine' id='createRoutineButton' className='create-button'>
                     Create new routine
                 </Link>
             </div>
 
-            {/* Map through routines and display them */}
             {routines.map((routine) => (
                 <div className='routine-card' key={routine.routineId}>
                     <h3 className='routine-name' id='top-text'>Name: {routine.name}</h3>
@@ -173,7 +171,7 @@ function RoutinesListed() {
                     </button>
                 </div>
             ))}
-            <FooterNavigation />
+            <FooterNavigation/>
         </div>
     );
 }
