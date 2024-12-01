@@ -23,12 +23,14 @@
     padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--primary-dark);
     color: var(--timberwolf);
     width: 100%;
     height: 40px;
     text-decoration: none;
+
+    /* Agregado para separar el botón Save Changes */
+    margin-bottom: 5px;
 }
 
 #deleteAccountButton {
@@ -37,11 +39,9 @@
     border: 1px solid var(--vermilion);
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--vermilion);
     color: white;
     width: 100%;
-
     margin-top: 10px;
 }
 
@@ -50,7 +50,7 @@
     text-align: center;
     margin-top: 10px;
     font-size: 1rem;
-    color: var(--timberwolf)
+    color: var(--timberwolf);
 }
 
 #yesButton {
@@ -58,7 +58,6 @@
     padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--vermilion);
     color: white;
     width: 49%;
@@ -71,7 +70,6 @@
     padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--primary-dark);
     color: var(--timberwolf);
     width: 49%;
@@ -79,12 +77,12 @@
     text-align: center;
     margin-left: 5px;
 }
+
 #logoutButton {
     display: inline-block;
     padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--primary-dark);
     color: var(--timberwolf);
     width: 35%;
@@ -100,10 +98,8 @@
     border: 1px solid var(--vermilion);
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--vermilion);
     color: white;
     width: 100%;
-
     margin-top: 10px;
 }
