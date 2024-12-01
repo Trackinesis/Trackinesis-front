@@ -332,8 +332,8 @@
 }
 
 .cancel-button {
-    background-color: var(--secondary-light2);
-    color: var(--primary-dark);
+    background-color: var(--primary-light2);
+    color: var(--white);
 }
 
 .delete-button {
