@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function Leaderboard() {
 
@@ -75,6 +76,8 @@ function Leaderboard() {
         columns={columns}
         data={friendOptions}
       />
+
+      <FooterNavigation/>
     </div>
   );
 }

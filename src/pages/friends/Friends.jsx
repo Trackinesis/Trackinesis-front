@@ -5,6 +5,7 @@ import { FaTrash } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css'
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function Friends() {
 
@@ -90,6 +91,7 @@ function Friends() {
                     <button id='colouredButton' onClick={cancelDelete}>No</button>
                 </div>
             )}
+            <FooterNavigation/>
         </div>
         
     );

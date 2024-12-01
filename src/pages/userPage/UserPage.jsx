@@ -4,6 +4,7 @@ import axios from 'axios';
 import './UserPage.css';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function UserPage() {
     const userId = localStorage.getItem('userId');
@@ -106,7 +107,7 @@ function UserPage() {
                     </div>
                 </div>
             )}
-
+            <FooterNavigation/>
         </div>
     );
 }

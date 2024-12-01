@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function AddFriend() {
     const navigate = useNavigate();
@@ -77,6 +78,7 @@ function AddFriend() {
                     <button type="submit" id='colouredButton'>Add Friend</button>
                 </div>
             </form>
+            <FooterNavigation/>
         </div>
     );
 }
