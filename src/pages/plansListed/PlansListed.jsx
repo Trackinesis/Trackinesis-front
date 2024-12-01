@@ -123,7 +123,7 @@ function PlansListed() {
                                     handleRoutineSelect(selectedRoutineId, selectedRoutineDay);
                                 }}
                             >
-                                <option value="">Selecciona una rutina</option>
+                                <option value="">Select a routine</option>
                                 {routines.map((routine) => (
                                     <option key={routine.routineId} value={routine.routineId}>
                                         {routine.name} ({routine.day})
@@ -139,7 +139,6 @@ function PlansListed() {
                                 Add Routine to Plan
                             </button>
                         </div>
-
                     )}
 
                     <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
