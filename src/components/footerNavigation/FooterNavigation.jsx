@@ -11,7 +11,7 @@ const FooterNavigation = () => {
     return (
         <div className="button-container">
             <Link to='/home' className="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                      stroke={isActive('/home') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-house">
                     <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
@@ -21,7 +21,7 @@ const FooterNavigation = () => {
             </Link>
             <div className="divider"></div>
             <Link to='/planslisted' className="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                      stroke={isActive('/planslisted') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-notebook-text">
                     <path d="M2 6h4"/>
@@ -36,7 +36,7 @@ const FooterNavigation = () => {
             </Link>
             <div className="divider"></div>
             <Link to='/routineslisted' className="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                      stroke={isActive('/routineslisted') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-dumbbell">
                     <path d="M14.4 14.4 9.6 9.6"/>
@@ -50,7 +50,7 @@ const FooterNavigation = () => {
             </Link>
             <div className="divider"></div>
             <Link to='/social' className="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                      stroke={isActive('/social') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-users-round">
                     <path d="M18 21a8 8 0 0 0-16 0"/>
