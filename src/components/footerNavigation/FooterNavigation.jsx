@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './footerNavigation.css';
-import { IoReaderOutline } from "react-icons/io5";
-import { FaClockRotateLeft } from "react-icons/fa6";
 
 const FooterNavigation = () => {
+    const location = useLocation();
+
+    // Helper function to check if the route is active
+    const isActive = (path) => location.pathname === path;
+
     return (
         <div className="button-container">
             <Link to='/home' className="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     stroke={isActive('/home') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-house">
                     <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
                     <path
@@ -19,7 +22,7 @@ const FooterNavigation = () => {
             <div className="divider"></div>
             <Link to='/planslisted' className="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     stroke={isActive('/planslisted') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-notebook-text">
                     <path d="M2 6h4"/>
                     <path d="M2 10h4"/>
@@ -34,7 +37,7 @@ const FooterNavigation = () => {
             <div className="divider"></div>
             <Link to='/routineslisted' className="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     stroke={isActive('/routineslisted') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-dumbbell">
                     <path d="M14.4 14.4 9.6 9.6"/>
                     <path
@@ -48,7 +51,7 @@ const FooterNavigation = () => {
             <div className="divider"></div>
             <Link to='/social' className="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                     stroke="#FFFEFC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     stroke={isActive('/social') ? "#5386FA" : "#FFFEFC"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-users-round">
                     <path d="M18 21a8 8 0 0 0-16 0"/>
                     <circle cx="10" cy="8" r="5"/>
