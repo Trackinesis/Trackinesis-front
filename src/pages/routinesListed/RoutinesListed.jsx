@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function RoutinesListed() {
     const [routines, setRoutines] = useState([]);
@@ -172,6 +173,7 @@ function RoutinesListed() {
                     </button>
                 </div>
             ))}
+            <FooterNavigation />
         </div>
     );
 }
