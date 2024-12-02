@@ -7,7 +7,6 @@ import FooterNavigation from "../../components/footerNavigation/FooterNavigation
 
 function AddFriend() {
     const navigate = useNavigate();
-    const [errors, setErrors] = useState({});
     const [valuesFriend, setValuesFriend] = useState({
         name: '',
         userId: ''
@@ -18,10 +17,13 @@ function AddFriend() {
     useEffect(() => {
         axios.get('http://localhost:8081/login')
             .then(res => {
-                const users = res.data.map(user => ({ userId: user.userId, name: user.name }));
+                const users = res.data.map(user => ({
+                    userId: user.userId,
+                    name: user.name
+                }));
                 setAllUsersList(users);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error('Error fetching users:', err));
     }, []);
 
     const handleInput = (event) => {
@@ -34,9 +36,7 @@ function AddFriend() {
                 userId: selectedUserId,
                 name: selectedUserName
             });
-            console.log("Friend selected successfully: ", selectedUserName, selectedUserId)
         } else {
-            console.error("Selected friend not found");
             setValuesFriend({
                 name: '',
                 userId: ''
@@ -46,14 +46,23 @@ function AddFriend() {
 
     const handleSubmitAddFriend = (event) => {
         event.preventDefault();
-        console.log("Submitting friend:", valuesFriend);
+
+        if (!valuesFriend.userId || !currentUserId) {
+            console.error("Both current user and selected friend must be defined.");
+            return;
+        }
+
         axios.post(`http://localhost:8081/friend/${currentUserId}`, {
-            params: {userId: currentUserId, friendId: valuesFriend.userId, name: valuesFriend.name}
-            })
+            friendId: valuesFriend.userId,
+            followedName: valuesFriend.name
+        })
             .then(res => {
+                console.log('Friend added successfully:', res.data);
                 navigate('/social');
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error('Error adding friend:', err);
+            });
     };
 
     const handleGoBack = () => {
@@ -62,13 +71,13 @@ function AddFriend() {
 
     return (
         <div className='home-page-main-format p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <button onClick={handleGoBack} id="backButton"><BackButton /></button>
             <h1 className='main-page-header'>Add Friend</h1>
 
-            <form action="" onSubmit={handleSubmitAddFriend}>
+            <form onSubmit={handleSubmitAddFriend}>
                 <label id='top-text' htmlFor="friend"><strong>Search friend:</strong></label>
-                <select name="friend" onChange={handleInput} id='formsInput'>
-                    <option disabled selected value="">Introduce name</option>
+                <select name="friend" onChange={handleInput} id='formsInput' defaultValue="">
+                    <option disabled value="">Introduce name</option>
                     {allUsersList.map((friend) => (
                         <option key={friend.userId} value={friend.userId}>{friend.name}</option>
                     ))}
@@ -84,6 +93,7 @@ function AddFriend() {
 }
 
 export default AddFriend;
+
 
 // GORDO NOTAS -> esta mandando el payload vacio, donde se hace "setValues" (en handleInputChange o donde sea) no esta
 // complenado con los datos de usuario seleccionado
