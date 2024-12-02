@@ -42,10 +42,10 @@ function AddExercise() {
                 routineId: valuesExercise.routineId,
                 exerciseId: exerciseId,
                 name: valuesExercise.name,
-                sets: valuesExercise.sets,
-                reps: valuesExercise.reps,
-                weight: valuesExercise.weight,
-                duration: valuesExercise.duration
+                sets: valuesExercise.sets || null,
+                reps: valuesExercise.reps || null,
+                weight: valuesExercise.weight || null,
+                duration: valuesExercise.duration || null
             };
 
             axios.post('http://localhost:8081/routineExercise', routineExerciseData)

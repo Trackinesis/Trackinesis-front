@@ -73,7 +73,7 @@ function CreateRoutine() {
         <div className='main-page p'>
             <button onClick={handleGoBack} id="backButton"><BackButton/></button>
 
-            <h2 className='main-page-header'>Create new routine!</h2>
+            <h2 className='main-page-header'>Create a new routine!</h2>
 
             <form onSubmit={handleSubmitNewRoutine}>
                 <div className='prompt'>

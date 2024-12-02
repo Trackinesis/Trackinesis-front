@@ -13,7 +13,7 @@
     align-items: stretch;
     justify-content: flex-start;
     min-height: 100vh; /* Set a minimum height for the page */
-    background-color: var(--gray6); /* Use a CSS variable for background color */
+    background-color: var(--gray7); /* Use a CSS variable for background color */
     padding: 20px;
     flex-direction: column;
 }
