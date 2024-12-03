@@ -78,14 +78,14 @@ function UserPage() {
     return (
         <div className='main-page p'>
             <button onClick={handleGoBack} id='backButton'><BackButton/></button>
-            <h2 className='main-page-header'> Edit User Profile </h2>
+            <h2 className='main-page-header' id="top-text"> Edit User Profile </h2>
             <form>
                 <div className="prompt">
                     <label id='top-text' htmlFor="currentPassword"> Current Password:</label>
-                    <input id='formsInput' type="password" placeholder='Type current password'/>
+                    <input id='signupForms' type="password" placeholder='Type current password'/>
 
                     <label id='top-text' htmlFor="password"> Password:</label>
-                    <input id='formsInput' name='password' type="password" onChange={handleInput} placeholder='Type new password'/>
+                    <input id='signupForms' name='password' type="password" onChange={handleInput} placeholder='Type new password'/>
                 </div>
 
                 <button id='defaultButton' type="submit" onClick={handleUpdatePassword}>Save Changes</button>
@@ -100,7 +100,7 @@ function UserPage() {
             </form>
             {showDeleteConfirmation && (
                 <div className='delete-confirmation'>
-                    <p className='confirmation-text'>Are you sure you want to delete your account?</p>
+                    <p className='confirmation-text'>Do you really want to delete your account? 😢</p>
                     <div className='confirmation-buttons'>
                         <button className='cancel-button' onClick={() => setShowDeleteConfirmation(false)}>No</button>
                         <button className='delete-button' onClick={confirmDeleteAccount}>Yes</button>
