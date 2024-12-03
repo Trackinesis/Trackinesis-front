@@ -98,6 +98,16 @@
     color: var(--primary-dark);
 }
 
+#signupForms {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--black);
+    border: 1px solid var(--primary-dark2);
+}
+
 #colouredButton {
     display: inline-block;
     padding: 10px 20px;

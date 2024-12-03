@@ -42,25 +42,25 @@ function SignupStepTwo() {
                 <div className='prompt'>
                     <label id='top-text' htmlFor="age"><strong>Age</strong></label>
                     <input type="number" placeholder='Enter Age' name='age'
-                           onChange={handleInput} id='formsInput'/>
+                           onChange={handleInput} id='signupForms'/>
                     {errors.age && <span className='text-danger'> {errors.age}</span>}
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="weight"><strong>Weight</strong></label>
                     <input type="number" placeholder='Enter Weight (kg)' name='weight'
-                           onChange={handleInput} id='formsInput'/>
+                           onChange={handleInput} id='signupForms'/>
                     {errors.weight && <span className='text-danger'> {errors.weight}</span>}
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="height"><strong>Height</strong></label>
                     <input type="number" placeholder='Enter Height (cm)' name='height'
-                           onChange={handleInput} id='formsInput'/>
+                           onChange={handleInput} id='signupForms'/>
                     {errors.height && <span className='text-danger'> {errors.height}</span>}
                 </div>
 
                 <div className='mb-3'>
                     <label id='top-text' htmlFor="gender"><strong>Gender</strong></label>
-                    <select name="gender" onChange={handleInput} id='formsInput'>
+                    <select name="gender" onChange={handleInput} id='signupForms'>
                         <option disabled selected value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -69,7 +69,7 @@ function SignupStepTwo() {
                     {errors.gender && <span className='text-danger'> {errors.gender}</span>}
                 </div>
                 <p>By clicking here you agree with our terms of service.</p>
-                <button type='submit' onClick={handleSubmit} id='colouredButton'>Join the
+                <button type='submit' onClick={handleSubmit} id='defaultButton'>Join the
                     Club!
                 </button>
             </form>
