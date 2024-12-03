@@ -165,7 +165,7 @@ function RoutinesListed() {
 
     return (
         <div className='main-format-create-plan'>
-            <Link to='/home' id='backButton'><BackButton/></Link>
+            <Link to='/home' id='backButton'><BackButton /></Link>
             <h2 className='main-page-header' id='top-text'>My routines</h2>
 
             <div className="create-button-container">
@@ -185,10 +185,10 @@ function RoutinesListed() {
                     {routine.routineId === routineToDelete && (
                         <div className='delete-confirmation'>
                             <p className='confirmation-text'>¿Are you sure?</p>
-                                <div className='confirmation-buttons'>
-                                    <button className='cancel-button' onClick={cancelDelete}>No</button>
-                                    <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Yes</button>
-                                </div>
+                            <div className='confirmation-buttons'>
+                                <button className='cancel-button' onClick={cancelDelete}>No</button>
+                                <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Yes</button>
+                            </div>
                         </div>
                     )}
 
@@ -200,116 +200,113 @@ function RoutinesListed() {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell>Sets</TableCell>
-                                        <TableCell>Reps</TableCell>
-                                        <TableCell>Weight</TableCell>
-                                        <TableCell>Time</TableCell>
-                                        <TableCell>Actions</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {routineExercises.map((exercise) => (
-                                        <TableRow key={exercise.id}>
-                                            <TableCell>
-                                                {editingExercise && editingExercise.id === exercise.id ? (
-                                                    <TextField
-                                                        name="name"
-                                                        value={editingExercise.name}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                ) : exercise.name}
-                                            </TableCell>
-                                            <TableCell>
-                                                {editingExercise && editingExercise.id === exercise.id ? (
-                                                    <TextField
-                                                        name="sets"
-                                                        type="number"
-                                                        value={editingExercise.sets}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                ) : exercise.sets}
-                                            </TableCell>
-                                            <TableCell>
-                                                {editingExercise && editingExercise.id === exercise.id ? (
-                                                    <TextField
-                                                        name="reps"
-                                                        type="number"
-                                                        value={editingExercise.reps}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                ) : exercise.reps}
-                                            </TableCell>
-                                            <TableCell>
-                                                {editingExercise && editingExercise.id === exercise.id ? (
-                                                    <TextField
-                                                        name="weight"
-                                                        type="number"
-                                                        value={editingExercise.weight}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                ) : exercise.weight}
-                                            </TableCell>
-                                            <TableCell>
-                                                {editingExercise && editingExercise.id === exercise.id ? (
-                                                    <TextField
-                                                        name="duration"
-                                                        value={editingExercise.duration}
-                                                        onChange={handleInputChange}
-                                                    />
-                                                ) : exercise.duration}
-                                            </TableCell>
-                                            <TableCell>
-                                                {editingExercise && editingExercise.id === exercise.id ? (
-                                                    <>
-                                                        <button id="defaultSmallButton" onClick={saveEditedExercise}>
-                                                            <FaCheck/>
-                                                        </button>
-                                                        <button id="defaultSmallButton" onClick={() => setEditingExercise(null)}>
-                                                            Cancel
-                                                        </button>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <button id="defaultSmallButton" onClick={() => startEdit(exercise)}>
-                                                            <FaEdit/>
-                                                        </button>
-                                                        <button id="defaultSmallButton" onClick={() => deleteExercise(exercise.id)}>
-                                                            <FaTrashAlt/>
-                                                        </button>
-                                                    </>
-                                                )}
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Name</TableCell>
+                                                <TableCell>Sets</TableCell>
+                                                <TableCell>Reps</TableCell>
+                                                <TableCell>Weight</TableCell>
+                                                <TableCell>Time</TableCell>
+                                                <TableCell>Actions</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {routineExercises.map((exercise) => (
+                                                <TableRow key={exercise.id}>
+                                                    <TableCell>
+                                                        {editingExercise && editingExercise.id === exercise.id ? (
+                                                            <TextField
+                                                                name="name"
+                                                                value={editingExercise.name}
+                                                                onChange={handleInputChange}
+                                                                multiline
+                                                                rows={2}
+                                                                style={{ width: '200px' }}
+                                                            />
+                                                        ) : exercise.name}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {editingExercise && editingExercise.id === exercise.id ? (
+                                                            <TextField
+                                                                name="sets"
+                                                                type="number"
+                                                                value={editingExercise.sets}
+                                                                onChange={handleInputChange}
+                                                                style={{ width: '100px' }}
+                                                            />
+                                                        ) : exercise.sets}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {editingExercise && editingExercise.id === exercise.id ? (
+                                                            <TextField
+                                                                name="reps"
+                                                                type="number"
+                                                                value={editingExercise.reps}
+                                                                onChange={handleInputChange}
+                                                                style={{ width: '100px' }}
+                                                            />
+                                                        ) : exercise.reps}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {editingExercise && editingExercise.id === exercise.id ? (
+                                                            <TextField
+                                                                name="weight"
+                                                                value={editingExercise.weight}
+                                                                onChange={handleInputChange}
+                                                                style={{ width: '100px' }}
+                                                            />
+                                                        ) : exercise.weight}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {editingExercise && editingExercise.id === exercise.id ? (
+                                                            <TextField
+                                                                name="duration"
+                                                                value={editingExercise.duration}
+                                                                onChange={handleInputChange}
+                                                                style={{ width: '120px' }}
+                                                            />
+                                                        ) : exercise.duration}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {editingExercise && editingExercise.id === exercise.id ? (
+                                                            <div>
+                                                                <button id='defaultSmallButton' onClick={saveEditedExercise}>Save</button>
+                                                                <button id='defaultSmallButton' onClick={() => setEditingExercise(null)}>Cancel</button>
+                                                            </div>
+                                                        ) : (
+                                                            <div>
+                                                                <button id='defaultSmallButton' onClick={() => startEdit(exercise)}><FaEdit /></button>
+                                                                <button id='defaultDeleteSmallButton' onClick={() => deleteExercise(exercise.id)}><FaTrashAlt /></button>
+                                                            </div>
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
                                 </Grid>
                             </Grid>
                         </TableContainer>
                     )}
-
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={selectedRoutines.includes(routine.routineId)}
-                                onChange={() => handleCheckboxChange(routine.routineId)}
-                                color="primary"
-                            />
-                        }
-                        label="Select for export to PDF"
-                    />
-
                 </div>
             ))}
 
-            <div className="export-card">
-                <button id='export-button' onClick={exportToPDF}>Export to PDF</button>
+            <div className="checkbox-container">
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            checked={routines.length === selectedRoutines.length}
+                            onChange={(e) => setSelectedRoutines(e.target.checked ? routines.map(r => r.routineId) : [])}
+                        />
+                    }
+                    label="Seleccionar todas las rutinas"
+                />
+                <div className="export-card">
+                    <button id='export-button' onClick={exportToPDF}>Export to PDF</button>
+                </div>
             </div>
 
-            <FooterNavigation/>
+            <FooterNavigation />
         </div>
     );
 }
