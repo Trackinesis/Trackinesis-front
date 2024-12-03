@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate, useLocation, Link} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './CreateExercise.css';
 import '../../styles.css';
@@ -68,15 +68,21 @@ function CreateExercise() {
         }
     };
 
+    // Reference to the input element
+    const fileInputRef = React.createRef();
+
+    // Trigger file input on custom button click
+    const handleCustomFileButtonClick = () => {
+        fileInputRef.current.click(); // Trigger the file input click event
+    };
+
     return (
         <div className='main-page p'>
             <button onClick={handleGoBack} id='backButton'>
-                <BackButton/>
+                <BackButton />
             </button>
 
-
             <h2 className='main-page-header'>Create a new exercise!</h2>
-
 
             <form onSubmit={handleSubmitNewExercise}>
                 <div className='prompt'>
@@ -101,7 +107,18 @@ function CreateExercise() {
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="image"><strong>Upload Image:</strong></label>
-                    <input id='signupForms' type="file" accept="image/*" name='image' onChange={handleFileChange} />
+                    <button type="button" onClick={handleCustomFileButtonClick} id='defaultButton'>
+                        Choose Image
+                    </button>
+                    <input
+                        ref={fileInputRef}
+                        id='signupForms'
+                        type="file"
+                        accept="image/*"
+                        name='image'
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
                     {imagePreview && <img src={imagePreview} alt="Preview" style={{ marginTop: '10px', maxWidth: '100px' }} />}
                 </div>
                 {errors && <div className="text-danger">{errors}</div>}
