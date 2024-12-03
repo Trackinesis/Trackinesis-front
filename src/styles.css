@@ -420,7 +420,7 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: var(--secondary-main);
-    color: var(--timberwolf);
+    color: var(--white);
     text-align: center;
     text-decoration: none;
 }
@@ -430,4 +430,17 @@
     border: 1px solid var(--gray7);
     margin-bottom: 20px;
     border-radius: 5px;
+}
+
+#export-button {
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 386px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #F40F02;
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
 }

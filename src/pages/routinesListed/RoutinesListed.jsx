@@ -151,11 +151,13 @@ function RoutinesListed() {
     };
 
     return (
-        <div className='main-format-create-plan p'>
+        <div className='main-format-create-plan'>
             <Link to='/home' id='backButton'><BackButton /></Link>
-            <h2 className='main-page-header' id='top-text'>Mis rutinas</h2>
+            <h2 className='main-page-header' id='top-text'>My routines</h2>
 
-            <button id='exportButton' onClick={exportToPDF}>Exportar a PDF</button>
+            <div className="create-button-container">
+                <button id='export-button' onClick={exportToPDF}>Exportar a PDF</button>
+            </div>
 
             <div className="create-button-container">
                 <Link to='/createroutine' id='createRoutineButton' className='create-button'>Crear Nueva Rutina</Link>
