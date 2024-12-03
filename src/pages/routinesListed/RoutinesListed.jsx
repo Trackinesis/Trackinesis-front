@@ -264,19 +264,19 @@ function RoutinesListed() {
                                             <TableCell>
                                                 {editingExercise && editingExercise.id === exercise.id ? (
                                                     <>
-                                                        <button onClick={saveEditedExercise}>
+                                                        <button id="defaultSmallButton" onClick={saveEditedExercise}>
                                                             <FaCheck/>
                                                         </button>
-                                                        <button onClick={() => setEditingExercise(null)}>
-                                                            Cancelar
+                                                        <button id="defaultSmallButton" onClick={() => setEditingExercise(null)}>
+                                                            Cancel
                                                         </button>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <button onClick={() => startEdit(exercise)}>
+                                                        <button id="defaultSmallButton" onClick={() => startEdit(exercise)}>
                                                             <FaEdit/>
                                                         </button>
-                                                        <button onClick={() => deleteExercise(exercise.id)}>
+                                                        <button id="defaultSmallButton" onClick={() => deleteExercise(exercise.id)}>
                                                             <FaTrashAlt/>
                                                         </button>
                                                     </>

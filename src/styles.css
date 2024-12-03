@@ -134,6 +134,20 @@
     text-align: center;
 }
 
+#defaultSmallButton {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-main);
+    color: var(--white);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
 #export-button {
     padding: 10px 20px;
     width: 100%;
@@ -469,10 +483,6 @@
     .MuiTableCell-root {
         padding: 4px 8px; /* Ajusta el espaciado de las celdas */
         font-size: 12px; /* Reduce el tamaño del texto en pantallas pequeñas */
-    }
-
-    .export-card {
-        padding: 10px;
     }
 }
 .textfield-focused {
