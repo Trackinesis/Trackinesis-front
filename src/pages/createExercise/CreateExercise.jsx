@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {useNavigate, useLocation, Link} from 'react-router-dom';
 import axios from 'axios';
 import './CreateExercise.css';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function CreateExercise() {
     const navigate = useNavigate();
@@ -14,9 +15,9 @@ function CreateExercise() {
         name: '',
         type: '',
         description: '',
-        image: null, // The file object for the image
+        image: null,
     });
-    const [imagePreview, setImagePreview] = useState(null); // To display image preview
+    const [imagePreview, setImagePreview] = useState(null);
 
     const handleGoBack = () => {
         navigate(-1);
@@ -25,7 +26,6 @@ function CreateExercise() {
     const handleSubmitNewExercise = async (event) => {
         event.preventDefault();
 
-        // Basic validation
         if (!valuesExercise.name || !valuesExercise.type || !valuesExercise.description) {
             setErrors('Please fill in all fields');
             return;
@@ -40,7 +40,6 @@ function CreateExercise() {
         }
 
         try {
-            // Send formData to create the exercise
             const response = await axios.post('http://localhost:8081/exercise', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data', // Ensure the content type is for file uploads
@@ -70,18 +69,24 @@ function CreateExercise() {
     };
 
     return (
-        <div className='main-page'>
-            <button onClick={handleGoBack} id="backButton"> Back</button>
-            <h2 id='topTitle'>Create new exercise</h2>
+        <div className='main-page p'>
+            <button onClick={handleGoBack} id='backButton'>
+                <BackButton/>
+            </button>
+
+
+            <h2 className='main-page-header'>Create a new exercise!</h2>
+
+
             <form onSubmit={handleSubmitNewExercise}>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="name"><strong>Exercise name:</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter Exercise name:'
+                    <input id='signupForms' type="text" placeholder='Enter Exercise name:'
                            name='name' onChange={handleInput} />
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="type"><strong>Exercise type:</strong></label>
-                    <select name="type" onChange={handleInput} className='form-control rounded-0'>
+                    <select name="type" onChange={handleInput} id='signupForms'>
                         <option disabled selected value="">Select Type</option>
                         <option value="hypertrophy">Hypertrophy</option>
                         <option value="strength">Strength</option>
@@ -91,12 +96,12 @@ function CreateExercise() {
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="description"><strong>Description:</strong></label>
-                    <input id='formsInput' type="text" placeholder='Enter Exercise description:'
+                    <input id='signupForms' type="text" placeholder='Enter Exercise description:'
                            name='description' onChange={handleInput} />
                 </div>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="image"><strong>Upload Image:</strong></label>
-                    <input id='formsInput' type="file" accept="image/*" name='image' onChange={handleFileChange} />
+                    <input id='signupForms' type="file" accept="image/*" name='image' onChange={handleFileChange} />
                     {imagePreview && <img src={imagePreview} alt="Preview" style={{ marginTop: '10px', maxWidth: '100px' }} />}
                 </div>
                 {errors && <div className="text-danger">{errors}</div>}
