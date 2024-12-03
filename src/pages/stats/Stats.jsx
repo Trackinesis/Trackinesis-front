@@ -17,13 +17,23 @@ function Stats() {
         strengthRatio: []
     });
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await axios.get(`http://localhost:8081/userHistory/graph/${userId}`);
                 const userHistory = res.data.userHistory;
 
-                const dates = userHistory.map(record => record.date);
+                const dates = userHistory.map(record => formatDate(record.date) );
                 const maxBench = userHistory.map(record => record.maxBench);
                 const maxSquat = userHistory.map(record => record.maxSquat);
                 const maxDeadLift = userHistory.map(record => record.maxDeadLift);
@@ -55,7 +65,7 @@ function Stats() {
                     { label: 'DeadLift', data: data.maxDeadLift },
                     { label: 'StrengthRatio', data: data.strengthRatio },
                 ]}
-                width={600}
+                width={400}
                 height={400}
             />
         </div>
