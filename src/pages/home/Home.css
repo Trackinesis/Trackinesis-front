@@ -8,14 +8,24 @@
 }
 
 .home-page-main-format {
-    /* General layout and container */
     display: flex;
-    align-items: stretch;
-    justify-content: flex-start;
-    min-height: 100vh; /* Set a minimum height for the page */
-    background-color: var(--white); /* Use a CSS variable for background color */
-    padding: 20px;
     flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: flex-start; /* Alinea todo hacia la parte superior */
+    height: 100vh; /* Alto completo de la pantalla */
+    background-color: var(--white); /* Fondo blanco */
+    padding: 20px;
+}
+.top-content {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px; /* Un margen inferior para separar el texto del botón */
+    flex-grow: 0; /* Asegura que este contenedor no se expanda */
+}
+
+.main-page-header {
+    color: var(--primary-main);
+    margin: 0;
 }
 
 .user-icon {
@@ -38,4 +48,50 @@
 
 .color-icon {
     color: var(--white)
+}
+
+
+.start-exercise-button {
+    display: flex;
+    width: 250px;
+    height: fit-content;
+    background-color: var(--secondary-main);
+    border-radius: 40px;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px;
+}
+.start-exercise-button .icon-Container {
+    width: 45px;
+    height: 45px;
+    background-color: var(--secondary-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid var(--primary-dark2);
+}
+.start-exercise-button .text {
+    width: calc(250px - 45px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.1em;
+    letter-spacing: 1.2px;
+}
+.start-exercise-button .icon-Container svg {
+    transition-duration: 1.5s;
+}
+.start-exercise-button:hover .icon-Container svg {
+    transition-duration: 1.5s;
+    animation: arrow 1s linear infinite;
+}
+
+.running-icon {
+    color: var(--primary-dark2); /* O cualquier color que desees */
 }
