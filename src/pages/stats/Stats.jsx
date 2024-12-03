@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
+import './stats.css'
 
 function Stats() {
     const navigate = useNavigate();
@@ -43,8 +44,8 @@ function Stats() {
 
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id='backButton'><BackButton/></button>
-            <h2 className='main-page-header'>Statistics</h2>
+            <Link to="/historicaltracking" id='backButton'> <BackButton/> </Link>
+            <h1 className='main-page-header' id="top-text">Statistics</h1>
 
             <LineChart
                 xAxis = {[{ scaleType: 'band', data: data.dates }]}

@@ -1,0 +1,14 @@
+/* Evitar scroll en la página */
+body, html {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Permitir scroll solo dentro del gráfico */
+.graph-container {
+    overflow: auto;
+    width: 600px; /* Ajusta según sea necesario */
+    height: 400px; /* Ajusta según sea necesario */
+    margin: auto;
+}
