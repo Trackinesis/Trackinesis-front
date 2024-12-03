@@ -4,7 +4,7 @@
     padding: 10px;
     height: 40px;
     border-radius: 5px;
-    color: var(--white);
+    color: var(--black);
     border: 1px solid var(--primary-dark2);
 }
 
@@ -14,7 +14,7 @@
     padding: 10px;
     height: 40px;
     border-radius: 5px;
-    color: var(--white);
+    color: var(--black);
     border: 1px solid var(--primary-dark2);
 }
 

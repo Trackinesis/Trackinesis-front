@@ -45,35 +45,35 @@ function Signup() {
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="name"><strong>First Name</strong></label>
-                        <input id='formsInput' type="text" placeholder='Enter first name' name='name' onChange={handleInput} />
+                        <input id='signupForms' type="text" placeholder='Enter first name' name='name' onChange={handleInput} />
                         {errors.name && <span className='text-danger'> {errors.name}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="surname"><strong>Last Name</strong></label>
-                        <input id='formsInput' type="text" placeholder='Enter last name' name='surname' onChange={handleInput} />
+                        <input id='signupForms' type="text" placeholder='Enter last name' name='surname' onChange={handleInput} />
                         {errors.surname && <span className='text-danger'> {errors.surname}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="email"><strong>Email</strong></label>
-                        <input id='formsInput' type="email" placeholder='Enter email' name='email' onChange={handleInput} />
+                        <input id='signupForms' type="email" placeholder='Enter email' name='email' onChange={handleInput} />
                         {errors.email && <span className='text-danger'> {errors.email}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="password"><strong>Password</strong></label>
-                        <input id='formsInput' type="password" placeholder='Enter password' name='password' onChange={handleInput} />
+                        <input id='signupForms' type="password" placeholder='Enter password' name='password' onChange={handleInput} />
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="password"><strong>Repeat Password</strong></label>
-                        <input id='formsInput' type="password" placeholder='Re enter password' name='password' onChange={handleInput}/>
+                        <input id='signupForms' type="password" placeholder='Repeat password' name='password' onChange={handleInput}/>
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
 
-                    <button id='colouredButton' type='submit' onClick={handleSubmit}>Next</button>
+                    <button id='defaultButton' type='submit' onClick={handleSubmit}>Next step!</button>
                 </form>
             </div>
     )
