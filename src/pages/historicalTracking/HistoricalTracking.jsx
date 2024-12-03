@@ -13,12 +13,11 @@ function HistoricalTracking() {
 
 
     return (
-        <div className='home-page-main-format p'>
+        <div className='historical-tracking-bg'>
             <button onClick={handleGoBack} id="backButton"><BackButton/></button>
-            <h1 className='main-page-header'>Historical Tracking</h1>
+            <h1 className='historical-tracking-header'>Historical Tracking</h1>
 
             <Link to='/statistics' id='defaultButton'>See my progress</Link>
-
             <Link to='/mypersonalrecords' id='defaultButton'>My personal records</Link>
         </div>
     );
