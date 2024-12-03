@@ -115,7 +115,7 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: var(--primary-dark);
-    color: var(--timberwolf);
+    color: var(--white);
     width: 100%;
     margin-bottom: 10px;
 }

@@ -7,22 +7,3 @@
 .prompt label {
     margin-bottom: 0.5rem;
 }
-
-.form-input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid var(--white);
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#formsInput {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid var(--white);
-    border-radius: 4px;
-    background-color: var(--white);
-    color: var(--black);
-}

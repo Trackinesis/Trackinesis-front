@@ -78,13 +78,13 @@ function CreateRoutine() {
             <form onSubmit={handleSubmitNewRoutine}>
                 <div className='prompt'>
                     <label htmlFor="routineName" id='top-text'><strong>Routine name:</strong></label>
-                    <input className="form-input" onChange={handleTypeInput} type="text" placeholder='Enter routine name' name='name' />
+                    <input id='signupForms' onChange={handleTypeInput} type="text" placeholder='Enter routine name' name='name' />
                     {errors.name && <span className='text-danger'>{errors.name}</span>}
                 </div>
 
                 <div className='prompt'>
                     <label htmlFor="exerciseType" id='top-text'><strong>Routine type:</strong></label>
-                    <select name="type" onChange={handleTypeInput} className='form-control'>
+                    <select name="type" onChange={handleTypeInput} id='signupForms'>
                         <option disabled selected value="">Select Type</option>
                         <option value="hypertrophy">Hypertrophy</option>
                         <option value="strength">Strength</option>
@@ -96,7 +96,7 @@ function CreateRoutine() {
 
                 <div className="prompt">
                     <label htmlFor="day" id="top-text"><strong>Select day:</strong></label>
-                    <select name="day" onChange={handleDayChange} className="form-control">
+                    <select name="day" onChange={handleDayChange} id='signupForms'>
                         <option disabled selected value="">Select Day</option>
                         {daysOfWeek.map((day) => (
                             <option key={day} value={day}>{day}</option>
@@ -107,14 +107,14 @@ function CreateRoutine() {
                 <div className='prompt'>
                     <label htmlFor="routineDescription" id='top-text'><strong>Routine description
                         (optional):</strong></label>
-                    <input className="form-input" onChange={handleTypeInput} type="text"
+                    <input id='signupForms' onChange={handleTypeInput} type="text"
                            placeholder='Enter routine description' name='description'/>
                     {errors.description && <span className='text-danger'>{errors.description}</span>}
                 </div>
 
                 <div className='prompt'>
                     <label htmlFor="routineState" id='top-text'><strong>Visualization</strong></label>
-                    <select name='state' onChange={handleTypeInput} className= 'form-control' id='formsInput'>
+                    <select name='state' onChange={handleTypeInput} id='signupForms'>
                         <option disabled selected value="">Select visualization</option>
                         <option value="public">Public</option>
                         <option value="friends">Friends</option>
