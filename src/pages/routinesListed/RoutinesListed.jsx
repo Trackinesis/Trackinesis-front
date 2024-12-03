@@ -125,7 +125,7 @@ function RoutinesListed() {
 
         for (const routine of selectedRoutinesData) {
             doc.setFontSize(14);
-            doc.text(`Rutina: ${routine.name} (Día: ${routine.day}, Tipo: ${routine.type})`, 14, doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 30);
+            doc.text(`Routine: ${routine.name} (Day: ${routine.day}, Type: ${routine.type})`, 14, doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 30);
 
             try {
                 const response = await axios.get(`http://localhost:8081/routineexercise/${routine.routineId}`);
@@ -147,29 +147,25 @@ function RoutinesListed() {
             }
         }
 
-        doc.save('rutinas_con_ejercicios.pdf');
+        doc.save('Routines_with_exercises.pdf');
     };
 
     return (
         <div className='main-format-create-plan'>
-            <Link to='/home' id='backButton'><BackButton /></Link>
+            <Link to='/home' id='backButton'><BackButton/></Link>
             <h2 className='main-page-header' id='top-text'>My routines</h2>
 
             <div className="create-button-container">
-                <button id='export-button' onClick={exportToPDF}>Exportar a PDF</button>
-            </div>
-
-            <div className="create-button-container">
-                <Link to='/createroutine' id='createRoutineButton' className='create-button'>Crear Nueva Rutina</Link>
+                <Link to='/createroutine' id='createRoutineButton' className='create-button'>Create new routine</Link>
             </div>
 
             {routines.map((routine) => (
                 <div className='routine-card' key={routine.routineId}>
-                    <h3 className='routine-name'>Nombre: {routine.name}</h3>
-                    <p className='routine-day'>Día: {routine.day}</p>
-                    <p className='routine-type'>Tipo: {routine.type}</p>
+                    <h3 className='routine-name'>Routine name: {routine.name}</h3>
+                    <p className='routine-day'>Day: {routine.day}</p>
+                    <p className='routine-type'>Type: {routine.type}</p>
 
-                    <Link to={`/addexercise/${routine.routineId}`} className='create-button'>Agregar ejercicios</Link>
+                    <Link to={`/addexercise/${routine.routineId}`} id="defaultButton">Add exercises</Link>
 
                     <FormControlLabel
                         control={
@@ -179,20 +175,23 @@ function RoutinesListed() {
                                 color="primary"
                             />
                         }
-                        label="Seleccionar para exportar"
+                        label="Select for export to PDF"
                     />
 
-                    <button className='defaultButton' onClick={() => confirmDelete(routine.routineId)}>Eliminar rutina</button>
+                    <button id='colouredButton' onClick={() => confirmDelete(routine.routineId)}>Delete routine</button>
 
                     {routine.routineId === routineToDelete && (
                         <div className='delete-confirmation'>
-                            <p>¿Estás seguro?</p>
-                            <button className='cancel-button' onClick={cancelDelete}>No</button>
-                            <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Sí</button>
+                            <p className='confirmation-text'>¿Are you sure?</p>
+                                <div className='confirmation-buttons'>
+                                    <button className='cancel-button' onClick={cancelDelete}>No</button>
+                                    <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Yes</button>
+                                </div>
                         </div>
                     )}
 
-                    <button className='edit-button' onClick={() => handleEditRoutine(routine.routineId)}>Modificar rutina</button>
+                    <button id='colouredButton' onClick={() => handleEditRoutine(routine.routineId)}>Edit routine
+                    </button>
 
                     {showEditDropdown && routine.routineId === selectedRoutine && (
                         <TableContainer component={Paper}>
@@ -262,7 +261,7 @@ function RoutinesListed() {
                                                 {editingExercise && editingExercise.id === exercise.id ? (
                                                     <>
                                                         <button onClick={saveEditedExercise}>
-                                                            <FaCheck />
+                                                            <FaCheck/>
                                                         </button>
                                                         <button onClick={() => setEditingExercise(null)}>
                                                             Cancelar
@@ -271,10 +270,10 @@ function RoutinesListed() {
                                                 ) : (
                                                     <>
                                                         <button onClick={() => startEdit(exercise)}>
-                                                            <FaEdit />
+                                                            <FaEdit/>
                                                         </button>
                                                         <button onClick={() => deleteExercise(exercise.id)}>
-                                                            <FaTrashAlt />
+                                                            <FaTrashAlt/>
                                                         </button>
                                                     </>
                                                 )}
@@ -288,7 +287,11 @@ function RoutinesListed() {
                 </div>
             ))}
 
-            <FooterNavigation />
+            <div className="export-card">
+                <button id='export-button' onClick={exportToPDF}>Export to PDF</button>
+            </div>
+
+            <FooterNavigation/>
         </div>
     );
 }

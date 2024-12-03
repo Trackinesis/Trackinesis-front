@@ -127,11 +127,24 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: var(--primary-dark);
-    color: var(--timberwolf);
+    color: var(--white);
     width: 100%;
     margin-bottom: 10px;
     text-decoration: none;
     text-align: center;
+}
+
+#export-button {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 386px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #F40F02;
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
 }
 
 #backButton { /* creo que se puede deletar*/
@@ -276,7 +289,7 @@
     transition: 0.4s;
     transform: translateX(-56px);
 }
-
+/*
 .delete-button {
     width: 50px;
     height: 50px;
@@ -291,7 +304,7 @@
     transition-duration: .3s;
     overflow: hidden;
     position: relative;
-}
+} */
 
 .svgIcon {
     width: 12px;
@@ -307,8 +320,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--gray7);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--primary-main);
     padding: 20px;
     border-radius: 10px;
     width: 300px;
@@ -427,20 +440,14 @@
 
 .routine-card {
     padding: 15px;
-    border: 1px solid var(--gray7);
-    margin-bottom: 20px;
+    border: 1px solid var(--white);
+    margin-bottom: 10px;
     border-radius: 5px;
 }
 
-#export-button {
-    padding: 10px 20px;
-    width: 90%;
-    max-width: 386px;
-    border: 1px solid var(--primary-light);
+.export-card {
+    padding: 15px;
+    border: 1px solid var(--white);
+    margin-bottom: 20px;
     border-radius: 5px;
-    cursor: pointer;
-    background-color: #F40F02;
-    color: var(--white);
-    text-align: center;
-    text-decoration: none;
 }
