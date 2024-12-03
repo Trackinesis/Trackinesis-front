@@ -354,7 +354,7 @@
 }
 
 .cancel-button {
-    background-color: var(--primary-light2);
+    background-color: var(--secondary-main);
     color: var(--white);
 }
 

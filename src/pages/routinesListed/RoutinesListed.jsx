@@ -167,17 +167,6 @@ function RoutinesListed() {
 
                     <Link to={`/addexercise/${routine.routineId}`} id="defaultButton">Add exercises</Link>
 
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={selectedRoutines.includes(routine.routineId)}
-                                onChange={() => handleCheckboxChange(routine.routineId)}
-                                color="primary"
-                            />
-                        }
-                        label="Select for export to PDF"
-                    />
-
                     <button id='colouredButton' onClick={() => confirmDelete(routine.routineId)}>Delete routine</button>
 
                     {routine.routineId === routineToDelete && (
@@ -284,6 +273,18 @@ function RoutinesListed() {
                             </Table>
                         </TableContainer>
                     )}
+
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={selectedRoutines.includes(routine.routineId)}
+                                onChange={() => handleCheckboxChange(routine.routineId)}
+                                color="primary"
+                            />
+                        }
+                        label="Select for export to PDF"
+                    />
+
                 </div>
             ))}
 
