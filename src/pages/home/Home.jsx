@@ -16,10 +16,8 @@ function Home() {
     const navigate = useNavigate();
     const [visibleCards, setVisibleCards] = useState(3);
 
-    // Lista de imágenes
     const imagesUrls = [card1, card2, card3, card4, card6, card7];
 
-    // Función para mezclar el arreglo de imágenes aleatoriamente
     const shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -27,7 +25,6 @@ function Home() {
         }
     };
 
-    // UseEffect para el fetch del nombre
     useEffect(() => {
         const fetchName = async () => {
             try {
@@ -45,7 +42,6 @@ function Home() {
         fetchName();
     }, []);
 
-    // Función para obtener el nombre del día
     function getDayName(date = new Date()) {
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const day = date.getDay();
@@ -55,8 +51,7 @@ function Home() {
     const today = new Date();
     const dayName = getDayName(today);
 
-    // Mezclamos las imágenes y mostramos las primeras "visibleCards" aleatorias
-    const randomCards = [...imagesUrls]; // Copiamos la lista para no modificar el original
+    const randomCards = [...imagesUrls];
     shuffleArray(randomCards);
 
     return (
