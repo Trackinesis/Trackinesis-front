@@ -1,6 +1,19 @@
-#formsInput {
-    background-color: var(--gray7);
+#emailInput {
+    display: block;
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--white);
+    border: 1px solid var(--primary-dark2);
+}
+
+#passwordInput {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--white);
+    border: 1px solid var(--primary-dark2);
 }

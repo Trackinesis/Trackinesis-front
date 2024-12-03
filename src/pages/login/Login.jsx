@@ -78,9 +78,9 @@ function Login() {
             <strong>Email</strong>
           </label>
           <input
-            id='formsInput'
+            id='emailInput'
             type="email"
-            placeholder='Enter your email...'
+            placeholder='Enter your email'
             name='email'
             onChange={handleInput}
           />
@@ -92,7 +92,7 @@ function Login() {
             <strong>Password</strong>
           </label>
           <input
-            id='formsInput'
+            id='passwordInput'
             type="password"
             placeholder='Enter password'
             name='password'
@@ -101,7 +101,7 @@ function Login() {
           {errors.password && <span className='text-danger'> {errors.password}</span>}
         </div>
 
-        <button type='submit' onClick={handleSubmit} id='colouredButton' className='p'>
+        <button type='submit' onClick={handleSubmit} id='defaultButton' className='p'>
           Log in
         </button>
 
