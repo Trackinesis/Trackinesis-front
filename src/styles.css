@@ -451,3 +451,32 @@
     margin-bottom: 20px;
     border-radius: 5px;
 }
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* Mejora el desplazamiento en dispositivos iOS */
+}
+
+@media (max-width: 600px) {
+    .routine-card {
+        padding: 10px; /* Espaciado adicional en pantallas pequeñas */
+    }
+    .table-container {
+        width: 100%;
+        margin-bottom: 10px; /* Un poco de margen para separación */
+    }
+
+    .MuiTableCell-root {
+        padding: 4px 8px; /* Ajusta el espaciado de las celdas */
+        font-size: 12px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+
+    .export-card {
+        padding: 10px;
+    }
+}
+.textfield-focused {
+    transform: scale(1.2); /* Agranda el campo */
+    transition: transform 0.2s ease; /* Suaviza la transición */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}

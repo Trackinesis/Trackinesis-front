@@ -2,7 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControlLabel } from '@mui/material';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    TextField,
+    Checkbox,
+    FormControlLabel,
+    Grid
+} from '@mui/material';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
 import BackButton from "../../components/backButton/BackButton";
@@ -150,6 +162,7 @@ function RoutinesListed() {
         doc.save('Routines_with_exercises.pdf');
     };
 
+
     return (
         <div className='main-format-create-plan'>
             <Link to='/home' id='backButton'><BackButton/></Link>
@@ -183,16 +196,18 @@ function RoutinesListed() {
                     </button>
 
                     {showEditDropdown && routine.routineId === selectedRoutine && (
-                        <TableContainer component={Paper}>
-                            <Table>
+                        <TableContainer component={Paper} className="table-container">
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Nombre</TableCell>
+                                        <TableCell>Name</TableCell>
                                         <TableCell>Sets</TableCell>
                                         <TableCell>Reps</TableCell>
-                                        <TableCell>Peso</TableCell>
-                                        <TableCell>Duración</TableCell>
-                                        <TableCell>Acciones</TableCell>
+                                        <TableCell>Weight</TableCell>
+                                        <TableCell>Time</TableCell>
+                                        <TableCell>Actions</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -271,6 +286,8 @@ function RoutinesListed() {
                                     ))}
                                 </TableBody>
                             </Table>
+                                </Grid>
+                            </Grid>
                         </TableContainer>
                     )}
 
