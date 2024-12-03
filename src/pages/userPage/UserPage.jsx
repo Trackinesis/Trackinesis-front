@@ -77,14 +77,14 @@ function UserPage() {
 
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id='backButton'><BackButton/></button>
-            <h2 className='main-page-header' id="top-text"> Edit User Profile </h2>
+            <Link to="/home" id='backButton'> <BackButton/> </Link>
+            <h2 className='main-page-header' id="top-text">Edit User Profile </h2>
             <form>
                 <div className="prompt">
-                    <label id='top-text' htmlFor="currentPassword"> Current Password:</label>
+                    <label id='top-text' htmlFor="currentPassword">Current Password:</label>
                     <input id='signupForms' type="password" placeholder='Type current password'/>
 
-                    <label id='top-text' htmlFor="password"> Password:</label>
+                    <label id='top-text' htmlFor="password">New Password:</label>
                     <input id='signupForms' name='password' type="password" onChange={handleInput} placeholder='Type new password'/>
                 </div>
 

@@ -5,6 +5,7 @@ import { FaPause, FaPlay, FaTrash } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function TrainingGoal() {
   const navigate = useNavigate();
@@ -214,6 +215,8 @@ function TrainingGoal() {
 
                 <button id='defaultButton' type="submit">Create Goal</button>
             </form>
+
+            <FooterNavigation/>
         </div>
     );
 }

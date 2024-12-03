@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css'
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function HistoricalTracking() {
     const navigate = useNavigate();
@@ -19,6 +20,8 @@ function HistoricalTracking() {
 
             <Link to='/statistics' id='defaultButton'>See my progress</Link>
             <Link to='/mypersonalrecords' id='defaultButton'>My personal records</Link>
+
+            <FooterNavigation/>
         </div>
     );
 }

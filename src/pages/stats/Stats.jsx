@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
 import './stats.css'
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function Stats() {
     const navigate = useNavigate();
@@ -48,14 +49,10 @@ function Stats() {
         fetchData();
     }, [userId]);
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     return (
         <div className='main-page p'>
             <Link to="/historicaltracking" id='backButton'> <BackButton/> </Link>
-            <h1 className='main-page-header' id="top-text">Statistics</h1>
+            <h1 className='main-page-header'>Statistics</h1>
 
             <LineChart
                 xAxis = {[{ scaleType: 'band', data: data.dates }]}
@@ -68,6 +65,8 @@ function Stats() {
                 width={400}
                 height={400}
             />
+
+            <FooterNavigation/>
         </div>
     )
 }

@@ -12,3 +12,8 @@ body, html {
     height: 400px; /* Ajusta según sea necesario */
     margin: auto;
 }
+.stats-header {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-main);
+}
