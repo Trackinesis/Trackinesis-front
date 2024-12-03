@@ -14,7 +14,7 @@ function HistoricalTracking() {
 
     return (
         <div className='historical-tracking-bg'>
-            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <Link to="/userpage" id='backButton'> <BackButton/> </Link>
             <h1 className='historical-tracking-header'>Historical Tracking</h1>
 
             <Link to='/statistics' id='defaultButton'>See my progress</Link>

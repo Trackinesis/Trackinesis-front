@@ -1,0 +1,5 @@
+.prompt label {
+    color: var(--primary-dark);
+    border-radius: 4px;
+    text-align: center;
+}

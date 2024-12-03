@@ -181,8 +181,8 @@ function TrainingGoal() {
                 <div className='delete-confirmation'>
                     <p className='confirmation-text'>¿Are you sure?</p>
                     <div className='confirmation-buttons'>
-                        <button className='delete-button' onClick={cancelDelete}>No</button>
-                        <button className='cancel-button' onClick={() => deleteGoal(goalToDelete)}>Yes</button>
+                        <button className='cancel-button' onClick={cancelDelete}>No</button>
+                        <button className='delete-button' onClick={() => deleteGoal(goalToDelete)}>Yes</button>
                     </div>
                 </div>
             )}
