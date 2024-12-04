@@ -13,11 +13,32 @@ function TrainingSession() {
     const [routineExercises, setRoutineExercises] = useState([]);
     const [exerciseStatus, setExerciseStatus] = useState({});
     const [timers, setTimers] = useState({}); // Para almacenar el tiempo de cada ejercicio
+    const [selectedImage, setSelectedImage] = useState(null); // Para la imagen del pop-up
+    const [exerciseOptions, setExerciseOptions] = useState([]);
+
 
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date().getDay();
     const todayName = daysOfWeek[today];
     const userId = localStorage.getItem('userId');
+
+    const fetchExerciseImage = async (exerciseId) => {
+        try {
+            const response = await axios.get(`http://localhost:8081/exercise/${exerciseId}`);
+
+            if (response.data && response.data.image) {
+                // Actualiza setSelectedImage con la imagen en formato Base64
+                setSelectedImage(`data:image/png;base64,${response.data.image}`);
+            } else {
+                alert("No image found for this exercise.");
+            }
+        } catch (error) {
+            console.error('Error fetching exercise image:', error);
+        }
+    };
+
+
+    const closePopup = () => setSelectedImage(null);
 
     const getCurrentDate = () => {
         const today = new Date();
@@ -32,7 +53,7 @@ function TrainingSession() {
             if (userId) {
                 try {
                     const response = await axios.get(`http://localhost:8081/plan/${userId}`, {
-                        params: { userId }
+                        params: {userId}
                     });
                     const plans = response.data;
                     const currentDate = getCurrentDate();
@@ -62,11 +83,11 @@ function TrainingSession() {
             const exercises = response.data;
 
             if (Array.isArray(exercises)) {
-                const exercisesWithId = exercises.map((exercise, index) => ({ id: index + 1, ...exercise }));
+                const exercisesWithId = exercises.map((exercise, index) => ({id: index + 1, ...exercise}));
                 setRoutineExercises(exercisesWithId);
 
                 const initialExerciseStatus = exercises.reduce((acc, exercise, index) => {
-                    acc[index + 1] = { setsCompleted: 0, counter: 0 }; // Añadimos counter para cada ejercicio
+                    acc[index + 1] = {setsCompleted: 0, counter: 0}; // Añadimos counter para cada ejercicio
                     return acc;
                 }, {});
                 setExerciseStatus(initialExerciseStatus);
@@ -87,7 +108,7 @@ function TrainingSession() {
             if (selectedPlan !== null && selectedDay !== null) {
                 try {
                     const response = await axios.get(`http://localhost:8081/routine/${selectedDay}`, {
-                        params: { planId: selectedPlan }
+                        params: {planId: selectedPlan}
                     });
                     const routineId = response.data.routineId;
 
@@ -124,12 +145,12 @@ function TrainingSession() {
 
     const incrementSetCompletion = (exerciseId) => {
         setExerciseStatus(prevState => {
-            const updatedState = { ...prevState };
+            const updatedState = {...prevState};
             const currentSetsCompleted = updatedState[exerciseId]?.setsCompleted || 0;
             const totalSets = routineExercises.find(exercise => exercise.id === exerciseId)?.sets || 0;
 
             if (currentSetsCompleted < totalSets) {
-                updatedState[exerciseId] = { setsCompleted: currentSetsCompleted + 1 };
+                updatedState[exerciseId] = {setsCompleted: currentSetsCompleted + 1};
             }
 
             return updatedState;
@@ -138,11 +159,11 @@ function TrainingSession() {
 
     const decrementSetCompletion = (exerciseId) => {
         setExerciseStatus(prevState => {
-            const updatedState = { ...prevState };
+            const updatedState = {...prevState};
             const currentSetsCompleted = updatedState[exerciseId]?.setsCompleted || 0;
 
             if (currentSetsCompleted > 0) {
-                updatedState[exerciseId] = { setsCompleted: currentSetsCompleted - 1 };
+                updatedState[exerciseId] = {setsCompleted: currentSetsCompleted - 1};
             }
 
             return updatedState;
@@ -151,14 +172,14 @@ function TrainingSession() {
 
     const startDurationCounter = (exerciseId, duration) => {
         setTimers(prevTimers => {
-            const updatedTimers = { ...prevTimers };
+            const updatedTimers = {...prevTimers};
             if (!updatedTimers[exerciseId]) {
-                updatedTimers[exerciseId] = { counter: 0 };
+                updatedTimers[exerciseId] = {counter: 0};
             }
 
             const interval = setInterval(() => {
                 setExerciseStatus(prevState => {
-                    const updatedState = { ...prevState };
+                    const updatedState = {...prevState};
                     if (updatedTimers[exerciseId].counter < duration) {
                         updatedTimers[exerciseId].counter += 1;
                         updatedState[exerciseId].counter = updatedTimers[exerciseId].counter;
@@ -250,7 +271,14 @@ function TrainingSession() {
                                 <tbody>
                                 {paginatedExercises.map(exercise => (
                                     <tr key={exercise.id}>
-                                        <td>{exercise.image}</td>
+                                        <td>
+                                            <button
+                                                id="defaultSmallButton"
+                                                onClick={() => fetchExerciseImage(exercise.id)}
+                                            >
+                                                i
+                                            </button>
+                                        </td>
                                         <td>{exercise.name}</td>
                                         <td>{exercise.sets}</td>
                                         <td>{exercise.reps}</td>
@@ -276,7 +304,7 @@ function TrainingSession() {
 
                 <div className="pagination">
                     <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
-                        Prev
+                    Prev
                     </button>
                     <span>{currentPage + 1}</span>
                     <button
@@ -286,9 +314,17 @@ function TrainingSession() {
                         Next
                     </button>
                 </div>
+                {selectedImage && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <span className="close-button" onClick={closePopup}>&times;</span>
+                            <img src={selectedImage} alt="Exercise"/>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
-            );
+    );
 }
 
 export default TrainingSession;
