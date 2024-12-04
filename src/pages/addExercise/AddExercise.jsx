@@ -74,7 +74,7 @@ function AddExercise() {
     return (
         <div className='main-page p'>
             <button onClick={handleGoBack} id="backButton"><BackButton /></button>
-            <h2 className='main-page-header h2'>Add exercise</h2>
+            <h2 className='main-page-header h2'>Add exercises</h2>
 
             <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
