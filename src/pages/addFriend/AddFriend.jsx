@@ -15,16 +15,23 @@ function AddFriend() {
     const currentUserId = localStorage.getItem("userId");
 
     useEffect(() => {
+        console.log('currentUserId from localStorage:', currentUserId);
         axios.get('http://localhost:8081/login')
             .then(res => {
-                const users = res.data.map(user => ({
-                    userId: user.userId,
-                    name: user.name
-                }));
+                console.log('Data fetched from backend:', res.data);
+                const users = res.data
+                    .filter(user => user.userId.toString() !== currentUserId.toString())
+                    .map(user => ({
+                        userId: user.userId,
+                        name: user.name
+                    }));
+                console.log('Filtered users:', users);
                 setAllUsersList(users);
             })
             .catch(err => console.error('Error fetching users:', err));
-    }, []);
+    }, [currentUserId]);
+
+
 
     const handleInput = (event) => {
         const selectedIndex = event.target.selectedIndex;
