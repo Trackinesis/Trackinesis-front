@@ -23,7 +23,7 @@ function Leaderboard() {
     },
     {
       name: 'Strenght ratio',
-      selector: row => row.strenghtRatio,
+      selector: row => row.strengthRatio,
       sortable: true,
     },
   ];
@@ -46,7 +46,7 @@ function Leaderboard() {
           };
         });
 
-        combinedData.sort((a, b) => b.strenghtRatio - a.strenghtRatio);
+        combinedData.sort((a, b) => b.strengthRatio - a.strengthRatio);
 
         let rank = 1;
         combinedData.forEach((user) => {
