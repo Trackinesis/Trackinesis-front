@@ -65,27 +65,25 @@ function AddFriend() {
             });
     };
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     return (
-        <div className='home-page-main-format p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton /></button>
-            <h1 className='main-page-header'>Add Friend</h1>
+        <div className='main-format-create-plan p'>
+            <Link to='/social' id='backButton'><BackButton /></Link>
+            <h1 className='main-page-header' id='top-text'>Add Friend</h1>
 
             <form onSubmit={handleSubmitAddFriend}>
-                <label id='top-text' htmlFor="friend"><strong>Search friend:</strong></label>
-                <select name="friend" onChange={handleInput} id='formsInput' defaultValue="">
-                    <option disabled value="">Introduce name</option>
-                    {allUsersList.map((friend) => (
-                        <option key={friend.userId} value={friend.userId}>{friend.name}</option>
-                    ))}
-                </select>
-
-                <div className='prompt'>
-                    <button type="submit" id='colouredButton'>Add Friend</button>
+                <div className='mb-3'>
+                    <label id='top-text' htmlFor="friend"><strong>Search friend:</strong></label>
+                    <select name="friend" onChange={handleInput} id='formsInput' defaultValue="">
+                        <option disabled value="">Introduce name</option>
+                        {allUsersList.map((friend) => (
+                            <option key={friend.userId} value={friend.userId}>{friend.name}</option>
+                        ))}
+                    </select>
                 </div>
+
+                    <div className='prompt'>
+                        <button type="submit" id='defaultButton'>Add Friend</button>
+                    </div>
             </form>
             <FooterNavigation/>
         </div>
