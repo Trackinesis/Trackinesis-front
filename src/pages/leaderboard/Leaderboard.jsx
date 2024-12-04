@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import BackButton from "../../components/backButton/BackButton";
@@ -7,7 +7,6 @@ import FooterNavigation from "../../components/footerNavigation/FooterNavigation
 
 function Leaderboard() {
 
-  const navigate = useNavigate();
   const [friendOptions, setFriendOptions] = useState([]);
   
 
@@ -63,14 +62,10 @@ function Leaderboard() {
     fetchData();
   }, []);
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   return (
-    <div className='main-page p'>
-      <button onClick={handleGoBack} id="backButton"><BackButton/></button>
-      <h2 className='main-page-header'>Leaderboard</h2>
+    <div className='main-format-create-plan p'>
+      <Link to='/social' id='backButton'><BackButton /></Link>
+      <h2 className='main-page-header' id='top-text'>Leaderboard 🏅</h2>
 
       <DataTable
         columns={columns}
