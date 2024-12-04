@@ -24,6 +24,7 @@ function ShareRoutine() {
     const handleSearch = async (event) => {
         event.preventDefault();
         setErrorMessage(null);
+        setRoutines([]); // Clear previous search results
 
         if (!searchTerm.trim()) {
             setErrorMessage('Please enter a search value');
@@ -31,36 +32,40 @@ function ShareRoutine() {
         }
 
         console.log(`Searching for routines by ${searchType}: ${searchTerm}`);
-
+        let foundValidRoutine = false; // Flag to track if a valid routine is found
         try {
             let res;
             if (searchType === 'id') {
                 res = await axios.get(`http://localhost:8081/routine/find/${searchTerm}`);
                 const routineData = res.data;
-                handleRoutineVisibility(routineData);
+                foundValidRoutine = handleRoutineVisibility(routineData);
             } else if (searchType === 'name') {
                 res = await axios.get(`http://localhost:8081/routine/findByName/${searchTerm}`);
-                res.data.forEach(handleRoutineVisibility);
+                res.data.forEach(routineData => {
+                    foundValidRoutine = handleRoutineVisibility(routineData) || foundValidRoutine;
+                });
             } else if (searchType === 'creatorId') {
                 res = await axios.get(`http://localhost:8081/routine/findByCreator/${searchTerm}`);
-                res.data.forEach(handleRoutineVisibility);
+                res.data.forEach(routineData => {
+                    foundValidRoutine = handleRoutineVisibility(routineData) || foundValidRoutine;
+                });
             }
 
-            if (!res || res.data.length === 0) {
-                setErrorMessage('No routines found');
+            if (!foundValidRoutine) {
+                setErrorMessage('No visible routines found'); // Show error if no routine is valid
             }
         } catch (err) {
             console.error(err);
-            setErrorMessage('No routines found');
+            setErrorMessage('Error retrieving routines');
         }
     };
 
     const handleRoutineVisibility = async (routineData) => {
         if (routineData.state === 'private') {
-            setErrorMessage('This routine is private');
+            return false;
         } else if (routineData.state === 'public') {
             setRoutines(prevRoutines => [...prevRoutines, routineData]);
-            setErrorMessage(null);
+            return true;
         } else if (routineData.state === 'friends') {
             try {
                 const friendsRes = await axios.get(`http://localhost:8081/friend/${userId}`);
@@ -69,15 +74,17 @@ function ShareRoutine() {
 
                 if (isFriend) {
                     setRoutines(prevRoutines => [...prevRoutines, routineData]);
-                    setErrorMessage(null);
+                    return true; // Valid routine found
                 } else {
-                    setErrorMessage('This routine is only visible to friends');
+                    return false; // Routine not visible to the user
                 }
             } catch (err) {
                 console.error(err);
                 setErrorMessage('Error retrieving friends');
+                return false;
             }
         }
+        return false;
     };
 
     const handleSearch2 = (event, routine) => {
