@@ -26,9 +26,9 @@ function PersonalCalendar() {
                     start: plan.startDate,
                     end: plan.endDate,
                     description: plan.description,
-                    backgroundColor: plan.color || '#28356E', // Default background color
-                    borderColor: '#000', // Border color
-                    textColor: '#fff', // Text color
+                    backgroundColor: plan.color || '#28356E',
+                    borderColor: '#000',
+                    textColor: '#fff',
                 }));
                 setPlans(plansData);
             })
@@ -46,10 +46,9 @@ function PersonalCalendar() {
     const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
     return (
-        <div className='home-page-main-format p'>
+        <div className='main-page p'>
             <button onClick={handleGoBack} id="backButton"><BackButton /></button>
-            <h2 className='main-page-header h2'>Calendar</h2>
-            <div className="calendar-container">
+            <h2 className='main-page-header' id="top-text">Calendar</h2>
                 <FullCalendar
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
@@ -70,12 +69,11 @@ function PersonalCalendar() {
                         )
                     }}
                     dayDidMount={(info) => {
-                        if (info.date.getDay() === 0) { // If it's Sunday
-                            info.el.style.backgroundColor = '#FFEB3B'; // Change background to yellow
+                        if (info.date.getDay() === 0) {
+                            info.el.style.backgroundColor = '#6D7C99';
                         }
                     }}
                 />
-            </div>
             <FooterNavigation />
         </div>
     );
