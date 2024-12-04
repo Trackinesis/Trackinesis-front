@@ -176,6 +176,7 @@ function RoutinesListed() {
             {routines.map((routine) => (
                 <div className='routine-card' key={routine.routineId}>
                     <h3 className='routine-name'>Routine name: {routine.name}</h3>
+                    <p className='routine-id'>Id: {routine.routineId}</p>
                     <p className='routine-day'>Day: {routine.day}</p>
                     <p className='routine-type'>Type: {routine.type}</p>
 
@@ -188,7 +189,8 @@ function RoutinesListed() {
                             <p className='confirmation-text'>¿Are you sure?</p>
                             <div className='confirmation-buttons'>
                                 <button className='cancel-button' onClick={cancelDelete}>No</button>
-                                <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Yes</button>
+                                <button className='delete-button' onClick={() => deleteRoutine(routine.routineId)}>Yes
+                                </button>
                             </div>
                         </div>
                     )}
@@ -222,7 +224,7 @@ function RoutinesListed() {
                                                                 onChange={handleInputChange}
                                                                 multiline
                                                                 rows={2}
-                                                                style={{ width: '200px' }}
+                                                                style={{width: '200px'}}
                                                             />
                                                         ) : exercise.name}
                                                     </TableCell>
@@ -233,7 +235,7 @@ function RoutinesListed() {
                                                                 type="number"
                                                                 value={editingExercise.sets}
                                                                 onChange={handleInputChange}
-                                                                style={{ width: '100px' }}
+                                                                style={{width: '100px'}}
                                                             />
                                                         ) : exercise.sets}
                                                     </TableCell>
@@ -244,7 +246,7 @@ function RoutinesListed() {
                                                                 type="number"
                                                                 value={editingExercise.reps}
                                                                 onChange={handleInputChange}
-                                                                style={{ width: '100px' }}
+                                                                style={{width: '100px'}}
                                                             />
                                                         ) : exercise.reps}
                                                     </TableCell>
@@ -254,7 +256,7 @@ function RoutinesListed() {
                                                                 name="weight"
                                                                 value={editingExercise.weight}
                                                                 onChange={handleInputChange}
-                                                                style={{ width: '100px' }}
+                                                                style={{width: '100px'}}
                                                             />
                                                         ) : exercise.weight}
                                                     </TableCell>
@@ -264,20 +266,28 @@ function RoutinesListed() {
                                                                 name="duration"
                                                                 value={editingExercise.duration}
                                                                 onChange={handleInputChange}
-                                                                style={{ width: '120px' }}
+                                                                style={{width: '120px'}}
                                                             />
                                                         ) : exercise.duration}
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
                                                             <div>
-                                                                <button id='defaultSmallButton' onClick={saveEditedExercise}>Save</button>
-                                                                <button id='defaultSmallButton' onClick={() => setEditingExercise(null)}>Cancel</button>
+                                                                <button id='defaultSmallButton'
+                                                                        onClick={saveEditedExercise}>Save
+                                                                </button>
+                                                                <button id='defaultSmallButton'
+                                                                        onClick={() => setEditingExercise(null)}>Cancel
+                                                                </button>
                                                             </div>
                                                         ) : (
                                                             <div>
-                                                                <button id='defaultSmallButton' onClick={() => startEdit(exercise)}><FaEdit /></button>
-                                                                <button id='defaultDeleteSmallButton' onClick={() => deleteExercise(exercise.id)}><FaTrashAlt /></button>
+                                                                <button id='defaultSmallButton'
+                                                                        onClick={() => startEdit(exercise)}><FaEdit/>
+                                                                </button>
+                                                                <button id='defaultDeleteSmallButton'
+                                                                        onClick={() => deleteExercise(exercise.id)}>
+                                                                    <FaTrashAlt/></button>
                                                             </div>
                                                         )}
                                                     </TableCell>
