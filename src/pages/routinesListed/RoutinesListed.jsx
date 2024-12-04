@@ -27,7 +27,7 @@ function RoutinesListed() {
     const [showEditDropdown, setShowEditDropdown] = useState(false);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
     const [editingExercise, setEditingExercise] = useState(null);
-    const [selectedRoutines, setSelectedRoutines] = useState([]);
+    const [selectedRoutines, setSelectedRoutines] = useState([]); // Este es el estado que manejará las rutinas seleccionadas
     const currentUserId = localStorage.getItem('userId');
 
     useEffect(() => {
@@ -162,7 +162,6 @@ function RoutinesListed() {
         doc.save('Routines_with_exercises.pdf');
     };
 
-
     return (
         <div className='main-format-create-plan'>
             <Link to='/home' id='backButton'><BackButton /></Link>
@@ -195,8 +194,18 @@ function RoutinesListed() {
                         </div>
                     )}
 
-                    <button id='colouredButton' onClick={() => handleEditRoutine(routine.routineId)}>Edit routine
-                    </button>
+                    <button id='colouredButton' onClick={() => handleEditRoutine(routine.routineId)}>Edit routine</button>
+
+                    {/* Checkbox para seleccionar la rutina individualmente */}
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={selectedRoutines.includes(routine.routineId)}
+                                onChange={() => handleCheckboxChange(routine.routineId)}
+                            />
+                        }
+                        label="Select"
+                    />
 
                     {showEditDropdown && routine.routineId === selectedRoutine && (
                         <TableContainer component={Paper} className="table-container">
@@ -222,33 +231,32 @@ function RoutinesListed() {
                                                                 name="name"
                                                                 value={editingExercise.name}
                                                                 onChange={handleInputChange}
-                                                                multiline
-                                                                rows={2}
-                                                                style={{width: '200px'}}
                                                             />
-                                                        ) : exercise.name}
+                                                        ) : (
+                                                            exercise.name
+                                                        )}
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
                                                             <TextField
                                                                 name="sets"
-                                                                type="number"
                                                                 value={editingExercise.sets}
                                                                 onChange={handleInputChange}
-                                                                style={{width: '100px'}}
                                                             />
-                                                        ) : exercise.sets}
+                                                        ) : (
+                                                            exercise.sets
+                                                        )}
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
                                                             <TextField
                                                                 name="reps"
-                                                                type="number"
                                                                 value={editingExercise.reps}
                                                                 onChange={handleInputChange}
-                                                                style={{width: '100px'}}
                                                             />
-                                                        ) : exercise.reps}
+                                                        ) : (
+                                                            exercise.reps
+                                                        )}
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
@@ -256,9 +264,10 @@ function RoutinesListed() {
                                                                 name="weight"
                                                                 value={editingExercise.weight}
                                                                 onChange={handleInputChange}
-                                                                style={{width: '100px'}}
                                                             />
-                                                        ) : exercise.weight}
+                                                        ) : (
+                                                            exercise.weight
+                                                        )}
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
@@ -266,29 +275,19 @@ function RoutinesListed() {
                                                                 name="duration"
                                                                 value={editingExercise.duration}
                                                                 onChange={handleInputChange}
-                                                                style={{width: '120px'}}
                                                             />
-                                                        ) : exercise.duration}
+                                                        ) : (
+                                                            exercise.duration
+                                                        )}
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
-                                                            <div>
-                                                                <button id='defaultSmallButton'
-                                                                        onClick={saveEditedExercise}>Save
-                                                                </button>
-                                                                <button id='defaultSmallButton'
-                                                                        onClick={() => setEditingExercise(null)}>Cancel
-                                                                </button>
-                                                            </div>
+                                                            <button onClick={saveEditedExercise}>Save</button>
                                                         ) : (
-                                                            <div>
-                                                                <button id='defaultSmallButton'
-                                                                        onClick={() => startEdit(exercise)}><FaEdit/>
-                                                                </button>
-                                                                <button id='defaultDeleteSmallButton'
-                                                                        onClick={() => deleteExercise(exercise.id)}>
-                                                                    <FaTrashAlt/></button>
-                                                            </div>
+                                                            <>
+                                                                <button onClick={() => startEdit(exercise)}>Edit</button>
+                                                                <button onClick={() => deleteExercise(exercise.id)}>Delete</button>
+                                                            </>
                                                         )}
                                                     </TableCell>
                                                 </TableRow>
