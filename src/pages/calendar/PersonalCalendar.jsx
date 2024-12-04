@@ -6,7 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import axios from 'axios';
 import '../../styles.css';
 import './BackCalendar.css';
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import BackButton from "../../components/backButton/BackButton";
 import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
@@ -35,10 +35,6 @@ function PersonalCalendar() {
             .catch(err => console.log(err));
     }, [userId]);
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     const handleEventClick = (clickInfo) => {
         alert(`Plan: ${clickInfo.event.title}\nDescripción: ${clickInfo.event.extendedProps.description}`);
     };
@@ -47,7 +43,7 @@ function PersonalCalendar() {
 
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton /></button>
+            <Link to="/home" id='backButton'> <BackButton/> </Link>
             <h2 className='main-page-header' id="top-text">Calendar</h2>
                 <FullCalendar
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

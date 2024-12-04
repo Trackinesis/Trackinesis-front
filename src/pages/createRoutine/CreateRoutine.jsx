@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, { useState } from "react";
 import Validation from "./RoutineValidation";
 import axios from "axios";
@@ -63,16 +63,11 @@ function CreateRoutine() {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
     };
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
-
+            <Link to="/routineslisted" id='backButton'> <BackButton/> </Link>
             <h2 className='main-page-header'>Create a new routine!</h2>
 
             <form onSubmit={handleSubmitNewRoutine}>

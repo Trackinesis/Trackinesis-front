@@ -48,10 +48,6 @@ function CreatePlan() {
         navigate('/home');
     }
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
 
     return (
         <div className='main-page p'>

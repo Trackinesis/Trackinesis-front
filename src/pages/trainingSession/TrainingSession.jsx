@@ -238,6 +238,7 @@ function TrainingSession() {
                             <table>
                                 <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Exercise</th>
                                     <th>Sets</th>
                                     <th>Reps</th>
@@ -249,6 +250,7 @@ function TrainingSession() {
                                 <tbody>
                                 {paginatedExercises.map(exercise => (
                                     <tr key={exercise.id}>
+                                        <td>{exercise.image}</td>
                                         <td>{exercise.name}</td>
                                         <td>{exercise.sets}</td>
                                         <td>{exercise.reps}</td>

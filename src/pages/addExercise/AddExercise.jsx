@@ -67,10 +67,6 @@ function AddExercise() {
         }
     };
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     return (
         <div className='main-page p'>
             <Link to='/routineslisted' id='backButton'><BackButton/></Link>
