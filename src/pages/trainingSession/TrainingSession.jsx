@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
 import { FaCheck, FaPlus, FaMinus } from 'react-icons/fa';
 import './TrainingSession.css';
+import BackButton from "../../components/backButton/BackButton";
 
 function TrainingSession() {
     const [selectedDay, setSelectedDay] = useState(null);
@@ -93,10 +94,10 @@ function TrainingSession() {
 
                     if (routineId) {
                         fetchRoutineExercises(routineId);
-                        setRoutine(`Rutina del ${selectedDay} para el Plan ${selectedPlan}`);
+                        setRoutine(`${selectedDay} routine:`);
                     } else {
                         setRoutineExercises([]);
-                        setRoutine(`No hay rutina para el día ${selectedDay}`);
+                        setRoutine(`There is no routine for this day: ${selectedDay}`);
                     }
                 } catch (error) {
                     console.error('Error fetching routine and exercises:', error);
@@ -104,7 +105,7 @@ function TrainingSession() {
                     setRoutine('Error fetching routine and exercises');
                 }
             } else if (selectedPlan !== null) {
-                const todayRoutine = `Rutina del ${todayName} para el Plan ${selectedPlan}`;
+                const todayRoutine = `${selectedDay} routine for the plan: ${selectedPlan}`;
                 setRoutine(todayRoutine);
                 setSelectedDay(todayName);
             }
@@ -188,62 +189,91 @@ function TrainingSession() {
     ];
 
     return (
-        <div className='home-page-main-format p'>
-            <Link to='/home' id='backButton'>Back</Link>
-            <h1 className='main-page-header'>Elige tu plan de entrenamiento</h1>
-            {activePlans.length >= 1 && (
-                <div>
-                    <h2 className='main-page-header'>Selecciona un plan activo:</h2>
-                    <select onChange={handlePlanSelection} value={selectedPlan || ''}>
-                        <option value="" disabled>Selecciona un plan</option>
-                        {activePlans.map(plan => (
-                            <option key={plan.planId} value={plan.planId}>{plan.name}</option>
-                        ))}
-                    </select>
-                </div>
-            )}
-            {selectedPlan && (
-                <div>
-                    <button onClick={() => setSelectedDay(todayName)}>Rutina de {todayName}</button>
-                    <select onChange={handleDaySelection} value={selectedDay || ''}>
-                        <option value="" disabled>Selecciona otro día</option>
-                        {daysOfWeek
-                            .filter(day => day !== todayName)
-                            .map(day => (
-                                <option key={day} value={day}>{day}</option>
+        <div className='main-page p'>
+            <Link to='/home' id='backButton'><BackButton/></Link>
+
+            <div className="prompt">
+                <h2 className='main-page-header'>Select your training plan!</h2>
+            </div>
+
+            <div className="prompt">
+                {activePlans.length >= 1 && (
+                    <div className="prompt">
+                        <h2 className='main-page-header'>Select an active plan:</h2>
+                        <select id='signupForms' onChange={handlePlanSelection} value={selectedPlan || ''}>
+                            <option value="" disabled>Selecciona un plan</option>
+                            {activePlans.map(plan => (
+                                <option key={plan.planId} value={plan.planId}>{plan.name}</option>
                             ))}
-                    </select>
-                </div>
-            )}
+                        </select>
+                    </div>
+                )}
+            </div>
+
+
+            <div className="prompt">
+                {selectedPlan && (
+                    <div>
+                        <button id="defaultSmallButton" onClick={() => setSelectedDay(todayName)}>{todayName} routine
+                        </button>
+                        <select id='signupForms' onChange={handleDaySelection} value={selectedDay || ''}>
+                            <option value="" disabled>Selecciona otro día</option>
+                            {daysOfWeek
+                                .filter(day => day !== todayName)
+                                .map(day => (
+                                    <option key={day} value={day}>{day}</option>
+                                ))}
+                        </select>
+                    </div>
+                )}
+            </div>
+
             <div className='main-page-header'>
                 <h2>{routine}</h2>
-                <h3>Ejercicios de la rutina:</h3>
+                <h3>Exercises:</h3>
                 {routineExercises.length > 0 ? (
-                    <div style={{ height: 400, width: '100%' }}>
+                    <div style={{width: '100%', maxWidth: '100%', overflowX: 'auto'}}>
                         <DataGrid
                             rows={routineExercises}
                             columns={columns}
+                            pageSize={5} // Número de filas por página
+                            rowsPerPageOptions={[5, 10, 20]} // Opciones de filas por página
                             sx={{
                                 '& .MuiDataGrid-root': {
                                     color: '#000',
                                     backgroundColor: '#fff',
+                                    // Asegura que la tabla se ajuste a pantallas pequeñas
+                                    minWidth: 0, // Permite que las columnas se ajusten a la pantalla
                                 },
                                 '& .MuiDataGrid-cell': {
                                     borderBottom: '1px solid rgba(224, 224, 224, 1)',
+                                    whiteSpace: 'nowrap', // Evita que el texto se divida en varias líneas
+                                    overflow: 'hidden',  // El contenido largo no se desborda
+                                    textOverflow: 'ellipsis', // Muestra elipsis para contenido largo
                                 },
                                 '& .MuiDataGrid-columnHeaders': {
                                     backgroundColor: '#f5f5f5',
+                                    fontSize: '14px', // Ajusta el tamaño de los encabezados
                                 },
                                 '& .MuiDataGrid-footerContainer': {
                                     backgroundColor: '#f5f5f5',
+                                },
+                                '@media (max-width: 600px)': {
+                                    '& .MuiDataGrid-columnHeaders': {
+                                        fontSize: '12px', // Tamaño de fuente más pequeño en dispositivos móviles
+                                    },
+                                    '& .MuiDataGrid-cell': {
+                                        fontSize: '12px', // Tamaño de fuente más pequeño en dispositivos móviles
+                                    },
                                 },
                             }}
                         />
                     </div>
                 ) : (
-                    <p>No hay ejercicios para esta rutina.</p>
+                    <p>There are no exercises for this routine, add one!</p>
                 )}
             </div>
+
         </div>
     );
 }
