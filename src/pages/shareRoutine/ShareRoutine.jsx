@@ -25,9 +25,9 @@ function ShareRoutine() {
         event.preventDefault();
         setErrorMessage(null);
 
-        // Check if the searchTerm is empty
+
         if (!searchTerm.trim()) {
-            setErrorMessage('Please enter a search value'); // Show error if search term is empty
+            setErrorMessage('Please enter a search value');
             return;
         }
 
@@ -45,7 +45,6 @@ function ShareRoutine() {
                 res = await axios.get(`http://localhost:8081/routine/findByCreator/${searchTerm}`);
                 setRoutines(res.data); // Store all found routines
             }
-
             if (!res || res.data.length === 0) {
                 setErrorMessage('No routines found'); // Handle no results
             }
