@@ -62,6 +62,7 @@ function ShareRoutine() {
 
     const handleRoutineVisibility = async (routineData) => {
         if (routineData.state === 'private') {
+            setErrorMessage('This routine is private')
             return false;
         } else if (routineData.state === 'public') {
             setRoutines(prevRoutines => [...prevRoutines, routineData]);
@@ -76,6 +77,7 @@ function ShareRoutine() {
                     setRoutines(prevRoutines => [...prevRoutines, routineData]);
                     return true; // Valid routine found
                 } else {
+                    setErrorMessage("This routine is only visible to friends.")
                     return false; // Routine not visible to the user
                 }
             } catch (err) {
