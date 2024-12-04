@@ -12,6 +12,7 @@ function TrainingSession() {
     const [selectedPlan, setSelectedPlan] = useState(null);
     const [routineExercises, setRoutineExercises] = useState([]);
     const [exerciseStatus, setExerciseStatus] = useState({});
+    const [timers, setTimers] = useState({}); // Para almacenar el tiempo de cada ejercicio
 
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date().getDay();
@@ -65,7 +66,7 @@ function TrainingSession() {
                 setRoutineExercises(exercisesWithId);
 
                 const initialExerciseStatus = exercises.reduce((acc, exercise, index) => {
-                    acc[index + 1] = { setsCompleted: 0 };
+                    acc[index + 1] = { setsCompleted: 0, counter: 0 }; // Añadimos counter para cada ejercicio
                     return acc;
                 }, {});
                 setExerciseStatus(initialExerciseStatus);
@@ -124,12 +125,9 @@ function TrainingSession() {
     const incrementSetCompletion = (exerciseId) => {
         setExerciseStatus(prevState => {
             const updatedState = { ...prevState };
-            const currentSetsCompleted = updatedState[exerciseId]?.setsCompleted || 0; // Asegurarse de que no sea undefined
-
-            // Obtén el número total de sets para el ejercicio
+            const currentSetsCompleted = updatedState[exerciseId]?.setsCompleted || 0;
             const totalSets = routineExercises.find(exercise => exercise.id === exerciseId)?.sets || 0;
 
-            // Solo incrementar si no hemos alcanzado el número de sets
             if (currentSetsCompleted < totalSets) {
                 updatedState[exerciseId] = { setsCompleted: currentSetsCompleted + 1 };
             }
@@ -151,7 +149,39 @@ function TrainingSession() {
         });
     };
 
-    // Paginación de filas
+    // Iniciar el contador de duración
+    const startDurationCounter = (exerciseId, duration) => {
+        setTimers(prevTimers => {
+            const updatedTimers = { ...prevTimers };
+            if (!updatedTimers[exerciseId]) {
+                updatedTimers[exerciseId] = { counter: 0 };
+            }
+
+            // Incrementamos el contador hasta llegar a la duración
+            const interval = setInterval(() => {
+                setExerciseStatus(prevState => {
+                    const updatedState = { ...prevState };
+                    if (updatedTimers[exerciseId].counter < duration) {
+                        updatedTimers[exerciseId].counter += 1;
+                        updatedState[exerciseId].counter = updatedTimers[exerciseId].counter;
+                    } else {
+                        clearInterval(interval); // Detenemos el contador cuando llega a la duración
+                    }
+                    return updatedState;
+                });
+            }, 1000); // 1 segundo de intervalo
+            return updatedTimers;
+        });
+    };
+
+    const handleSetClick = (exerciseId, duration) => {
+        if (duration > 0) {
+            startDurationCounter(exerciseId, duration); // Inicia el contador si hay duración
+        } else {
+            incrementSetCompletion(exerciseId); // Si no tiene duración, simplemente incrementa el set
+        }
+    };
+
     const [currentPage, setCurrentPage] = useState(0);
     const rowsPerPage = 5;
 
@@ -209,16 +239,16 @@ function TrainingSession() {
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Exercise</th>
                                     <th>Sets</th>
                                     <th>Reps</th>
                                     <th>Weight</th>
                                     <th>Duration</th>
-                                    <th>Sets counter</th>
+                                    <th>Counter</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {paginatedExercises.map((exercise) => (
+                                {paginatedExercises.map(exercise => (
                                     <tr key={exercise.id}>
                                         <td>{exercise.name}</td>
                                         <td>{exercise.sets}</td>
@@ -226,45 +256,35 @@ function TrainingSession() {
                                         <td>{exercise.weight}</td>
                                         <td>{exercise.duration}</td>
                                         <td>
-                                            <div style={{display: 'flex', alignItems: 'center'}}>
-                                                {exercise.sets > 0 && (
-                                                    <>
-                                                        <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
-                                                        <span style={{margin: '0 5px'}}>
-                    {exerciseStatus[exercise.id]?.setsCompleted || 0}
-                </span>
-                                                        <FaPlus onClick={() => incrementSetCompletion(exercise.id)}/>
-                                                        {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets && (
-                                                            <FaCheck style={{marginLeft: '10px'}}/>
-                                                        )}
-                                                    </>
-                                                )}
-                                            </div>
+                                            <button
+                                                className="exercise-button"
+                                                onClick={() => handleSetClick(exercise.id, exercise.duration)}
+                                            >
+                                                {exerciseStatus[exercise.id]?.counter || (exerciseStatus[exercise.id]?.setsCompleted || 0)}
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
                                 </tbody>
                             </table>
-
-                            <div className="pagination">
-                                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
-                                    Prev
-                                </button>
-                                <span>{currentPage + 1}</span>
-                                <button
-                                    onClick={() => handlePageChange(currentPage + 1)}
-                                    disabled={(currentPage + 1) * rowsPerPage >= routineExercises.length}
-                                >
-                                    Next
-                                </button>
-                            </div>
                         </div>
                     </>
-                ) : selectedDay && routineExercises.length === 0 && !routine.includes('no routine') ? (
-                    <p>There is no exercises for this day, add one!</p>
-                ) : null}
-            </div>
+                ) : (
+                    <p>No exercises available.</p>
+                )}
 
+                <div className="pagination">
+                    {Array.from({ length: Math.ceil(routineExercises.length / rowsPerPage) }, (_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handlePageChange(index)}
+                            className={currentPage === index ? 'active' : ''}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
