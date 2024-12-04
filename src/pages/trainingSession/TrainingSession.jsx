@@ -284,10 +284,9 @@ function TrainingSession() {
                         Next
                     </button>
                 </div>
-</div>
-</div>
-)
-    ;
+            </div>
+        </div>
+            );
 }
 
 export default TrainingSession;
