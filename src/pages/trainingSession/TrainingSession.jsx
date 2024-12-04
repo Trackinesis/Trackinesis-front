@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
-import { DataGrid } from '@mui/x-data-grid';
+import { Link } from 'react-router-dom';
 import { FaCheck, FaPlus, FaMinus } from 'react-icons/fa';
 import './TrainingSession.css';
 import BackButton from "../../components/backButton/BackButton";
@@ -11,8 +10,8 @@ function TrainingSession() {
     const [routine, setRoutine] = useState('');
     const [activePlans, setActivePlans] = useState([]);
     const [selectedPlan, setSelectedPlan] = useState(null);
-    const [routineExercises, setRoutineExercises] = useState([]); // Initialize as an empty array
-    const [exerciseStatus, setExerciseStatus] = useState({}); // State to track completion status of each exercise
+    const [routineExercises, setRoutineExercises] = useState([]);
+    const [exerciseStatus, setExerciseStatus] = useState({});
 
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date().getDay();
@@ -35,7 +34,6 @@ function TrainingSession() {
                         params: { userId }
                     });
                     const plans = response.data;
-
                     const currentDate = getCurrentDate();
                     const activePlans = plans.filter(plan => {
                         return currentDate >= plan.startDate && currentDate <= plan.endDate;
@@ -126,7 +124,16 @@ function TrainingSession() {
     const incrementSetCompletion = (exerciseId) => {
         setExerciseStatus(prevState => {
             const updatedState = { ...prevState };
-            updatedState[exerciseId].setsCompleted += 1;
+            const currentSetsCompleted = updatedState[exerciseId]?.setsCompleted || 0; // Asegurarse de que no sea undefined
+
+            // Obtén el número total de sets para el ejercicio
+            const totalSets = routineExercises.find(exercise => exercise.id === exerciseId)?.sets || 0;
+
+            // Solo incrementar si no hemos alcanzado el número de sets
+            if (currentSetsCompleted < totalSets) {
+                updatedState[exerciseId] = { setsCompleted: currentSetsCompleted + 1 };
+            }
+
             return updatedState;
         });
     };
@@ -134,63 +141,29 @@ function TrainingSession() {
     const decrementSetCompletion = (exerciseId) => {
         setExerciseStatus(prevState => {
             const updatedState = { ...prevState };
-            const currentSetsCompleted = updatedState[exerciseId].setsCompleted;
-            const totalSets = routineExercises.find(exercise => exercise.id === exerciseId)?.sets || 0;
+            const currentSetsCompleted = updatedState[exerciseId]?.setsCompleted || 0;
 
             if (currentSetsCompleted > 0) {
-                updatedState[exerciseId].setsCompleted -= 1;
+                updatedState[exerciseId] = { setsCompleted: currentSetsCompleted - 1 };
             }
 
             return updatedState;
         });
     };
 
-    const columns = [
-        { field: 'name', headerName: 'Nombre', width: 150 },
-        { field: 'sets', headerName: 'Sets', width: 100 },
-        { field: 'reps', headerName: 'Reps', width: 100 },
-        { field: 'weight', headerName: 'Peso', width: 100 },
-        { field: 'duration', headerName: 'Duración', width: 150 },
-        {
-            field: 'counter',
-            headerName: 'Contador de Sets',
-            width: 180,
-            renderCell: (params) => {
-                const exerciseId = params.id;
-                const totalSets = params.row.sets;
-                const setsCompletedCount = exerciseStatus[exerciseId]?.setsCompleted || 0;
+    // Paginación de filas
+    const [currentPage, setCurrentPage] = useState(0);
+    const rowsPerPage = 5;
 
-                const isSetCompleted = setsCompletedCount >= totalSets;
-                const incrementIcon = <FaPlus onClick={() => incrementSetCompletion(exerciseId)} />;
-                const decrementIcon = <FaMinus onClick={() => decrementSetCompletion(exerciseId)} />;
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
-                const handleClickIncrement = () => {
-                    if (!isSetCompleted) {
-                        incrementSetCompletion(exerciseId);
-                    }
-                };
-
-                const handleClickDecrement = () => {
-                    if (setsCompletedCount > 0) {
-                        decrementSetCompletion(exerciseId);
-                    }
-                };
-
-                return (
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {setsCompletedCount > 0 && decrementIcon}
-                        <span style={{ margin: '0 5px' }}>{setsCompletedCount}</span>
-                        {incrementIcon}
-                        {isSetCompleted && <FaCheck style={{ marginLeft: '10px' }} />}
-                    </div>
-                );
-            },
-        },
-    ];
+    const paginatedExercises = routineExercises.slice(currentPage * rowsPerPage, (currentPage + 1) * rowsPerPage);
 
     return (
         <div className='main-page p'>
-            <Link to='/home' id='backButton'><BackButton/></Link>
+            <Link to='/home' id='backButton'><BackButton /></Link>
 
             <div className="prompt">
                 <h2 className='main-page-header'>Select your training plan!</h2>
@@ -210,12 +183,10 @@ function TrainingSession() {
                 )}
             </div>
 
-
             <div className="prompt">
                 {selectedPlan && (
                     <div>
-                        <button id="defaultSmallButton" onClick={() => setSelectedDay(todayName)}>{todayName} routine
-                        </button>
+                        <button id="defaultSmallButton" onClick={() => setSelectedDay(todayName)}>{todayName} routine</button>
                         <select id='signupForms' onChange={handleDaySelection} value={selectedDay || ''}>
                             <option value="" disabled>Selecciona otro día</option>
                             {daysOfWeek
@@ -232,48 +203,58 @@ function TrainingSession() {
                 <h2>{routine}</h2>
                 <h3>Exercises:</h3>
                 {routineExercises.length > 0 ? (
-                    <div style={{width: '100%', maxWidth: '100%', overflowX: 'auto'}}>
-                        <DataGrid
-                            rows={routineExercises}
-                            columns={columns}
-                            pageSize={5} // Número de filas por página
-                            rowsPerPageOptions={[5, 10, 20]} // Opciones de filas por página
-                            sx={{
-                                '& .MuiDataGrid-root': {
-                                    color: '#000',
-                                    backgroundColor: '#fff',
-                                    // Asegura que la tabla se ajuste a pantallas pequeñas
-                                    minWidth: 0, // Permite que las columnas se ajusten a la pantalla
-                                },
-                                '& .MuiDataGrid-cell': {
-                                    borderBottom: '1px solid rgba(224, 224, 224, 1)',
-                                    whiteSpace: 'nowrap', // Evita que el texto se divida en varias líneas
-                                    overflow: 'hidden',  // El contenido largo no se desborda
-                                    textOverflow: 'ellipsis', // Muestra elipsis para contenido largo
-                                },
-                                '& .MuiDataGrid-columnHeaders': {
-                                    backgroundColor: '#f5f5f5',
-                                    fontSize: '14px', // Ajusta el tamaño de los encabezados
-                                },
-                                '& .MuiDataGrid-footerContainer': {
-                                    backgroundColor: '#f5f5f5',
-                                },
-                                '@media (max-width: 600px)': {
-                                    '& .MuiDataGrid-columnHeaders': {
-                                        fontSize: '12px', // Tamaño de fuente más pequeño en dispositivos móviles
-                                    },
-                                    '& .MuiDataGrid-cell': {
-                                        fontSize: '12px', // Tamaño de fuente más pequeño en dispositivos móviles
-                                    },
-                                },
-                            }}
-                        />
+                    <div className="responsive-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Sets</th>
+                                <th>Reps</th>
+                                <th>Peso</th>
+                                <th>Duración</th>
+                                <th>Contador de Sets</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {paginatedExercises.map((exercise) => (
+                                <tr key={exercise.id}>
+                                    <td>{exercise.name}</td>
+                                    <td>{exercise.sets}</td>
+                                    <td>{exercise.reps}</td>
+                                    <td>{exercise.weight}</td>
+                                    <td>{exercise.duration}</td>
+                                    <td>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            <FaMinus onClick={() => decrementSetCompletion(exercise.id)} />
+                                            <span style={{ margin: '0 5px' }}>
+                                                    {exerciseStatus[exercise.id]?.setsCompleted || 0}
+                                                </span>
+                                            <FaPlus onClick={() => incrementSetCompletion(exercise.id)} />
+                                            {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets && <FaCheck style={{ marginLeft: '10px' }} />}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+
+                        <div className="pagination">
+                            <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
+                                Prev
+                            </button>
+                            <span>{currentPage + 1}</span>
+                            <button
+                                onClick={() => handlePageChange(currentPage + 1)}
+                                disabled={(currentPage + 1) * rowsPerPage >= routineExercises.length}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
                 ) : (
-                    <p>There are no exercises for this routine, add one!</p>
+                    <p>No exercises found for this routine.</p>
                 )}
             </div>
-
         </div>
     );
 }

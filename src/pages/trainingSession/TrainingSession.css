@@ -1,3 +1,61 @@
-.MuiDataGrid-root {
-    background-color: white !important;
+/* En TrainingSession.css */
+
+/* Estilo para la tabla */
+.responsive-table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .responsive-table table {
+        font-size: 12px;
+    }
+
+    .pagination {
+        flex-direction: column;
+        align-items: center;
+    }
 }
