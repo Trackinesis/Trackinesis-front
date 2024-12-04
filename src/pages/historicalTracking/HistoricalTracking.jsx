@@ -7,7 +7,7 @@ function HistoricalTracking() {
     return (
         <div className='main-page'>
             <Link to="/userpage" id='backButton'> <BackButton/> </Link>
-            <h1 className='main-page-header'>Historical Tracking</h1>
+            <h1 className='historical-tracking-header'>Historical Tracking</h1>
 
             <Link to='/statistics' id='defaultButton'>See my progress</Link>
             <Link to='/mypersonalrecords' id='defaultButton'>My personal records</Link>

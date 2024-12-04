@@ -167,7 +167,7 @@ function RoutinesListed() {
         <div className='main-format-create-plan'>
             <Link to='/home' id='backButton'><BackButton /></Link>
 
-            <h2 className='main-page-header' id='top-text'>My routines</h2>
+            <h2 className='main-page-header'>My routines</h2>
 
             <div className="create-button-container">
                 <Link to='/createroutine' id='createRoutineButton' className='create-button'>Create new routine</Link>

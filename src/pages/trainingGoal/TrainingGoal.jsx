@@ -78,11 +78,6 @@ function TrainingGoal() {
   const handleInputChange = (event) => {
     setNewGoal({ ...newGoal, [event.target.name]: event.target.value });
   };
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   const handlePause = async (goalId) => {
     try {
       const goalToUpdate = goalOptions.find((goal) => goal.goalId === goalId);
