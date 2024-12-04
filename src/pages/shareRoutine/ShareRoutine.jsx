@@ -25,7 +25,6 @@ function ShareRoutine() {
         event.preventDefault();
         setErrorMessage(null);
 
-
         if (!searchTerm.trim()) {
             setErrorMessage('Please enter a search value');
             return;
@@ -37,20 +36,47 @@ function ShareRoutine() {
             let res;
             if (searchType === 'id') {
                 res = await axios.get(`http://localhost:8081/routine/find/${searchTerm}`);
-                setRoutines([res.data]); // Store the found routine in an array
+                const routineData = res.data;
+                handleRoutineVisibility(routineData);
             } else if (searchType === 'name') {
                 res = await axios.get(`http://localhost:8081/routine/findByName/${searchTerm}`);
-                setRoutines(res.data); // Store all found routines
+                res.data.forEach(handleRoutineVisibility);
             } else if (searchType === 'creatorId') {
                 res = await axios.get(`http://localhost:8081/routine/findByCreator/${searchTerm}`);
-                setRoutines(res.data); // Store all found routines
+                res.data.forEach(handleRoutineVisibility);
             }
+
             if (!res || res.data.length === 0) {
-                setErrorMessage('No routines found'); // Handle no results
+                setErrorMessage('No routines found');
             }
         } catch (err) {
             console.error(err);
             setErrorMessage('No routines found');
+        }
+    };
+
+    const handleRoutineVisibility = async (routineData) => {
+        if (routineData.state === 'private') {
+            setErrorMessage('This routine is private');
+        } else if (routineData.state === 'public') {
+            setRoutines(prevRoutines => [...prevRoutines, routineData]);
+            setErrorMessage(null);
+        } else if (routineData.state === 'friends') {
+            try {
+                const friendsRes = await axios.get(`http://localhost:8081/friend/${userId}`);
+                const friends = friendsRes.data;
+                const isFriend = friends.some(friend => friend.followedId === routineData.userId);
+
+                if (isFriend) {
+                    setRoutines(prevRoutines => [...prevRoutines, routineData]);
+                    setErrorMessage(null);
+                } else {
+                    setErrorMessage('This routine is only visible to friends');
+                }
+            } catch (err) {
+                console.error(err);
+                setErrorMessage('Error retrieving friends');
+            }
         }
     };
 
@@ -68,7 +94,7 @@ function ShareRoutine() {
 
     return (
         <div className='main-format-create-plan p'>
-            <Link to='/social' id='backButton'><BackButton/></Link>
+            <Link to='/social' id='backButton'><BackButton /></Link>
             <h1 className='main-page-header'>Search routines!</h1>
 
             <form action="" onSubmit={handleSearch}>
@@ -104,7 +130,7 @@ function ShareRoutine() {
 
             {routines.length > 0 && (
                 <div className="routine-card">
-                    <h2>Routine found!</h2>
+                    <h2>Routines found!</h2>
                     {routines.map(routine => (
                         <div key={routine.id}>
                             <h3 id='top-text'>{routine.name}</h3>
@@ -117,7 +143,7 @@ function ShareRoutine() {
                 </div>
             )}
 
-            <FooterNavigation/>
+            <FooterNavigation />
         </div>
     );
 }
