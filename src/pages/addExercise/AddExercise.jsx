@@ -90,7 +90,6 @@ function AddExercise() {
 
                 <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
 
-                {/* Mostrar imagen si existe */}
                 {selectedExerciseImage && (
                     <div className="exercise-image-preview">
                         <h3>Exercise Image:</h3>

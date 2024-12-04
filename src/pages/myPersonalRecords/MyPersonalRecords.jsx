@@ -5,7 +5,6 @@ import { FaArrowUp } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
-import './myPersonalRecords.css'
 import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function MyPersonalRecords() {
@@ -120,7 +119,7 @@ function MyPersonalRecords() {
           </div>
 
           <div className='prompt'>
-            <label htmlFor='maxSquat'> Squat Max</label>
+            <label htmlFor='maxSquat'>Squat Max</label>
             <input
               value={user.maxSquat}
               onChange={handleInputChange}
@@ -132,7 +131,7 @@ function MyPersonalRecords() {
             </div>
 
             <div className='prompt'>
-            <label htmlFor='maxDeadLift'> DeadLift Max</label>
+            <label htmlFor='maxDeadLift'>Dead Lift Max</label>
             <input
               value={user.maxDeadLift}
               onChange={handleInputChange}
