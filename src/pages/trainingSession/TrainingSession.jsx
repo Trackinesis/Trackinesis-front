@@ -207,12 +207,12 @@ function TrainingSession() {
                         <table>
                             <thead>
                             <tr>
-                                <th>Nombre</th>
+                                <th>Name</th>
                                 <th>Sets</th>
                                 <th>Reps</th>
-                                <th>Peso</th>
-                                <th>Duración</th>
-                                <th>Contador de Sets</th>
+                                <th>Weight</th>
+                                <th>Duration</th>
+                                <th>Sets counter</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -224,13 +224,14 @@ function TrainingSession() {
                                     <td>{exercise.weight}</td>
                                     <td>{exercise.duration}</td>
                                     <td>
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <FaMinus onClick={() => decrementSetCompletion(exercise.id)} />
-                                            <span style={{ margin: '0 5px' }}>
-                                                    {exerciseStatus[exercise.id]?.setsCompleted || 0}
-                                                </span>
-                                            <FaPlus onClick={() => incrementSetCompletion(exercise.id)} />
-                                            {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets && <FaCheck style={{ marginLeft: '10px' }} />}
+                                        <div style={{display: 'flex', alignItems: 'center'}}>
+                                            <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
+                                            <span style={{margin: '0 5px'}}>
+                                        {exerciseStatus[exercise.id]?.setsCompleted || 0}
+                                    </span>
+                                            <FaPlus onClick={() => incrementSetCompletion(exercise.id)}/>
+                                            {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets &&
+                                                <FaCheck style={{marginLeft: '10px'}}/>}
                                         </div>
                                     </td>
                                 </tr>
@@ -251,10 +252,11 @@ function TrainingSession() {
                             </button>
                         </div>
                     </div>
-                ) : (
-                    <p>No exercises found for this routine.</p>
-                )}
+                ) : (selectedDay && routineExercises.length === 0 && !routine.includes('no routine')) ? (
+                    <p>There is no routine for this day: {selectedDay}</p>
+                ) : null}
             </div>
+
         </div>
     );
 }
