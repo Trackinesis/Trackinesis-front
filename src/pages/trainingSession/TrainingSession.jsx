@@ -149,7 +149,6 @@ function TrainingSession() {
         });
     };
 
-    // Iniciar el contador de duración
     const startDurationCounter = (exerciseId, duration) => {
         setTimers(prevTimers => {
             const updatedTimers = { ...prevTimers };
@@ -157,7 +156,6 @@ function TrainingSession() {
                 updatedTimers[exerciseId] = { counter: 0 };
             }
 
-            // Incrementamos el contador hasta llegar a la duración
             const interval = setInterval(() => {
                 setExerciseStatus(prevState => {
                     const updatedState = { ...prevState };
@@ -165,11 +163,11 @@ function TrainingSession() {
                         updatedTimers[exerciseId].counter += 1;
                         updatedState[exerciseId].counter = updatedTimers[exerciseId].counter;
                     } else {
-                        clearInterval(interval); // Detenemos el contador cuando llega a la duración
+                        clearInterval(interval);
                     }
                     return updatedState;
                 });
-            }, 1000); // 1 segundo de intervalo
+            }, 2000);
             return updatedTimers;
         });
     };
@@ -193,7 +191,7 @@ function TrainingSession() {
 
     return (
         <div className='main-page p'>
-            <Link to='/home' id='backButton'><BackButton /></Link>
+            <Link to='/home' id='backButton'><BackButton/></Link>
 
             <div className="prompt">
                 <h2 className='main-page-header'>Select your training plan!</h2>
@@ -216,7 +214,8 @@ function TrainingSession() {
             <div className="prompt">
                 {selectedPlan && (
                     <div>
-                        <button id="defaultSmallButton" onClick={() => setSelectedDay(todayName)}>{todayName} routine</button>
+                        <button id="defaultSmallButton" onClick={() => setSelectedDay(todayName)}>{todayName} routine
+                        </button>
                         <select id='signupForms' onChange={handleDaySelection} value={selectedDay || ''}>
                             <option value="" disabled>Selecciona otro día</option>
                             {daysOfWeek
@@ -257,7 +256,7 @@ function TrainingSession() {
                                         <td>{exercise.duration}</td>
                                         <td>
                                             <button
-                                                className="exercise-button"
+                                                id="defaultSmallButton"
                                                 onClick={() => handleSetClick(exercise.id, exercise.duration)}
                                             >
                                                 {exerciseStatus[exercise.id]?.counter || (exerciseStatus[exercise.id]?.setsCompleted || 0)}
@@ -274,19 +273,21 @@ function TrainingSession() {
                 )}
 
                 <div className="pagination">
-                    {Array.from({ length: Math.ceil(routineExercises.length / rowsPerPage) }, (_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handlePageChange(index)}
-                            className={currentPage === index ? 'active' : ''}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
+                    <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
+                        Prev
+                    </button>
+                    <span>{currentPage + 1}</span>
+                    <button
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={(currentPage + 1) * rowsPerPage >= routineExercises.length}
+                    >
+                        Next
+                    </button>
                 </div>
-            </div>
-        </div>
-    );
+</div>
+</div>
+)
+    ;
 }
 
 export default TrainingSession;
