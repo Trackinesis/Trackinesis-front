@@ -61,32 +61,35 @@ function ShareRoutine() {
     };
 
     return (
-        <div className='home-page-main-format p'>
+        <div className='main-page p'>
             <Link to='/social' id='backButton'><BackButton/></Link>
-            <h1 className='main-page-header'>Search routines</h1>
+            <h1 className='main-page-header'>Search routines!</h1>
 
+
+            <form action="" onSubmit={handleSearch}>
             <div className='prompt'>
                 <label htmlFor="searchTerm" id='top-text'><strong>Enter search term:</strong></label>
                 <input
+                    id='formsInput'
                     type="text"
                     placeholder='Enter ID, name, or creator ID'
-                    id='searchTerm'
                     name='searchTerm'
                     value={searchTerm}
                     onChange={handleInputChange}
                 />
             </div>
 
-            <div className='prompt'>
-                <label htmlFor="searchType" id='top-text'><strong>Select search type:</strong></label>
-                <select id='searchType' value={searchType} onChange={handleSelectChange}>
-                    <option value="id">By ID</option>
+            <div className='mb-3'>
+                <label htmlFor="searchType" id='top-text'><strong>Select search parameter:</strong></label>
+                <select id='formsInput' value={searchType} onChange={handleSelectChange}>
+                    <option value="id">By routine ID</option>
                     <option value="name">By Name</option>
-                    <option value="creatorId">By Creator ID</option>
+                    <option value="creatorId">By creator ID</option>
                 </select>
             </div>
 
             <button onClick={handleSearch} id='defaultButton'>Search</button>
+            </form>
 
             {errorMessage && (
                 <div className='error-message'>
@@ -95,8 +98,8 @@ function ShareRoutine() {
             )}
 
             {routines.length > 0 && (
-                <div>
-                    <h2>Found Routines:</h2>
+                <div className="routine-card">
+                    <h2>Routine found!</h2>
                     {routines.map(routine => (
                         <div key={routine.id}>
                             <h3 id='top-text'>{routine.name}</h3>
@@ -108,6 +111,7 @@ function ShareRoutine() {
                     ))}
                 </div>
             )}
+
             <FooterNavigation/>
         </div>
     );
