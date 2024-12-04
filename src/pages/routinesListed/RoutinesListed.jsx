@@ -231,6 +231,9 @@ function RoutinesListed() {
                                                                 name="name"
                                                                 value={editingExercise.name}
                                                                 onChange={handleInputChange}
+                                                                multiline
+                                                                rows={2}
+                                                                style={{width: '200px'}}
                                                             />
                                                         ) : (
                                                             exercise.name
@@ -240,8 +243,10 @@ function RoutinesListed() {
                                                         {editingExercise && editingExercise.id === exercise.id ? (
                                                             <TextField
                                                                 name="sets"
+                                                                type="number"
                                                                 value={editingExercise.sets}
                                                                 onChange={handleInputChange}
+                                                                style={{width: '100px'}}
                                                             />
                                                         ) : (
                                                             exercise.sets
@@ -251,8 +256,10 @@ function RoutinesListed() {
                                                         {editingExercise && editingExercise.id === exercise.id ? (
                                                             <TextField
                                                                 name="reps"
+                                                                type="number"
                                                                 value={editingExercise.reps}
                                                                 onChange={handleInputChange}
+                                                                style={{width: '100px'}}
                                                             />
                                                         ) : (
                                                             exercise.reps
@@ -264,6 +271,7 @@ function RoutinesListed() {
                                                                 name="weight"
                                                                 value={editingExercise.weight}
                                                                 onChange={handleInputChange}
+                                                                style={{width: '100px'}}
                                                             />
                                                         ) : (
                                                             exercise.weight
@@ -275,6 +283,7 @@ function RoutinesListed() {
                                                                 name="duration"
                                                                 value={editingExercise.duration}
                                                                 onChange={handleInputChange}
+                                                                style={{width: '120px'}}
                                                             />
                                                         ) : (
                                                             exercise.duration
@@ -282,12 +291,23 @@ function RoutinesListed() {
                                                     </TableCell>
                                                     <TableCell>
                                                         {editingExercise && editingExercise.id === exercise.id ? (
-                                                            <button onClick={saveEditedExercise}>Save</button>
+                                                            <div>
+                                                                <button id='defaultSmallButton'
+                                                                        onClick={saveEditedExercise}>Save
+                                                                </button>
+                                                                <button id='defaultSmallButton'
+                                                                        onClick={() => setEditingExercise(null)}>Cancel
+                                                                </button>
+                                                            </div>
                                                         ) : (
-                                                            <>
-                                                                <button onClick={() => startEdit(exercise)}>Edit</button>
-                                                                <button onClick={() => deleteExercise(exercise.id)}>Delete</button>
-                                                            </>
+                                                            <div>
+                                                                <button id='defaultSmallButton'
+                                                                        onClick={() => startEdit(exercise)}><FaEdit/>
+                                                                </button>
+                                                                <button id='defaultDeleteSmallButton'
+                                                                        onClick={() => deleteExercise(exercise.id)}>
+                                                                    <FaTrashAlt/></button>
+                                                            </div>
                                                         )}
                                                     </TableCell>
                                                 </TableRow>
