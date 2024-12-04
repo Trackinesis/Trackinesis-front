@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import '../../styles.css'
 import BackButton from "../../components/backButton/BackButton";
 import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
@@ -18,7 +16,6 @@ function Social() {
         <Link to='/friends' id='defaultButton'>My friends</Link>
 
         <Link to='/leaderboard' id='defaultButton'>Leaderboard</Link>
-
         <FooterNavigation/>
     </div>
   );

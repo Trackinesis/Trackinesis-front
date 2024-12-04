@@ -75,7 +75,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--gray6);
+    background-color: var(--white);
     padding: 20px;
 }
 .main-page-header {
@@ -98,14 +98,24 @@
     color: var(--primary-dark);
 }
 
+#signupForms {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--black);
+    border: 1px solid var(--primary-dark2);
+}
+
 #colouredButton {
     display: inline-block;
     padding: 10px 20px;
     border: 1px solid var(--primary-light);
     border-radius: 5px;
     cursor: pointer;
-    background-color: var(--primary-dark2);
-    color: var(--timberwolf);
+    background-color: var(--primary-dark);
+    color: var(--white);
     width: 100%;
     margin-bottom: 10px;
 }
@@ -116,16 +126,56 @@
     border: 1px solid var(--primary-light);
     border-radius: 5px;
     cursor: pointer;
-
     background-color: var(--primary-dark);
-    color: var(--timberwolf);
+    color: var(--white);
     width: 100%;
     margin-bottom: 10px;
     text-decoration: none;
     text-align: center;
 }
 
-#backButton {
+#defaultSmallButton {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-main);
+    color: var(--white);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#defaultDeleteSmallButton {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--state-error);
+    color: var(--white);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#export-button {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 386px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #F40F02;
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+}
+
+#backButton { /* creo que se puede deletar*/
     
     display: inline-block;
     padding: 5px 10px;
@@ -267,7 +317,7 @@
     transition: 0.4s;
     transform: translateX(-56px);
 }
-
+/*
 .delete-button {
     width: 50px;
     height: 50px;
@@ -278,12 +328,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 0px 20px var(--gray3);
     cursor: pointer;
     transition-duration: .3s;
     overflow: hidden;
     position: relative;
-}
+} */
 
 .svgIcon {
     width: 12px;
@@ -294,6 +343,80 @@
     fill: var(--primary-dark);
 }
 
+.delete-confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    color: var(--primary-main);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.confirmation-text {
+    font-size: var(--fontsize-lg);
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--black)
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cancel-button,
+.delete-button {
+    padding: 10px 20px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
+    text-align: center;
+    position: relative;
+    transition: width 0.3s, border-radius 0.3s, background-color 0.3s, opacity 0.3s;
+}
+
+.cancel-button {
+    background-color: var(--secondary-main);
+    color: var(--white);
+}
+
+.delete-button {
+    background-color: var(--state-error);
+    color: var(--white);
+}
+
+/*
+.cancel-button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    background-color: var(--secondary-light2);
+    opacity: 0.8;
+    align-items: center;
+}
+
+
+.cancel-button::before {
+    position: absolute;
+    top: -20px;
+    color: var(--white);
+    transition-duration: .3s;
+    font-size: 2px;
+}
+
+.cancel-button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: .3s;
+}
+
 .delete-button:hover {
     width: 140px;
     border-radius: 50px;
@@ -302,17 +425,10 @@
     align-items: center;
 }
 
-.delete-button:hover .svgIcon {
-    width: 50px;
-    transition-duration: .3s;
-    transform: translateY(60%);
-}
-
 .delete-button::before {
     position: absolute;
     top: -20px;
-    content: "Delete";
-    color: var(--primary-dark);
+    color: var(--white);
     transition-duration: .3s;
     font-size: 2px;
 }
@@ -322,4 +438,90 @@
     opacity: 1;
     transform: translateY(30px);
     transition-duration: .3s;
+} */
+
+.main-format-create-plan {
+    position: relative;
+    padding-bottom: 60px;
+    overflow-y: auto;
+}
+
+.create-button-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#createRoutineButton {
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 386px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--secondary-main);
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+}
+
+.routine-card {
+    padding: 15px;
+    border: 1px solid var(--white);
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.export-card {
+    padding: 15px;
+    border: 1px solid var(--white);
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* Mejora el desplazamiento en dispositivos iOS */
+}
+
+@media (max-width: 600px) {
+    .routine-card {
+        padding: 10px; /* Espaciado adicional en pantallas pequeñas */
+    }
+    .table-container {
+        width: 100%;
+        margin-bottom: 10px; /* Un poco de margen para separación */
+    }
+
+    .MuiTableCell-root {
+        padding: 4px 8px; /* Ajusta el espaciado de las celdas */
+        font-size: 12px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+}
+.textfield-focused {
+    transform: scale(1.2); /* Agranda el campo */
+    transition: transform 0.2s ease; /* Suaviza la transición */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+.historical-tracking-bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: url('/src/assets/icons/background.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Escalar la imagen para cubrir todo el fondo */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar que se repita */
+    height: 100vh; /* Altura completa de la pantalla */
+    width: 100vw; /* Ancho completo de la pantalla */
+}
+
+.historical-tracking-header {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
 }

@@ -3,6 +3,7 @@
     position: relative; /* Para posicionar elementos secundarios si es necesario */
     width: 100%; /* Ancho del contenedor */
     margin: 20px 0; /* Espaciado vertical */
+    gap: 15px; /* Añade un gap entre el select y el botón */
 }
 
 /* Estilos para el select */
@@ -46,4 +47,21 @@
 .custom-select option:checked {
     background-color: #2196F3; /* Color de fondo de la opción seleccionada */
     color: #fff; /* Color del texto de la opción seleccionada */
+}
+
+/* Estilos para el botón de agregar rutina */
+.custom-button {
+    margin-top: 10px; /* Espaciado superior para separar del select */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color de texto */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+}
+
+/* Estilos para el botón de agregar rutina en estado hover */
+.custom-button:hover {
+    background-color: #45a049; /* Color de fondo al pasar el ratón */
 }

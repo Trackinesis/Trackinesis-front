@@ -4,10 +4,13 @@
     border-radius: 0.25rem;
     width: 90%;
 }
-
-#formsInput {
-    background-color: var(--gray7);
+/*
+#signupForms {
+    display: block;
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+    height: 40px;
+    border-radius: 5px;
+    color: var(--black);
+    border: 1px solid var(--primary-dark2);
+} */

@@ -1,0 +1,13 @@
+
+/* Permitir scroll solo dentro del gráfico */
+.graph-container {
+    overflow: auto;
+    width: 300px; /* Ajusta según sea necesario */
+    height: 300px; /* Ajusta según sea necesario */
+    margin: auto;
+}
+.stats-header {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-main);
+}

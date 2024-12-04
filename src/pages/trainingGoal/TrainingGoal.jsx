@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import { FaPause, FaPlay, FaTrash } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function TrainingGoal() {
   const navigate = useNavigate();
@@ -37,9 +38,9 @@ function TrainingGoal() {
       name: 'Actions',
       cell: row => (
         <div>
-          <button onClick={() => handlePause(row.goalId)}><FaPause /></button>
-          <button onClick={() => handlePlay(row.goalId)}><FaPlay /></button>
-          <button onClick={() => confirmDelete(row.goalId)}><FaTrash /></button>
+          <button id='defaultSmallButton' onClick={() => handlePause(row.goalId)}><FaPause /></button>
+          <button id='defaultSmallButton' onClick={() => handlePlay(row.goalId)}><FaPlay /></button>
+          <button id='defaultDeleteSmallButton' onClick={() => confirmDelete(row.goalId)}><FaTrash /></button>
         </div>
       ),
       ignoreRowClick: true,
@@ -77,11 +78,6 @@ function TrainingGoal() {
   const handleInputChange = (event) => {
     setNewGoal({ ...newGoal, [event.target.name]: event.target.value });
   };
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   const handlePause = async (goalId) => {
     try {
       const goalToUpdate = goalOptions.find((goal) => goal.goalId === goalId);
@@ -89,15 +85,15 @@ function TrainingGoal() {
         console.error('Goal not found:', goalId);
         return;
       }
-  
+
       const updatedGoal = {
         ...goalToUpdate,
         status: false
       };
-  
+
       const API_URL = `http://localhost:8081/goal/${goalId}`;
       const res = await axios.post(API_URL, updatedGoal);
-  
+
       if (res.status === 200) {
         console.log('Goal updated successfully');
         setGoalOptions(goalOptions.map((goal) =>
@@ -110,7 +106,7 @@ function TrainingGoal() {
       console.error('Error updating goal:', error);
     }
   };
-  
+
   const handlePlay = async (goalId) => {
     try {
         const goalToUpdate = goalOptions.find((goal) => goal.goalId === goalId);
@@ -118,15 +114,15 @@ function TrainingGoal() {
           console.error('Goal not found:', goalId);
           return;
         }
-    
+
         const updatedGoal = {
           ...goalToUpdate,
           status: true
         };
-    
+
         const API_URL = `http://localhost:8081/goal/${goalId}`;
         const res = await axios.post(API_URL, updatedGoal);
-    
+
         if (res.status === 200) {
           console.log('Goal updated successfully');
           setGoalOptions(goalOptions.map((goal) =>
@@ -167,45 +163,55 @@ function TrainingGoal() {
 
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
-            <h2 className='main-page-header'>Training Goals</h2>
+            <Link to="/userpage" id='backButton'> <BackButton/> </Link>
+
+            <h2 className='main-page-header' id="top-text">Training Goals</h2>
+
 
             <DataTable
                 columns={columns}
                 data={goalOptions}
             />
-            
+
+            {goalToDelete && (
+                <div className='delete-confirmation'>
+                    <p className='confirmation-text'>¿Are you sure?</p>
+                    <div className='confirmation-buttons'>
+                        <button className='cancel-button' onClick={cancelDelete}>No</button>
+                        <button className='delete-button' onClick={() => deleteGoal(goalToDelete)}>Yes</button>
+                    </div>
+                </div>
+            )}
+
             <form onSubmit={handleCreateGoal}>
                 <div className='prompt'>
                     <label id='top-text' htmlFor='goalName'>Goal Name </label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        placeholder="Goal Name" 
-                        value={newGoal.name} 
+                    <input
+                        id='signupForms'
+                        type="text"
+                        name="name"
+                        placeholder="Goal Name"
+                        value={newGoal.name}
                         onChange={handleInputChange}
                     />
+                </div>
 
-                    <label id='top-text' htmlFor='goalDescription'> Description</label>
-                    <input 
-                        type="text" 
-                        name="description" 
-                        placeholder="Goal Description" 
+                <div className='prompt'>
+                    <label id='top-text' htmlFor='goalDescription'>Description</label>
+                    <input
+                        id='signupForms'
+                        type="text"
+                        name="description"
+                        placeholder="Goal Description"
                         value={newGoal.description}
                         onChange={handleInputChange}
                     />
-
-                    <button type="submit">Create Goal</button>
                 </div>
+
+                <button id='defaultButton' type="submit">Create Goal</button>
             </form>
 
-            {goalToDelete && (
-                <div>
-                    <p id='top-text'>¿Are you sure?</p>
-                    <button id='defaultButton' onClick={() => deleteGoal(goalToDelete)}>Yes</button>
-                    <button id='colouredButton' onClick={cancelDelete}>No</button>
-                </div>
-            )}
+            <FooterNavigation/>
         </div>
     );
 }

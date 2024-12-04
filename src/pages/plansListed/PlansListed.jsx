@@ -94,12 +94,17 @@ function PlansListed() {
     };
 
     return (
-        <div className='main-format-create-plan p'>
+        <div className='main-format-create-plan'>
             <Link to='/home' id='backButton'><BackButton/></Link>
 
             <h2 className='main-page-header'>My plans</h2>
+
+            <div className="create-button-container">
+                <Link to='/createplan' id='createRoutineButton' className='create-button'>Create New Plan</Link>
+            </div>
+
             {plans.map((plan) => (
-                <div className='prompt' key={plan.planId}>
+                <div className='routine-card' key={plan.planId}>
                     <h3 id='top-text'>Plan name: {plan.name}</h3>
                     <p id='top-text'>Description: {plan.description}</p>
 
@@ -118,7 +123,7 @@ function PlansListed() {
                                     handleRoutineSelect(selectedRoutineId, selectedRoutineDay);
                                 }}
                             >
-                                <option value="">Selecciona una rutina</option>
+                                <option value="">Select a routine</option>
                                 {routines.map((routine) => (
                                     <option key={routine.routineId} value={routine.routineId}>
                                         {routine.name} ({routine.day})
@@ -134,7 +139,6 @@ function PlansListed() {
                                 Add Routine to Plan
                             </button>
                         </div>
-
                     )}
 
                     <button id='defaultButton' onClick={() => confirmDelete(plan.planId)}>
@@ -142,15 +146,16 @@ function PlansListed() {
                     </button>
 
                     {plan.planId === planToDelete && (
-                        <div>
-                            <p id='top-text'>¿Are you sure?</p>
-                            <button id='colouredButton' onClick={cancelDelete}>No</button>
-                            <button id='defaultButton' onClick={() => deletePlan(plan.planId)}>Yes</button>
+                        <div className='delete-confirmation'>
+                            <p className='confirmation-text'>Are you sure?</p>
+                            <div className='confirmation-buttons'>
+                                <button className='cancel-button' onClick={cancelDelete}>No</button>
+                                <button className='delete-button' onClick={() => deletePlan(plan.planId)}>Yes</button>
+                            </div>
                         </div>
                     )}
                 </div>
             ))}
-            <Link to='/createplan' id='defaultButton'>Create New Plan</Link>
             <FooterNavigation/>
         </div>
     );

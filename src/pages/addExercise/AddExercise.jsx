@@ -51,10 +51,10 @@ function AddExercise() {
                 routineId: valuesExercise.routineId,
                 exerciseId: exerciseId,
                 name: valuesExercise.name,
-                sets: valuesExercise.sets,
-                reps: valuesExercise.reps,
-                weight: valuesExercise.weight,
-                duration: valuesExercise.duration
+                sets: valuesExercise.sets || null,
+                reps: valuesExercise.reps || null,
+                weight: valuesExercise.weight || null,
+                duration: valuesExercise.duration || null
             };
 
             axios.post('http://localhost:8081/routineExercise', routineExerciseData)
@@ -67,14 +67,10 @@ function AddExercise() {
         }
     };
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton /></button>
-            <h2 className='main-page-header h2'>Add exercise</h2>
+            <Link to='/routineslisted' id='backButton'><BackButton/></Link>
+            <h2 className='main-page-header h2'>Add exercises</h2>
 
             <form action="" onSubmit={handleSubmitAddExercise}>
                 <div className='mb-3'>
@@ -90,7 +86,6 @@ function AddExercise() {
 
                 <Link to='/createexercise' id='defaultButton' type='submit'>Create exercise</Link>
 
-                {/* Mostrar imagen si existe */}
                 {selectedExerciseImage && (
                     <div className="exercise-image-preview">
                         <h3>Exercise Image:</h3>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import { FaArrowUp } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
 import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function MyPersonalRecords() {
   const navigate = useNavigate();
@@ -56,10 +57,6 @@ function MyPersonalRecords() {
 
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   const handleToggleUpdateForm = () => {
     setShowUpdateForm(!showUpdateForm);
   };
@@ -95,15 +92,15 @@ function MyPersonalRecords() {
 
   return (
     <div className='main-page p'>
-      <button onClick={handleGoBack} id="backButton"><BackButton/></button>
-      <h2 className='main-page-header'>My Personal Records</h2>
+      <Link to="/historicaltracking" id='backButton'> <BackButton/> </Link>
+      <h1 className='main-page-header'>Personal Records</h1>
 
       <DataTable
         columns={columns}
         data={userHistory}
       />
 
-      <button onClick={handleToggleUpdateForm}>
+      <button id="defaultButton" onClick={handleToggleUpdateForm}>
         <FaArrowUp /> {showUpdateForm ? 'Close Update Form' : 'Update Personal Records'}
       </button>
 
@@ -115,35 +112,40 @@ function MyPersonalRecords() {
               value={user.maxBench}
               onChange={handleInputChange}
               type="number"
-              id="top-text"
+              id='signupForms'
               name="maxBench"
               placeholder="Enter your max"
             />
+          </div>
 
-            <label htmlFor='maxSquat'> Squat Max</label>
+          <div className='prompt'>
+            <label htmlFor='maxSquat'>Squat Max</label>
             <input
               value={user.maxSquat}
               onChange={handleInputChange}
               type="number"
-              id="top-text"
+              id='signupForms'
               name="maxSquat"
               placeholder="Enter your max"
             />
+            </div>
 
-            <label htmlFor='maxDeadLift'> DeadLift Max</label>
+            <div className='prompt'>
+            <label htmlFor='maxDeadLift'>Dead Lift Max</label>
             <input
               value={user.maxDeadLift}
               onChange={handleInputChange}
               type="number"
-              id="top-text"
+              id='signupForms'
               name="maxDeadLift"
               placeholder="Enter your max"
             />
+            </div>
+            <button id="defaultButton" type="submit">Submit</button>
 
-            <button type="submit">Submit</button>
-          </div>
         </form>
       )}
+      <FooterNavigation/>
     </div>
     );
 }

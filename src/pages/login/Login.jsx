@@ -4,6 +4,7 @@ import Validation from './LoginValidation';
 import axios from 'axios';
 import './Login.css';
 import '../../styles.css';
+import logo from '../../assets/icons/Trackinesis.png'
 
 function Login() {
   const [values, setValues] = useState({
@@ -69,47 +70,49 @@ function Login() {
   }, []);
 
   return (
-    <div className='main-page p'>
-      <h2 className='main-page-header h2'>Log In</h2>
+      <div className='login-page p'>
 
-      <form>
-        <div className='prompt p'>
-          <label id='top-text'>
-            <strong>Email</strong>
-          </label>
-          <input
-            id='formsInput'
-            type="email"
-            placeholder='Enter your email...'
-            name='email'
-            onChange={handleInput}
-          />
-          {errors.email && <span className='text-danger'> {errors.email}</span>}
-        </div>
+        <img src={logo} alt="Logo" className="logo"/>
+        <h2 className='main-page-header h2'>Log In</h2>
 
-        <div className='prompt p'>
-          <label id='top-text'>
-            <strong>Password</strong>
-          </label>
-          <input
-            id='formsInput'
-            type="password"
-            placeholder='Enter password'
-            name='password'
-            onChange={handleInput}
-          />
-          {errors.password && <span className='text-danger'> {errors.password}</span>}
-        </div>
+        <form>
+          <div className='prompt p'>
+            <label id='top-text'>
+              <strong>Email</strong>
+            </label>
+            <input
+                id='emailInput'
+                type="email"
+                placeholder='Enter your email'
+                name='email'
+                onChange={handleInput}
+            />
+            {errors.email && <span className='text-danger'> {errors.email}</span>}
+          </div>
 
-        <button type='submit' onClick={handleSubmit} id='colouredButton' className='p'>
-          Log in
-        </button>
+          <div className='prompt p'>
+            <label id='top-text'>
+              <strong>Password</strong>
+            </label>
+            <input
+                id='passwordInput'
+                type="password"
+                placeholder='Enter password'
+                name='password'
+                onChange={handleInput}
+            />
+            {errors.password && <span className='text-danger'> {errors.password}</span>}
+          </div>
 
-        <Link to="/signup" id='defaultButton' className='p'>
-          Create Account
-        </Link>
-      </form>
-    </div>
+          <button type='submit' onClick={handleSubmit} id='defaultButton' className='p'>
+            Log in
+          </button>
+
+          <Link to="/signup" id='defaultButton' className='p'>
+            Create Account
+          </Link>
+        </form>
+      </div>
   );
 }
 

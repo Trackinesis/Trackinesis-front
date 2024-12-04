@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles.css';
 import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
+import BackButton from "../../components/backButton/BackButton";
 
 function ShareRoutine() {
     const navigate = useNavigate();
@@ -23,28 +24,69 @@ function ShareRoutine() {
     const handleSearch = async (event) => {
         event.preventDefault();
         setErrorMessage(null);
-        console.log(`Searching for routines by ${searchType}: ${searchTerm}`);
+        setRoutines([]); // Clear previous search results
 
+        if (!searchTerm.trim()) {
+            setErrorMessage('Please enter a search value');
+            return;
+        }
+
+        console.log(`Searching for routines by ${searchType}: ${searchTerm}`);
+        let foundValidRoutine = false; // Flag to track if a valid routine is found
         try {
             let res;
             if (searchType === 'id') {
                 res = await axios.get(`http://localhost:8081/routine/find/${searchTerm}`);
-                setRoutines([res.data]); // Store the found routine in an array
+                const routineData = res.data;
+                foundValidRoutine = handleRoutineVisibility(routineData);
             } else if (searchType === 'name') {
                 res = await axios.get(`http://localhost:8081/routine/findByName/${searchTerm}`);
-                setRoutines(res.data); // Store all found routines
+                res.data.forEach(routineData => {
+                    foundValidRoutine = handleRoutineVisibility(routineData) || foundValidRoutine;
+                });
             } else if (searchType === 'creatorId') {
                 res = await axios.get(`http://localhost:8081/routine/findByCreator/${searchTerm}`);
-                setRoutines(res.data); // Store all found routines
+                res.data.forEach(routineData => {
+                    foundValidRoutine = handleRoutineVisibility(routineData) || foundValidRoutine;
+                });
             }
 
-            if (!res || res.data.length === 0) {
-                setErrorMessage('No routines found'); // Handle no results
+            if (!foundValidRoutine) {
+                setErrorMessage('No visible routines found'); // Show error if no routine is valid
             }
         } catch (err) {
             console.error(err);
             setErrorMessage('Error retrieving routines');
         }
+    };
+
+    const handleRoutineVisibility = async (routineData) => {
+        if (routineData.state === 'private') {
+            setErrorMessage('This routine is private')
+            return false;
+        } else if (routineData.state === 'public') {
+            setRoutines(prevRoutines => [...prevRoutines, routineData]);
+            return true;
+        } else if (routineData.state === 'friends') {
+            try {
+                const friendsRes = await axios.get(`http://localhost:8081/friend/${userId}`);
+                const friends = friendsRes.data;
+                const isFriend = friends.some(friend => friend.followedId === routineData.userId);
+
+                if (isFriend) {
+                    setRoutines(prevRoutines => [...prevRoutines, routineData]);
+                    return true; // Valid routine found
+                } else {
+                    setErrorMessage("This routine is only visible to friends.")
+                    return false; // Routine not visible to the user
+                }
+            } catch (err) {
+                console.error(err);
+                setErrorMessage('Error retrieving friends');
+                return false;
+            }
+        }
+        return false;
     };
 
     const handleSearch2 = (event, routine) => {
@@ -60,32 +102,34 @@ function ShareRoutine() {
     };
 
     return (
-        <div className='home-page-main-format p'>
-            <Link to='/social' id='backButton'>Back</Link>
-            <h1 className='main-page-header'>Search routines</h1>
+        <div className='main-format-create-plan p'>
+            <Link to='/social' id='backButton'><BackButton /></Link>
+            <h1 className='main-page-header'>Search routines!</h1>
 
-            <div className='prompt'>
-                <label htmlFor="searchTerm" id='top-text'><strong>Enter search term:</strong></label>
-                <input
-                    type="text"
-                    placeholder='Enter ID, name, or creator ID'
-                    id='searchTerm'
-                    name='searchTerm'
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                />
-            </div>
+            <form action="" onSubmit={handleSearch}>
+                <div className='prompt'>
+                    <label htmlFor="searchTerm" id='top-text'><strong>Enter search value:</strong></label>
+                    <input
+                        id='formsInput'
+                        type="text"
+                        placeholder='Enter ID, name, or creator ID'
+                        name='searchTerm'
+                        value={searchTerm}
+                        onChange={handleInputChange}
+                    />
+                </div>
 
-            <div className='prompt'>
-                <label htmlFor="searchType" id='top-text'><strong>Select search type:</strong></label>
-                <select id='searchType' value={searchType} onChange={handleSelectChange}>
-                    <option value="id">By ID</option>
-                    <option value="name">By Name</option>
-                    <option value="creatorId">By Creator ID</option>
-                </select>
-            </div>
+                <div className='mb-3'>
+                    <label htmlFor="searchType" id='top-text'><strong>Select search parameter:</strong></label>
+                    <select id='formsInput' value={searchType} onChange={handleSelectChange}>
+                        <option value="id">By routine ID</option>
+                        <option value="name">By Name</option>
+                        <option value="creatorId">By creator ID</option>
+                    </select>
+                </div>
 
-            <button onClick={handleSearch} id='defaultButton'>Search</button>
+                <button onClick={handleSearch} id='defaultButton'>Search</button>
+            </form>
 
             {errorMessage && (
                 <div className='error-message'>
@@ -94,8 +138,8 @@ function ShareRoutine() {
             )}
 
             {routines.length > 0 && (
-                <div>
-                    <h2>Found Routines:</h2>
+                <div className="routine-card">
+                    <h2>Routines found!</h2>
                     {routines.map(routine => (
                         <div key={routine.id}>
                             <h3 id='top-text'>{routine.name}</h3>
@@ -107,6 +151,8 @@ function ShareRoutine() {
                     ))}
                 </div>
             )}
+
+            <FooterNavigation />
         </div>
     );
 }
