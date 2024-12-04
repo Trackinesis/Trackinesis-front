@@ -21,7 +21,7 @@ function Validation(valuesStepOne) {
         error.email = "Email should not be empty"
     }
     else if(!email_pattern.test(valuesStepOne.email)) {
-        error.email = "Email didn't match"
+        error.email = "Not valid email"
     }
     else {
         error.email = ""

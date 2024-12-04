@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import { FaArrowUp } from "react-icons/fa";
 import axios from 'axios';
 import '../../styles.css';
+import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function MyPersonalRecords() {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(localStorage.getItem('userId')); // Store user ID
-  const [user, setUser] = useState({ maxBench: '', maxSquat: '', maxDeadlift: '' }); // State for user data
-  const [showUpdateForm, setShowUpdateForm] = useState(false); // Control form visibility
+  const userId = localStorage.getItem('userId');
+  const [user, setUser] = useState({ maxBench: '', maxSquat: '', maxDeadLift: '', weight: 0 });
+  const [userHistory, setUserHistory] = useState([]);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   const columns = [
     {
@@ -23,24 +26,24 @@ function MyPersonalRecords() {
       sortable: true,
     },
     {
-      name: 'Deadlift',
-      selector: row => row.maxDeadlift,
+      name: 'DeadLift',
+      selector: row => row.maxDeadLift,
       sortable: true,
     },
   ];
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8081/signupsteptwo/${userId}`);
-        const user = res.data;
-        setUser(user);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-    fetchData();
+    fetchUserHistory();
   }, [userId]);
+
+  const fetchUserHistory = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8081/userHistory/${userId}`);
+      setUserHistory(res.data);
+    } catch (error) {
+      console.error('Error fetching user history', error);
+    }
+  };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -54,10 +57,6 @@ function MyPersonalRecords() {
 
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   const handleToggleUpdateForm = () => {
     setShowUpdateForm(!showUpdateForm);
   };
@@ -69,8 +68,9 @@ function MyPersonalRecords() {
       const updatedUser = {
         maxBench: user.maxBench,
         maxSquat: user.maxSquat,
-        maxDeadlift: user.maxDeadlift,
-        strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadlift) / user.weight : 0,
+        maxDeadLift: user.maxDeadLift,
+        strengthRatio: user.weight > 0 ? (user.maxBench + user.maxSquat + user.maxDeadLift) / user.weight : 0,
+        userId: userId
       };
   
       const API_URL = `http://localhost:8081/signupsteptwo/${userId}`;
@@ -78,7 +78,10 @@ function MyPersonalRecords() {
 
       if (res.status === 200) {
         console.log('User max updated successfully');
-        // Update user state with updated values if needed
+        setUser({ maxBench: '', maxSquat: '', maxDeadLift: '', weight: 0 });
+        fetchUserHistory();
+        setShowUpdateForm(false);
+
       } else {
         console.error('Error updating user max:', res.data);
       }
@@ -88,16 +91,16 @@ function MyPersonalRecords() {
   };
 
   return (
-    <div className='main-page'>
-      <button onClick={handleGoBack} id="backButton"> Back</button>
-      <h2>My Personal Records</h2>
+    <div className='main-page p'>
+      <Link to="/historicaltracking" id='backButton'> <BackButton/> </Link>
+      <h1 className='main-page-header'>Personal Records</h1>
 
       <DataTable
         columns={columns}
-        data={[user]} // Display single user data
+        data={userHistory}
       />
 
-      <button onClick={handleToggleUpdateForm}>
+      <button id="defaultButton" onClick={handleToggleUpdateForm}>
         <FaArrowUp /> {showUpdateForm ? 'Close Update Form' : 'Update Personal Records'}
       </button>
 
@@ -109,35 +112,40 @@ function MyPersonalRecords() {
               value={user.maxBench}
               onChange={handleInputChange}
               type="number"
-              id="top-text"
+              id='signupForms'
               name="maxBench"
               placeholder="Enter your max"
             />
+          </div>
 
-            <label htmlFor='maxSquat'> Squat Max</label>
+          <div className='prompt'>
+            <label htmlFor='maxSquat'>Squat Max</label>
             <input
               value={user.maxSquat}
               onChange={handleInputChange}
               type="number"
-              id="top-text"
+              id='signupForms'
               name="maxSquat"
               placeholder="Enter your max"
             />
+            </div>
 
-            <label htmlFor='maxDeadlift'> Deadlift Max</label>
+            <div className='prompt'>
+            <label htmlFor='maxDeadLift'>Dead Lift Max</label>
             <input
-              value={user.maxDeadlift}
+              value={user.maxDeadLift}
               onChange={handleInputChange}
               type="number"
-              id="top-text"
-              name="maxDeadlift"
+              id='signupForms'
+              name="maxDeadLift"
               placeholder="Enter your max"
             />
+            </div>
+            <button id="defaultButton" type="submit">Submit</button>
 
-            <button type="submit">Submit</button>
-          </div>
         </form>
       )}
+      <FooterNavigation/>
     </div>
     );
 }

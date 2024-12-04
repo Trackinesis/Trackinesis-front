@@ -4,6 +4,7 @@ import Validation from './SignupValidation';
 import axios from 'axios';
 import './Signup.css';
 import '../../styles.css'
+import BackButton from "../../components/backButton/BackButton";
 
 function Signup() {
 
@@ -29,50 +30,68 @@ function Signup() {
                     localStorage.setItem('userId', res.data.id);
                     navigate('/signupsteptwo');
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    if (err.response && err.response.data.name === 'SequelizeUniqueConstraintError') {
+                        const emailError = err.response.data.errors.find(
+                            (error) => error.path === 'email'
+                        );
+                        if (emailError) {
+                            setErrors(prev => ({ ...prev, email: 'This email is already registered' }));
+                        }
+                    } else {
+                        console.error(err);
+                    }
+                });
         }
     };
 
     return (
-            <div className='main-page'>
+            <div className='main-page p'>
 
-                <Link to="/" id='backButton'>Back</Link>
+                <Link to="/" id='backButton'> <BackButton/> </Link>
 
-                <h2 className='main-page-header'>Sign Up</h2>
+                <h2 className='main-page-header h2'>Sign Up</h2>
 
-                <form action="" onSubmit={handleSubmit}>
+                <form action="" onSubmit={handleSubmit} className='p'>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="name"><strong>First Name</strong></label>
-                        <input id='formsInput' type="text" placeholder='Enter First Name' name='name' onChange={handleInput} />
+                        <input id='signupForms' type="text" placeholder='Enter first name' name='name' onChange={handleInput} />
                         {errors.name && <span className='text-danger'> {errors.name}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="surname"><strong>Last Name</strong></label>
-                        <input id='formsInput' type="text" placeholder='Enter Last Name' name='surname' onChange={handleInput} />
+                        <input id='signupForms' type="text" placeholder='Enter last name' name='surname' onChange={handleInput} />
                         {errors.surname && <span className='text-danger'> {errors.surname}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="email"><strong>Email</strong></label>
-                        <input id='formsInput' type="email" placeholder='Enter Email' name='email' onChange={handleInput} />
+                        <input
+                            id='signupForms'
+                            type="email"
+                            placeholder='Enter email'
+                            name='email'
+                            onChange={handleInput}
+                        />
                         {errors.email && <span className='text-danger'> {errors.email}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="password"><strong>Password</strong></label>
-                        <input id='formsInput' type="password" placeholder='Enter Password' name='password' onChange={handleInput} />
+                        <input id='signupForms' type="password" placeholder='Enter password' name='password'
+                               onChange={handleInput}/>
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
 
                     <div className='prompt'>
                         <label id='top-text' htmlFor="password"><strong>Repeat Password</strong></label>
-                        <input id='formsInput' type="password" placeholder='Re Enter Password' name='password' onChange={handleInput}/>
+                        <input id='signupForms' type="password" placeholder='Repeat password' name='password' onChange={handleInput}/>
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
 
-                    <button id='colouredButton' type='submit' onClick={handleSubmit}>Next</button>
+                    <button id='defaultButton' type='submit' onClick={handleSubmit}>Next step!</button>
                 </form>
             </div>
     )

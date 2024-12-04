@@ -1,9 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
+    --primary-dark2: #03122F;
+    --primary-dark: #11203D;
+    --primary-main: #273653;
+    --primary-light: #475673;
+    --primary-light2: #6D7C99;
+
+    --secondary-dark2: #1245B0;
+    --secondary-dark: #2C5FCA;
+    --secondary-main: #5386FA;
+    --secondary-light: #78ABFF;
+    --secondary-light2: #9DD0F4;
+
+    --tertiary-dark2: #0D1A53;
+    --tertiary-dark: #28356E;
+    --tertiary-main: #49568F;
+    --tertiary-light: #6B78B1;
+    --tertiary-light2: #94A1DA;
+
+    --state-success: #A4F572;
+    --state-warning: #FCEA49;
+    --state-error: #FF5146;
+
+    --black: #151515;
+    --gray2: #242424;
+    --gray3: #2A2A2A;
+    --gray4: #3A3A3A;
+    --gray5: #585858;
+    --gray6: #C1C1C1;
+    --gray7: #DEDEDE;
+    --white: #FFFEFC;
+
     --raisin-black: #372f32ff;
     --wenge: #504746ff;
     --timberwolf: #d8d8d8ff;
     --tea-rose-red: #f7cbcaff;
     --vermilion: #ff3633ff;
+
+    /* Tipografía */
+    --fontfamilysans: 'Roboto', sans-serif;
+
+    /* Tamaños de fuente */
+    --fontsize-xs: 0.75rem;    /* Extra pequeño */
+    --fontsize-sm: 0.875rem;   /* Pequeño */
+    --fontsize-md: 1rem;       /* Mediano */
+    --fontsize-lg: 1.125rem;    /* Grande */
+    --fontsize-xl: 1.25rem;     /* Extra grande */
+    --fontsize-2xl: 1.5rem;     /* 2X grande */
+    --fontsize-3xl: 1.875rem;    /* 3X grande */
+    --fontsize-4xl: 2.25rem;     /* 4X grande */
+    --fontsize-5xl: 3rem;        /* 5X grande */
+
+    /* Altura de línea */
+    --fontline-height: 1.5;     /* Altura de línea por defecto */
+    --fontline-height-xs: 1.25; /* Extra pequeño */
+    --fontline-height-sm: 1.5;  /* Pequeño */
+    --fontline-height-md: 1.75; /* Mediano */
+    --fontline-height-lg: 1.875; /* Grande */
+    --fontline-height-xl: 2;    /* Extra grande */
+    --fontline-height-2xl: 2.5;  /* 2X grande */
+    --fontline-height-3xl: 3;    /* 3X grande */
+
+    /* Espaciado de letras */
+    --fontletter-spacingnormal: 0;    /* Espaciado normal */
+    --fontletter-spacing-tight: -0.02em; /* Ajustado */
+    --fontletter-spacing-wide: 0.05em; /* Ampliado */
+
 }
 
 .main-page {
@@ -12,13 +75,13 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--raisin-black);
+    background-color: var(--white);
     padding: 20px;
 }
 .main-page-header {
     text-align: center;
-    margin-bottom: 20px;
-    color: var(--timberwolf);
+    margin-bottom: 10px;
+    color: var(--primary-dark);
 }
 
 .main-page-content {
@@ -32,18 +95,27 @@
 }
 
 #top-text {
-    color: var(--timberwolf);
+    color: var(--primary-dark);
+}
+
+#signupForms {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    color: var(--black);
+    border: 1px solid var(--primary-dark2);
 }
 
 #colouredButton {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid var(--vermilion);
+    border: 1px solid var(--primary-light);
     border-radius: 5px;
     cursor: pointer;
-
-    background-color: var(--vermilion);
-    color: var(--timberwolf);
+    background-color: var(--primary-dark);
+    color: var(--white);
     width: 100%;
     margin-bottom: 10px;
 }
@@ -51,19 +123,59 @@
 #defaultButton {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid var(--wenge);
+    border: 1px solid var(--primary-light);
     border-radius: 5px;
     cursor: pointer;
-
-    background-color: var(--wenge);
-    color: var(--timberwolf);
+    background-color: var(--primary-dark);
+    color: var(--white);
     width: 100%;
     margin-bottom: 10px;
     text-decoration: none;
     text-align: center;
 }
 
-#backButton {
+#defaultSmallButton {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-main);
+    color: var(--white);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#defaultDeleteSmallButton {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--state-error);
+    color: var(--white);
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#export-button {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 386px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #F40F02;
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+}
+
+#backButton { /* creo que se puede deletar*/
     
     display: inline-block;
     padding: 5px 10px;
@@ -91,9 +203,325 @@
 }
 
 .react-calendar__month-view__weekdays {
-    color: white;
+    color: var(--timberwolf);
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {
     text-decoration: none;
+}
+
+.error-message {
+    color: var(--state-error);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.h1 {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-5xl);
+    line-height: var(--fontline-height-3xl);
+    letter-spacing: var(--fontletter-spacingnormal); /* Corregido a 'normal' */
+}
+
+.h2 {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-4xl);
+    line-height: var(--fontline-height-2xl);
+    letter-spacing: var(--fontletter-spacing-tight);
+}
+
+.p {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-md);
+    line-height: var(--fontline-height);
+    letter-spacing: var(--fontletter-spacingnormal);
+}
+
+.small-text {
+    font-family: var(--fontfamilysans);
+    font-size: var(--fontsize-xs);
+    line-height: var(--fontline-height-xs);
+    letter-spacing: var(--fontletter-spacingnormal);
+}
+
+
+.back-button {
+    display: block;
+    position: relative;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+
+.back-button:before,
+.back-button:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+}
+
+.back-button:before {
+    border: 4px solid var(--primary-dark2);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.back-button:after {
+    border: 4px solid var(--primary-dark);
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+}
+
+.back-button:hover:before,
+.back-button:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-button:hover:after,
+.back-button:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.back-button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.back-button-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: var(--primary-dark);
+}
+
+.back-button:hover .button-box,
+.back-button:focus .button-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+}
+/*
+.delete-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--black);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+    position: relative;
+} */
+
+.svgIcon {
+    width: 12px;
+    transition-duration: .3s;
+}
+
+.svgIcon path {
+    fill: var(--primary-dark);
+}
+
+.delete-confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    color: var(--primary-main);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.confirmation-text {
+    font-size: var(--fontsize-lg);
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--black)
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cancel-button,
+.delete-button {
+    padding: 10px 20px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
+    text-align: center;
+    position: relative;
+    transition: width 0.3s, border-radius 0.3s, background-color 0.3s, opacity 0.3s;
+}
+
+.cancel-button {
+    background-color: var(--secondary-main);
+    color: var(--white);
+}
+
+.delete-button {
+    background-color: var(--state-error);
+    color: var(--white);
+}
+
+/*
+.cancel-button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    background-color: var(--secondary-light2);
+    opacity: 0.8;
+    align-items: center;
+}
+
+
+.cancel-button::before {
+    position: absolute;
+    top: -20px;
+    color: var(--white);
+    transition-duration: .3s;
+    font-size: 2px;
+}
+
+.cancel-button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: .3s;
+}
+
+.delete-button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    background-color: var(--state-error);
+    align-items: center;
+}
+
+.delete-button::before {
+    position: absolute;
+    top: -20px;
+    color: var(--white);
+    transition-duration: .3s;
+    font-size: 2px;
+}
+
+.delete-button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: .3s;
+} */
+
+.main-format-create-plan {
+    position: relative;
+    padding-bottom: 60px;
+    overflow-y: auto;
+}
+
+.create-button-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#createRoutineButton {
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 386px;
+    border: 1px solid var(--primary-light);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--secondary-main);
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+}
+
+.routine-card {
+    padding: 15px;
+    border: 1px solid var(--white);
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.export-card {
+    padding: 15px;
+    border: 1px solid var(--white);
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* Mejora el desplazamiento en dispositivos iOS */
+}
+
+@media (max-width: 600px) {
+    .routine-card {
+        padding: 10px; /* Espaciado adicional en pantallas pequeñas */
+    }
+    .table-container {
+        width: 100%;
+        margin-bottom: 10px; /* Un poco de margen para separación */
+    }
+
+    .MuiTableCell-root {
+        padding: 4px 8px; /* Ajusta el espaciado de las celdas */
+        font-size: 12px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+}
+.textfield-focused {
+    transform: scale(1.2); /* Agranda el campo */
+    transition: transform 0.2s ease; /* Suaviza la transición */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+.historical-tracking-bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: url('/src/assets/icons/background.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Escalar la imagen para cubrir todo el fondo */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar que se repita */
+    height: 100vh; /* Altura completa de la pantalla */
+    width: 100vw; /* Ancho completo de la pantalla */
+}
+
+.historical-tracking-header {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
 }

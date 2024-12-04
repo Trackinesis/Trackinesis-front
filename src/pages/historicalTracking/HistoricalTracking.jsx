@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import {Link} from 'react-router-dom';
 import '../../styles.css'
+import BackButton from "../../components/backButton/BackButton";
+import FooterNavigation from "../../components/footerNavigation/FooterNavigation";
 
 function HistoricalTracking() {
-  return (
-    <div className='home-page-main-format'>
-      <Link to='/home' id='backButton'>Back</Link>
-      <h1 className='main-page-header'>Historical Tracking</h1>
+    return (
+        <div className='main-page'>
+            <Link to="/userpage" id='backButton'> <BackButton/> </Link>
+            <h1 className='historical-tracking-header'>Historical Tracking</h1>
 
-        <Link to='/addfriend' id='defaultButton'>See my progress</Link>
+            <Link to='/statistics' id='defaultButton'>See my progress</Link>
+            <Link to='/mypersonalrecords' id='defaultButton'>My personal records</Link>
 
-        <Link to='/mypersonalrecords' id='defaultButton'>My personal records</Link>
-    </div>
-  );
+            <FooterNavigation/>
+        </div>
+    );
 }
 
 export default HistoricalTracking;

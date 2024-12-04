@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Home from './pages/home/Home';
 import SignupStepTwo from './pages/signupStepTwo/SignupStepTwo';
+import TrainingSession from "./pages/trainingSession/TrainingSession";
 import UserPage from './pages/userPage/UserPage';
 import CreatePlan from "./pages/createPlan/CreatePlan";
 import AddExercise from "./pages/addExercise/AddExercise";
@@ -23,6 +24,7 @@ import Leaderboard from './pages/leaderboard/Leaderboard';
 import HistoricalTracking from './pages/historicalTracking/HistoricalTracking';
 import MyPersonalRecords from './pages/myPersonalRecords/MyPersonalRecords';
 import PersonalCalendar from './pages/calendar/PersonalCalendar';
+import Stats from './pages/stats/Stats';
 
 function App() {
     const { token } = useUser();
@@ -48,13 +50,14 @@ function App() {
                 {/* Private routes */}
                 <Route element={<PrivateRoute />}>
                     <Route path="/home" element={<Home />} />
+                    <Route path="/trainingsession" element={<TrainingSession />} />
                     <Route path="/userpage" element={<UserPage />} />
                     <Route path='/personalcalendar' element={<PersonalCalendar />} />
                     <Route path="/createplan" element={<CreatePlan />} />
                     <Route path="/planslisted" element={<PlansListed />} />
                     <Route path="/createroutine" element={<CreateRoutine />} />
                     <Route path="/routineslisted" element={<RoutinesListed />} />
-                    <Route path="/addexercise" element={<AddExercise />} />
+                    <Route path="/addexercise/:routineId" element={<AddExercise />} />
                     <Route path="/createexercise" element={<CreateExercise />} />
                     <Route path="/traininggoal" element={<TrainingGoal />} />
                     <Route path="/social" element={<Social />} />
@@ -64,6 +67,7 @@ function App() {
                     <Route path='/leaderboard' element={<Leaderboard/>} />
                     <Route path='/historicaltracking' element={<HistoricalTracking/>} />
                     <Route path='/mypersonalrecords' element={<MyPersonalRecords/>} />
+                    <Route path='/statistics' element={<Stats/>} />
                 </Route>
 
                 {/* Not Found */}
