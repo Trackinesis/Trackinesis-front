@@ -94,7 +94,7 @@ function PlansListed() {
     };
 
     return (
-        <div className='main-format-create-plan p'>
+        <div className='main-format-create-plan'>
             <Link to='/home' id='backButton'><BackButton/></Link>
 
             <h2 className='main-page-header'>My plans</h2>
