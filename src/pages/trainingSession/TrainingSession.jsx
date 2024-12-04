@@ -201,59 +201,63 @@ function TrainingSession() {
 
             <div className='main-page-header'>
                 <h2>{routine}</h2>
-                <h3>Exercises:</h3>
-                {routineExercises.length > 0 ? (
-                    <div className="responsive-table">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Sets</th>
-                                <th>Reps</th>
-                                <th>Weight</th>
-                                <th>Duration</th>
-                                <th>Sets counter</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {paginatedExercises.map((exercise) => (
-                                <tr key={exercise.id}>
-                                    <td>{exercise.name}</td>
-                                    <td>{exercise.sets}</td>
-                                    <td>{exercise.reps}</td>
-                                    <td>{exercise.weight}</td>
-                                    <td>{exercise.duration}</td>
-                                    <td>
-                                        <div style={{display: 'flex', alignItems: 'center'}}>
-                                            <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
-                                            <span style={{margin: '0 5px'}}>
-                                        {exerciseStatus[exercise.id]?.setsCompleted || 0}
-                                    </span>
-                                            <FaPlus onClick={() => incrementSetCompletion(exercise.id)}/>
-                                            {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets &&
-                                                <FaCheck style={{marginLeft: '10px'}}/>}
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
 
-                        <div className="pagination">
-                            <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
-                                Prev
-                            </button>
-                            <span>{currentPage + 1}</span>
-                            <button
-                                onClick={() => handlePageChange(currentPage + 1)}
-                                disabled={(currentPage + 1) * rowsPerPage >= routineExercises.length}
-                            >
-                                Next
-                            </button>
+                {routineExercises.length > 0 ? (
+                    <>
+                        <h3>Exercises:</h3>
+                        <div className="responsive-table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Sets</th>
+                                    <th>Reps</th>
+                                    <th>Weight</th>
+                                    <th>Duration</th>
+                                    <th>Sets counter</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {paginatedExercises.map((exercise) => (
+                                    <tr key={exercise.id}>
+                                        <td>{exercise.name}</td>
+                                        <td>{exercise.sets}</td>
+                                        <td>{exercise.reps}</td>
+                                        <td>{exercise.weight}</td>
+                                        <td>{exercise.duration}</td>
+                                        <td>
+                                            <div style={{display: 'flex', alignItems: 'center'}}>
+                                                <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
+                                                <span style={{margin: '0 5px'}}>
+                                            {exerciseStatus[exercise.id]?.setsCompleted || 0}
+                                        </span>
+                                                <FaPlus onClick={() => incrementSetCompletion(exercise.id)}/>
+                                                {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets && (
+                                                    <FaCheck style={{marginLeft: '10px'}}/>
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            <div className="pagination">
+                                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
+                                    Prev
+                                </button>
+                                <span>{currentPage + 1}</span>
+                                <button
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={(currentPage + 1) * rowsPerPage >= routineExercises.length}
+                                >
+                                    Next
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ) : (selectedDay && routineExercises.length === 0 && !routine.includes('no routine')) ? (
-                    <p>There is no routine for this day: {selectedDay}</p>
+                    </>
+                ) : selectedDay && routineExercises.length === 0 && !routine.includes('no routine') ? (
+                    <p>There is no exercises for this day, add one!</p>
                 ) : null}
             </div>
 

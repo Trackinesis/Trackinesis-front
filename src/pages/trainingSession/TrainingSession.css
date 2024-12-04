@@ -37,14 +37,14 @@ tbody tr:hover {
 .pagination button {
     padding: 5px 10px;
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--secondary-main);
+    color: var(--white);
     border: none;
     border-radius: 3px;
 }
 
 .pagination button:disabled {
-    background-color: #ccc;
+    background-color: var(--primary-dark);
     cursor: not-allowed;
 }
 
