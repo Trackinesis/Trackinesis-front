@@ -24,7 +24,7 @@ function Friends() {
           name: 'Actions',
           cell: row => (
             <div>
-              <button onClick={() => confirmDelete(row.friendId)}><FaTrash /></button>
+                <button id='defaultDeleteSmallButton' onClick={() => confirmDelete(row.friendId)}><FaTrash /></button>
             </div>
           ),
           ignoreRowClick: true,
@@ -74,11 +74,12 @@ function Friends() {
     return (
         <div className='main-format-create-plan p'>
             <Link to='/social' id='backButton'><BackButton /></Link>
-            <h1 className='main-page-header' id='top-text'>Friends</h1>
+            <h1 className='main-page-header' id='top-text'>Your friends!</h1>
 
             <DataTable
                 columns={columns}
                 data={friendOptions}
+
             />
             {friendToDelete && (
                 <div className='delete-confirmation'>
@@ -89,6 +90,7 @@ function Friends() {
                     </div>
                 </div>
             )}
+
             <FooterNavigation/>
         </div>
         

@@ -202,7 +202,7 @@ function TrainingGoal() {
                 </div>
 
                 <div className='prompt'>
-                    <label id='top-text' htmlFor='goalDescription'> Description</label>
+                    <label id='top-text' htmlFor='goalDescription'>Description</label>
                     <input
                         id='signupForms'
                         type="text"
