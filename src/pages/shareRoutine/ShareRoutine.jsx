@@ -61,7 +61,7 @@ function ShareRoutine() {
     };
 
     return (
-        <div className='main-page p'>
+        <div className='main-format-create-plan p'>
             <Link to='/social' id='backButton'><BackButton/></Link>
             <h1 className='main-page-header'>Search routines!</h1>
 
