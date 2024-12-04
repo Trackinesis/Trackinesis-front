@@ -65,10 +65,6 @@ function UserPage() {
         }
     };
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     const handleLogOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
@@ -79,13 +75,15 @@ function UserPage() {
         <div className='main-page p'>
             <Link to="/home" id='backButton'> <BackButton/> </Link>
             <h2 className='main-page-header' id="top-text">Edit User Profile </h2>
+            <h5 className='main-page-header' id="top-text">Your creator Id is: {localStorage.getItem("userId")} </h5>
             <form>
                 <div className="prompt">
                     <label id='top-text' htmlFor="currentPassword">Current Password:</label>
                     <input id='signupForms' type="password" placeholder='Type current password'/>
 
                     <label id='top-text' htmlFor="password">New Password:</label>
-                    <input id='signupForms' name='password' type="password" onChange={handleInput} placeholder='Type new password'/>
+                    <input id='signupForms' name='password' type="password" onChange={handleInput}
+                           placeholder='Type new password'/>
                 </div>
 
                 <button id='defaultButton' type="submit" onClick={handleUpdatePassword}>Save Changes</button>
@@ -96,7 +94,7 @@ function UserPage() {
 
                 <button onClick={handleLogOut} id='defaultButton'>Logout</button>
 
-                <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account </button>
+                <button id="deleteAccountButton" type='button' onClick={handleDeleteAccount}> Delete My Account</button>
             </form>
             {showDeleteConfirmation && (
                 <div className='delete-confirmation'>
