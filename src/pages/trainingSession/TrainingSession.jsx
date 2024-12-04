@@ -227,13 +227,18 @@ function TrainingSession() {
                                         <td>{exercise.duration}</td>
                                         <td>
                                             <div style={{display: 'flex', alignItems: 'center'}}>
-                                                <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
-                                                <span style={{margin: '0 5px'}}>
-                                            {exerciseStatus[exercise.id]?.setsCompleted || 0}
-                                        </span>
-                                                <FaPlus onClick={() => incrementSetCompletion(exercise.id)}/>
-                                                {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets && (
-                                                    <FaCheck style={{marginLeft: '10px'}}/>
+                                                {/* Verificar si el número de sets es mayor que 0 */}
+                                                {exercise.sets > 0 && (
+                                                    <>
+                                                        <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
+                                                        <span style={{margin: '0 5px'}}>
+                    {exerciseStatus[exercise.id]?.setsCompleted || 0}
+                </span>
+                                                        <FaPlus onClick={() => incrementSetCompletion(exercise.id)}/>
+                                                        {exerciseStatus[exercise.id]?.setsCompleted >= exercise.sets && (
+                                                            <FaCheck style={{marginLeft: '10px'}}/>
+                                                        )}
+                                                    </>
                                                 )}
                                             </div>
                                         </td>
