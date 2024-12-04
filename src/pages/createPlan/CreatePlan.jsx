@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { format } from 'date-fns';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import './CreatePlan.css'
 import '../../styles.css'
-import Validation from "../createRoutine/RoutineValidation";
 import BackButton from "../../components/backButton/BackButton";
 
 function CreatePlan() {
@@ -57,39 +55,39 @@ function CreatePlan() {
 
     return (
         <div className='main-page p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
+            <Link to='/planslisted' id='backButton'><BackButton /></Link>
             <h2 className='main-page-header'>Create new plan</h2>
             <form action="" onSubmit={handleAddPlan}>
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan name"><strong>Plan name:</strong></label>
-                    <input id='formsInput' type="plan name" placeholder='Enter Plan name:'
+                    <input id='signupForms' type="plan name" placeholder='Enter Plan name:'
                            name='name' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan description"><strong>Description:</strong></label>
-                    <input id='formsInput' type="plan description" placeholder='Enter Plan description:'
+                    <input id='signupForms' type="plan description" placeholder='Enter Plan description:'
                            name='description' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className='prompt'>
                     <label id='top-text' htmlFor="plan objective"><strong>Plan Objective (optional):</strong></label>
-                    <input id='formsInput' type="plan objective" placeholder='Enter Plan objective (optional):'
+                    <input id='signupForms' type="plan objective" placeholder='Enter Plan objective (optional):'
                            name='objective' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className="prompt">
                     <label id='top-text' htmlFor="startDate"><strong>Start date:</strong></label>
-                    <input type='date' name='startDate' onChange={handlePlanAddInput}/>
+                    <input id="signupForms" type='date' name='startDate' onChange={handlePlanAddInput}/>
                 </div>
 
                 <div className="prompt">
                     <label htmlFor="endDate" id='top-text'><strong>End date:</strong></label>
-                    <input type='date' name='endDate' onChange={handlePlanAddInput}/>
+                    <input id="signupForms" type='date' name='endDate' onChange={handlePlanAddInput}/>
                     <> <p></p></>
                 </div>
 
-                <button type="submit" id='colouredButton' onClick={handleAddPlan}>Save Plan</button>
+                <button type="submit" id='defaultButton' onClick={handleAddPlan}>Save Plan</button>
             </form>
         </div>
     );
