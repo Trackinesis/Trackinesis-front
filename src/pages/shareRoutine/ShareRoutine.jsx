@@ -24,6 +24,13 @@ function ShareRoutine() {
     const handleSearch = async (event) => {
         event.preventDefault();
         setErrorMessage(null);
+
+        // Check if the searchTerm is empty
+        if (!searchTerm.trim()) {
+            setErrorMessage('Please enter a search value'); // Show error if search term is empty
+            return;
+        }
+
         console.log(`Searching for routines by ${searchType}: ${searchTerm}`);
 
         try {
@@ -44,7 +51,7 @@ function ShareRoutine() {
             }
         } catch (err) {
             console.error(err);
-            setErrorMessage('Error retrieving routines');
+            setErrorMessage('No routines found');
         }
     };
 
@@ -65,30 +72,29 @@ function ShareRoutine() {
             <Link to='/social' id='backButton'><BackButton/></Link>
             <h1 className='main-page-header'>Search routines!</h1>
 
-
             <form action="" onSubmit={handleSearch}>
-            <div className='prompt'>
-                <label htmlFor="searchTerm" id='top-text'><strong>Enter search term:</strong></label>
-                <input
-                    id='formsInput'
-                    type="text"
-                    placeholder='Enter ID, name, or creator ID'
-                    name='searchTerm'
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                />
-            </div>
+                <div className='prompt'>
+                    <label htmlFor="searchTerm" id='top-text'><strong>Enter search value:</strong></label>
+                    <input
+                        id='formsInput'
+                        type="text"
+                        placeholder='Enter ID, name, or creator ID'
+                        name='searchTerm'
+                        value={searchTerm}
+                        onChange={handleInputChange}
+                    />
+                </div>
 
-            <div className='mb-3'>
-                <label htmlFor="searchType" id='top-text'><strong>Select search parameter:</strong></label>
-                <select id='formsInput' value={searchType} onChange={handleSelectChange}>
-                    <option value="id">By routine ID</option>
-                    <option value="name">By Name</option>
-                    <option value="creatorId">By creator ID</option>
-                </select>
-            </div>
+                <div className='mb-3'>
+                    <label htmlFor="searchType" id='top-text'><strong>Select search parameter:</strong></label>
+                    <select id='formsInput' value={searchType} onChange={handleSelectChange}>
+                        <option value="id">By routine ID</option>
+                        <option value="name">By Name</option>
+                        <option value="creatorId">By creator ID</option>
+                    </select>
+                </div>
 
-            <button onClick={handleSearch} id='defaultButton'>Search</button>
+                <button onClick={handleSearch} id='defaultButton'>Search</button>
             </form>
 
             {errorMessage && (
