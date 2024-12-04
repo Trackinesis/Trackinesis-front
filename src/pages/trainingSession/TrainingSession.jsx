@@ -227,7 +227,6 @@ function TrainingSession() {
                                         <td>{exercise.duration}</td>
                                         <td>
                                             <div style={{display: 'flex', alignItems: 'center'}}>
-                                                {/* Verificar si el número de sets es mayor que 0 */}
                                                 {exercise.sets > 0 && (
                                                     <>
                                                         <FaMinus onClick={() => decrementSetCompletion(exercise.id)}/>
