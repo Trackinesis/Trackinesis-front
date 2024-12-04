@@ -131,7 +131,7 @@ function RoutinesListed() {
 
         const selectedRoutinesData = routines.filter(routine => selectedRoutines.includes(routine.routineId));
         if (selectedRoutinesData.length === 0) {
-            alert("No hay rutinas seleccionadas para exportar.");
+            alert("No selected routines to export.");
             return;
         }
 
@@ -204,7 +204,7 @@ function RoutinesListed() {
                                 onChange={() => handleCheckboxChange(routine.routineId)}
                             />
                         }
-                        label="Select"
+                        label="Select this routine to export"
                     />
 
                     {showEditDropdown && routine.routineId === selectedRoutine && (
@@ -309,7 +309,7 @@ function RoutinesListed() {
                             onChange={(e) => setSelectedRoutines(e.target.checked ? routines.map(r => r.routineId) : [])}
                         />
                     }
-                    label="Seleccionar todas las rutinas"
+                    label="Select all routines"
                 />
                 <div className="export-card">
                     <button id='export-button' onClick={exportToPDF}>Export to PDF</button>
