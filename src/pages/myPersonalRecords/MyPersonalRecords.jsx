@@ -58,10 +58,6 @@ function MyPersonalRecords() {
 
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   const handleToggleUpdateForm = () => {
     setShowUpdateForm(!showUpdateForm);
   };
