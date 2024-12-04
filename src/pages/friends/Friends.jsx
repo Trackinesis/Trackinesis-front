@@ -45,10 +45,6 @@ function Friends() {
           .catch(err => console.log(err));
     }, []);
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     const deleteFriend = async (friendId) => {
         try {
             console.log('Deleting friend:', friendId);
@@ -66,7 +62,7 @@ function Friends() {
           console.error('Error deleting friend:', error);
         }
       };
-    
+
       const confirmDelete = (friendId) => {
         setFriendToDelete(friendId);
       };
@@ -76,19 +72,21 @@ function Friends() {
       };
     
     return (
-        <div className='home-page-main-format p'>
-            <button onClick={handleGoBack} id="backButton"><BackButton/></button>
-            <h1 className='main-page-header'>Friends</h1>
+        <div className='main-format-create-plan p'>
+            <Link to='/social' id='backButton'><BackButton /></Link>
+            <h1 className='main-page-header' id='top-text'>Friends</h1>
 
             <DataTable
                 columns={columns}
                 data={friendOptions}
             />
             {friendToDelete && (
-                <div>
-                    <p id='top-text'>¿Are you sure?</p>
-                    <button id='defaultButton' onClick={() => deleteFriend(friendToDelete)}>Yes</button>
-                    <button id='colouredButton' onClick={cancelDelete}>No</button>
+                <div className='delete-confirmation'>
+                    <p className='confirmation-text'>¿Are you sure you want to delete your friend?</p>
+                    <div className='confirmation-buttons'>
+                        <button className='cancel-button' onClick={cancelDelete}>No</button>
+                        <button className='delete-button' onClick={() => deleteFriend(friendToDelete)}>Yes</button>
+                    </div>
                 </div>
             )}
             <FooterNavigation/>
